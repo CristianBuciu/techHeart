@@ -1,0 +1,53 @@
+@import "../../sass/base";
+
+.header{
+    width: 100%;
+   
+}
+.nav {
+    display: flex;
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0 2rem;
+   
+    &__logo-container{
+        display: flex;
+        align-items: center;
+        flex: 1;
+        justify-content: flex-start;
+    }
+    &__logo{
+        font-size: 4rem;
+        color: $color-cta;
+    }
+   
+    &__title{
+       
+        margin-left: 1rem;
+        font-size: 2.8rem;
+        line-height: 1;
+        font-family: $font-special;
+        color: $color-primary;
+        
+    }
+    &__navlinks-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+    &__icons-container{
+        flex: 1;
+        display: flex;
+        align-items: center;
+       justify-content: flex-end;
+    }
+    &__icon{
+        font-size: 2.8rem;
+        color: $color-cta;
+       
+        &:not(:last-child){
+            margin-right: 2rem;
+        }
+    }
+}

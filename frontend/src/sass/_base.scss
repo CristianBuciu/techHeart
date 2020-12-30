@@ -1,11 +1,14 @@
+
+
 // COLOR VARIABLES
 $color-primary: rgb(32, 179, 188);
 $color-primary-dark: rgb(0, 0, 0);
-$color-cta: rgb(188, 24, 74);
+$color-cta: #bc184a;
 
 $color-yellow-1: rgb(254, 248, 219);
 $color-yellow-2: rgb(254, 217, 133);
-$color-yellow-: rgb(245, 165, 128);
+$color-yellow-3: rgb(245, 165, 128);
+$color-yellow-4:rgb(255, 180, 3);
 
 $color-grey-dark-1: rgb(121, 121, 121);
 $color-grey-dark-2: #363636;
@@ -13,7 +16,7 @@ $color-grey-dark-2: #363636;
 // FONT VARIABLES
 $font-primary: "Tenor Sans", sans-serif;
 $font-secondary: "Signika Negative", sans-serif;
-$font-special: "Space Mono", monospace;
+$font-special: "Space Mono", monospace;          
 
 $shadow-normal: 0 1rem 2rem
         rgba(
@@ -97,7 +100,9 @@ $shadow-young-clicked: -0.25rem 0.25rem 0 #10162f;
         border-radius: 0;
     }
 }
-
+.mt-sm{margin-top: 2rem;}
+.mt-md{margin-top: 4rem;}
+.mt-lg{margin-top: 8rem;}
 .mb-sm {
     margin-bottom: 2rem;
 }
