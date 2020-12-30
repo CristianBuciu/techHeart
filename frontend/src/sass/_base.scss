@@ -1,0 +1,120 @@
+// COLOR VARIABLES
+$color-primary: rgb(32, 179, 188);
+$color-primary-dark: rgb(0, 0, 0);
+$color-cta: rgb(188, 24, 74);
+
+$color-yellow-1: rgb(254, 248, 219);
+$color-yellow-2: rgb(254, 217, 133);
+$color-yellow-: rgb(245, 165, 128);
+
+$color-grey-dark-1: rgb(121, 121, 121);
+$color-grey-dark-2: #363636;
+
+// FONT VARIABLES
+$font-primary: "Tenor Sans", sans-serif;
+$font-secondary: "Signika Negative", sans-serif;
+$font-special: "Space Mono", monospace;
+
+$shadow-normal: 0 1rem 2rem
+        rgba(
+            $color: #000000,
+            $alpha: 0.15,
+        ),
+    0 0.5rem 1rem
+        rgba(
+            $color: #000000,
+            $alpha: 0.1,
+        ),
+    0 0.25rem 1rem
+        rgba(
+            $color: #000000,
+            $alpha: 0.2,
+        );
+
+$shadow-young: -0.5rem 0.5rem 0 #10162f;
+$shadow-young-clicked: -0.25rem 0.25rem 0 #10162f;
+%heading {
+    font-family: $font-special;
+    font-weight: 400;
+}
+
+.heading-1 {
+    @extend %heading;
+}
+.heading-2 {
+    @extend %heading;
+    font-size: 2.8rem;
+    font-style: italic;
+    line-height: 1.2;
+    &--light {
+        color: $color-yellow-1;
+    }
+    &--dark {
+        color: $color-grey-dark-1;
+    }
+}
+.heading-3 {
+    @extend %heading;
+    font-size: 1.6rem;
+    color: $color-cta;
+    text-transform: uppercase;
+}
+.heading-4 {
+    @extend %heading;
+    font-size: 2rem;
+    &--light {
+        color: $color-yellow-1;
+    }
+    &--dark {
+        color: $color-primary-dark;
+    }
+}
+
+.button {
+    background-color: $color-cta;
+    color: $color-primary-dark;
+    border: none;
+    border-radius: 0;
+    font-family: $font-secondary;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+    &:hover {
+        transform: translateX(0.5rem) translateY(-0.5rem);
+        box-shadow: $shadow-young;
+        border: 1px solid $color-primary-dark;
+    }
+    &:active {
+        box-shadow: $shadow-young-clicked;
+        transform: translateX(0.25rem) translateY(-0.25rem);
+        border-radius: 0;
+    }
+    &:focus {
+        border-radius: 0;
+    }
+}
+
+.mb-sm {
+    margin-bottom: 2rem;
+}
+
+.mb-md {
+    margin-bottom: 4rem;
+}
+
+.mb-lg {
+    margin-bottom: 8rem;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+    &:visited {
+        color: inherit;
+        text-decoration: none;
+    }
+}
