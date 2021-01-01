@@ -1,11 +1,12 @@
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import HomeScreen from "./screens/home-screen/HomeScreen";
 function App() {
   return (
     <>
       <Header />
       <main>
-        <h1 className="heading-1">Welcome to proshop</h1>
+        <HomeScreen />
       </main>
       <Footer />
     </>

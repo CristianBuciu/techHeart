@@ -1,0 +1,82 @@
+@import "../../sass/base";
+
+.product{
+   
+    z-index: 3;
+    padding: 1rem;
+    background-color: rgba($color: white, $alpha: .9);
+    backdrop-filter: blur(.5rem);
+    height: 32rem;
+    width: 26rem;
+    border-radius: 1rem;
+    box-shadow: $shadow-normal;
+    transition: all .2s;
+    display:flex;
+    flex-direction: column;
+    cursor: pointer;
+    
+    &__image-container{
+        width: 100%;
+        height: 66.66%;
+        overflow: hidden;
+        position: relative;
+    }
+    &__heart{
+        font-size: 2rem;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+       color:rgba($color:  white, $alpha: .8);
+       &--selected{
+        color:rgba($color:  red, $alpha: .8);
+       }
+    }
+    &__image{
+        width: 100%;
+        height:100%;
+        border-radius: .5rem;
+        object-fit: cover;
+        object-position: center;
+        transition: all .2s ;
+    }
+    &:hover &__image{
+        transform: scale(1.2);
+    }
+    &:hover &__title{
+        color: $color-cta;
+    }
+    &:hover{
+        transform: translateY(-.5rem);
+        box-shadow: $shadow-normal-hover;
+    }
+    &__title{
+        font-family: $font-secondary;
+        font-weight: 400;
+        text-decoration: none;
+        color: $color-primary-dark;
+        padding-top:.75rem ;
+        height: 15%;
+        transition: all .2s ;
+    }
+    &__center{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__rating-text{
+        font-size: 1.6rem;
+        margin-right: 1rem;
+        color: $color-grey-dark-2;
+        font-weight: 400;
+    }
+    &__bottom{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__price-text{
+        font-size: 1.8rem;
+        color: $color-grey-dark-2;
+        font-weight: 400;
+    }
+}
