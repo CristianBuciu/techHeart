@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./HomeScreen.scss";
 import Product from "../../components/product/Product";
 import axios from "axios";
-
 //!=======================================================
 const HomeScreen = () => {
   const [products, setProducts] = useState([]);

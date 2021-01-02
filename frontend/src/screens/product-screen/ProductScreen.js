@@ -18,7 +18,7 @@ const ProductScreen = ({ match }) => {
       setProduct(data);
     };
     fetchProduct();
-  }, [match.params.id]);
+  }, [match]);
   return (
     <>
       <div className="product-screen__top-links mb-sm">
@@ -30,11 +30,13 @@ const ProductScreen = ({ match }) => {
         </Link>
       </div>
       <div className="product-screen__body">
-        <img
-          className="product-screen__image"
-          src={product.image}
-          alt="product"
-        />
+        <div className="product-screen__image-wrapper">
+          <img
+            className="product-screen__image"
+            src={product.image}
+            alt="product"
+          />
+        </div>
         <h1 className="product-screen__name">{product.name}</h1>
         <div className="product-screen__price">
           <h4 className="heading-4 product-screen__price--title">PRICE</h4>
