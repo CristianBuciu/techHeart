@@ -11,24 +11,44 @@
     border-radius: 1rem;
     box-shadow: $shadow-normal;
     transition: all .2s;
-    display:flex;
-    flex-direction: column;
-    cursor: pointer;
-    
+   
+    position: relative;
+    &__card{
+        height: 100%;
+        display:flex;
+        flex-direction: column;
+        cursor: pointer;
+        justify-content: space-evenly;
+    }
     &__image-container{
         width: 100%;
         height: 66.66%;
         overflow: hidden;
         position: relative;
+      
+    }
+    &__button{
+       @include custom-btn;
+        position: absolute;
+        bottom: -100%;
+        left: 0rem;
+        width:100%;
+        z-index: 4;
+        padding: 1rem;
+        &--icon{
+            margin-right: .5rem;
+            font-size: 2rem;
+        }
     }
     &__heart{
+        cursor: pointer;
         font-size: 2rem;
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 2rem;
+        right: 2rem;
        color:rgba($color:  white, $alpha: .8);
        &--selected{
-        color:rgba($color:  red, $alpha: .8);
+        color:rgba($color:  rgb(253, 62, 62), $alpha: .8);
        }
     }
     &__image{
@@ -38,6 +58,10 @@
         object-fit: cover;
         object-position: center;
         transition: all .2s ;
+       
+    }
+    &:hover &__button{
+        bottom: 0;
     }
     &:hover &__image{
         transform: scale(1.2);

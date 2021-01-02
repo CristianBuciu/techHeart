@@ -31,11 +31,25 @@
         color: $color-primary;
         
     }
-    &__navlinks-container{
+    &__links-container{
         display: flex;
         align-items: center;
         justify-content: center;
         flex: 1;
+    }
+    &__link{
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 1;
+        padding: .5rem 1rem;
+        border-bottom: 2px solid transparent;
+        border-top: 2px solid transparent;
+        
+        z-index: 3;
+        &--active{
+            border-bottom: 2px solid $color-cta;
+            border-top: 2px solid $color-primary;
+        }
     }
     &__icons-container{
         flex: 1;
@@ -45,10 +59,14 @@
     }
     &__icon{
         font-size: 2.8rem;
-        color: $color-primary;
-       
+        color: $color-grey-dark-2;
+        transition: all .2s;
+       &:hover{
+           color: $color-primary;
+       }
         &:not(:last-child){
             margin-right: 2rem;
         }
     }
+   
 }
