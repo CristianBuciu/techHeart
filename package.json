@@ -1,0 +1,29 @@
+{
+  "name": "techheart",
+  "version": "1.0.0",
+  "description": "MERN Shop App",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CristianBuciu/proshop.git"
+  },
+  "keywords": [
+    "Cristian",
+    "Buciu",
+    "MERN",
+    "Shop",
+    "App"
+  ],
+  "author": "Cristian Buciu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CristianBuciu/proshop/issues"
+  },
+  "homepage": "https://github.com/CristianBuciu/proshop#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

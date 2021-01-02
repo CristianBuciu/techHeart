@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { BsHeartFill } from "react-icons/bs";
 import "./ProductScreen.scss";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
+import axios from "axios";
 
-import products from "../../products";
 //!==================================================================
 
 const ProductScreen = ({ match }) => {
   const [like, setLike] = useState(false);
-  const product = products.find((p) => p._id === match.params.id);
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
+      setProduct(data);
+    };
+    fetchProduct();
+  }, [match.params.id]);
   return (
     <>
       <div className="product-screen__top-links mb-sm">
