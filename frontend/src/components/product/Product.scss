@@ -9,7 +9,7 @@
     height: 32rem;
     width: 26rem;
     border-radius: 1rem;
-    box-shadow: $shadow-normal;
+    // box-shadow: $shadow-normal;
     transition: all .2s;
    
     position: relative;
@@ -70,7 +70,7 @@
         color: $color-cta;
     }
     &:hover{
-        transform: translateY(-.5rem);
+        transform: $translate-hover;
         box-shadow: $shadow-normal-hover;
     }
     &__title{

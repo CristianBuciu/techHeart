@@ -1,6 +1,5 @@
+//! COLOR VARIABLES =====================================================
 
-
-// COLOR VARIABLES
 $color-primary: rgb(32, 179, 188);
 $color-primary-dark: rgb(0, 0, 0);
 $color-cta: rgb(2, 168, 18);
@@ -8,179 +7,160 @@ $color-cta: rgb(2, 168, 18);
 $color-yellow-1: rgb(254, 248, 219);
 $color-yellow-2: rgb(254, 217, 133);
 $color-yellow-3: rgb(233, 135, 90);
-$color-yellow-4:rgb(255, 180, 3);
+$color-yellow-4: rgb(255, 180, 3);
 
 $color-alert: rgb(253, 62, 62);
-
-$color-grey-dark-1: rgb(219, 219, 219);
+$color-grey-light: rgb(247, 247, 247);
+$color-grey-dark-1: rgb(151, 151, 151);
 $color-grey-dark-2: #252525;
 
-// FONT VARIABLES
+//! FONT VARIABLES =====================================================
+
 $font-primary: "Tenor Sans", sans-serif;
-$font-secondary: 'Raleway', sans-serif;
-$font-special: "Space Mono", monospace;          
+$font-secondary: "Raleway", sans-serif;
+$font-special: "Space Mono", monospace;
+
+//! SHADOWS ============================================================
 
 $shadow-normal: 0 1rem 2rem
-        rgba(
-            $color: #000000,
-            $alpha: 0.05,
-        ),
-    0 0.5rem 1.5rem
-        rgba(
-            $color: #000000,
-            $alpha: 0.025,
-        ),
-    0 0.25rem .75rem
-        rgba(
-            $color: $color-yellow-1,
-            $alpha: 0.2,
-        );
-        $shadow-normal-hover: 0 1rem 2rem
-        rgba(
-            $color: #000000,
-            $alpha: 0.075,
-        ),
-    0 0.5rem 1.5rem
-        rgba(
-            $color: #000000,
-            $alpha: 0.025,
-        ),
-    0 0.25rem .75rem
-        rgba(
-            $color: $color-yellow-1,
-            $alpha: 0.3,
-        );
+    rgba(
+      $color: #000000,
+      $alpha: 0.05,
+    ),
+  0 0.5rem 1.5rem
+    rgba(
+      $color: #000000,
+      $alpha: 0.025,
+    ),
+  0 0.25rem 0.75rem
+    rgba(
+      $color: $color-yellow-1,
+      $alpha: 0.2,
+    );
+$shadow-normal-hover: 0 1rem 2rem
+    rgba(
+      $color: #000000,
+      $alpha: 0.075,
+    ),
+  0 0.5rem 1.5rem
+    rgba(
+      $color: #000000,
+      $alpha: 0.025,
+    ),
+  0 0.25rem 0.75rem
+    rgba(
+      $color: $color-yellow-1,
+      $alpha: 0.3,
+    );
 
 $shadow-young: -0.5rem 0.5rem 0 #10162f;
 $shadow-young-clicked: -0.25rem 0.25rem 0 #10162f;
+
+$translate-hover: translateY(-0.5rem);
+
+//!TYPOGRAPHY ===========================================================
+
 %heading {
-    font-family: $font-special;
-    font-weight: 400;
+  font-family: $font-special;
+  font-weight: 400;
 }
 
 .heading-1 {
-    @extend %heading;
-    font-size: 3rem;
-    font-weight: 600;
-    &--light {
-        color: $color-yellow-1;
-    }
-    &--dark {
-        color: $color-grey-dark-1;
-    }
-
+  @extend %heading;
+  font-size: 3rem;
+  font-weight: 600;
+  &--light {
+    color: $color-yellow-1;
+  }
+  &--dark {
+    color: $color-grey-dark-1;
+  }
 }
 .heading-2 {
-    @extend %heading;
-    font-size: 2.8rem;
-    font-style: italic;
-    line-height: 1.2;
-    &--light {
-        color: $color-yellow-1;
-    }
-    &--dark {
-        color: $color-grey-dark-1;
-    }
+  @extend %heading;
+  font-size: 2.8rem;
+  font-style: italic;
+  line-height: 1.2;
+  &--light {
+    color: $color-yellow-1;
+  }
+  &--dark {
+    color: $color-grey-dark-1;
+  }
 }
 .heading-3 {
-    @extend %heading;
-    font-size: 1.6rem;
-    color: $color-cta;
-    text-transform: uppercase;
+  @extend %heading;
+  font-size: 1.6rem;
+  color: $color-cta;
+  text-transform: uppercase;
 }
 .heading-4 {
-    @extend %heading;
-    font-size: 1.4rem;
-    font-weight: 600;
-    &--light {
-        color: $color-yellow-1;
-    }
-    &--dark {
-        color: $color-primary-dark;
-    }
-    &--center{
-        text-align: center;
-    }
-}
-
-.button {
-    background-color: $color-cta;
+  @extend %heading;
+  font-size: 1.4rem;
+  font-weight: 600;
+  &--light {
+    color: $color-yellow-1;
+  }
+  &--dark {
     color: $color-primary-dark;
-    border: none;
-    border-radius: 0;
-    font-family: $font-secondary;
-    font-size: 1.6rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 1.8rem 3rem;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    border: 1px solid transparent;
-    &:hover {
-        transform: translateX(0.5rem) translateY(-0.5rem);
-        box-shadow: $shadow-young;
-        border: 1px solid $color-primary-dark;
-    }
-    &:active {
-        box-shadow: $shadow-young-clicked;
-        transform: translateX(0.25rem) translateY(-0.25rem);
-        border-radius: 0;
-    }
-    &:focus {
-        border-radius: 0;
-    }
-}
-.mt-xs{margin-top: 1rem;}
-.mt-sm{margin-top: 2rem;}
-.mt-md{margin-top: 4rem;}
-.mt-lg{margin-top: 8rem;}
-.mb-sm {
-    margin-bottom: 2rem;
+  }
+  &--center {
+    text-align: center;
+  }
 }
 
+//!PADDINGS AND MARGINS =====================================================
+
+.mt-xs {
+  margin-top: 1rem;
+}
+.mt-sm {
+  margin-top: 2rem;
+}
+.mt-md {
+  margin-top: 4rem;
+}
+.mt-lg {
+  margin-top: 8rem;
+}
+.mb-sm {
+  margin-bottom: 2rem;
+}
 
 .mb-md {
-    margin-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 
 .mb-lg {
-    margin-bottom: 8rem;
+  margin-bottom: 8rem;
 }
 
-.link {
-    text-decoration: none;
-    color: inherit;
-    &:visited {
-        color: inherit;
-        text-decoration: none;
-    }
-}
+//! CUSTOM COMPONENTS =====================================================
 
-
-@mixin custom-btn{
-    cursor: pointer;
-    border: none;
-    background-color: rgba($color: $color-yellow-2, $alpha: .9);
-    backdrop-filter: blur(.5rem);
-    transition: all .2s ;
-    text-transform: uppercase;
-    font-family: $font-special;
-    font-weight: 600;
-    color: $color-yellow-3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@mixin custom-btn {
+  cursor: pointer;
+  border: none;
+  background-color: rgba($color: $color-yellow-2, $alpha: 0.9);
+  backdrop-filter: blur(0.5rem);
+  transition: all 0.2s;
+  text-transform: uppercase;
+  font-family: $font-special;
+  font-weight: 600;
+  color: $color-yellow-3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @mixin custom-btn-disabled {
-    cursor: not-allowed;
-    border: none;
-    background-color: rgba($color: $color-grey-dark-1, $alpha: .9);
-    font-family: $font-special;
-    backdrop-filter: blur(.5rem);
-    text-transform: uppercase;
-    font-weight: 600;
-    color: $color-grey-dark-2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  cursor: not-allowed;
+  border: none;
+  background-color: rgba($color: $color-grey-dark-1, $alpha: 0.9);
+  font-family: $font-special;
+  backdrop-filter: blur(0.5rem);
+  text-transform: uppercase;
+  font-weight: 600;
+  color: $color-grey-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
