@@ -63,7 +63,7 @@ const ProductScreen = ({ match }) => {
           >
             {" "}
             <TiShoppingCart className="product-screen__button--icon" />
-            {product.countInStock === 0 ? "not in stock" : "Add to cart"}
+            {product.countInStock === 0 ? "out of stock" : "Add to cart"}
           </button>
         </div>
         <div className="product-screen__rating">

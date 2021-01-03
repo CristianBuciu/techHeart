@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.scss";
 import { GiTechnoHeart } from "react-icons/gi";
-import { TiShoppingCart, TiUserOutline } from "react-icons/ti";
+import { TiShoppingCart, TiUserOutline, TiHeart } from "react-icons/ti";
 import { Link, NavLink } from "react-router-dom";
 //!==============================================================
 const Header = () => {
@@ -25,6 +25,10 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="nav__icons-container">
+          <Link className="nav__icon" to="/favorites">
+            {" "}
+            <TiHeart />
+          </Link>
           <Link className="nav__icon" to="/cart">
             {" "}
             <TiShoppingCart />

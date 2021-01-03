@@ -1,24 +1,33 @@
 import express from "express";
 import { config } from "dotenv";
-import products from "./data/products.js";
 import connectDB from "./config/db.js";
+import { notFound, errorHandler } from "./middleware/errormiddleware.js";
 import colors from "colors";
+import productRoutes from "./routes/productRoutes.js";
 const app = express();
 
+//! DotENV initialization ====================================
 config();
-
+//?===========================================================
+//! MongoDB connect ==========================================
 connectDB();
+//?===========================================================
 
 app.get("/", (req, res) => {
   res.send("API is running");
 });
-app.get("/api/products", (req, res) => {
-  res.json(products);
-});
-app.get("/api/products/:id", (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
-});
+
+app.use("/api/products", productRoutes);
+
+//! 404 error handling =======================================
+app.use(notFound);
+//?===========================================================
+
+//! Error handling middleware ================================
+app.use(errorHandler);
+//?===========================================================
+
+//! Server start =============================================
 const PORT = process.env.PORT || 5000;
 app.listen(
   PORT,
@@ -27,3 +36,4 @@ app.listen(
       .bold
   )
 );
+//?===========================================================

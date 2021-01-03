@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Airpods Wireless Bluetooth Headphones",
     image:
       "https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?cs=srgb&dl=pexels-dina-nasyrova-3825517.jpg&fm=jpg",
@@ -14,7 +13,6 @@ const products = [
     numReviews: 14,
   },
   {
-    _id: "2",
     name: "iPhone 11 Pro 256GB Memory",
     image:
       "https://images.pexels.com/photos/3571093/pexels-photo-3571093.jpeg?cs=srgb&dl=pexels-torsten-dettlaff-3571093.jpg&fm=jpg",
@@ -28,7 +26,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: "3",
     name: "Cannon EOS 80D DSLR Camera",
     image:
       "https://images.unsplash.com/photo-1582174295436-2ed0ea635ceb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
@@ -42,7 +39,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "4",
     name: "Sony Playstation 4 Pro White Version",
     image:
       "https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
@@ -56,7 +52,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "5",
     name: "Logitech G-Series Gaming Mouse",
     image:
       "https://images.unsplash.com/photo-1554576575-a4e7b6e8409d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
@@ -70,7 +65,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: "6",
     name: "Amazon Echo Dot 3rd Generation",
     image:
       "https://images.unsplash.com/photo-1544451256-d79e9e199fa8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80",
