@@ -1,0 +1,35 @@
+@import "../../sass/base";
+
+.loader-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  align-items: center;
+  justify-items: center;
+  row-gap: 2rem;
+  column-gap: 2rem;
+}
+
+.loader-item {
+  z-index: 3;
+  background: linear-gradient(-45deg, white, rgb(236, 236, 236));
+  background-size: 400% 400%;
+  animation: gradient 1s ease infinite;
+  height: 31rem;
+  width: 25rem;
+  border-radius: 1rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

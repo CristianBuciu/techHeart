@@ -140,7 +140,7 @@ $translate-hover: translateY(-0.5rem);
 @mixin custom-btn {
   cursor: pointer;
   border: none;
-  background-color: rgba($color: $color-yellow-2, $alpha: 0.9);
+  background-color: $color-yellow-2;
   backdrop-filter: blur(0.5rem);
   transition: all 0.2s;
   text-transform: uppercase;
@@ -150,6 +150,10 @@ $translate-hover: translateY(-0.5rem);
   display: flex;
   align-items: center;
   justify-content: center;
+  &:hover {
+    background-color: $color-yellow-3;
+    color: $color-yellow-2;
+  }
 }
 @mixin custom-btn-disabled {
   cursor: not-allowed;

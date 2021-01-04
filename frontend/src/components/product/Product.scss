@@ -33,6 +33,8 @@
     width: 100%;
     z-index: 4;
     padding: 1rem;
+    transition: all 0.2s;
+
     &--icon {
       margin-right: 0.5rem;
       font-size: 2rem;
@@ -71,7 +73,6 @@
     box-shadow: $shadow-normal-hover;
   }
   &__title {
-    font-family: $font-secondary;
     font-weight: 400;
     text-decoration: none;
     color: $color-primary-dark;

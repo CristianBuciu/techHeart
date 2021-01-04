@@ -53,6 +53,7 @@
   }
 
   &__name {
+    font-family: $font-special;
     grid-column: 1/5;
     align-self: center;
     justify-self: center;
@@ -88,18 +89,19 @@
     width: 50%;
     align-self: center;
     justify-self: center;
-    border: 1px solid transparent;
+
     border-radius: 0.25rem;
     transition: all 0.2s;
     letter-spacing: 1px;
-    @include custom-btn;
-    &:hover {
-      color: $color-primary-dark;
-      border: 1px solid $color-yellow-3;
-      background-color: rgba($color: white, $alpha: 0.8);
-      box-shadow: $shadow-normal-hover;
 
-      transform: $translate-hover;
+    @include custom-btn;
+
+    &:active {
+      transform: translateY(0.2rem);
+    }
+    &:focus {
+      border: none;
+      outline: none;
     }
     &--icon {
       margin-right: 0.5rem;

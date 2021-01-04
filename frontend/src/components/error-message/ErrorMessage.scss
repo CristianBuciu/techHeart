@@ -1,0 +1,15 @@
+@import "../../sass/base";
+
+.error-message {
+  background-color: rgba($color: $color-alert, $alpha: 0.3);
+  width: 100%;
+  height: fit-content;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: red;
+  font-weight: bold;
+}
