@@ -1,38 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,600;1,400&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,600;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600&display=swap");
 @import "./sass/_base.scss";
 
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 html {
-    
-    font-size: 62.5%; /* This way 1rem is 10px */
+  font-size: 62.5%; /* This way 1rem is 10px */
 }
 body {
-    box-sizing: border-box;
-    color: $color-primary-dark;
-    font-weight: 300;
-    line-height: 1.5;
-    font-family: $font-secondary;
+  box-sizing: border-box;
+  color: $color-primary-dark;
+  font-weight: 300;
+  line-height: 1.5;
+  font-family: $font-secondary;
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 main {
-    min-height: 100vh;
-    max-width: 144rem;
-    margin: 0 auto;
-   
+  min-height: 100vh;
+  max-width: 144rem;
+  margin: 0 auto;
 }
 
-a, a:visited {
-    text-decoration: none;
-    color: inherit;
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
 }

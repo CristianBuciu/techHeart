@@ -9,11 +9,13 @@ import axios from "axios";
 import LoaderProduct from "../../components/loader-product/LoaderProduct.js";
 //!==================================================================
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ match, history }) => {
   const [like, setLike] = useState(false);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
+  const [qty, setQty] = useState(1);
 
+  //! Get the product by id from the API=============================
   useEffect(() => {
     const fetchProduct = async () => {
       const { data } = await axios.get(`/api/products/${match.params.id}`);
@@ -22,6 +24,13 @@ const ProductScreen = ({ match }) => {
     };
     fetchProduct();
   }, [match]);
+  //?==================================================================
+  //!Handlers =========================================================
+  const addToCartHandler = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
+
+  //?==================================================================
   return (
     <>
       <div className="product-screen__top-links mb-sm">
@@ -60,17 +69,51 @@ const ProductScreen = ({ match }) => {
                 &nbsp;&nbsp; Product out of stock
               </p>
             )}
-            <button
-              className={
-                product.countInStock === 0
-                  ? "product-screen__button-disabled"
-                  : "product-screen__button"
-              }
-            >
-              {" "}
-              <TiShoppingCart className="product-screen__button--icon" />
-              {product.countInStock === 0 ? "out of stock" : "Add to cart"}
-            </button>
+
+            {product.countInStock > 0 && (
+              <div className="product-screen__quantity-selector">
+                <form action="">
+                  <label
+                    className="product-screen__quantity-selector--text"
+                    htmlFor="quantity"
+                  >
+                    Select quantity
+                  </label>
+                  <select
+                    className="product-screen__quantity-selector--selection"
+                    value={qty}
+                    name="quantity"
+                    id="quantity"
+                    onChange={(e) => setQty(e.target.value)}
+                  >
+                    {[...Array(product.countInStock).keys()].map((el) => (
+                      <option
+                        className="product-screen__quantity-selector--option"
+                        key={el + 1}
+                        value={el + 1}
+                      >
+                        {el + 1}
+                      </option>
+                    ))}
+                  </select>
+                </form>
+              </div>
+            )}
+            {product.countInStock === 0 ? (
+              <button className="product-screen__button-disabled">
+                {" "}
+                <TiShoppingCart className="product-screen__button--icon" /> out
+                of stock{" "}
+              </button>
+            ) : (
+              <button
+                onClick={addToCartHandler}
+                className="product-screen__button"
+              >
+                <TiShoppingCart className="product-screen__button--icon" /> Add
+                to cart
+              </button>
+            )}
           </div>
           <div className="product-screen__rating">
             <span className="product__rating-text">
