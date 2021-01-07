@@ -1,1 +1,5 @@
-export const cartConstants = { TOGGLE_CART_SHOW: "TOGGLE_CART_SHOW" };
+export const cartConstants = {
+  CART_SHOW_TOGGLE: "CART_SHOW_TOGGLE",
+  CART_ADD_ITEM: "CART_ADD_ITEM",
+  CART_REMOVE_ITEM: "CART_REMOVE_ITEM",
+};

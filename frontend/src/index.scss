@@ -16,7 +16,7 @@ html {
 body {
   box-sizing: border-box;
   color: $color-primary-dark;
-  font-weight: 300;
+
   line-height: 1.5;
   font-family: $font-secondary;
 
@@ -27,7 +27,7 @@ body {
 main {
   min-height: 100vh;
   max-width: 144rem;
-  margin: 0 auto;
+  margin: 10rem auto;
 }
 
 a,

@@ -10,6 +10,7 @@ $color-yellow-3: rgb(233, 135, 90);
 $color-yellow-4: rgb(255, 180, 3);
 
 $color-alert: rgb(253, 62, 62);
+$color-grey-light-2: rgb(212, 212, 212);
 $color-grey-light: rgb(247, 247, 247);
 $color-grey-dark-1: rgb(151, 151, 151);
 $color-grey-dark-2: #252525;
@@ -141,10 +142,11 @@ $translate-hover: translateY(-0.5rem);
   cursor: pointer;
   border: none;
   background-color: $color-yellow-2;
-  backdrop-filter: blur(0.5rem);
+
   transition: all 0.2s;
   text-transform: uppercase;
   font-family: $font-special;
+  letter-spacing: 0.2rem;
   font-weight: 600;
   color: $color-yellow-3;
   display: flex;

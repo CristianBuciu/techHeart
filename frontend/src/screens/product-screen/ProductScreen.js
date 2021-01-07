@@ -6,7 +6,9 @@ import "./ProductScreen.scss";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import LoaderProduct from "../../components/loader-product/LoaderProduct.js";
+import { addToCart } from "../../redux/cart/cart.actions.js";
 //!==================================================================
 
 const ProductScreen = ({ match, history }) => {
@@ -14,6 +16,12 @@ const ProductScreen = ({ match, history }) => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [qty, setQty] = useState(1);
+
+  const dispatch = useDispatch();
+
+  //! Getting the state with redux hooks ============================
+  const cartShow = useSelector((state) => state.cart.showCart);
+  //?================================================================
 
   //! Get the product by id from the API=============================
   useEffect(() => {
@@ -27,7 +35,7 @@ const ProductScreen = ({ match, history }) => {
   //?==================================================================
   //!Handlers =========================================================
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`);
+    dispatch(addToCart(match.params.id, Number(qty)));
   };
 
   //?==================================================================
@@ -54,7 +62,7 @@ const ProductScreen = ({ match, history }) => {
           </div>
           <h1 className="product-screen__name">{product.name}</h1>
           <div className="product-screen__price">
-            <h4 className="heading-4 product-screen__price--title">PRICE</h4>
+            <h4 className=" product-screen__price--title">PRICE</h4>
             <span className=" product-screen__price--value">
               $ {product.price}
             </span>

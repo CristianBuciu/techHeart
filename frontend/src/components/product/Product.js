@@ -4,20 +4,25 @@ import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { BsHeartFill } from "react-icons/bs";
 import { TiShoppingCart } from "react-icons/ti";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/cart/cart.actions.js";
 //!==================================================================
 const Product = ({ product }) => {
+  const dispatch = useDispatch();
+  const addToCartHandler = () => {
+    dispatch(addToCart(product._id, 1));
+  };
   const [like, setLike] = useState(false);
 
   return (
-    <div className="product">
+    <div
+      className={
+        product.countInStock === 0 ? "product out-of-stock" : "product"
+      }
+    >
       <Link className="product__card" to={`/product/${product._id}`}>
         <div className="product__image-container">
           <img className="product__image" src={product.image} alt="" />
-          <button className="product__button">
-            <TiShoppingCart className="product__button--icon" />
-            Add to cart
-          </button>
         </div>
         <h3 className="heading-4 heading-4--center product__title">
           {product.name}

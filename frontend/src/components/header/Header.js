@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Header.scss";
 import { GiTechnoHeart } from "react-icons/gi";
 import { TiShoppingCart, TiUserOutline, TiHeart } from "react-icons/ti";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import CartDropdown from "../cart-dropdown/CartDropdown.js";
+import { toggleCartShow } from "../../redux/cart/cart.actions.js";
 //!==============================================================
+
 const Header = () => {
   const techTitle = "Cyber Heart";
+  const dispatch = useDispatch();
+  const cartToggle = useSelector((state) => state.cart.showCart);
+  const cartItemsNumber = useSelector((state) =>
+    state.cart.cartItems.reduce((accum, cartItem) => accum + cartItem.qty, 0)
+  );
+
   return (
     <header className="header">
       <nav className="nav">
@@ -29,10 +39,16 @@ const Header = () => {
             {" "}
             <TiHeart />
           </Link>
-          <Link className="nav__icon" to="/cart">
+          <div
+            onClick={() => dispatch(toggleCartShow())}
+            className="nav__icon nav__icon--cart"
+          >
             {" "}
             <TiShoppingCart />
-          </Link>
+            <span className="nav__cart-items-number">{cartItemsNumber}</span>
+          </div>
+
+          {cartToggle ? <CartDropdown /> : null}
           <Link className="nav__icon" to="/user">
             {" "}
             <TiUserOutline />
