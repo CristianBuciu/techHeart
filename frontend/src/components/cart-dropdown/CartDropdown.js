@@ -3,13 +3,12 @@ import "./CartDropdown.scss";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { TweenMax, Power3 } from "gsap";
-
+import { toggleCartShow } from "../../redux/cart/cart.actions.js";
+import { roundToTwo } from "../../utils.js";
 //!================================================
 const CartDropdown = () => {
   //!Function to calculate floatpoints accurate====
-  function roundToTwo(num) {
-    return +(Math.round(num + "e+2") + "e-2");
-  }
+
   //?==============================================
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -21,12 +20,14 @@ const CartDropdown = () => {
     (accum, cartItem) => accum + cartItem.qty * cartItem.price,
     0
   );
-
+  const checkoutClickHandler = () => {
+    dispatch(toggleCartShow());
+  };
   const cartRef = useRef(null);
   useEffect(() => {
-    TweenMax.to(cartRef.current, 0.8, {
-      opacity: 1,
-      x: 0,
+    TweenMax.from(cartRef.current, 0.8, {
+      opacity: 0,
+      x: 100,
       ease: Power3.easeOut,
     });
   }, []);
@@ -69,7 +70,12 @@ const CartDropdown = () => {
       </div>
       <div className="cart__checkout">
         <Link to="/checkout">
-          <button className="cart__checkout--btn">Go to checkout</button>
+          <button
+            onClick={checkoutClickHandler}
+            className="cart__checkout--btn"
+          >
+            Go to checkout
+          </button>
         </Link>
       </div>
     </div>

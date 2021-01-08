@@ -6,6 +6,7 @@ import ProductScreen from "./screens/product-screen/ProductScreen";
 import Checkout from "./screens/checkout/Checkout.js";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleCartShow } from "./redux/cart/cart.actions.js";
+
 //!==================================================================
 function App() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function App() {
   const overlayClickHandler = () => {
     dispatch(toggleCartShow());
   };
+
   return (
     <>
       <Header />

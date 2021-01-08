@@ -92,7 +92,7 @@ $translate-hover: translateY(-0.5rem);
 .heading-3 {
   @extend %heading;
   font-size: 1.6rem;
-  color: $color-cta;
+  color: $color-grey-dark-2;
   text-transform: uppercase;
 }
 .heading-4 {
@@ -108,6 +108,13 @@ $translate-hover: translateY(-0.5rem);
   &--center {
     text-align: center;
   }
+}
+
+.in-stock {
+  color: $color-cta;
+}
+.out-of-stock {
+  color: $color-alert;
 }
 
 //!PADDINGS AND MARGINS =====================================================

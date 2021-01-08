@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../redux/product/product.actions.js";
 import Loader from "../../components/loader/Loader.js";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
+
 //!=======================================================
 const HomeScreen = () => {
   //! Using Redux to get the data ========================
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);

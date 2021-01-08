@@ -1,1 +1,68 @@
 @import "../../sass/base";
+
+.checkout-screen {
+  display: grid;
+  grid-template-columns: 68% 30%;
+  column-gap: 2%;
+  &__title {
+    text-align: center;
+    grid-column: 1/3;
+  }
+  &__item-count {
+    padding: 1rem;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    border-bottom: 1px solid $color-grey-light-2;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  &__item {
+    grid-column: 1/2;
+    height: 10rem;
+    display: grid;
+    grid-template-columns: 15% 83%;
+    column-gap: 2%;
+    margin-bottom: 2rem;
+  }
+  &__image {
+    grid-column: 1/2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__item-details {
+    grid-column: 2/3;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 1fr 1fr 1fr;
+    &--title {
+      grid-row: 2/3;
+      align-self: center;
+    }
+    &--price {
+      grid-column: 2/3;
+      align-self: center;
+      border-bottom: 1px solid $color-grey-light-2;
+    }
+    &--price-value {
+      align-self: center;
+    }
+  }
+  &__subtotal {
+    grid-row: 3/6;
+    grid-column: 2/3;
+    padding: 1rem;
+    background-color: $color-grey-light;
+    text-align: center;
+
+    &--title {
+      font-size: 2rem;
+      align-self: center;
+    }
+    &--value {
+      font-size: 2.8rem;
+      align-self: center;
+    }
+  }
+}
