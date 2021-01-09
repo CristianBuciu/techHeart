@@ -25,9 +25,9 @@ const CartDropdown = () => {
   };
   const cartRef = useRef(null);
   useEffect(() => {
-    TweenMax.from(cartRef.current, 0.8, {
-      opacity: 0,
-      x: 100,
+    TweenMax.to(cartRef.current, 0.8, {
+      opacity: 1,
+      x: 0,
       ease: Power3.easeOut,
     });
   }, []);

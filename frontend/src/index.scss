@@ -37,14 +37,13 @@ a:visited {
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   z-index: 4;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-
-  height: 100vh;
+  height: 100%;
   background-color: rgba($color: #000000, $alpha: 0.75);
   animation: fadein 0.8s ease;
 }

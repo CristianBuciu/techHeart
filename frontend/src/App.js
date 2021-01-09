@@ -18,11 +18,11 @@ function App() {
   return (
     <>
       <Header />
-      {showCart ? (
-        <div onClick={overlayClickHandler} className="overlay"></div>
-      ) : null}
 
       <main>
+        {showCart ? (
+          <div onClick={overlayClickHandler} className="overlay"></div>
+        ) : null}
         <Route exact path="/shop" render={() => <HomeScreen />} />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/checkout/:id?" component={Checkout} />

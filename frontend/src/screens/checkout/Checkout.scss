@@ -19,7 +19,7 @@
   }
   &__item {
     grid-column: 1/2;
-    height: 10rem;
+    height: 12rem;
     display: grid;
     grid-template-columns: 15% 83%;
     column-gap: 2%;
@@ -34,8 +34,11 @@
   &__item-details {
     grid-column: 2/3;
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 60% 40%;
     grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 0.5rem;
+    border-bottom: 1px solid $color-grey-light-2;
+
     &--title {
       grid-row: 2/3;
       align-self: center;
@@ -43,16 +46,23 @@
     &--price {
       grid-column: 2/3;
       align-self: center;
-      border-bottom: 1px solid $color-grey-light-2;
+      font-weight: bold;
     }
     &--price-value {
       align-self: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
     }
   }
   &__subtotal {
-    grid-row: 3/6;
+    grid-row: 3/5;
     grid-column: 2/3;
     padding: 1rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     background-color: $color-grey-light;
     text-align: center;
 
@@ -64,5 +74,23 @@
       font-size: 2.8rem;
       align-self: center;
     }
+    &--button {
+      grid-row: 3/4;
+      width: 50%;
+      height: 50%;
+      align-self: center;
+      justify-self: center;
+      @include custom-btn;
+    }
+  }
+  &__remove {
+    cursor: pointer;
+    color: $color-alert;
+    height: 50%;
+    grid-column: 2/3;
+    width: 25%;
+    align-self: center;
+    font-size: 1.4rem;
+    font-weight: bold;
   }
 }
