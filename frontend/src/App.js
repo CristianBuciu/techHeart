@@ -6,7 +6,8 @@ import ProductScreen from "./screens/product-screen/ProductScreen";
 import Checkout from "./screens/checkout/Checkout.js";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleCartShow } from "./redux/cart/cart.actions.js";
-
+import Login from "./screens/login/Login.js";
+import Signup from "./screens/signup/Signup.js";
 //!==================================================================
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ function App() {
         <Route exact path="/shop" render={() => <HomeScreen />} />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/checkout/:id?" component={Checkout} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Signup} />
       </main>
       <Footer />
     </>

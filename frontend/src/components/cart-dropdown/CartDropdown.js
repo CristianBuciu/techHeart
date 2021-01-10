@@ -39,7 +39,7 @@ const CartDropdown = () => {
         </h3>
       </div>
       {cartItems.map((item) => (
-        <div className="cart__item">
+        <div key={item.product} className="cart__item">
           <div className="cart__item--image-container">
             <img
               src={item.image}

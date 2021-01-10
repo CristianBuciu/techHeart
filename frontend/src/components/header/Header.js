@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Header.scss";
 import { GiTechnoHeart } from "react-icons/gi";
 import { TiShoppingCart, TiUserOutline, TiHeart } from "react-icons/ti";
@@ -49,7 +49,7 @@ const Header = () => {
           </div>
 
           {cartToggle ? <CartDropdown /> : null}
-          <Link className="nav__icon" to="/user">
+          <Link className="nav__icon" to="/login">
             {" "}
             <TiUserOutline />
           </Link>

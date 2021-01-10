@@ -3,16 +3,9 @@ import "./Product.scss";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { BsHeartFill } from "react-icons/bs";
-import { TiShoppingCart } from "react-icons/ti";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/cart/cart.actions.js";
 
 //!==================================================================
 const Product = ({ product }) => {
-  const dispatch = useDispatch();
-  const addToCartHandler = () => {
-    dispatch(addToCart(product._id, 1));
-  };
   const [like, setLike] = useState(false);
 
   return (

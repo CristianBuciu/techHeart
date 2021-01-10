@@ -1,0 +1,33 @@
+@import "../../sass/base";
+
+.login-screen {
+  &__form-container {
+    width: 25%;
+    margin: 0 auto;
+    margin-top: 10rem;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    &--input-label {
+      font-size: 1.6rem;
+      font-family: $font-special;
+    }
+    &--input {
+      border: 1px solid $color-primary;
+      padding: 0.5rem;
+    }
+    &--submit-btn {
+      @include custom-btn;
+      margin-top: 2rem;
+      padding: 1rem;
+    }
+  }
+  &__create-account-link {
+    color: rgb(0, 116, 211) !important;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 1rem;
+  }
+}

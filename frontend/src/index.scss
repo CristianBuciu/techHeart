@@ -34,9 +34,11 @@ main {
 a,
 a:visited {
   text-decoration: none;
+}
+a:visited,
+a:active {
   color: inherit;
 }
-
 .overlay {
   position: fixed;
   z-index: 4;
