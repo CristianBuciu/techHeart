@@ -53,6 +53,7 @@ const ProductScreen = ({ match, history }) => {
         <LoaderProduct />
       ) : (
         <div className="product-screen__body">
+          <h1 className="product-screen__name">{product.name}</h1>
           <div className="product-screen__image-wrapper">
             <img
               className="product-screen__image"
@@ -60,7 +61,7 @@ const ProductScreen = ({ match, history }) => {
               alt="product"
             />
           </div>
-          <h1 className="product-screen__name">{product.name}</h1>
+
           <div className="product-screen__price">
             <h4 className=" product-screen__price--title">PRICE</h4>
             <span className=" product-screen__price--value">
@@ -123,6 +124,7 @@ const ProductScreen = ({ match, history }) => {
               </button>
             )}
           </div>
+
           <div className="product-screen__rating">
             <span className="product__rating-text">
               User Rating:&nbsp;&nbsp;&nbsp;
@@ -150,7 +152,10 @@ const ProductScreen = ({ match, history }) => {
             />
           </div>
           <div className="product-screen__details">
-            <h3 className="heading-3 ">PRODUCT DESCRIPTION</h3>
+            <h3 className="heading-3 ">
+              {" "}
+              <strong>PRODUCT DESCRIPTION</strong>{" "}
+            </h3>
             <p className="product-screen__details--text">
               {product.description}
             </p>
