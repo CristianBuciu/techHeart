@@ -26,7 +26,9 @@ const Checkout = ({ history }) => {
   };
   return (
     <div className="checkout-screen">
-      <h1 className="heading-1 checkout-screen__title">CART ITEMS</h1>
+      <div className="home-screen__top checkout-screen__top">
+        <h1 className="heading-1  home-screen__title ">CHECK OUT</h1>
+      </div>
       <h2 className="checkout-screen__item-count">
         You have {cartItemsNumber} items in your cart.
       </h2>

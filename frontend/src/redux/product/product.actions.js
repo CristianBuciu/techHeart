@@ -1,6 +1,8 @@
 import { productConstants } from "./product.constants.js";
 import axios from "axios";
+//!=================================================================
 
+//! List all Products Action =======================================
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: productConstants.PRODUCT_LIST_REQUEST });
@@ -19,6 +21,9 @@ export const listProducts = () => async (dispatch) => {
     });
   }
 };
+//?=====================================================================
+
+//! List Details of a Product Action ===================================
 
 export const listProductDetails = (id) => async (dispatch) => {
   try {
@@ -38,3 +43,4 @@ export const listProductDetails = (id) => async (dispatch) => {
     });
   }
 };
+//?=====================================================================

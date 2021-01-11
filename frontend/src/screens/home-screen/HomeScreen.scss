@@ -19,20 +19,11 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    &::after {
-      content: "";
-      position: absolute;
-      width: 9.9rem;
-      height: 9.9rem;
-      background-color: white;
-      border-radius: 50%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+
     &::before {
       content: "";
       position: absolute;
-      height: 1rem;
+      height: 3.2rem;
       width: 100%;
       background-color: white;
     }
@@ -40,6 +31,9 @@
   &__title {
     z-index: 3;
     margin-top: 0;
+    letter-spacing: 0.5rem;
+    margin-left: 0.5rem;
+    line-height: 1;
   }
   &__products {
     margin-top: 4rem;

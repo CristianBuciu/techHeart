@@ -6,7 +6,7 @@ import {
   productDetailsReducer,
 } from "./product/product.reducers.js";
 import cartReducer from "./cart/cart.reducers.js";
-import { userLoginReducer } from "./user/user.reducers.js";
+import { userLoginReducer, userRegisterReducer } from "./user/user.reducers.js";
 
 //! REDUX STORE=========================================
 const reducer = combineReducers({
@@ -14,6 +14,7 @@ const reducer = combineReducers({
   productDetails: productDetailsReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
 });
 //!=====================================================
 
