@@ -97,4 +97,19 @@
     transform: translateY(70%);
     right: -20%;
   }
+  &__welcome-message {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+  }
+}
+
+.dropdown-arrow-class {
+  transform: translateY(3rem);
+  color: $color-primary;
+  transition: all 0.2s;
+}
+.dropdown-revert {
+  transition: all 0.2s;
 }

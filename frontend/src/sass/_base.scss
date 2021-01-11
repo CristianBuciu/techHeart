@@ -149,13 +149,13 @@ $translate-hover: translateY(-0.5rem);
   cursor: pointer;
   border: none;
   background-color: $color-yellow-2;
-
+  border-radius: 0.5rem;
   transition: all 0.2s;
   text-transform: uppercase;
   font-family: $font-special;
   letter-spacing: 0.2rem;
   font-weight: 600;
-  color: $color-yellow-3;
+  color: $color-primary-dark;
   display: flex;
   align-items: center;
   justify-content: center;
