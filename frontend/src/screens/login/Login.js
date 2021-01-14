@@ -12,7 +12,7 @@ const Login = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { error, userInfo } = userLogin;
 
-  const redirect = location.search ? location.search.split("+")[1] : "/";
+  const redirect = location.search ? location.search.split("+")[1] : "/profile";
 
   //! Check if we are logged in so you get a redirect if you try to access the login route while logged in
 

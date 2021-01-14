@@ -62,6 +62,7 @@ const registerUser = asyncHandler(async (req, res) => {
 //! ACCESS      : PRIVATE
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+  const profile = await Profile.findOne({ user: req.user._id });
 
   if (user) {
     res.json({
@@ -69,6 +70,13 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      country: profile.country,
+      line1: profile.line1,
+      line2: profile.line2,
+      city: profile.city,
+      stateProvinceRegion: profile.stateProvinceRegion,
+      postalCode: profile.postalCode,
+      phoneNumber: profile.phoneNumber,
     });
   } else {
     res.status(404);
