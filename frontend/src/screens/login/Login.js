@@ -32,7 +32,7 @@ const Login = ({ location, history }) => {
       <div className="home-screen__top">
         <h1 className="heading-1  home-screen__title">SIGNIN</h1>
       </div>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {error && <ErrorMessage color="alert">{error}</ErrorMessage>}
 
       <div className="login-screen__form-container">
         <form className="login-screen__form" onSubmit={submitHandler}>

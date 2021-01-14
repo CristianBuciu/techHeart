@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import { Link } from "react-router-dom";
 import { addToCart, removeItem } from "../../redux/cart/cart.actions.js";
 import "./Checkout.scss";

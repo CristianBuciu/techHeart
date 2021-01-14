@@ -26,7 +26,7 @@ const HomeScreen = () => {
         {loading ? (
           <Loader />
         ) : error ? (
-          <ErrorMessage>{error}</ErrorMessage>
+          <ErrorMessage color="alert">{error}</ErrorMessage>
         ) : (
           <>
             {" "}

@@ -33,13 +33,11 @@ const Signup = ({ location, history }) => {
     //!Password check =====================
 
     if (
-      
-        passwordLength &&
-        passwordLowercase &&
-        passwordUppercase &&
-        passwordNumber &&
-        passwordEqualConfirmPassword
-      
+      passwordLength &&
+      passwordLowercase &&
+      passwordUppercase &&
+      passwordNumber &&
+      passwordEqualConfirmPassword
     ) {
       //! Dispatch Login ====================
       dispatch(register(name, email, password));
@@ -52,7 +50,7 @@ const Signup = ({ location, history }) => {
       <div className="home-screen__top">
         <h1 className="heading-1  home-screen__title">SIGNUP</h1>
       </div>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {error && <ErrorMessage color="alert">{error}</ErrorMessage>}
 
       <div className="login-screen__form-container">
         <form className="login-screen__form" onSubmit={submitHandler}>
