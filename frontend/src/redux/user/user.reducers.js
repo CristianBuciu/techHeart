@@ -1,6 +1,8 @@
 import { userConstants } from "./user.constants.js";
 
-const initialState = {};
+const initialState = {
+  addresses: [],
+};
 
 export const userLoginReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -53,6 +55,38 @@ export const userUpdateProfileReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case userConstants.USER_UPDATE__PROFILE_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const addAddressReducer = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.USER_ADD_ADDRESS_REQUEST:
+      return { loading: true };
+    case userConstants.USER_ADD_ADDRESS_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        address: action.payload,
+      };
+    case userConstants.USER_ADD_ADDRESS_FAIL:
+      return { loading: false, error: action.payload };
+    case userConstants.USER_UPDATE__PROFILE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const userAddressesReducer = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.USER_GET_ADDRESSES_REQUEST:
+      return { ...state, loading: true };
+    case userConstants.USER_GET_ADDRESSES_SUCCESS:
+      return { loading: false, addresses: action.payload };
+    case userConstants.USER_GET_ADDRESSES_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

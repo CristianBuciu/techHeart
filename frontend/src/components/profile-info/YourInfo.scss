@@ -1,0 +1,121 @@
+@import "../../sass/base";
+
+.profile-main {
+  margin-top: 10rem;
+}
+.your-info {
+  width: 100%;
+  &__title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    font-family: $font-special;
+    &--name {
+      color: white;
+      font-size: 4.8rem;
+      font-family: $font-special;
+    }
+    &--email {
+      color: white;
+      font-size: 2.4rem;
+      font-family: $font-special;
+    }
+  }
+  &__header {
+    width: 100%;
+    position: relative;
+    &--avatar {
+      position: absolute;
+      bottom: -5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10rem;
+      height: 10rem;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 50%;
+      box-shadow: $shadow-normal;
+    }
+  }
+  &__header-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 30rem;
+    background-image: linear-gradient(
+        to bottom,
+        rgba($color-cta, 0.8),
+        rgba($color-primary, 0.8)
+      ),
+      url("https://images.unsplash.com/photo-1553408226-d7bf0d27f9e7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  &__my-details {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 3.33%;
+  }
+
+  &__address-text {
+    font-family: $font-primary;
+    line-height: 1;
+    font-size: 1.4rem;
+
+    padding-top: 1.35rem;
+    padding-bottom: 1.6rem;
+    border: 1px solid transparent;
+  }
+  &__address-label {
+    font-size: 1.6rem;
+  }
+  &__info-edit-btn {
+    @include custom-btn;
+    height: 4rem;
+    width: 20rem;
+    grid-column: 3/4;
+    justify-self: center;
+    align-self: flex-end;
+  }
+  &__password-section {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 3.33%;
+    &__form {
+      margin-top: 2rem;
+    }
+
+    &__input {
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-family: $font-primary;
+      line-height: 1;
+      font-size: 1.4rem;
+      padding: 0.5rem;
+      width: 100%;
+      border: none;
+      border: 1px solid $color-primary;
+      background-color: $color-grey-light;
+    }
+    &__label {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: $color-grey-dark-2;
+    }
+    &__password-box {
+      grid-column: 2/3;
+    }
+  }
+  &__password-submit {
+    @include custom-btn;
+    height: 4rem;
+    width: 20rem;
+    grid-column: 3/4;
+    align-self: flex-end;
+    justify-self: center;
+  }
+}

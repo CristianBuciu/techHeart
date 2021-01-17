@@ -3,6 +3,7 @@
 $color-primary: rgb(32, 179, 188);
 $color-primary-dark: rgb(0, 0, 0);
 $color-cta: rgb(2, 168, 18);
+$color-cta-2: rgb(18, 30, 207);
 
 $color-yellow-1: rgb(254, 248, 219);
 $color-yellow-2: rgb(254, 217, 133);
@@ -23,21 +24,7 @@ $font-special: "Inconsolata", monospace;
 
 //! SHADOWS ============================================================
 
-$shadow-normal: 0 1rem 2rem
-    rgba(
-      $color: #000000,
-      $alpha: 0.05,
-    ),
-  0 0.5rem 1.5rem
-    rgba(
-      $color: #000000,
-      $alpha: 0.025,
-    ),
-  0 0.25rem 0.75rem
-    rgba(
-      $color: $color-yellow-1,
-      $alpha: 0.2,
-    );
+$shadow-normal: 0 3px 6px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.05);
 $shadow-normal-hover: 0 1rem 2rem
     rgba(
       $color: #000000,
@@ -92,6 +79,7 @@ $translate-hover: translateY(-0.5rem);
   @extend %heading;
   font-size: 3rem;
   font-weight: 600;
+  margin-bottom: 1rem;
   &--light {
     color: $color-yellow-1;
   }
@@ -193,7 +181,8 @@ $translate-hover: translateY(-0.5rem);
   border: none;
   background-color: rgba($color: $color-grey-dark-1, $alpha: 0.9);
   font-family: $font-special;
-  backdrop-filter: blur(0.5rem);
+  letter-spacing: 0.2rem;
+  border-radius: 0.5rem;
   text-transform: uppercase;
   font-weight: 600;
   color: $color-grey-light;

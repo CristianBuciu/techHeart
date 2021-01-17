@@ -41,7 +41,7 @@ const ProductScreen = ({ match, history }) => {
   //?==================================================================
   return (
     <>
-      <div className="product-screen__top-links mb-sm">
+      <div className=" top-links mb-sm">
         <Link className="product-screen__link" to="/">
           Home
         </Link>

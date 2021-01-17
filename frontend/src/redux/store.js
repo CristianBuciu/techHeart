@@ -11,6 +11,8 @@ import {
   userRegisterReducer,
   userDetailsReducer,
   userUpdateProfileReducer,
+  userAddressesReducer,
+  addAddressReducer,
 } from "./user/user.reducers.js";
 
 //! REDUX STORE=========================================
@@ -22,6 +24,8 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  userAddresses: userAddressesReducer,
+  addAddress: addAddressReducer,
 });
 //!=====================================================
 
@@ -33,9 +37,14 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
+const userAddressesFromStorage = localStorage.getItem("userAddresses")
+  ? JSON.parse(localStorage.getItem("userAddresses"))
+  : null;
+
 const initialState = {
   cart: { cartItems: cartItemsFromStorage },
   userLogin: { userInfo: userInfoFromStorage },
+  userAddresses: { addresses: userAddressesFromStorage },
 };
 
 const middleware = [thunk];

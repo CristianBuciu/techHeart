@@ -3,12 +3,12 @@ import Footer from "./components/footer/Footer";
 import HomeScreen from "./screens/home-screen/HomeScreen";
 import { Route } from "react-router-dom";
 import ProductScreen from "./screens/product-screen/ProductScreen";
-import Checkout from "./screens/checkout/Checkout.js";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleCartShow } from "./redux/cart/cart.actions.js";
 import Login from "./screens/login/Login.js";
 import Signup from "./screens/signup/Signup.js";
 import ProfileScreen from "./screens/profile/ProfileScreen.js";
+import ShippingScreen from "./screens/shipping-screen/ShippingScreen.js";
 //!==================================================================
 function App() {
   const dispatch = useDispatch();
@@ -29,10 +29,10 @@ function App() {
         ) : null}{" "}
         <Route exact path="/shop" render={() => <HomeScreen />} />{" "}
         <Route path="/product/:id" component={ProductScreen} />{" "}
-        <Route path="/checkout/:id?" component={Checkout} />{" "}
         <Route path="/login" component={Login} />{" "}
         <Route path="/register" component={Signup} />{" "}
         <Route path="/profile" component={ProfileScreen} />{" "}
+        <Route path="/shipping" component={ShippingScreen} />{" "}
       </main>{" "}
       <Footer />
     </>

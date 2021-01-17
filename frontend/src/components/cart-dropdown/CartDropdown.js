@@ -69,7 +69,7 @@ const CartDropdown = () => {
         <h2 className="cart__subtotal--value">{roundToTwo(subtotal)}</h2>
       </div>
       <div className="cart__checkout">
-        <Link to="/checkout">
+        <Link to="/profile/checkout">
           <button
             onClick={checkoutClickHandler}
             className="cart__checkout--btn"

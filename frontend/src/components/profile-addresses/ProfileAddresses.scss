@@ -1,0 +1,93 @@
+@import "../../sass/base";
+
+.profile-addresses {
+  width: 100%;
+
+  &__text {
+    font-size: 1.4rem;
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+    justify-items: center;
+    column-gap: 1rem;
+    row-gap: 2rem;
+  }
+  &__address {
+    padding: 1rem;
+    width: 32rem;
+    height: 32rem;
+    border: 1px solid $color-primary;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    &__title {
+      font-size: 1.8rem;
+      font-family: $font-special;
+    }
+    &__bottom-links {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+
+      &--action {
+        font-size: 1.4rem;
+        color: $color-cta-2;
+        cursor: pointer;
+        &--delete {
+          color: $color-alert;
+        }
+      }
+    }
+  }
+  &__btn {
+    @include custom-btn;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  &__input {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-family: $font-primary;
+    line-height: 1;
+    font-size: 1.4rem;
+    padding: 0.5rem;
+    width: 50%;
+    border: none;
+    border: 1px solid $color-primary;
+    background-color: $color-grey-light;
+  }
+  &__label {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: $color-grey-dark-2;
+  }
+  &__form-container {
+    animation: fadeIn 0.8s;
+  }
+  &__input-btn {
+    @include custom-btn;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  &__add-address {
+    cursor: pointer;
+    border: 1px solid $color-grey-light-2;
+    color: $color-grey-dark-1;
+    font-size: 2rem;
+    justify-content: space-evenly;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -5,27 +5,38 @@ const profileSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  country: {
-    type: String,
-  },
-  line1: {
-    type: String,
-  },
-  line2: {
-    type: String,
-  },
-  city: {
-    type: String,
-  },
-  stateProvinceRegion: {
-    type: String,
-  },
-  postalCode: {
-    type: String,
-  },
-  phoneNumber: {
-    type: String,
-  },
+  addresses: [
+    {
+      defaultAddress: {
+        type: Boolean,
+        default: false,
+      },
+      addressName: {
+        type: String,
+      },
+      country: {
+        type: String,
+      },
+      line1: {
+        type: String,
+      },
+      line2: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+      stateProvinceRegion: {
+        type: String,
+      },
+      postalCode: {
+        type: String,
+      },
+      phoneNumber: {
+        type: String,
+      },
+    },
+  ],
 });
 
 const Profile = mongoose.model("Profile", profileSchema);

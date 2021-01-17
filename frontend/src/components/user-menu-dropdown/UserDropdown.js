@@ -14,7 +14,7 @@ const UserDropdown = () => {
     <div className="user-dropdown">
       <ul>
         <li className="user-dropdown__list-item">
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile/info">Profile</Link>
         </li>
 
         <li className="user-dropdown__list-item">My orders</li>

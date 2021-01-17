@@ -25,9 +25,8 @@ const Checkout = ({ history }) => {
   };
   return (
     <div className="checkout-screen">
-      <div className="home-screen__top checkout-screen__top">
-        <h1 className="heading-1  home-screen__title ">CHECK OUT</h1>
-      </div>
+      <h1 className="heading-1  home-screen__title ">CHECK OUT</h1>
+
       <h2 className="checkout-screen__item-count">
         You have {cartItemsNumber} items in your cart.
       </h2>
@@ -104,12 +103,16 @@ const Checkout = ({ history }) => {
             € {roundToTwo(subtotal)}
           </h3>
         </div>
-        <button
-          onClick={checkoutHandler}
-          className="checkout-screen__subtotal--button"
-        >
-          Proceed to checkout
-        </button>
+        {cartItems.length === 0 ? (
+          <button className=" btn-disabled">Cart is empty</button>
+        ) : (
+          <button
+            onClick={checkoutHandler}
+            className="checkout-screen__subtotal--button"
+          >
+            Proceed to checkout
+          </button>
+        )}
       </div>
     </div>
   );

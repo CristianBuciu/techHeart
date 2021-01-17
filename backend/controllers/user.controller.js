@@ -10,14 +10,19 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
+
   if (user && (await user.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id),
-    });
+    if (!user.confirmed) {
+      throw new Error("You need to confirm the email first in order to log in");
+    } else {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        token: generateToken(user._id),
+      });
+    }
   } else {
     res.status(401);
     throw new Error("Invalid email or password");
@@ -70,13 +75,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      country: profile.country,
-      line1: profile.line1,
-      line2: profile.line2,
-      city: profile.city,
-      stateProvinceRegion: profile.stateProvinceRegion,
-      postalCode: profile.postalCode,
-      phoneNumber: profile.phoneNumber,
+      addresses: profile.addresses,
     });
   } else {
     res.status(404);
@@ -89,36 +88,20 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //! ACCESS      : PRIVATE
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
-  const profile = await Profile.findOne({ user: req.user._id });
 
   if (user) {
     user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-    profile.country = req.body.country || profile.country;
-    profile.line1 = req.body.line1 || profile.line1;
-    profile.line2 = req.body.line2 || profile.line2;
-    profile.city = req.body.city || profile.city;
-    profile.stateProvinceRegion =
-      req.body.stateProvinceRegion || profile.stateProvinceRegion;
-    profile.postalCode = req.body.postalCode || profile.postalCode;
-    profile.phoneNumber = req.body.phoneNumber || profile.phoneNumber;
+   
+
     if (req.body.password) {
       user.password = req.body.password;
     }
     const updatedUser = await user.save();
-    const updatedProfile = await profile.save();
+
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,
-      email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
-      country: updatedProfile.country,
-      line1: updatedProfile.line1,
-      line2: updatedProfile.line2,
-      city: updatedProfile.city,
-      stateProvinceRegion: updatedProfile.stateProvinceRegion,
-      postalCode: updatedProfile.postalCode,
-      phoneNumber: updatedProfile.phoneNumber,
       token: generateToken(updatedUser._id),
     });
   } else {
@@ -127,4 +110,70 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, registerUser, getUserProfile, updateUserProfile };
+//! DESCRIPTION : Get all user addresses
+//! ROUTE       : GET  /api/users/profile/addresses
+//! ACCESS      : PRIVATE
+const getUserAddresses = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const profile = await Profile.findOne({ user: req.user._id });
+
+  if (user) {
+    // const addAddress = {
+    //   country: req.body.country || profile.country,
+    //   line1: req.body.line1 || profile.line1,
+    //   line2: req.body.line2 || profile.line2,
+    //   city: req.body.city || profile.city,
+    //   stateProvinceRegion:
+    //     req.body.stateProvinceRegion || profile.stateProvinceRegion,
+    //   postalCode: req.body.postalCode || profile.postalCode,
+    //   phoneNumber: req.body.phoneNumber || profile.phoneNumber,
+    // };
+    // profile.addresses.push(addAddress);
+
+    res.json(profile.addresses);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+//! DESCRIPTION : Put a new address
+//! ROUTE       : PUT  /api/users/profile/addresses
+//! ACCESS      : PRIVATE
+const addAddress = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const profile = await Profile.findOne({ user: req.user._id });
+
+  if (user) {
+    const addAddress = {
+      country: req.body.country || profile.country,
+      line1: req.body.line1 || profile.line1,
+      line2: req.body.line2 || profile.line2,
+      city: req.body.city || profile.city,
+      stateProvinceRegion:
+        req.body.stateProvinceRegion || profile.stateProvinceRegion,
+      postalCode: req.body.postalCode || profile.postalCode,
+      phoneNumber: req.body.phoneNumber || profile.phoneNumber,
+    };
+    profile.addresses.push(addAddress);
+    const updatedProfile = await profile.save();
+
+    res.json({
+      _id: user._id,
+      addresses: updatedProfile.addresses,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+export {
+  authUser,
+  registerUser,
+  getUserProfile,
+  updateUserProfile,
+  getUserAddresses,
+  addAddress,
+};

@@ -151,6 +151,83 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
 //?=====================================================================
 
+//! UPDATE User Profile Action ================================================
+
+export const addAddress = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: userConstants.USER_ADD_ADDRESS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.put(`/api/users/profile/addresses`, user, config);
+
+    dispatch({
+      type: userConstants.USER_ADD_ADDRESS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: userConstants.USER_ADD_ADDRESS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//?=====================================================================
+//! User Addresses Action ================================================
+
+export const getUserAddresses = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: userConstants.USER_GET_ADDRESSES_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get("/api/users/profile/addresses", config);
+
+    dispatch({
+      type: userConstants.USER_GET_ADDRESSES_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem(
+      "userAddresses",
+      JSON.stringify(getState().userAddresses.addresses)
+    );
+  } catch (error) {
+    dispatch({
+      type: userConstants.USER_GET_ADDRESSES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//?=====================================================================
+
 //! LOGOUT Action=======================================================
 
 export const logout = () => (dispatch) => {
