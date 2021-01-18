@@ -91,7 +91,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
   if (user) {
     user.name = req.body.name || user.name;
-   
 
     if (req.body.password) {
       user.password = req.body.password;
@@ -118,18 +117,6 @@ const getUserAddresses = asyncHandler(async (req, res) => {
   const profile = await Profile.findOne({ user: req.user._id });
 
   if (user) {
-    // const addAddress = {
-    //   country: req.body.country || profile.country,
-    //   line1: req.body.line1 || profile.line1,
-    //   line2: req.body.line2 || profile.line2,
-    //   city: req.body.city || profile.city,
-    //   stateProvinceRegion:
-    //     req.body.stateProvinceRegion || profile.stateProvinceRegion,
-    //   postalCode: req.body.postalCode || profile.postalCode,
-    //   phoneNumber: req.body.phoneNumber || profile.phoneNumber,
-    // };
-    // profile.addresses.push(addAddress);
-
     res.json(profile.addresses);
   } else {
     res.status(404);
@@ -169,6 +156,64 @@ const addAddress = asyncHandler(async (req, res) => {
   }
 });
 
+//! DESCRIPTION : Get an address by its ID
+//! ROUTE       : GET  /api/users/profile/addresses/:id
+//! ACCESS      : PRIVATE
+
+const getAddressById = asyncHandler(async (req, res) => {
+  const profile = await Profile.findOne({ user: req.user._id });
+  const address = await profile.addresses.find(
+    (x) => x._id.toString() === req.params.id
+  );
+
+  if (address) {
+    res.json(address);
+  } else {
+    res.status(404);
+    throw new Error("Address not found");
+  }
+});
+
+//! DESCRIPTION : Update an address by ID
+//! ROUTE       : PUT  /api/users/profile/addresses/:id
+//! ACCESS      : PRIVATE
+const updateAddress = asyncHandler(async (req, res) => {
+  const profile = await Profile.findOne({ user: req.user._id });
+  const address = await profile.addresses.find(
+    (x) => x._id.toString() === req.params.id
+  );
+
+  if (address) {
+    address.country = req.body.country || address.country;
+    address.line1 = req.body.line1 || address.line1;
+    address.line2 = req.body.line2 || address.line2;
+    address.city = req.body.city || address.city;
+    address.stateProvinceRegion =
+      req.body.stateProvinceRegion || address.stateProvinceRegion;
+    address.postalCode = req.body.postalCode || address.postalCode;
+    address.phoneNumber = req.body.phoneNumber || address.phoneNumber;
+
+    const updatedProfile = await profile.save();
+    const updatedAddress = await updatedProfile.addresses.find(
+      (x) => x._id.toString() === req.params.id
+    );
+
+    res.json({
+      _id: updatedAddress._id,
+      country: updatedAddress.country,
+      line1: updatedAddress.line1,
+      line2: updatedAddress.line2,
+      city: updatedAddress.city,
+      stateProvinceRegion: updatedAddress.stateProvinceRegion,
+      postalCode: updatedAddress.postalCode,
+      phoneNumber: updatedAddress.phoneNumber,
+    });
+  } else {
+    res.status(404);
+    throw new Error("Address not found");
+  }
+});
+
 export {
   authUser,
   registerUser,
@@ -176,4 +221,6 @@ export {
   updateUserProfile,
   getUserAddresses,
   addAddress,
+  getAddressById,
+  updateAddress,
 };

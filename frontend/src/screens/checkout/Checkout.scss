@@ -2,8 +2,8 @@
 
 .checkout-screen {
   display: grid;
-  grid-template-columns: 73% 25%;
-  column-gap: 2%;
+  grid-template-columns: 1fr;
+
   &__top {
     grid-column: 1/3;
   }
@@ -63,13 +63,14 @@
   }
   &__subtotal {
     grid-row: 3/5;
-    grid-column: 2/3;
+    grid-column: 1/2;
     padding: 1rem;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     background-color: $color-grey-light;
     text-align: center;
+    margin-bottom: 1rem;
 
     &--title {
       font-size: 2rem;
@@ -80,8 +81,8 @@
       align-self: center;
     }
     &--button {
-      grid-row: 3/4;
-      width: 75%;
+      grid-row: 2/3;
+      width: 25%;
       height: 50%;
       align-self: center;
       justify-self: center;
@@ -102,7 +103,7 @@
 
 .btn-disabled {
   grid-row: 3/4;
-  width: 75%;
+  width: 25%;
   height: 50%;
   align-self: center;
   justify-self: center;

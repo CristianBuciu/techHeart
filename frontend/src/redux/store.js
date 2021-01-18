@@ -13,6 +13,7 @@ import {
   userUpdateProfileReducer,
   userAddressesReducer,
   addAddressReducer,
+  editAddressReducer,
 } from "./user/user.reducers.js";
 
 //! REDUX STORE=========================================

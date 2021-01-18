@@ -169,7 +169,11 @@ export const addAddress = (user) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.put(`/api/users/profile/addresses`, user, config);
+    const { data } = await axios.put(
+      `/api/users/profile/addresses`,
+      user,
+      config
+    );
 
     dispatch({
       type: userConstants.USER_ADD_ADDRESS_SUCCESS,
@@ -225,6 +229,8 @@ export const getUserAddresses = () => async (dispatch, getState) => {
     });
   }
 };
+
+
 
 //?=====================================================================
 

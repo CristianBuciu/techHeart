@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getUserDetails,
@@ -77,35 +78,36 @@ const ProfileAddresses = ({ history }) => {
       <h1 className="heading-1  home-screen__title">YOUR ADDRESSES</h1>
       <div className="profile-addresses__grid">
         {addresses.map((address, idx) => (
-          <>
-            <div className="profile-addresses__address" key={address._id}>
-              <h3 className="profile-addresses__address__title">
-                Address {idx + 1}
-              </h3>
-              <address>
-                <p className="profile-addresses__text">{address.line1}</p>
-                <p className="profile-addresses__text">{address.line2}</p>
-                <p className="profile-addresses__text">{address.city}</p>
-                <p className="profile-addresses__text">
-                  {address.stateProvinceRegion}
-                </p>
-                <p className="profile-addresses__text">{address.postalCode}</p>
-                <p className="profile-addresses__text">{address.country}</p>
-                <p className="profile-addresses__text">{address.phoneNumber}</p>
-              </address>
-              <div className="profile-addresses__address__bottom-links">
-                <span className="profile-addresses__address__bottom-links--action">
-                  Set as default
-                </span>
-                <span className="profile-addresses__address__bottom-links--action">
-                  Edit
-                </span>
-                <span className="profile-addresses__address__bottom-links--action profile-addresses__address__bottom-links--action--delete">
-                  Delete
-                </span>
-              </div>
+          <div className="profile-addresses__address" key={address._id}>
+            <h3 className="profile-addresses__address__title">
+              Address {idx + 1}
+            </h3>
+            <address>
+              <p className="profile-addresses__text">{address.line1}</p>
+              <p className="profile-addresses__text">{address.line2}</p>
+              <p className="profile-addresses__text">{address.city}</p>
+              <p className="profile-addresses__text">
+                {address.stateProvinceRegion}
+              </p>
+              <p className="profile-addresses__text">{address.postalCode}</p>
+              <p className="profile-addresses__text">{address.country}</p>
+              <p className="profile-addresses__text">{address.phoneNumber}</p>
+            </address>
+            <div className="profile-addresses__address__bottom-links">
+              <span className="profile-addresses__address__bottom-links--action">
+                Set as default
+              </span>
+              <Link
+                to={`/profile/addresses/${address._id}`}
+                className="profile-addresses__address__bottom-links--action"
+              >
+                Edit
+              </Link>
+              <span className="profile-addresses__address__bottom-links--action profile-addresses__address__bottom-links--action--delete">
+                Delete
+              </span>
             </div>
-          </>
+          </div>
         ))}
         <address
           onClick={handleAddAddress}
@@ -122,61 +124,71 @@ const ProfileAddresses = ({ history }) => {
           onSubmit={handleSubmit}
           className="profile-addresses__form-container"
         >
-          <p className="profile-addresses__label">
+          <label htmlFor="line1" className="profile-addresses__label">
             <strong>Address line 1</strong>
-          </p>
+          </label>
           <input
+            name="line1"
             onChange={(e) => setLine1(e.target.value)}
             value={line1}
             type="text"
             className="profile-addresses__input"
           />
 
-          <p className="profile-addresses__label">
+          <label htmlFor="line2" className="profile-addresses__label">
             <strong>Address line 2</strong>
-          </p>
+          </label>
           <input
+            name="line2"
             onChange={(e) => setLine2(e.target.value)}
             value={line2}
             type="text"
             className="profile-addresses__input"
           />
-          <p className="profile-addresses__label">
+          <label htmlFor="city" className="profile-addresses__label">
             <strong>City</strong>
-          </p>
+          </label>
           <input
+            name="city"
             onChange={(e) => setCity(e.target.value)}
             value={city}
             className="profile-addresses__input"
           />
-          <p className="profile-addresses__label">
+          <label
+            htmlFor="stateProvinceRegion"
+            className="profile-addresses__label"
+          >
             <strong>State/Province/Region</strong>
-          </p>
+          </label>
           <input
+            name="stateProvinceRegion"
             onChange={(e) => setStateProvinceRegion(e.target.value)}
             value={stateProvinceRegion}
             className="profile-addresses__input"
           />
-          <p className="profile-addresses__label">
+          <label htmlFor="postalCode" className="profile-addresses__label">
             <strong>Postal Code</strong>
-          </p>
+          </label>
           <input
+            name="postalCode"
             onChange={(e) => setPostalCode(e.target.value)}
             value={postalCode}
             className="profile-addresses__input"
           />
-          <p className="profile-addresses__label">
+          <label htmlFor="country" className="profile-addresses__label">
             <strong>Country</strong>
-          </p>
+          </label>
           <input
+            name="country"
             onChange={(e) => setCountry(e.target.value)}
             value={country}
             className="profile-addresses__input"
           />
-          <p className="profile-addresses__label">
+          <label htmlFor="phoneNumber" className="profile-addresses__label">
             <strong>Phone Number</strong>
-          </p>
+          </label>
           <input
+            name="phoneNumber"
             onChange={(e) => setPhoneNumber(e.target.value)}
             value={phoneNumber}
             className="profile-addresses__input"

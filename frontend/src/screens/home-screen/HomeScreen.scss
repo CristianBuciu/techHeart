@@ -2,14 +2,13 @@
 
 .home-screen {
   &__top {
-    height: 10rem;
+    height: 6rem;
     width: 100%;
     background-image: linear-gradient(
-        to bottom,
-        rgba($color-cta, 0.3),
-        rgba($color-primary, 0.3)
-      ),
-      url(../../assets/pattern-2.jpg);
+      to bottom,
+      rgba($color-cta, 0.3),
+      rgba($color-primary, 0.3)
+    );
     background-size: contain;
     background-repeat: repeat;
     background-position: center;

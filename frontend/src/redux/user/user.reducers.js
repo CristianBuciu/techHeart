@@ -91,3 +91,16 @@ export const userAddressesReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const editAddressReducer = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.USER_GET_ADDRESS_BY_ID_REQUEST:
+      return { loading: true, ...state };
+    case userConstants.USER_GET_ADDRESS_BY_ID_SUCCESS:
+      return { loading: false, address: action.payload };
+    case userConstants.USER_GET_ADDRESS_BY_ID_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
