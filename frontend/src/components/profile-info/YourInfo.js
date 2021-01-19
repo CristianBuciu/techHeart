@@ -43,7 +43,7 @@ const YourInfo = ({ history }) => {
         setEmail(user.email);
       }
     }
-  }, [history, userInfo, user]);
+  }, [history, userInfo, user, dispatch]);
 
   const passwordLength = password.length < 6 ? false : true;
   const passwordLowercase = /[a-z]/.test(password) < 1 ? false : true;

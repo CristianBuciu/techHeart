@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generate.token.js";
 import Profile from "../models/profile.model.js";
-
+import mongoose from "mongoose";
 //! DESCRIPTION : Auth user & get token
 //! ROUTE       :POST to /api/users/login
 //! ACCESS      : PUBLIC
@@ -124,8 +124,8 @@ const getUserAddresses = asyncHandler(async (req, res) => {
   }
 });
 
-//! DESCRIPTION : Put a new address
-//! ROUTE       : PUT  /api/users/profile/addresses
+//! DESCRIPTION : Add a new address
+//! ROUTE       : POST  /api/users/profile/addresses
 //! ACCESS      : PRIVATE
 const addAddress = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
@@ -133,6 +133,7 @@ const addAddress = asyncHandler(async (req, res) => {
 
   if (user) {
     const addAddress = {
+      fullName: req.body.fullName || profile.fullName,
       country: req.body.country || profile.country,
       line1: req.body.line1 || profile.line1,
       line2: req.body.line2 || profile.line2,
@@ -184,6 +185,7 @@ const updateAddress = asyncHandler(async (req, res) => {
   );
 
   if (address) {
+    address.fullName = req.body.fullName || address.fullName;
     address.country = req.body.country || address.country;
     address.line1 = req.body.line1 || address.line1;
     address.line2 = req.body.line2 || address.line2;
@@ -200,6 +202,7 @@ const updateAddress = asyncHandler(async (req, res) => {
 
     res.json({
       _id: updatedAddress._id,
+      fullName: updatedAddress.fullName,
       country: updatedAddress.country,
       line1: updatedAddress.line1,
       line2: updatedAddress.line2,
@@ -208,6 +211,24 @@ const updateAddress = asyncHandler(async (req, res) => {
       postalCode: updatedAddress.postalCode,
       phoneNumber: updatedAddress.phoneNumber,
     });
+  } else {
+    res.status(404);
+    throw new Error("Address not found");
+  }
+});
+
+//! DESCRIPTION : Delete an address by its ID
+//! ROUTE       : DELETE /api/users/profile/addresses/:id
+//! ACCESS      : PRIVATE
+
+const deleteAddressById = asyncHandler(async (req, res) => {
+  const deletedAddress = await Profile.updateOne(
+    { user: req.user._id, "addresses._id": req.params.id },
+    { $pull: { addresses: { _id: req.params.id } } }
+  );
+  console.log(deletedAddress);
+  if (deletedAddress) {
+    res.json("Address deleted");
   } else {
     res.status(404);
     throw new Error("Address not found");
@@ -223,4 +244,5 @@ export {
   addAddress,
   getAddressById,
   updateAddress,
+  deleteAddressById,
 };

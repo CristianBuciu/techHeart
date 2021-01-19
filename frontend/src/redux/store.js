@@ -13,7 +13,7 @@ import {
   userUpdateProfileReducer,
   userAddressesReducer,
   addAddressReducer,
-  editAddressReducer,
+  showUserMenuReducer,
 } from "./user/user.reducers.js";
 
 //! REDUX STORE=========================================
@@ -27,6 +27,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   userAddresses: userAddressesReducer,
   addAddress: addAddressReducer,
+  showUserMenu: showUserMenuReducer,
 });
 //!=====================================================
 
@@ -43,6 +44,7 @@ const userAddressesFromStorage = localStorage.getItem("userAddresses")
   : null;
 
 const initialState = {
+  showUserMenu: false,
   cart: { cartItems: cartItemsFromStorage },
   userLogin: { userInfo: userInfoFromStorage },
   userAddresses: { addresses: userAddressesFromStorage },

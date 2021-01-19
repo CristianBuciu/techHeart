@@ -7,11 +7,11 @@ const profileSchema = mongoose.Schema({
   },
   addresses: [
     {
-      defaultAddress: {
+      isDefault: {
         type: Boolean,
         default: false,
       },
-      addressName: {
+      fullName: {
         type: String,
       },
       country: {

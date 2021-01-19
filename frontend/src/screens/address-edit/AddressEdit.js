@@ -6,12 +6,6 @@ const AddressEdit = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const config = {
-    headers: {
-      Authorization: `Bearer ${userInfo.token}`,
-    },
-  };
-
   const [country, setCountry] = useState("");
   const [line1, setLine1] = useState("");
   const [line2, setLine2] = useState("");
@@ -20,30 +14,43 @@ const AddressEdit = ({ match, history }) => {
   const [postalCode, setPostalCode] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!userInfo) {
       history.push("/login");
     }
-    try {
-      const { data } = await axios.get(
-        `/api/users/profile/addresses/${match.params.id}`,
-        config
-      );
-      setCountry(data.country);
-      setLine1(data.line1);
-      setLine2(data.line2);
-      setCity(data.city);
-      setStateProvinceRegion(data.stateProvinceRegion);
-      setPostalCode(data.postalCode);
-      setPhoneNumber(data.phoneNumber);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [match, history]);
+    const addressEdit = async () => {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        const { data } = await axios.get(
+          `/api/users/profile/addresses/${match.params.id}`,
+          config
+        );
+        setCountry(data.country);
+        setLine1(data.line1);
+        setLine2(data.line2);
+        setCity(data.city);
+        setStateProvinceRegion(data.stateProvinceRegion);
+        setPostalCode(data.postalCode);
+        setPhoneNumber(data.phoneNumber);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    addressEdit();
+  }, [match, history, userInfo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
       const address = {
         country: country,
         line1: line1,

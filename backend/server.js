@@ -5,6 +5,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import colors from "colors";
 import productRoutes from "./routes/product.routes.js";
 import userRoutes from "./routes/user.routes.js";
+
 const app = express();
 
 //! This will allow us to have JSON data in the body==========

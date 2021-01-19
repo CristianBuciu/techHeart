@@ -1,6 +1,11 @@
 import { userConstants } from "./user.constants.js";
 import axios from "axios";
 //!====================================================================
+//! User header menu toggler===========================================
+export const toggleUserMenuShow = () => ({
+  type: userConstants.USER_MENU_SHOW_TOGGLE,
+});
+//?=====================================================================
 
 //! LOGIN Action ======================================================
 export const login = (email, password) => async (dispatch) => {
@@ -36,6 +41,7 @@ export const login = (email, password) => async (dispatch) => {
     });
   }
 };
+//?=====================================================================
 
 //! REGISTER Action ====================================================
 export const register = (name, email, password) => async (dispatch) => {
@@ -151,7 +157,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
 //?=====================================================================
 
-//! UPDATE User Profile Action ================================================
+//! UPDATE Add User Address Action ================================================
 
 export const addAddress = (user) => async (dispatch, getState) => {
   try {
@@ -169,7 +175,7 @@ export const addAddress = (user) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.put(
+    const { data } = await axios.post(
       `/api/users/profile/addresses`,
       user,
       config
@@ -229,8 +235,6 @@ export const getUserAddresses = () => async (dispatch, getState) => {
     });
   }
 };
-
-
 
 //?=====================================================================
 

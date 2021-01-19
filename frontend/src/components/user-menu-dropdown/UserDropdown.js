@@ -1,26 +1,39 @@
 import React from "react";
 import "./UserDropdown.scss";
 import { FiLogOut } from "react-icons/fi";
+
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../redux/user/user.actions.js";
+import { toggleUserMenuShow } from "../../redux/user/user.actions.js";
 //!==================================================
 const UserDropdown = () => {
   const dispatch = useDispatch();
+
   const logoutHandler = () => {
     dispatch(logout());
+  };
+  const menuToggler = () => {
+    dispatch(toggleUserMenuShow());
   };
   return (
     <div className="user-dropdown">
       <ul>
         <li className="user-dropdown__list-item">
-          <Link to="/profile/info">Profile</Link>
+          <Link onClick={menuToggler} to="/profile/info">
+            Profile
+          </Link>
         </li>
 
-        <li className="user-dropdown__list-item">My orders</li>
+        <li onClick={menuToggler} className="user-dropdown__list-item">
+          My orders
+        </li>
         <hr />
         <li
-          onClick={logoutHandler}
+          onClick={() => {
+            logoutHandler();
+            menuToggler();
+          }}
           style={{
             borderTop: "1px solid $color-grey-light-2",
             paddingTop: ".5rem",

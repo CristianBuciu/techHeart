@@ -8,13 +8,14 @@ import {
 } from "../../redux/user/user.actions.js";
 import "./ProfileAddresses.scss";
 import { BsPlusSquare } from "react-icons/bs";
+import axios from "axios";
 //!=============================================
 
 const ProfileAddresses = ({ history }) => {
   const dispatch = useDispatch();
 
   const [addAddressToggle, setAddAddressToggle] = useState(false);
-
+  const [fullName, setFullName] = useState("");
   const [country, setCountry] = useState("");
   const [line1, setLine1] = useState("");
   const [line2, setLine2] = useState("");
@@ -46,7 +47,7 @@ const ProfileAddresses = ({ history }) => {
       history.push("/login");
     }
     dispatch(getUserAddresses());
-  }, [history, userInfo, user, getUserDetails, getUserAddresses]);
+  }, [history, userInfo, user, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,6 +56,7 @@ const ProfileAddresses = ({ history }) => {
     dispatch(
       addAddress({
         id: user._id,
+        fullName,
         country,
         line1,
         line2,
@@ -65,6 +67,7 @@ const ProfileAddresses = ({ history }) => {
       })
     );
     dispatch(getUserAddresses());
+    setFullName("");
     setCountry("");
     setLine1("");
     setLine2("");
@@ -73,6 +76,26 @@ const ProfileAddresses = ({ history }) => {
     setPostalCode("");
     setPhoneNumber("");
   };
+
+  const deleteAddressHandler = (id) => {
+    const deleteAddress = async () => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.delete(`/api/users/profile/addresses/${id}`, config);
+
+        dispatch(getUserAddresses());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    deleteAddress();
+  };
+
   return (
     <div className="profile-addresses">
       <h1 className="heading-1  home-screen__title">YOUR ADDRESSES</h1>
@@ -82,7 +105,11 @@ const ProfileAddresses = ({ history }) => {
             <h3 className="profile-addresses__address__title">
               Address {idx + 1}
             </h3>
+
             <address>
+              <p className="profile-addresses__text">
+                <strong>{address.fullName}</strong>
+              </p>
               <p className="profile-addresses__text">{address.line1}</p>
               <p className="profile-addresses__text">{address.line2}</p>
               <p className="profile-addresses__text">{address.city}</p>
@@ -94,16 +121,18 @@ const ProfileAddresses = ({ history }) => {
               <p className="profile-addresses__text">{address.phoneNumber}</p>
             </address>
             <div className="profile-addresses__address__bottom-links">
-              <span className="profile-addresses__address__bottom-links--action">
-                Set as default
-              </span>
               <Link
                 to={`/profile/addresses/${address._id}`}
                 className="profile-addresses__address__bottom-links--action"
               >
                 Edit
               </Link>
-              <span className="profile-addresses__address__bottom-links--action profile-addresses__address__bottom-links--action--delete">
+              <span
+                onClick={() => {
+                  deleteAddressHandler(address._id);
+                }}
+                className="profile-addresses__address__bottom-links--action profile-addresses__address__bottom-links--action--delete"
+              >
                 Delete
               </span>
             </div>
@@ -124,6 +153,16 @@ const ProfileAddresses = ({ history }) => {
           onSubmit={handleSubmit}
           className="profile-addresses__form-container"
         >
+          <label htmlFor="fullName" className="profile-addresses__label">
+            <strong>Full name</strong>
+          </label>
+          <input
+            name="line1"
+            onChange={(e) => setFullName(e.target.value)}
+            value={fullName}
+            type="text"
+            className="profile-addresses__input"
+          />
           <label htmlFor="line1" className="profile-addresses__label">
             <strong>Address line 1</strong>
           </label>

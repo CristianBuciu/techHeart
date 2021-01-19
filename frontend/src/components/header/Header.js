@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.scss";
 import { GiTechnoHeart } from "react-icons/gi";
 import { TiShoppingCart, TiUserOutline, TiHeart } from "react-icons/ti";
@@ -8,10 +8,10 @@ import { useSelector, useDispatch } from "react-redux";
 import CartDropdown from "../cart-dropdown/CartDropdown.js";
 import { toggleCartShow } from "../../redux/cart/cart.actions.js";
 import UserDropdown from "../user-menu-dropdown/UserDropdown.js";
+import { toggleUserMenuShow } from "../../redux/user/user.actions.js";
 //!==============================================================
 
 const Header = () => {
-  const [dropdownShow, setDropdownShow] = useState(false);
   const techTitle = "Cyber Heart";
   const dispatch = useDispatch();
   const cartToggle = useSelector((state) => state.cart.showCart);
@@ -20,6 +20,10 @@ const Header = () => {
   );
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const dropdownShow = useSelector((state) => state.showUserMenu);
+  const { showUserMenu } = dropdownShow;
+
   return (
     <header className="header">
       <nav className="nav">
@@ -57,22 +61,17 @@ const Header = () => {
               {" "}
               <span
                 className="nav__welcome-message"
-                onClick={() => setDropdownShow(!dropdownShow)}
+                onClick={() => dispatch(toggleUserMenuShow())}
               >
-                Welcome,&nbsp;
-                <i>
-                  {" "}
-                  <strong>{userInfo.name}</strong>{" "}
-                </i>{" "}
-                &nbsp;
+                Your menu &nbsp;
                 <IoMdArrowDropdown
                   style={{ fontSize: "2rem" }}
                   className={
-                    dropdownShow ? "dropdown-arrow-class" : "dropdown-revert"
+                    showUserMenu ? "dropdown-arrow-class" : "dropdown-revert"
                   }
                 />
               </span>
-              {dropdownShow ? <UserDropdown /> : null}
+              {showUserMenu ? <UserDropdown /> : null}
             </>
           ) : (
             <Link className="nav__icon" to="/login">

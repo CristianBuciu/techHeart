@@ -24,6 +24,13 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    &--is-default {
+      background-color: $color-grey-light;
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem 0;
+      box-shadow: $shadow-normal;
+    }
     &__title {
       font-size: 1.8rem;
       font-family: $font-special;

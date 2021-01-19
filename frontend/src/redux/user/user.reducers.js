@@ -104,3 +104,18 @@ export const editAddressReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const showUserMenuReducer = (
+  state = { showUserMenu: false },
+  action
+) => {
+  switch (action.type) {
+    case userConstants.USER_MENU_SHOW_TOGGLE:
+      return {
+        ...state,
+        showUserMenu: !state.showUserMenu,
+      };
+    default:
+      return state;
+  }
+};
