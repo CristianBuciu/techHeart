@@ -1,7 +1,7 @@
 //! COLOR VARIABLES =====================================================
 
 $color-primary: rgb(32, 179, 188);
-$color-primary-dark: rgb(0, 0, 0);
+$color-primary-dark: rgb(15, 15, 15);
 $color-cta: rgb(2, 168, 18);
 $color-cta-2: rgb(18, 30, 207);
 
@@ -13,8 +13,8 @@ $color-yellow-4: rgb(255, 180, 3);
 $color-alert: rgb(253, 62, 62);
 $color-grey-light-2: rgb(212, 212, 212);
 $color-grey-light: rgb(247, 247, 247);
-$color-grey-dark-1: rgb(114, 114, 114);
-$color-grey-dark-2: #333333;
+$color-grey-dark-1: rgb(32, 32, 32);
+$color-grey-dark-2: #353535;
 
 //! FONT VARIABLES =====================================================
 
@@ -24,7 +24,7 @@ $font-special: "Inconsolata", monospace;
 
 //! SHADOWS ============================================================
 
-$shadow-normal: 0 3px 6px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.05);
+$shadow-normal: 0 3px 6px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.15);
 $shadow-normal-hover: 0 1rem 2rem
     rgba(
       $color: #000000,
@@ -60,7 +60,7 @@ $shadow-normal-strong: 0 1rem 2rem
 .line-break {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  border-top: 1px solid $color-grey-light-2;
+  border-bottom: 1px solid $color-grey-light;
 }
 
 $shadow-young: -0.5rem 0.5rem 0 #10162f;
@@ -73,12 +73,12 @@ $translate-hover: translateY(-0.5rem);
 %heading {
   font-family: $font-special;
   font-weight: 400;
+  letter-spacing: 0.1rem;
 }
 
 .heading-1 {
   @extend %heading;
   font-size: 3rem;
-  font-weight: 600;
 
   &--light {
     color: $color-yellow-1;
@@ -89,9 +89,8 @@ $translate-hover: translateY(-0.5rem);
 }
 .heading-2 {
   @extend %heading;
-  font-size: 2.8rem;
-  font-style: italic;
-  line-height: 1.2;
+  font-size: 2.6rem;
+
   &--light {
     color: $color-yellow-1;
   }
@@ -102,7 +101,7 @@ $translate-hover: translateY(-0.5rem);
 .heading-3 {
   @extend %heading;
   font-size: 1.8rem;
-  letter-spacing: 0.1rem;
+
   color: $color-grey-dark-2;
   text-transform: uppercase;
   font-weight: 600;

@@ -1,1 +1,109 @@
 @import "../../sass/base";
+
+.shipping-screen {
+  &__top {
+    padding: 1rem;
+    width: 100%;
+    height: 10rem;
+    background-color: $color-grey-light;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    &__progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    &--text {
+      font-size: 1.6rem;
+      color: $color-primary;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &--selected {
+        color: $color-yellow-4;
+      }
+    }
+    &--arrows {
+      color: $color-primary;
+      font-size: 1.8rem;
+
+      &--selected {
+        color: $color-yellow-4;
+      }
+      &--animate {
+        animation: moveLeft 1s infinite alternate-reverse;
+      }
+    }
+  }
+  &__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-family: $font-special;
+    margin-right: 1rem;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background-color: $color-primary;
+    color: $color-yellow-1;
+    &--selected {
+      background-color: $color-yellow-4;
+    }
+  }
+  &__address-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    column-gap: 3rem;
+    justify-content: center;
+  }
+  &__address {
+    width: 100%;
+    padding: 1rem;
+  }
+  &__ship-btn {
+    @include custom-btn;
+    padding: 1rem;
+    width: 100%;
+    letter-spacing: 1px;
+  }
+  &__delete-edit-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &--action {
+    font-size: 1.4rem;
+    border: 1px solid $color-yellow-2;
+    padding: 0.5rem 1rem;
+    width: 48%;
+    text-align: center;
+    color: $color-cta-2;
+    border-radius: 0.5rem;
+    &--delete {
+      color: $color-alert;
+      cursor: pointer;
+    }
+    &:visited {
+      color: $color-cta-2;
+    }
+  }
+}
+
+@keyframes moveLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-4rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

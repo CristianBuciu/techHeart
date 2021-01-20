@@ -8,6 +8,7 @@ import {
 } from "../../redux/user/user.actions.js";
 import "./ProfileAddresses.scss";
 import { BsPlusSquare } from "react-icons/bs";
+import AddAddress from "../add-address/AddAddress.js";
 import axios from "axios";
 //!=============================================
 
@@ -15,14 +16,6 @@ const ProfileAddresses = ({ history }) => {
   const dispatch = useDispatch();
 
   const [addAddressToggle, setAddAddressToggle] = useState(false);
-  const [fullName, setFullName] = useState("");
-  const [country, setCountry] = useState("");
-  const [line1, setLine1] = useState("");
-  const [line2, setLine2] = useState("");
-  const [city, setCity] = useState("");
-  const [stateProvinceRegion, setStateProvinceRegion] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
 
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
@@ -30,11 +23,9 @@ const ProfileAddresses = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const [successColor, setSuccessColor] = useState("alert");
-  const [error, setError] = useState(false);
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
-  const [message, setMessage] = useState(null);
+
   const userAddresses = useSelector((state) => state.userAddresses);
 
   const { addresses } = userAddresses;
@@ -48,34 +39,6 @@ const ProfileAddresses = ({ history }) => {
     }
     dispatch(getUserAddresses());
   }, [history, userInfo, user, dispatch]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setMessage("Address added successfully.");
-    setSuccessColor("success");
-    dispatch(
-      addAddress({
-        id: user._id,
-        fullName,
-        country,
-        line1,
-        line2,
-        city,
-        stateProvinceRegion,
-        postalCode,
-        phoneNumber,
-      })
-    );
-    dispatch(getUserAddresses());
-    setFullName("");
-    setCountry("");
-    setLine1("");
-    setLine2("");
-    setCity("");
-    setStateProvinceRegion("");
-    setPostalCode("");
-    setPhoneNumber("");
-  };
 
   const deleteAddressHandler = (id) => {
     const deleteAddress = async () => {
@@ -112,11 +75,11 @@ const ProfileAddresses = ({ history }) => {
               </p>
               <p className="profile-addresses__text">{address.line1}</p>
               <p className="profile-addresses__text">{address.line2}</p>
-              <p className="profile-addresses__text">{address.city}</p>
               <p className="profile-addresses__text">
-                {address.stateProvinceRegion}
+                {address.city} , {address.stateProvinceRegion} ,{" "}
+                {address.postalCode}
               </p>
-              <p className="profile-addresses__text">{address.postalCode}</p>
+
               <p className="profile-addresses__text">{address.country}</p>
               <p className="profile-addresses__text">{address.phoneNumber}</p>
             </address>
@@ -148,97 +111,7 @@ const ProfileAddresses = ({ history }) => {
       </div>
       <hr className="line-break" />
 
-      {addAddressToggle ? (
-        <form
-          onSubmit={handleSubmit}
-          className="profile-addresses__form-container"
-        >
-          <label htmlFor="fullName" className="profile-addresses__label">
-            <strong>Full name</strong>
-          </label>
-          <input
-            name="line1"
-            onChange={(e) => setFullName(e.target.value)}
-            value={fullName}
-            type="text"
-            className="profile-addresses__input"
-          />
-          <label htmlFor="line1" className="profile-addresses__label">
-            <strong>Address line 1</strong>
-          </label>
-          <input
-            name="line1"
-            onChange={(e) => setLine1(e.target.value)}
-            value={line1}
-            type="text"
-            className="profile-addresses__input"
-          />
-
-          <label htmlFor="line2" className="profile-addresses__label">
-            <strong>Address line 2</strong>
-          </label>
-          <input
-            name="line2"
-            onChange={(e) => setLine2(e.target.value)}
-            value={line2}
-            type="text"
-            className="profile-addresses__input"
-          />
-          <label htmlFor="city" className="profile-addresses__label">
-            <strong>City</strong>
-          </label>
-          <input
-            name="city"
-            onChange={(e) => setCity(e.target.value)}
-            value={city}
-            className="profile-addresses__input"
-          />
-          <label
-            htmlFor="stateProvinceRegion"
-            className="profile-addresses__label"
-          >
-            <strong>State/Province/Region</strong>
-          </label>
-          <input
-            name="stateProvinceRegion"
-            onChange={(e) => setStateProvinceRegion(e.target.value)}
-            value={stateProvinceRegion}
-            className="profile-addresses__input"
-          />
-          <label htmlFor="postalCode" className="profile-addresses__label">
-            <strong>Postal Code</strong>
-          </label>
-          <input
-            name="postalCode"
-            onChange={(e) => setPostalCode(e.target.value)}
-            value={postalCode}
-            className="profile-addresses__input"
-          />
-          <label htmlFor="country" className="profile-addresses__label">
-            <strong>Country</strong>
-          </label>
-          <input
-            name="country"
-            onChange={(e) => setCountry(e.target.value)}
-            value={country}
-            className="profile-addresses__input"
-          />
-          <label htmlFor="phoneNumber" className="profile-addresses__label">
-            <strong>Phone Number</strong>
-          </label>
-          <input
-            name="phoneNumber"
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            value={phoneNumber}
-            className="profile-addresses__input"
-          />
-          <input
-            className="profile-addresses__input-btn"
-            type="submit"
-            value="Add new Address"
-          />
-        </form>
-      ) : null}
+      {addAddressToggle ? <AddAddress /> : null}
     </div>
   );
 };

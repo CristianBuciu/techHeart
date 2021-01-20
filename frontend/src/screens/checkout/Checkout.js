@@ -21,7 +21,7 @@ const Checkout = ({ history }) => {
     dispatch(removeItem(id));
   };
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
+    history.push("/shipping");
   };
   return (
     <div className="checkout-screen">
@@ -107,7 +107,9 @@ const Checkout = ({ history }) => {
           <button className=" btn-disabled">Cart is empty</button>
         ) : (
           <button
-            onClick={checkoutHandler}
+            onClick={() => {
+              checkoutHandler();
+            }}
             className="checkout-screen__subtotal--button"
           >
             Proceed to checkout

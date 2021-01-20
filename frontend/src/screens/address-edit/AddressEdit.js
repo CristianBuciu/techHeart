@@ -81,6 +81,7 @@ const AddressEdit = ({ match, history }) => {
           <strong>Address line 1</strong>
         </label>
         <input
+          required
           name="line1"
           onChange={(e) => setLine1(e.target.value)}
           value={line1}
@@ -92,6 +93,7 @@ const AddressEdit = ({ match, history }) => {
           <strong>Address line 2</strong>
         </label>
         <input
+          required
           name="line2"
           onChange={(e) => setLine2(e.target.value)}
           value={line2}
@@ -102,6 +104,7 @@ const AddressEdit = ({ match, history }) => {
           <strong>City</strong>
         </label>
         <input
+          required
           name="city"
           onChange={(e) => setCity(e.target.value)}
           value={city}
@@ -114,6 +117,7 @@ const AddressEdit = ({ match, history }) => {
           <strong>State/Province/Region</strong>
         </label>
         <input
+          required
           name="stateProvinceRegion"
           onChange={(e) => setStateProvinceRegion(e.target.value)}
           value={stateProvinceRegion}
@@ -123,6 +127,7 @@ const AddressEdit = ({ match, history }) => {
           <strong>Postal Code</strong>
         </label>
         <input
+          required
           name="postalCode"
           onChange={(e) => setPostalCode(e.target.value)}
           value={postalCode}
@@ -132,6 +137,7 @@ const AddressEdit = ({ match, history }) => {
           <strong>Country</strong>
         </label>
         <input
+          required
           name="country"
           onChange={(e) => setCountry(e.target.value)}
           value={country}
@@ -141,12 +147,14 @@ const AddressEdit = ({ match, history }) => {
           <strong>Phone Number</strong>
         </label>
         <input
+          required
           name="phoneNumber"
           onChange={(e) => setPhoneNumber(e.target.value)}
           value={phoneNumber}
           className="profile-addresses__input"
         />
         <input
+          required
           className="profile-addresses__input-btn"
           type="submit"
           value="Edit Address"

@@ -1,224 +1,124 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./ShippingScreen.scss";
-import {
-  getUserDetails,
-  updateUserProfile,
-} from "../../redux/user/user.actions.js";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import { getUserAddresses } from "../../redux/user/user.actions.js";
+import AddAddress from "../../components/add-address/AddAddress";
+import { Link } from "react-router-dom";
+import axios from "axios";
 //!=======================================================
 const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
-  const [line1, setLine1] = useState("");
-  const [line2, setLine2] = useState("");
-  const [city, setCity] = useState("");
-  const [stateProvinceRegion, setStateProvinceRegion] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
-  const [edit, setEdit] = useState(false);
-  const cartItems = useSelector((state) => state.cart.cartItems);
-
-  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const { success } = userUpdateProfile;
-
-  const cartItemsNumber = cartItems.reduce(
-    (accum, cartItem) => accum + cartItem.qty,
-    0
-  );
+  const userAddresses = useSelector((state) => state.userAddresses);
+  const { addresses } = userAddresses;
 
   useEffect(() => {
-    setName(user.name);
-    setEmail(user.email);
-    setCountry(user.country);
-    setLine1(user.line1);
-    setLine2(user.line2);
-    setCity(user.city);
-    setStateProvinceRegion(user.stateProvinceRegion);
-    setPostalCode(user.postalCode);
-    setPhoneNumber(user.phoneNumber);
-  }, [user]);
+    if (!userInfo) {
+      history.push("/login");
+    }
+    dispatch(getUserAddresses());
+  }, [history, userInfo, user, dispatch]);
 
-  const handleEdit = () => setEdit(!edit);
-  const handleUserInfoUpdate = () => {
-    setMessage("Your profile has been successfully updated.");
-    setSuccessColor("success");
-    dispatch(
-      updateUserProfile({
-        id: user._id,
-        name,
-        email,
-        country,
-        line1,
-        line2,
-        city,
-        stateProvinceRegion,
-        postalCode,
-        phoneNumber,
-      })
-    );
+  const deleteAddressHandler = (id) => {
+    const deleteAddress = async () => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.delete(`/api/users/profile/addresses/${id}`, config);
+
+        dispatch(getUserAddresses());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    deleteAddress();
   };
-
-  const [successColor, setSuccessColor] = useState("alert");
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState(null);
-
   return (
     <div className="shipping-screen">
-      <h1 className="heading-1">Shipping Options</h1>
-      <div className="profile-screen__my-details">
-        <div>
-          <h3 className="heading-3">Personal details</h3>
-          <p className="profile-screen__address-label">
-            <strong>Full name</strong>
-          </p>
-          {edit ? (
-            <input
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">{name}</p>
-          )}
-          <p className="profile-screen__address-label">
-            <strong>Email</strong>
-          </p>
-          {edit ? (
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">{email}</p>
-          )}
-          <p className="profile-screen__address-label">
-            <strong>Phone number</strong>
-          </p>
-          {edit ? (
-            <input
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              value={phoneNumber}
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">{phoneNumber}</p>
-          )}
+      <div className="shipping-screen__top">
+        <div className="shipping-screen__top__progress">
+          <span className="shipping-screen__number shipping-screen__number--selected">
+            1
+          </span>{" "}
+          <span className="shipping-screen__top--text shipping-screen__top--text--selected">
+            Address
+          </span>
+          <AiOutlineDoubleRight className=" shipping-screen__top--arrows shipping-screen__top--arrows--selected shipping-screen__top--arrows--animate" />
         </div>
-        <div className="profile-screen__address">
-          <h3 className="heading-3">Shipping address</h3>
-          <p className="profile-screen__address-label">
-            <strong>Address</strong>
-          </p>
-          {edit ? (
-            <input
-              onChange={(e) => setLine1(e.target.value)}
-              value={line1}
-              type="text"
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">{line1}</p>
-          )}
-
-          {edit ? (
-            <input
-              onChange={(e) => setLine2(e.target.value)}
-              value={line2}
-              type="text"
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">{line2}</p>
-          )}
-
-          <p className="profile-screen__address-label">
-            <strong>City</strong>
-          </p>
-          {edit ? (
-            <input
-              onChange={(e) => setCity(e.target.value)}
-              value={city}
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">{city}</p>
-          )}
-
-          <p className="profile-screen__address-label">
-            <strong>State/Province/Region</strong>
-          </p>
-          {edit ? (
-            <input
-              onChange={(e) => setStateProvinceRegion(e.target.value)}
-              value={stateProvinceRegion}
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">
-              {stateProvinceRegion}
-            </p>
-          )}
-
-          <p className="profile-screen__address-label">
-            <strong>Postal Code</strong>
-          </p>
-          {edit ? (
-            <input
-              onChange={(e) => setPostalCode(e.target.value)}
-              value={postalCode}
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">{postalCode}</p>
-          )}
-          <p className="profile-screen__address-label">
-            <strong>Country</strong>
-          </p>
-          {edit ? (
-            <input
-              onChange={(e) => setCountry(e.target.value)}
-              value={country}
-              className="profile-screen__password-section__input"
-            />
-          ) : (
-            <p className="profile-screen__address-text">{country}</p>
-          )}
+        <div className="shipping-screen__top__progress">
+          <span className="shipping-screen__number">2</span>{" "}
+          <span className="shipping-screen__top--text">Payment & Shipping</span>
+          <AiOutlineDoubleRight className="shipping-screen__top--arrows" />
         </div>
-
-        {edit ? (
-          <button
-            className="profile-screen__info-edit-btn"
-            onClick={() => {
-              handleEdit();
-              handleUserInfoUpdate();
-            }}
-          >
-            {" "}
-            Save changes
-          </button>
-        ) : (
-          <button
-            className="profile-screen__info-edit-btn"
-            onClick={() => handleEdit()}
-          >
-            {" "}
-            Edit info
-          </button>
-        )}
+        <div className="shipping-screen__top__progress">
+          <span className="shipping-screen__number">3</span>
+          <span className="shipping-screen__top--text">Complete Order</span>
+          <div></div>
+        </div>
       </div>
-      <hr className="line-break" />
+      <main>
+        <h1 className="heading-1 heading-1--dark mt-sm mb-sm">
+          Chose a delivery address
+        </h1>
+        <div className="shipping-screen__address-container">
+          {addresses.map((address) => (
+            <div key={address._id} className="shipping-screen__address">
+              <address
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginBottom: "2rem",
+                }}
+              >
+                <p className="profile-addresses__text">
+                  <strong>{address.fullName}</strong>
+                </p>
+                <p className="profile-addresses__text">{address.line1}</p>
+                <p className="profile-addresses__text">{address.line2}</p>
+                <p className="profile-addresses__text">
+                  {address.city} , {address.stateProvinceRegion} ,{" "}
+                  {address.postalCode}
+                </p>
+
+                <p className="profile-addresses__text">{address.country}</p>
+              </address>
+              <button className="shipping-screen__ship-btn">
+                Deliver to this address
+              </button>
+              <div className="shipping-screen__delete-edit-container mt-xs mb-xs">
+                <Link
+                  to={`/profile/addresses/${address._id}`}
+                  className="shipping-screen--action"
+                >
+                  Edit
+                </Link>
+                <span
+                  onClick={() => {
+                    deleteAddressHandler(address._id);
+                  }}
+                  className="shipping-screen--action shipping-screen--action--delete"
+                >
+                  Delete
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <hr className="line-break" />
+        <h2 className="heading-2">Add new address</h2>
+        <AddAddress />
+      </main>
     </div>
   );
 };
