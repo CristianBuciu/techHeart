@@ -15,6 +15,7 @@ import {
   addAddressReducer,
   showUserMenuReducer,
 } from "./user/user.reducers.js";
+import { addOrderAddressReducer } from "./order/order.reducers.js";
 
 //! REDUX STORE=========================================
 const reducer = combineReducers({
@@ -28,6 +29,7 @@ const reducer = combineReducers({
   userAddresses: userAddressesReducer,
   addAddress: addAddressReducer,
   showUserMenu: showUserMenuReducer,
+  orderAddress: addOrderAddressReducer,
 });
 //!=====================================================
 
@@ -43,11 +45,16 @@ const userAddressesFromStorage = localStorage.getItem("userAddresses")
   ? JSON.parse(localStorage.getItem("userAddresses"))
   : null;
 
+const orderAddressFromStorage = localStorage.getItem("orderAddress")
+  ? JSON.parse(localStorage.getItem("orderAddress"))
+  : {};
+
 const initialState = {
   showUserMenu: false,
   cart: { cartItems: cartItemsFromStorage },
   userLogin: { userInfo: userInfoFromStorage },
   userAddresses: { addresses: userAddressesFromStorage },
+  orderAddress: { orderAddress: orderAddressFromStorage },
 };
 
 const middleware = [thunk];

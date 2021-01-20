@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./ShippingScreen.scss";
-import { AiOutlineDoubleRight } from "react-icons/ai";
 import { getUserAddresses } from "../../redux/user/user.actions.js";
 import AddAddress from "../../components/add-address/AddAddress";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
+import { addOrderAddress } from "../../redux/order/order.actions.js";
 //!=======================================================
 const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -46,6 +46,7 @@ const ShippingScreen = ({ history }) => {
   };
 
   const handleSubmit = (address) => {
+    dispatch(addOrderAddress(address));
     history.push("/payment");
   };
 
