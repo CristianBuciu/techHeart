@@ -8,7 +8,7 @@ import {
 } from "../../redux/user/user.actions.js";
 import "./ProfileAddresses.scss";
 import { BsPlusSquare } from "react-icons/bs";
-import AddAddress from "../add-address/AddAddress.js";
+import AddAddress from "../../components/add-address/AddAddress.js";
 import axios from "axios";
 //!=============================================
 
@@ -61,7 +61,7 @@ const ProfileAddresses = ({ history }) => {
 
   return (
     <div className="profile-addresses">
-      <h1 className="heading-1  home-screen__title">YOUR ADDRESSES</h1>
+      <h1 className="heading-1 ">YOUR ADDRESSES</h1>
       <div className="profile-addresses__grid">
         {addresses.map((address, idx) => (
           <div className="profile-addresses__address" key={address._id}>

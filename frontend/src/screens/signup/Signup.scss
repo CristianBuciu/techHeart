@@ -8,14 +8,14 @@
     margin-top: 2rem;
   }
   &__password-box {
-    margin-top: 2rem;
-    font-size: 1.2rem;
+    align-self: center;
+    font-size: 1.3rem;
     font-weight: bold;
     &--checked {
       color: $color-alert;
     }
     &--fail {
-      color: $color-cta;
+      color: $color-pallete-2;
     }
   }
   &__password-error {

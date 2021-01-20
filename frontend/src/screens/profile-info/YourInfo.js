@@ -5,7 +5,7 @@ import {
   updateUserProfile,
 } from "../../redux/user/user.actions.js";
 import "./YourInfo.scss";
-import ErrorMessage from "../error-message/ErrorMessage.js";
+import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 
 //!==================================================
 
@@ -115,7 +115,7 @@ const YourInfo = ({ history }) => {
         {error ? (
           <ErrorMessage color={successColor}>{message}</ErrorMessage>
         ) : null}
-        <h1 className="your-info__title  home-screen__title">YOUR INFO</h1>
+        <h1 className="heading-1">YOUR INFO</h1>
         <div className="your-info__my-details">
           <div>
             <h3 className="heading-3">Personal details</h3>
@@ -167,7 +167,7 @@ const YourInfo = ({ history }) => {
           )}
         </div>
         <hr className="line-break" />
-        <h1 className="your-info__title">Password</h1>
+        <h3 className=" heading-3 your-info__title">Password</h3>
         <div className="your-info__password-section">
           <form
             className="your-info__password-section__form"

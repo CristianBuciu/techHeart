@@ -35,7 +35,7 @@ const UserDropdown = () => {
             menuToggler();
           }}
           style={{
-            borderTop: "1px solid $color-grey-light-2",
+            borderTop: "1px solid $color-grey-light-1-2",
             paddingTop: ".5rem",
           }}
           className="user-dropdown__list-item"

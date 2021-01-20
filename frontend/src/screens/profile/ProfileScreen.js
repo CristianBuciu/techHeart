@@ -2,8 +2,8 @@ import React from "react";
 import "./ProfileScreen.scss";
 import { Route } from "react-router-dom";
 import ProfileSidebar from "../../components/profile-sidebar/ProfileSidebar.js";
-import YourInfo from "../../components/profile-info/YourInfo.js";
-import ProfileAddresses from "../../components/profile-addresses/ProfileAddresses.js";
+import YourInfo from "../profile-info/YourInfo.js";
+import ProfileAddresses from "../profile-addresses/ProfileAddresses.js";
 import Checkout from "../checkout/Checkout.js";
 
 //todo ADD GSAP SCROLL TO MAKE LEFT MENU STICKY
