@@ -27,6 +27,7 @@
   &__logo {
     font-size: 4rem;
     color: $color-cta;
+    animation: heartbeat-lower 1s infinite;
   }
 
   &__title {
@@ -65,9 +66,17 @@
   }
   &__icon {
     cursor: pointer;
-    font-size: 2.8rem;
+    font-size: 3rem;
     color: $color-grey-dark-2;
     transition: all 0.2s;
+    &--heart {
+      color: $color-alert;
+      transition: all 0.2s;
+      &:hover {
+        transform: scale(1.1);
+        color: $color-alert !important;
+      }
+    }
     &--cart {
       position: relative;
     }
@@ -79,25 +88,28 @@
     }
   }
   &__cart-items-number {
-    font-size: 1.6rem;
-    background-color: $color-yellow-2;
-    color: $color-alert;
-    font-weight: 600;
+    font-size: 1.5rem;
+    background-color: rgba($color: $color-grey-light, $alpha: 0.5);
+    backdrop-filter: blur(0.1rem);
+    box-shadow: $shadow-normal;
+    color: $color-cta;
+    font-weight: 400;
     padding: 0.2rem;
     line-height: 1;
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2.3rem;
+    height: 2.3rem;
     display: inline-block;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     position: absolute;
-    bottom: 50%;
+    bottom: 40%;
     transform: translateY(70%);
-    right: -20%;
+    right: -30%;
   }
   &__welcome-message {
+    color: $color-primary;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -112,4 +124,25 @@
 }
 .dropdown-revert {
   transition: all 0.2s;
+}
+
+@keyframes heartbeat-lower {
+  0% {
+    transform: scale(0.85);
+  }
+  20% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.85);
+  }
+  60% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(0.85);
+  }
 }

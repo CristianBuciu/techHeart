@@ -43,7 +43,7 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="nav__icons-container">
-          <Link className="nav__icon" to="/favorites">
+          <Link className="nav__icon nav__icon--heart" to="/profile/favorites">
             {" "}
             <TiHeart />
           </Link>

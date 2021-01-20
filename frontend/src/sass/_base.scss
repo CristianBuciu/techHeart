@@ -2,13 +2,13 @@
 
 $color-primary: rgb(32, 179, 188);
 $color-primary-dark: rgb(15, 15, 15);
-$color-cta: rgb(2, 168, 18);
+$color-cta: rgb(255, 11, 243);
 $color-cta-2: rgb(18, 30, 207);
 
-$color-yellow-1: rgb(254, 248, 219);
-$color-yellow-2: rgb(254, 217, 133);
-$color-yellow-3: rgb(233, 135, 90);
-$color-yellow-4: rgb(255, 180, 3);
+$color-yellow-1: rgb(229, 250, 243);
+$color-green-2: rgb(28, 207, 58);
+$color-green-3: rgb(33, 226, 162);
+$color-green-4: rgb(24, 209, 178);
 
 $color-alert: rgb(253, 62, 62);
 $color-grey-light-2: rgb(212, 212, 212);
@@ -122,7 +122,9 @@ $translate-hover: translateY(-0.5rem);
 }
 
 .in-stock {
-  color: $color-cta;
+  color: $color-green-2;
+  font-weight: 400;
+  font-size: 1.4rem;
 }
 .out-of-stock {
   color: $color-alert;
@@ -159,20 +161,23 @@ $translate-hover: translateY(-0.5rem);
 @mixin custom-btn {
   cursor: pointer;
   border: none;
-  background-color: $color-yellow-2;
+  background-color: $color-green-3;
   border-radius: 0.5rem;
   transition: all 0.2s;
   text-transform: uppercase;
   font-family: $font-special;
   letter-spacing: 0.2rem;
   font-weight: 600;
-  color: $color-primary-dark;
+  color: $color-grey-dark-1;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: inset 2px 2px 8px rgba($color: $color-green-3, $alpha: 0.1),
+    inset -2px -2px 8px rgba($color: $color-green-3, $alpha: 0.1);
+
   &:hover {
-    background-color: $color-yellow-3;
-    color: $color-yellow-2;
+    background-color: $color-green-4;
+    color: white;
   }
 }
 @mixin custom-btn-disabled {

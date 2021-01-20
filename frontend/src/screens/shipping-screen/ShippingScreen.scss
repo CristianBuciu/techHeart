@@ -25,18 +25,22 @@
   }
   &--action {
     font-size: 1.4rem;
-    border: 1px solid $color-yellow-2;
+    border: 1px solid $color-green-3;
     padding: 0.5rem 1rem;
     width: 48%;
     text-align: center;
-    color: $color-cta-2;
+    color: $color-grey-dark-1;
     border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: $color-yellow-1;
+    }
     &--delete {
-      color: $color-alert;
+      color: $color-grey-dark-1;
       cursor: pointer;
     }
     &:visited {
-      color: $color-cta-2;
+      color: $color-grey-dark-1;
     }
   }
 }

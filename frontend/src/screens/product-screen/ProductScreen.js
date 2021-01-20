@@ -152,7 +152,7 @@ const ProductScreen = ({ match, history }) => {
             />
           </div>
           <div className="product-screen__details">
-            <h3 className="heading-3 ">
+            <h3 className="heading-3 product-screen__product-description-title">
               {" "}
               <strong>PRODUCT DESCRIPTION</strong>{" "}
             </h3>
