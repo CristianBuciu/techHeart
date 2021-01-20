@@ -9,6 +9,8 @@ import Login from "./screens/login/Login.js";
 import Signup from "./screens/signup/Signup.js";
 import ProfileScreen from "./screens/profile/ProfileScreen.js";
 import ShippingScreen from "./screens/shipping-screen/ShippingScreen.js";
+import PaymentScreen from "./screens/payment/PaymentScreen";
+
 //!==================================================================
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ function App() {
         <Route path="/register" component={Signup} />{" "}
         <Route path="/profile" component={ProfileScreen} />{" "}
         <Route path="/shipping" component={ShippingScreen} />{" "}
+        <Route path="/payment" component={PaymentScreen} />{" "}
       </main>{" "}
       <Footer />
     </>

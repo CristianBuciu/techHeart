@@ -33,7 +33,19 @@ const orderSchema = mongoose.Schema(
       },
     ],
     shippingAddress: {
-      address: {
+      fullName: {
+        type: String,
+        required: true,
+      },
+      country: {
+        type: String,
+        required: true,
+      },
+      line1: {
+        type: String,
+        required: true,
+      },
+      line2: {
         type: String,
         required: true,
       },
@@ -41,11 +53,15 @@ const orderSchema = mongoose.Schema(
         type: String,
         required: true,
       },
+      stateProvinceRegion: {
+        type: String,
+        required: true,
+      },
       postalCode: {
         type: String,
         required: true,
       },
-      country: {
+      phoneNumber: {
         type: String,
         required: true,
       },

@@ -6,6 +6,7 @@ import { getUserAddresses } from "../../redux/user/user.actions.js";
 import AddAddress from "../../components/add-address/AddAddress";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
 //!=======================================================
 const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -43,29 +44,14 @@ const ShippingScreen = ({ history }) => {
     };
     deleteAddress();
   };
+
+  const handleSubmit = (address) => {
+    history.push("/payment");
+  };
+
   return (
     <div className="shipping-screen">
-      <div className="shipping-screen__top">
-        <div className="shipping-screen__top__progress">
-          <span className="shipping-screen__number shipping-screen__number--selected">
-            1
-          </span>{" "}
-          <span className="shipping-screen__top--text shipping-screen__top--text--selected">
-            Address
-          </span>
-          <AiOutlineDoubleRight className=" shipping-screen__top--arrows shipping-screen__top--arrows--selected shipping-screen__top--arrows--animate" />
-        </div>
-        <div className="shipping-screen__top__progress">
-          <span className="shipping-screen__number">2</span>{" "}
-          <span className="shipping-screen__top--text">Payment & Shipping</span>
-          <AiOutlineDoubleRight className="shipping-screen__top--arrows" />
-        </div>
-        <div className="shipping-screen__top__progress">
-          <span className="shipping-screen__number">3</span>
-          <span className="shipping-screen__top--text">Complete Order</span>
-          <div></div>
-        </div>
-      </div>
+      <CheckoutSteps active1="selected" animate1="animate" />
       <main>
         <h1 className="heading-1 heading-1--dark mt-sm mb-sm">
           Chose a delivery address
@@ -93,7 +79,10 @@ const ShippingScreen = ({ history }) => {
 
                 <p className="profile-addresses__text">{address.country}</p>
               </address>
-              <button className="shipping-screen__ship-btn">
+              <button
+                onClick={() => handleSubmit(address)}
+                className="shipping-screen__ship-btn"
+              >
                 Deliver to this address
               </button>
               <div className="shipping-screen__delete-edit-container mt-xs mb-xs">
