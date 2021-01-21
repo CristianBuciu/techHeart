@@ -41,22 +41,23 @@
       justify-content: space-evenly;
 
       &--action {
+        width: 45%;
+        text-align: center;
         font-size: 1.4rem;
-        color: $color-cta-2;
+        border: 1px solid $color-pallete-3;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
         cursor: pointer;
         transition: all 0.2s;
         padding-bottom: 0.1rem;
-        border-bottom: 1px solid transparent;
 
         &:hover {
-          border-bottom: 1px solid $color-cta-2;
+          background-color: $color-pallete-1;
         }
-        &--delete {
-          color: $color-alert;
-          &:hover {
-            border-bottom: 1px solid $color-alert;
-          }
-        }
+      }
+      &--action:active,
+      &--action:visited {
+        color: $color-grey-dark-1 !important;
       }
     }
   }

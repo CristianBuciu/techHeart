@@ -73,11 +73,8 @@ const AddressEdit = ({ match, history }) => {
   return (
     <>
       <h1 className="heading-1">Edit Address</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="profile-addresses__form-container"
-      >
-        <label htmlFor="line1" className="profile-addresses__label">
+      <form onSubmit={handleSubmit} className="add-address__form-container">
+        <label htmlFor="line1" className="add-address__label">
           <strong>Address line 1</strong>
         </label>
         <input
@@ -86,10 +83,10 @@ const AddressEdit = ({ match, history }) => {
           onChange={(e) => setLine1(e.target.value)}
           value={line1}
           type="text"
-          className="profile-addresses__input"
+          className="add-address__input"
         />
 
-        <label htmlFor="line2" className="profile-addresses__label">
+        <label htmlFor="line2" className="add-address__label">
           <strong>Address line 2</strong>
         </label>
         <input
@@ -98,9 +95,9 @@ const AddressEdit = ({ match, history }) => {
           onChange={(e) => setLine2(e.target.value)}
           value={line2}
           type="text"
-          className="profile-addresses__input"
+          className="add-address__input"
         />
-        <label htmlFor="city" className="profile-addresses__label">
+        <label htmlFor="city" className="add-address__label">
           <strong>City</strong>
         </label>
         <input
@@ -108,12 +105,9 @@ const AddressEdit = ({ match, history }) => {
           name="city"
           onChange={(e) => setCity(e.target.value)}
           value={city}
-          className="profile-addresses__input"
+          className="add-address__input"
         />
-        <label
-          htmlFor="stateProvinceRegion"
-          className="profile-addresses__label"
-        >
+        <label htmlFor="stateProvinceRegion" className="add-address__label">
           <strong>State/Province/Region</strong>
         </label>
         <input
@@ -121,9 +115,9 @@ const AddressEdit = ({ match, history }) => {
           name="stateProvinceRegion"
           onChange={(e) => setStateProvinceRegion(e.target.value)}
           value={stateProvinceRegion}
-          className="profile-addresses__input"
+          className="add-address__input"
         />
-        <label htmlFor="postalCode" className="profile-addresses__label">
+        <label htmlFor="postalCode" className="add-address__label">
           <strong>Postal Code</strong>
         </label>
         <input
@@ -131,9 +125,9 @@ const AddressEdit = ({ match, history }) => {
           name="postalCode"
           onChange={(e) => setPostalCode(e.target.value)}
           value={postalCode}
-          className="profile-addresses__input"
+          className="add-address__input"
         />
-        <label htmlFor="country" className="profile-addresses__label">
+        <label htmlFor="country" className="add-address__label">
           <strong>Country</strong>
         </label>
         <input
@@ -141,9 +135,9 @@ const AddressEdit = ({ match, history }) => {
           name="country"
           onChange={(e) => setCountry(e.target.value)}
           value={country}
-          className="profile-addresses__input"
+          className="add-address__input"
         />
-        <label htmlFor="phoneNumber" className="profile-addresses__label">
+        <label htmlFor="phoneNumber" className="add-address__label">
           <strong>Phone Number</strong>
         </label>
         <input
@@ -151,11 +145,11 @@ const AddressEdit = ({ match, history }) => {
           name="phoneNumber"
           onChange={(e) => setPhoneNumber(e.target.value)}
           value={phoneNumber}
-          className="profile-addresses__input"
+          className="add-address__input"
         />
         <input
           required
-          className="profile-addresses__input-btn"
+          className="add-address__input-btn"
           type="submit"
           value="Edit Address"
         />

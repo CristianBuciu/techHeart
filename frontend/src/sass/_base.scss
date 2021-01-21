@@ -62,7 +62,7 @@ $shadow-normal-strong: 0 1rem 2rem
 .line-break {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  border-bottom: 1px solid $color-grey-light-1;
+  border-bottom: 1px solid rgba($color: $color-cta, $alpha: 0.3);
 }
 
 $shadow-young: -0.5rem 0.5rem 0 #10162f;

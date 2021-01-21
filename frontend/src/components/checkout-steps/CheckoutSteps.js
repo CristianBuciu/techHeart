@@ -39,7 +39,7 @@ const CheckoutSteps = ({
         <span
           className={`checkout-steps--text  checkout-steps--text--${active2} `}
         >
-          Payment
+          Payment & Shippment
         </span>
         <AiOutlineDoubleRight
           className={`checkout-steps--arrows checkout-steps--arrows--${active2} checkout-steps--arrows--${animate2}`}

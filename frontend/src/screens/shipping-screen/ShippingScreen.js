@@ -54,9 +54,7 @@ const ShippingScreen = ({ history }) => {
     <div className="shipping-screen">
       <CheckoutSteps active1="selected" animate1="animate" />
       <main>
-        <h1 className="heading-1 heading-1--dark mt-sm mb-sm">
-          Chose a delivery address
-        </h1>
+        <h1 className="heading-1  mt-sm mb-sm">Chose a delivery address</h1>
         <div className="shipping-screen__address-container">
           {addresses.map((address) => (
             <div key={address._id} className="shipping-screen__address">

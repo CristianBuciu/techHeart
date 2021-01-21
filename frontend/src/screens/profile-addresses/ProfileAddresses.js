@@ -94,7 +94,7 @@ const ProfileAddresses = ({ history }) => {
                 onClick={() => {
                   deleteAddressHandler(address._id);
                 }}
-                className="profile-addresses__address__bottom-links--action profile-addresses__address__bottom-links--action--delete"
+                className="profile-addresses__address__bottom-links--action "
               >
                 Delete
               </span>
