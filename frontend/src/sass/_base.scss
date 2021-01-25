@@ -1,13 +1,13 @@
 //! COLOR VARIABLES =====================================================
 
-$color-primary: rgb(32, 179, 188);
+$color-primary: #18cad3;
 $color-primary-dark: rgb(15, 15, 15);
-$color-cta: rgb(255, 11, 243);
+$color-cta: #ff0bf3;
 $color-cta-2: rgb(18, 30, 207);
 
 $color-pallete-1: rgb(229, 250, 243);
 $color-pallete-2: rgb(28, 207, 58);
-$color-pallete-3: rgb(33, 226, 162);
+$color-pallete-3: #21e2a2;
 $color-pallete-4: rgb(24, 209, 178);
 
 $color-alert: rgb(253, 62, 62);
@@ -26,7 +26,12 @@ $font-special: "Inconsolata", monospace;
 
 //! SHADOWS ============================================================
 
-$shadow-normal: 0 3px 6px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.15);
+$shadow-normal: 0 3px 6px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.15),
+  2px 2px 0.5rem
+    rgba(
+      $color: #ff0bf3,
+      $alpha: 0.075,
+    );
 $shadow-normal-hover: 0 1rem 2rem
     rgba(
       $color: #000000,
@@ -62,7 +67,22 @@ $shadow-normal-strong: 0 1rem 2rem
 .line-break {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  border-bottom: 1px solid rgba($color: $color-cta, $alpha: 0.3);
+  height: 2px;
+  background-image: radial-gradient(
+    circle,
+    #18cad3,
+    #00c0eb,
+    #00b2ff,
+    #029fff,
+    #8285ff,
+    #668cff,
+    #4591ff,
+    #0096ff,
+    #00b1ff,
+    #00c6f1,
+    #00d6cd,
+    #21e2a2
+  );
 }
 
 $shadow-young: -0.5rem 0.5rem 0 #10162f;

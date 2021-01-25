@@ -28,7 +28,7 @@ const UserDropdown = () => {
         <li onClick={menuToggler} className="user-dropdown__list-item">
           My orders
         </li>
-        <hr />
+        <div />
         <li
           onClick={() => {
             logoutHandler();

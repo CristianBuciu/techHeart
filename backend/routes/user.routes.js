@@ -10,6 +10,8 @@ import {
   getAddressById,
   updateAddress,
   deleteAddressById,
+  addItemToFavorites,
+  getAllFavorites,
 } from "../controllers/user.controller.js";
 import { protect } from "../middleware/authMiddleware.js";
 
@@ -30,5 +32,10 @@ router
   .get(protect, getAddressById)
   .put(protect, updateAddress)
   .delete(protect, deleteAddressById);
+
+router
+  .route("/profile/favorites")
+  .post(protect, addItemToFavorites)
+  .get(protect, getAllFavorites);
 
 export default router;

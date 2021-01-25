@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.scss";
 import { GrFacebook, GrTwitter, GrInstagram } from "react-icons/gr";
+import { Link } from "react-router-dom";
 //!=============================================================
 const Footer = () => {
   return (
@@ -13,7 +14,9 @@ const Footer = () => {
       <div className="footer__bottom">
         <div className="footer__ofertas footer__flex">
           {" "}
-          <h4 className="heading-4">Offers</h4>{" "}
+          <h4 className="heading-4">Get to Know Us</h4>
+          <Link to="/careers">Careers</Link>
+          <Link to="/about">About</Link>
         </div>
         <div className="footer__information footer__flex">
           <h4 className="heading-4">Information</h4>

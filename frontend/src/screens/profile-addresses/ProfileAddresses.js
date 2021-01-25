@@ -63,53 +63,59 @@ const ProfileAddresses = ({ history }) => {
     <div className="profile-addresses">
       <h1 className="heading-1 ">YOUR ADDRESSES</h1>
       <div className="profile-addresses__grid">
-        {addresses.map((address, idx) => (
-          <div className="profile-addresses__address" key={address._id}>
-            <h3 className="profile-addresses__address__title">
-              Address {idx + 1}
-            </h3>
+        {addresses
+          ? addresses.map((address, idx) => (
+              <div className="profile-addresses__wrapper">
+                <div className="profile-addresses__address" key={address._id}>
+                  <h3 className="profile-addresses__address__title">
+                    Address {idx + 1}
+                  </h3>
 
-            <address>
-              <p className="profile-addresses__text">
-                <strong>{address.fullName}</strong>
-              </p>
-              <p className="profile-addresses__text">{address.line1}</p>
-              <p className="profile-addresses__text">{address.line2}</p>
-              <p className="profile-addresses__text">
-                {address.city} , {address.stateProvinceRegion} ,{" "}
-                {address.postalCode}
-              </p>
+                  <address>
+                    <p className="profile-addresses__text">
+                      <strong>{address.fullName}</strong>
+                    </p>
+                    <p className="profile-addresses__text">{address.line1}</p>
+                    <p className="profile-addresses__text">{address.line2}</p>
+                    <p className="profile-addresses__text">
+                      {address.city} , {address.stateProvinceRegion} ,{" "}
+                      {address.postalCode}
+                    </p>
 
-              <p className="profile-addresses__text">{address.country}</p>
-              <p className="profile-addresses__text">{address.phoneNumber}</p>
-            </address>
-            <div className="profile-addresses__address__bottom-links">
-              <Link
-                to={`/profile/addresses/${address._id}`}
-                className="profile-addresses__address__bottom-links--action"
-              >
-                Edit
-              </Link>
-              <span
-                onClick={() => {
-                  deleteAddressHandler(address._id);
-                }}
-                className="profile-addresses__address__bottom-links--action "
-              >
-                Delete
-              </span>
-            </div>
-          </div>
-        ))}
+                    <p className="profile-addresses__text">{address.country}</p>
+                    <p className="profile-addresses__text">
+                      {address.phoneNumber}
+                    </p>
+                  </address>
+                  <div className="profile-addresses__address__bottom-links">
+                    <Link
+                      to={`/profile/addresses/${address._id}`}
+                      className="profile-addresses__address__bottom-links--action"
+                    >
+                      Edit
+                    </Link>
+                    <span
+                      onClick={() => {
+                        deleteAddressHandler(address._id);
+                      }}
+                      className="profile-addresses__address__bottom-links--action "
+                    >
+                      Delete
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))
+          : ""}
         <address
           onClick={handleAddAddress}
           className="profile-addresses__address profile-addresses__add-address"
         >
-          <BsPlusSquare style={{ fontSize: "8rem" }} />
+          <span style={{ fontSize: "8rem" }}>&#9783;</span>
           Add new address
         </address>
       </div>
-      <hr className="line-break" />
+      <div className="line-break" />
 
       {addAddressToggle ? <AddAddress /> : null}
     </div>

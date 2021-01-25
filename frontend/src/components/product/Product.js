@@ -1,12 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Product.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { BsHeartFill } from "react-icons/bs";
+import { useSelector, useDispatch } from "react-redux";
 
+import axios from "axios";
 //!==================================================================
 const Product = ({ product }) => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const history = useHistory();
+
   const [like, setLike] = useState(false);
+  useEffect(() => {});
+  const handleAddUserToLikedArray = async (id) => {
+    try {
+      if (!userInfo) {
+        history.push("/login");
+      } else {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.put(`/api/products/`, { _id: id }, config);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div
@@ -43,7 +68,10 @@ const Product = ({ product }) => {
         </div>
       </Link>
       <BsHeartFill
-        onClick={() => setLike(!like)}
+        onClick={() => {
+          setLike(!like);
+          handleAddUserToLikedArray(product._id);
+        }}
         className={
           like ? "product__heart product__heart--selected" : "product__heart"
         }

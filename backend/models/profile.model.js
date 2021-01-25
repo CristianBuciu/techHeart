@@ -37,6 +37,12 @@ const profileSchema = mongoose.Schema({
       },
     },
   ],
+  favoriteProducts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+    },
+  ],
 });
 
 const Profile = mongoose.model("Profile", profileSchema);

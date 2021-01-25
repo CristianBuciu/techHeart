@@ -1,5 +1,7 @@
 import Product from "../models/product.model.js";
+import User from "../models/user.model.js";
 import asyncHandler from "express-async-handler";
+import mongoose from "mongoose";
 
 //! DESCRIPTION : FETCH ALL ROUTES
 //! ROUTE       : GET /API/PRODUCTS
@@ -24,4 +26,28 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
-export { getProducts, getProductById };
+//! DESCRIPTION : Add user that liked the product to the product database
+//! ROUTE       : PUT /API/PRODUCTS/
+//! ACCESS      : Private
+
+const likedByUser = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.body._id);
+
+  if (product) {
+    const findUser = product.likedBy.find((x) => x.equals(req.user._id));
+    if (findUser) {
+      null;
+    } else {
+      product.likedBy.push(req.user._id);
+    }
+
+    const updatedProduct = await product.save();
+
+    res.json(updatedProduct);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
+export { getProducts, getProductById, likedByUser };

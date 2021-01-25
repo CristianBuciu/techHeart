@@ -166,7 +166,7 @@ const YourInfo = ({ history }) => {
             </button>
           )}
         </div>
-        <hr className="line-break" />
+        <div className="line-break" />
         <h3 className=" heading-3 your-info__title">Password</h3>
         <div className="your-info__password-section">
           <form
@@ -268,7 +268,7 @@ const YourInfo = ({ history }) => {
             value="Update password"
           />
         </div>
-        <hr className="line-break" />
+        <div className="line-break" />
       </main>
     </div>
   );

@@ -22,8 +22,9 @@ const ShippingScreen = ({ history }) => {
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
+    } else {
+      dispatch(getUserAddresses());
     }
-    dispatch(getUserAddresses());
   }, [history, userInfo, user, dispatch]);
 
   const deleteAddressHandler = (id) => {
@@ -56,54 +57,56 @@ const ShippingScreen = ({ history }) => {
       <main>
         <h1 className="heading-1  mt-sm mb-sm">Chose a delivery address</h1>
         <div className="shipping-screen__address-container">
-          {addresses.map((address) => (
-            <div key={address._id} className="shipping-screen__address">
-              <address
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  marginBottom: "2rem",
-                }}
-              >
-                <p className="profile-addresses__text">
-                  <strong>{address.fullName}</strong>
-                </p>
-                <p className="profile-addresses__text">{address.line1}</p>
-                <p className="profile-addresses__text">{address.line2}</p>
-                <p className="profile-addresses__text">
-                  {address.city} , {address.stateProvinceRegion} ,{" "}
-                  {address.postalCode}
-                </p>
+          {addresses
+            ? addresses.map((address) => (
+                <div key={address._id} className="shipping-screen__address">
+                  <address
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      marginBottom: "2rem",
+                    }}
+                  >
+                    <p className="profile-addresses__text">
+                      <strong>{address.fullName}</strong>
+                    </p>
+                    <p className="profile-addresses__text">{address.line1}</p>
+                    <p className="profile-addresses__text">{address.line2}</p>
+                    <p className="profile-addresses__text">
+                      {address.city} , {address.stateProvinceRegion} ,{" "}
+                      {address.postalCode}
+                    </p>
 
-                <p className="profile-addresses__text">{address.country}</p>
-              </address>
-              <button
-                onClick={() => handleSubmit(address)}
-                className="shipping-screen__ship-btn"
-              >
-                Deliver to this address
-              </button>
-              <div className="shipping-screen__delete-edit-container mt-xs mb-xs">
-                <Link
-                  to={`/profile/addresses/${address._id}`}
-                  className="shipping-screen--action"
-                >
-                  Edit
-                </Link>
-                <span
-                  onClick={() => {
-                    deleteAddressHandler(address._id);
-                  }}
-                  className="shipping-screen--action shipping-screen--action--delete"
-                >
-                  Delete
-                </span>
-              </div>
-            </div>
-          ))}
+                    <p className="profile-addresses__text">{address.country}</p>
+                  </address>
+                  <button
+                    onClick={() => handleSubmit(address)}
+                    className="shipping-screen__ship-btn"
+                  >
+                    Deliver to this address
+                  </button>
+                  <div className="shipping-screen__delete-edit-container mt-xs mb-xs">
+                    <Link
+                      to={`/profile/addresses/${address._id}`}
+                      className="shipping-screen--action"
+                    >
+                      Edit
+                    </Link>
+                    <span
+                      onClick={() => {
+                        deleteAddressHandler(address._id);
+                      }}
+                      className="shipping-screen--action shipping-screen--action--delete"
+                    >
+                      Delete
+                    </span>
+                  </div>
+                </div>
+              ))
+            : ""}
         </div>
-        <hr className="line-break" />
+        <div className="line-break" />
         <h2 className="heading-2">Add new address</h2>
         <AddAddress />
       </main>

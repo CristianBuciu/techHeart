@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import Product from "../models/product.model.js";
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generate.token.js";
 import Profile from "../models/profile.model.js";
@@ -226,13 +227,58 @@ const deleteAddressById = asyncHandler(async (req, res) => {
     { user: req.user._id, "addresses._id": req.params.id },
     { $pull: { addresses: { _id: req.params.id } } }
   );
-  console.log(deletedAddress);
+
   if (deletedAddress) {
     res.json("Address deleted");
   } else {
     res.status(404);
     throw new Error("Address not found");
   }
+});
+
+//! DESCRIPTION : Add Product to favorites
+//! ROUTE       : Post /api/users/profile/favorites
+//! ACCESS      : PRIVATE
+
+const addItemToFavorites = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.body._id);
+  const profile = await Profile.findOne({ user: req.user._id })
+    .populate("favoriteProducts")
+    .exec();
+  if (profile && product) {
+    const findProduct = profile.favoriteProducts.find((x) =>
+      x.equals(req.body._id)
+    );
+    if (findProduct) {
+      null;
+    } else {
+      profile.favoriteProducts.push(product);
+    }
+
+    const updatedProfile = await profile.save();
+
+    res.json(updatedProfile.favoriteProducts);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
+//! DESCRIPTION : Get all favorites
+//! ROUTE       : GET /api/users/profile/favorites
+//! ACCESS      : PRIVATE
+
+const getAllFavorites = asyncHandler((req, res) => {
+  Profile.findOne({ user: req.user._id })
+    .populate("favoriteProducts")
+    .exec(function (err, products) {
+      if (products !== null) {
+        res.json(products.favoriteProducts);
+      } else {
+        res.status(404);
+        throw new Error("Products not found");
+      }
+    });
 });
 
 export {
@@ -245,4 +291,6 @@ export {
   getAddressById,
   updateAddress,
   deleteAddressById,
+  addItemToFavorites,
+  getAllFavorites,
 };
