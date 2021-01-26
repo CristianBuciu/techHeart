@@ -14,6 +14,7 @@ import {
   userAddressesReducer,
   addAddressReducer,
   showUserMenuReducer,
+  getUserFavoriteProductsReducer,
 } from "./user/user.reducers.js";
 import { addOrderAddressReducer } from "./order/order.reducers.js";
 
@@ -30,6 +31,7 @@ const reducer = combineReducers({
   addAddress: addAddressReducer,
   showUserMenu: showUserMenuReducer,
   orderAddress: addOrderAddressReducer,
+  userFavoriteProducts: getUserFavoriteProductsReducer,
 });
 //!=====================================================
 
@@ -49,12 +51,20 @@ const orderAddressFromStorage = localStorage.getItem("orderAddress")
   ? JSON.parse(localStorage.getItem("orderAddress"))
   : {};
 
+const userFavoriteProductsFromStorage = localStorage.getItem(
+  "userFavoriteProducts"
+)
+  ? JSON.parse(localStorage.getItem("userFavoriteProducts"))
+  : [];
 const initialState = {
   showUserMenu: false,
   cart: { cartItems: cartItemsFromStorage },
   userLogin: { userInfo: userInfoFromStorage },
   userAddresses: { addresses: userAddressesFromStorage },
   orderAddress: { orderAddress: orderAddressFromStorage },
+  userFavoriteProducts: {
+    userFavoriteProducts: userFavoriteProductsFromStorage,
+  },
 };
 
 const middleware = [thunk];

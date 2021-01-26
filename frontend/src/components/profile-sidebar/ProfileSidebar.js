@@ -33,6 +33,15 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        className="profile-sidebar__options"
+        activeClassName="profile-sidebar__active-link"
+        to="/profile/favorites"
+      >
+        {" "}
+        <p>Your Favorites</p>{" "}
+      </NavLink>
+
+      <NavLink
         activeClassName="profile-sidebar__active-link"
         className="profile-sidebar__options"
         to="/profile/reviews"

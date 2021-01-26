@@ -43,10 +43,10 @@ const ProductScreen = ({ match, history }) => {
     <>
       <div className=" top-links mb-sm">
         <Link className="product-screen__link" to="/">
-          Home
+          &#10094;&#10094; Home
         </Link>
         <Link className="product-screen__link" to="/shop">
-          Shop
+          &#10094;&#10094; Shop
         </Link>
       </div>
       {loading ? (

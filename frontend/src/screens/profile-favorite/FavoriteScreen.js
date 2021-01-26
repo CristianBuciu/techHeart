@@ -1,32 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { addToCart, removeItem } from "../../redux/cart/cart.actions.js";
-import "./Checkout.scss";
-import { roundToTwo } from "../../utils.js";
-
-//!=======================================================
-const Checkout = ({ history }) => {
+import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+//!==============================================================
+const FavoriteScreen = ({ history }) => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const cartItemsNumber = cartItems.reduce(
-    (accum, cartItem) => accum + cartItem.qty,
-    0
+
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const favoriteProductsList = useSelector(
+    (state) => state.userFavoriteProducts
   );
-  const subtotal = cartItems.reduce(
-    (accum, cartItem) => accum + cartItem.qty * cartItem.price,
-    0
-  );
-  const removeFromCartHandler = (id) => {
-    dispatch(removeItem(id));
-  };
-  const checkoutHandler = () => {
-    history.push("/shipping");
-  };
+  const { userFavoriteProducts, loading } = favoriteProductsList;
+  const numberOfProducts = userFavoriteProducts.length;
+
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/login");
+    }
+    dispatch(listFavoriteProducts());
+  }, [history, userInfo, dispatch]);
   return (
     <div className="checkout-screen">
-      <h1 className="heading-1  ">CHECK OUT</h1>
-      <div className="checkout-screen__subtotal">
+      <h1 className="heading-1  ">FAVORITE PRODUCTS</h1>
+      {/* <div className="checkout-screen__subtotal">
         <div>
           <h3 className="checkout-screen__subtotal--title">
             Subtotal ({cartItemsNumber} products):
@@ -47,12 +47,12 @@ const Checkout = ({ history }) => {
             Proceed to checkout
           </button>
         )}
-      </div>
+      </div> */}
       <h2 className="checkout-screen__item-count">
-        You have {cartItemsNumber} items in your cart.
+        You have {numberOfProducts} favorite products.
       </h2>
-      {cartItems.map((item) => (
-        <div key={item.product} className="checkout-screen__item">
+      {userFavoriteProducts.map((item) => (
+        <div key={item._id} className="checkout-screen__item">
           <img
             src={item.image}
             alt={item.name}
@@ -65,14 +65,14 @@ const Checkout = ({ history }) => {
             {item.countInStock ? (
               <h3 className="in-stock">In stock</h3>
             ) : (
-              <h3 className="out-of-stock">Not in stock</h3>
+              <h3 className="out-of-stock-favorites">Not in stock</h3>
             )}
             <h3 className="heading-3 checkout-screen__item-details--price">
               PRICE:
             </h3>
             <h3 className="heading-3 checkout-screen__item-details--price-value">
               € {item.price} &#10006;&nbsp;
-              {item.countInStock > 0 && (
+              {/* {item.countInStock > 0 && (
                 <div className="product-screen__quantity-selector checkout-screen__quantity-selector">
                   <form action="">
                     <label
@@ -104,14 +104,14 @@ const Checkout = ({ history }) => {
                     </select>
                   </form>
                 </div>
-              )}
+              )} */}
             </h3>
-            <span
+            {/* <span
               onClick={() => removeFromCartHandler(item.product)}
               className="checkout-screen__remove"
             >
               Remove
-            </span>
+            </span> */}
           </div>
         </div>
       ))}
@@ -119,4 +119,4 @@ const Checkout = ({ history }) => {
   );
 };
 
-export default Checkout;
+export default FavoriteScreen;

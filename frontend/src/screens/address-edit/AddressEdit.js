@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 //!=================================================================
 const AddressEdit = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -72,6 +73,11 @@ const AddressEdit = ({ match, history }) => {
   };
   return (
     <>
+      <div className=" top-links mb-sm">
+        <Link className="product-screen__link" to="/profile/addresses">
+          &#10094;&#10094; Your Addresses
+        </Link>
+      </div>
       <h1 className="heading-1">Edit Address</h1>
       <form onSubmit={handleSubmit} className="add-address__form-container">
         <label htmlFor="line1" className="add-address__label">

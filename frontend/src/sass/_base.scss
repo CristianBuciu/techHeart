@@ -3,7 +3,7 @@
 $color-primary: #18cad3;
 $color-primary-dark: rgb(15, 15, 15);
 $color-cta: #ff0bf3;
-$color-cta-2: rgb(18, 30, 207);
+$color-cta-2: rgb(100, 18, 207);
 
 $color-pallete-1: rgb(229, 250, 243);
 $color-pallete-2: rgb(28, 207, 58);
@@ -149,6 +149,10 @@ $translate-hover: translateY(-0.5rem);
   font-size: 1.4rem;
 }
 .out-of-stock {
+  color: $color-alert;
+}
+
+.out-of-stock-favorites {
   color: $color-alert;
 }
 

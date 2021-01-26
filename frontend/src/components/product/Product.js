@@ -1,21 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import "./Product.scss";
 import { Link, useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { BsHeartFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
-
+import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+import { ErrorMessage } from "../error-message/ErrorMessage.js";
 import axios from "axios";
 //!==================================================================
 const Product = ({ product }) => {
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const history = useHistory();
 
   const [like, setLike] = useState(false);
-  useEffect(() => {});
-  const handleAddUserToLikedArray = async (id) => {
+
+  const favoriteProductsList = useSelector(
+    (state) => state.userFavoriteProducts
+  );
+  const { userFavoriteProducts } = favoriteProductsList;
+  const isFavorite = userFavoriteProducts.find(
+    (favoriteProduct) => favoriteProduct._id == product._id
+  );
+  useEffect(() => {
+    if (isFavorite) {
+      setLike(true);
+    } else {
+      setLike(false);
+    }
+  }, [isFavorite]);
+
+  const handleAddUserToLikedArrayAndProductToFavorites = async (id) => {
     try {
       if (!userInfo) {
         history.push("/login");
@@ -27,6 +44,7 @@ const Product = ({ product }) => {
           },
         };
         await axios.put(`/api/products/`, { _id: id }, config);
+        await axios.post(`/api/users/profile/favorites`, { _id: id }, config);
       }
     } catch (error) {
       console.error(error);
@@ -68,9 +86,9 @@ const Product = ({ product }) => {
         </div>
       </Link>
       <BsHeartFill
-        onClick={() => {
-          setLike(!like);
-          handleAddUserToLikedArray(product._id);
+        onClick={async () => {
+          await handleAddUserToLikedArrayAndProductToFavorites(product._id);
+          await dispatch(listFavoriteProducts());
         }}
         className={
           like ? "product__heart product__heart--selected" : "product__heart"

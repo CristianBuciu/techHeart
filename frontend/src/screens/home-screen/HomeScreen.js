@@ -2,19 +2,25 @@ import React, { useEffect } from "react";
 import "./HomeScreen.scss";
 import Product from "../../components/product/Product";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../../redux/product/product.actions.js";
+
 import Loader from "../../components/loader/Loader.js";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
+
+//* Actions imports============
+import { listProducts } from "../../redux/product/product.actions.js";
+import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 
 //!=======================================================
 const HomeScreen = () => {
   //! Using Redux to get the data ========================
   const dispatch = useDispatch();
+
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   useEffect(() => {
     dispatch(listProducts());
+    dispatch(listFavoriteProducts());
   }, [dispatch]);
   //!=======================================================
   return (

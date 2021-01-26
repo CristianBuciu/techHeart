@@ -9,6 +9,7 @@ import Checkout from "../checkout/Checkout.js";
 //todo ADD GSAP SCROLL TO MAKE LEFT MENU STICKY
 import gsap from "gsap";
 import AddressEdit from "../address-edit/AddressEdit";
+import FavoriteScreen from "../profile-favorite/FavoriteScreen";
 
 //!=================================================================
 const ProfileScreen = () => {
@@ -20,6 +21,7 @@ const ProfileScreen = () => {
         <Route exact path="/profile/addresses" component={ProfileAddresses} />
         <Route exact path="/profile/checkout/:id?" component={Checkout} />{" "}
         <Route exact path="/profile/addresses/:id" component={AddressEdit} />{" "}
+        <Route exact path="/profile/favorites" component={FavoriteScreen} />{" "}
       </div>
     </div>
   );

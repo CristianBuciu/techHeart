@@ -3,7 +3,7 @@ import { userConstants } from "./user.constants.js";
 const initialState = {
   addresses: [],
 };
-
+//!=========================================================================
 export const userLoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case userConstants.USER_LOGIN_REQUEST:
@@ -18,6 +18,7 @@ export const userLoginReducer = (state = initialState, action) => {
       return state;
   }
 };
+//!=========================================================================
 
 export const userRegisterReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -31,6 +32,7 @@ export const userRegisterReducer = (state = initialState, action) => {
       return state;
   }
 };
+//!=========================================================================
 
 export const userDetailsReducer = (state = { user: {} }, action) => {
   switch (action.type) {
@@ -44,6 +46,7 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return state;
   }
 };
+//!=========================================================================
 
 export const userUpdateProfileReducer = (state = {}, action) => {
   switch (action.type) {
@@ -59,6 +62,7 @@ export const userUpdateProfileReducer = (state = {}, action) => {
       return state;
   }
 };
+//!=========================================================================
 
 export const addAddressReducer = (state = {}, action) => {
   switch (action.type) {
@@ -78,6 +82,7 @@ export const addAddressReducer = (state = {}, action) => {
       return state;
   }
 };
+//!=========================================================================
 
 export const userAddressesReducer = (state = {}, action) => {
   switch (action.type) {
@@ -91,6 +96,7 @@ export const userAddressesReducer = (state = {}, action) => {
       return state;
   }
 };
+//!=========================================================================
 
 export const editAddressReducer = (state = {}, action) => {
   switch (action.type) {
@@ -104,6 +110,7 @@ export const editAddressReducer = (state = {}, action) => {
       return state;
   }
 };
+//!=========================================================================
 
 export const showUserMenuReducer = (
   state = { showUserMenu: false },
@@ -115,6 +122,26 @@ export const showUserMenuReducer = (
         ...state,
         showUserMenu: !state.showUserMenu,
       };
+    default:
+      return state;
+  }
+};
+//!=========================================================================
+
+export const getUserFavoriteProductsReducer = (
+  state = { userFavoriteProducts: [] },
+  action
+) => {
+  switch (action.type) {
+    case userConstants.USER_GET_FAVORITES_REQUEST:
+      return { loading: true, ...state };
+    case userConstants.USER_GET_FAVORITES_SUCCESS:
+      return {
+        loading: false,
+        userFavoriteProducts: action.payload,
+      };
+    case userConstants.USER_GET_FAVORITES_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

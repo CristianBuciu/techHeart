@@ -257,7 +257,7 @@ const addItemToFavorites = asyncHandler(async (req, res) => {
 
     const updatedProfile = await profile.save();
 
-    res.json(updatedProfile.favoriteProducts);
+    res.json("Product added to favorites");
   } else {
     res.status(404);
     throw new Error("Product not found");
@@ -276,7 +276,7 @@ const getAllFavorites = asyncHandler((req, res) => {
         res.json(products.favoriteProducts);
       } else {
         res.status(404);
-        throw new Error("Products not found");
+        throw new Error(`An error has ocured : ${err}`);
       }
     });
 });

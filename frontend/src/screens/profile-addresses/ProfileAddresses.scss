@@ -60,16 +60,17 @@
       justify-content: space-evenly;
 
       &--action {
+        color: $color-grey-dark-1 !important;
+        display: flex;
+        align-items: center;
         width: 45%;
-        text-align: center;
+        justify-content: center;
         font-size: 1.4rem;
         border: 1px solid $color-pallete-3;
         border-radius: 0.5rem;
         padding: 0.5rem 1rem;
         cursor: pointer;
         transition: all 0.2s;
-        padding-bottom: 0.1rem;
-
         &:hover {
           background-color: $color-pallete-1;
         }

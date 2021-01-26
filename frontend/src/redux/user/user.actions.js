@@ -120,7 +120,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
 //?=====================================================================
 
-//! UPDATE User Profile Action ================================================
+//! UPDATE User Profile Action =========================================
 
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
@@ -157,7 +157,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
 //?=====================================================================
 
-//! UPDATE Add User Address Action ================================================
+//! UPDATE Add User Address Action =====================================
 
 export const addAddress = (user) => async (dispatch, getState) => {
   try {
@@ -197,7 +197,7 @@ export const addAddress = (user) => async (dispatch, getState) => {
 };
 
 //?=====================================================================
-//! User Addresses Action ================================================
+//! GET User Addresses Action ================================================
 
 export const getUserAddresses = () => async (dispatch, getState) => {
   try {
@@ -235,6 +235,38 @@ export const getUserAddresses = () => async (dispatch, getState) => {
     });
   }
 };
+
+//! List all Product Favorites Action =======================================
+export const listFavoriteProducts = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: userConstants.USER_GET_FAVORITES_REQUEST });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get("/api/users/profile/favorites", config);
+    dispatch({
+      type: userConstants.USER_GET_FAVORITES_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem("userFavboriteProducts", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: userConstants.USER_GET_FAVORITES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+//?=====================================================================
 
 //?=====================================================================
 
