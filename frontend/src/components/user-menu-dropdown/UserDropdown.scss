@@ -2,11 +2,11 @@
 
 .user-dropdown {
   position: fixed;
-  top: 8rem;
+  top: 8.1rem;
   right: 2rem;
   padding: 2rem 4rem;
-  background-color: rgba($color: white, $alpha: 0.7);
-  backdrop-filter: blur(0.5rem);
+  background-color: white;
+
   box-shadow: $shadow-normal;
   border: 1px solid $color-primary;
   border-radius: 0.5rem;

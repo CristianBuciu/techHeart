@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/user/user.actions.js";
 import { toggleUserMenuShow } from "../../redux/user/user.actions.js";
+import { useHistory } from "react-router-dom";
 //!==================================================
 const UserDropdown = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
     dispatch(logout());
+    history.push("/");
   };
   const menuToggler = () => {
     dispatch(toggleUserMenuShow());

@@ -255,7 +255,7 @@ const addItemToFavorites = asyncHandler(async (req, res) => {
       profile.favoriteProducts.push(product);
     }
 
-    const updatedProfile = await profile.save();
+    await profile.save();
 
     res.json("Product added to favorites");
   } else {
@@ -281,6 +281,26 @@ const getAllFavorites = asyncHandler((req, res) => {
     });
 });
 
+//! DESCRIPTION : Delete an favorite product by its ID from Users and Products
+//! ROUTE       : DELETE /api/users/profile/favorites/:id
+//! ACCESS      : PRIVATE
+
+const deleteFavoriteProductById = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  const profile = await Profile.findOne({ user: req.user._id });
+
+  if (product && profile) {
+    product.likedBy.pull(req.user._id);
+    profile.favoriteProducts.pull(req.params.id);
+    const updatedProduct = await product.save();
+    const updatedProfile = await profile.save();
+    res.json([updatedProduct, updatedProfile]);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
 export {
   authUser,
   registerUser,
@@ -293,4 +313,5 @@ export {
   deleteAddressById,
   addItemToFavorites,
   getAllFavorites,
+  deleteFavoriteProductById,
 };

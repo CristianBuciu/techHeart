@@ -53,6 +53,25 @@ const Product = ({ product }) => {
     }
   };
 
+  const removeFromFavoriteHandler = (id) => {
+    const deleteProduct = async () => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.delete(`/api/users/profile/favorites/${id}`, config);
+
+        dispatch(listFavoriteProducts());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    deleteProduct();
+  };
+
   return (
     <div
       className={
@@ -87,15 +106,23 @@ const Product = ({ product }) => {
           </span>
         </div>
       </Link>
-      <FaHeart
-        onClick={async () => {
-          await handleAddUserToLikedArrayAndProductToFavorites(product._id);
-          await dispatch(listFavoriteProducts());
-        }}
-        className={
-          like ? "product__heart product__heart--selected" : "product__heart"
-        }
-      />
+      {like ? (
+        <FaHeart
+          onClick={async () => {
+            await removeFromFavoriteHandler(product._id);
+            await dispatch(listFavoriteProducts());
+          }}
+          className="product__heart product__heart--selected"
+        />
+      ) : (
+        <FaHeart
+          onClick={async () => {
+            await handleAddUserToLikedArrayAndProductToFavorites(product._id);
+            await dispatch(listFavoriteProducts());
+          }}
+          className="product__heart"
+        />
+      )}
     </div>
   );
 };

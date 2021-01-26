@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import { Link } from "react-router-dom";
 import { FaHeartBroken } from "react-icons/fa";
+import axios from "axios";
 import "./FavoriteScreen.scss";
 //!==============================================================
 const FavoriteScreen = ({ history }) => {
@@ -21,7 +22,22 @@ const FavoriteScreen = ({ history }) => {
   const numberOfProducts = userFavoriteProducts.length;
 
   const removeFromFavoriteHandler = (id) => {
-    console.log("remove");
+    const deleteProduct = async () => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.delete(`/api/users/profile/favorites/${id}`, config);
+
+        dispatch(listFavoriteProducts());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    deleteProduct();
   };
 
   useEffect(() => {
@@ -69,7 +85,7 @@ const FavoriteScreen = ({ history }) => {
                 onClick={() => removeFromFavoriteHandler(item._id)}
                 className="favorite-screen__remove"
               >
-                Remove &nbsp; <FaHeartBroken />
+                Remove favorite &nbsp; <FaHeartBroken />
               </span>
             </div>
           </div>

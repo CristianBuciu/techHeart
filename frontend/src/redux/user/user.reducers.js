@@ -141,7 +141,11 @@ export const getUserFavoriteProductsReducer = (
         userFavoriteProducts: action.payload,
       };
     case userConstants.USER_GET_FAVORITES_FAIL:
-      return { loading: false, error: action.payload };
+      return {
+        loading: false,
+        userFavoriteProducts: [],
+        error: action.payload,
+      };
     default:
       return state;
   }

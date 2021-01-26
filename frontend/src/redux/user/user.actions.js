@@ -273,7 +273,8 @@ export const listFavoriteProducts = () => async (dispatch, getState) => {
 //! LOGOUT Action=======================================================
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem("userInfo");
+  window.localStorage.clear();
+  window.location.reload();
   dispatch({ type: userConstants.USER_LOGOUT });
 };
 //?=====================================================================
