@@ -1,7 +1,8 @@
 import React from "react";
 import "./Header.scss";
 import { GiTechnoHeart } from "react-icons/gi";
-import { TiShoppingCart, TiUserOutline, TiHeart } from "react-icons/ti";
+import { TiShoppingCart, TiUserOutline } from "react-icons/ti";
+import { FaHeart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -43,9 +44,13 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="nav__icons-container">
-          <NavLink activeClassName="nav__icon nav__icon--heart--active" className="nav__icon nav__icon--heart" to="/profile/favorites">
+          <NavLink
+            activeClassName="nav__icon nav__icon--heart--active"
+            className="nav__icon nav__icon--heart"
+            to="/profile/favorites"
+          >
             {" "}
-            <TiHeart />
+            <FaHeart />
           </NavLink>
           <div
             onClick={() => dispatch(toggleCartShow())}

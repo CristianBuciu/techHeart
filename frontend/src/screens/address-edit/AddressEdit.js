@@ -75,7 +75,7 @@ const AddressEdit = ({ match, history }) => {
     <>
       <div className=" top-links mb-sm">
         <Link className="product-screen__link" to="/profile/addresses">
-          &#10094;&#10094; Your Addresses
+          &#10092;&#10092; Your Addresses
         </Link>
       </div>
       <h1 className="heading-1">Edit Address</h1>

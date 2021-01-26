@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
-import { BsHeartFill } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
 import "./ProductScreen.scss";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
@@ -43,10 +43,10 @@ const ProductScreen = ({ match, history }) => {
     <>
       <div className=" top-links mb-sm">
         <Link className="product-screen__link" to="/">
-          &#10094;&#10094; Home
+          &#10092;&#10092; Home
         </Link>
         <Link className="product-screen__link" to="/shop">
-          &#10094;&#10094; Shop
+          &#10092;&#10092; Shop
         </Link>
       </div>
       {loading ? (
@@ -142,7 +142,7 @@ const ProductScreen = ({ match, history }) => {
             <span className="product-screen__add-favorite--text">
               ADD TO WISH LIST
             </span>
-            <BsHeartFill
+            <FaHeart
               onClick={() => setLike(!like)}
               className={
                 like

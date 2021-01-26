@@ -13,7 +13,7 @@
     align-self: center;
     justify-self: center;
     text-align: center;
-    border-bottom: 1px solid $color-grey-light-1-2;
+    border-bottom: 1px solid $color-grey-light-2;
     width: 100%;
     margin-bottom: 1rem;
     grid-column: 1/2;
@@ -37,7 +37,7 @@
     grid-template-columns: 60% 40%;
     grid-template-rows: 1fr 1fr 1fr;
     row-gap: 0.5rem;
-    border-bottom: 1px solid $color-grey-light-1-2;
+    border-bottom: 1px solid $color-grey-light-2;
 
     &--title {
       grid-row: 2/3;

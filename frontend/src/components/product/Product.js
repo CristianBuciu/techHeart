@@ -2,7 +2,9 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import "./Product.scss";
 import { Link, useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
-import { BsHeartFill } from "react-icons/bs";
+
+import { FaHeart } from "react-icons/fa";
+
 import { useSelector, useDispatch } from "react-redux";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import { ErrorMessage } from "../error-message/ErrorMessage.js";
@@ -85,7 +87,7 @@ const Product = ({ product }) => {
           </span>
         </div>
       </Link>
-      <BsHeartFill
+      <FaHeart
         onClick={async () => {
           await handleAddUserToLikedArrayAndProductToFavorites(product._id);
           await dispatch(listFavoriteProducts());
