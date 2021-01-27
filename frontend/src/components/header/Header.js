@@ -15,9 +15,12 @@ import { toggleUserMenuShow } from "../../redux/user/user.actions.js";
 const Header = () => {
   const techTitle = "Cyber Heart";
   const dispatch = useDispatch();
-  const cartToggle = useSelector((state) => state.cart.showCart);
-  const cartItemsNumber = useSelector((state) =>
-    state.cart.cartItems.reduce((accum, cartItem) => accum + cartItem.qty, 0)
+  const cartToggle = useSelector((state) => state.cartToggle.showCart);
+  const cartItems = useSelector((state) => state.cart);
+  const { loading, cartProducts } = cartItems;
+  const cartItemsNumber = cartProducts.reduce(
+    (accum, cartItem) => accum + cartItem.quantity,
+    0
   );
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;

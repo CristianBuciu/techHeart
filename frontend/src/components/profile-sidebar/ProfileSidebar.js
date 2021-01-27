@@ -6,9 +6,10 @@ import "./ProfileSidebar.scss";
 //!=======================================================================
 
 function ProfileSidebar() {
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const cartItemsNumber = cartItems.reduce(
-    (accum, cartItem) => accum + cartItem.qty,
+  const cartItems = useSelector((state) => state.cart);
+  const { cartProducts } = cartItems;
+  const cartItemsNumber = cartProducts.reduce(
+    (accum, cartItem) => accum + cartItem.quantity,
     0
   );
   return (

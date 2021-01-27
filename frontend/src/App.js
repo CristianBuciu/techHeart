@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import HomeScreen from "./screens/home-screen/HomeScreen";
@@ -14,10 +15,13 @@ import PaymentScreen from "./screens/payment/PaymentScreen";
 //!==================================================================
 function App() {
   const dispatch = useDispatch();
-  const showCart = useSelector((state) => state.cart.showCart);
+  const showCart = useSelector((state) => state.cartToggle.showCart);
   const overlayClickHandler = () => {
     dispatch(toggleCartShow());
   };
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   return (
     <>

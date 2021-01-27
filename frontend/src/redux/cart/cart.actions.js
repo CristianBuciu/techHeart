@@ -6,26 +6,61 @@ export const toggleCartShow = () => ({
 });
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`);
+  try {
+    dispatch({
+      type: cartConstants.CART_ADD_PRODUCT_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
-  dispatch({
-    type: cartConstants.CART_ADD_ITEM,
-    payload: {
-      product: data._id,
-      name: data.name,
-      image: data.image,
-      price: data.price,
-      countInStock: data.countInStock,
-      qty,
-    },
-  });
-  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = axios.put("/api/cart", { id, qty }, config);
+    dispatch({ type: cartConstants.CART_ADD_PRODUCT_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: cartConstants.CART_ADD_PRODUCT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };
 
-export const removeItem = (id) => (dispatch, getState) => {
-  dispatch({
-    type: cartConstants.CART_REMOVE_ITEM,
-    payload: id,
-  });
-  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+export const getCartProducts = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: cartConstants.CART_GET_ALL_PRODUCTS_REQUEST,
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get("/api/cart", config);
+    dispatch({
+      type: cartConstants.CART_GET_ALL_PRODUCTS_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem("cartProducts", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: cartConstants.CART_GET_ALL_PRODUCTS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };

@@ -5,6 +5,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import colors from "colors";
 import productRoutes from "./routes/product.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import cartRoutes from "./routes/cart.routes.js";
 import cors from "cors";
 const app = express();
 app.use(cors());
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 //! Routes ===================================================
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/cart", cartRoutes);
 
 //! 404 error handling =======================================
 app.use(notFound);

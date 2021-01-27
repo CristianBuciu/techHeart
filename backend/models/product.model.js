@@ -69,6 +69,25 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    onOffer: {
+      type: Boolean,
+      default: false,
+    },
+    offerPrice: {
+      type: Number,
+      default: 0,
+    },
+    shippingDetails: {
+      weightGrams: Number,
+      heightCm: Number,
+      widthCm: Number,
+      depthCm: Number,
+    },
+    manufacture_details: {
+      model_number: String,
+      release_date: Date,
+    },
+
     likedBy: [
       {
         type: mongoose.Schema.Types.ObjectId,

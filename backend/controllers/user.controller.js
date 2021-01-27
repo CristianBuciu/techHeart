@@ -3,11 +3,12 @@ import Product from "../models/product.model.js";
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generate.token.js";
 import Profile from "../models/profile.model.js";
-import mongoose from "mongoose";
+import Cart from "../models/cart.model.js";
+//!======================================================================
 //! DESCRIPTION : Auth user & get token
 //! ROUTE       :POST to /api/users/login
 //! ACCESS      : PUBLIC
-const authUser = asyncHandler(async (req, res) => {
+export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
@@ -33,7 +34,7 @@ const authUser = asyncHandler(async (req, res) => {
 //! DESCRIPTION : Register a new user
 //! ROUTE       :POST to /api/users
 //! ACCESS      : PUBLIC
-const registerUser = asyncHandler(async (req, res) => {
+export const registerUser = asyncHandler(async (req, res) => {
   const { email, password, name } = req.body;
 
   const userExists = await User.findOne({ email });
@@ -48,6 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
   });
   const profile = await Profile.create({ user });
+  const cart = await Cart.create({ user, cartProducts: [] });
   if (user) {
     res.status(201).json({
       _id: user._id,
@@ -55,6 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       profileId: profile._id,
+      cartId: cart._id,
       token: generateToken(user._id),
     });
   } else {
@@ -66,7 +69,7 @@ const registerUser = asyncHandler(async (req, res) => {
 //! DESCRIPTION : Get user profile
 //! ROUTE       : GET  /api/users/profile
 //! ACCESS      : PRIVATE
-const getUserProfile = asyncHandler(async (req, res) => {
+export const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   const profile = await Profile.findOne({ user: req.user._id });
 
@@ -87,7 +90,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //! DESCRIPTION : Update user profile
 //! ROUTE       : PUT  /api/users/profile
 //! ACCESS      : PRIVATE
-const updateUserProfile = asyncHandler(async (req, res) => {
+export const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
@@ -113,7 +116,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 //! DESCRIPTION : Get all user addresses
 //! ROUTE       : GET  /api/users/profile/addresses
 //! ACCESS      : PRIVATE
-const getUserAddresses = asyncHandler(async (req, res) => {
+export const getUserAddresses = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   const profile = await Profile.findOne({ user: req.user._id });
 
@@ -128,7 +131,7 @@ const getUserAddresses = asyncHandler(async (req, res) => {
 //! DESCRIPTION : Add a new address
 //! ROUTE       : POST  /api/users/profile/addresses
 //! ACCESS      : PRIVATE
-const addAddress = asyncHandler(async (req, res) => {
+export const addAddress = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   const profile = await Profile.findOne({ user: req.user._id });
 
@@ -162,7 +165,7 @@ const addAddress = asyncHandler(async (req, res) => {
 //! ROUTE       : GET  /api/users/profile/addresses/:id
 //! ACCESS      : PRIVATE
 
-const getAddressById = asyncHandler(async (req, res) => {
+export const getAddressById = asyncHandler(async (req, res) => {
   const profile = await Profile.findOne({ user: req.user._id });
   const address = await profile.addresses.find(
     (x) => x._id.toString() === req.params.id
@@ -179,7 +182,7 @@ const getAddressById = asyncHandler(async (req, res) => {
 //! DESCRIPTION : Update an address by ID
 //! ROUTE       : PUT  /api/users/profile/addresses/:id
 //! ACCESS      : PRIVATE
-const updateAddress = asyncHandler(async (req, res) => {
+export const updateAddress = asyncHandler(async (req, res) => {
   const profile = await Profile.findOne({ user: req.user._id });
   const address = await profile.addresses.find(
     (x) => x._id.toString() === req.params.id
@@ -222,7 +225,7 @@ const updateAddress = asyncHandler(async (req, res) => {
 //! ROUTE       : DELETE /api/users/profile/addresses/:id
 //! ACCESS      : PRIVATE
 
-const deleteAddressById = asyncHandler(async (req, res) => {
+export const deleteAddressById = asyncHandler(async (req, res) => {
   const deletedAddress = await Profile.updateOne(
     { user: req.user._id, "addresses._id": req.params.id },
     { $pull: { addresses: { _id: req.params.id } } }
@@ -240,7 +243,7 @@ const deleteAddressById = asyncHandler(async (req, res) => {
 //! ROUTE       : Post /api/users/profile/favorites
 //! ACCESS      : PRIVATE
 
-const addItemToFavorites = asyncHandler(async (req, res) => {
+export const addItemToFavorites = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.body._id);
   const profile = await Profile.findOne({ user: req.user._id })
     .populate("favoriteProducts")
@@ -268,7 +271,7 @@ const addItemToFavorites = asyncHandler(async (req, res) => {
 //! ROUTE       : GET /api/users/profile/favorites
 //! ACCESS      : PRIVATE
 
-const getAllFavorites = asyncHandler((req, res) => {
+export const getAllFavorites = asyncHandler((req, res) => {
   Profile.findOne({ user: req.user._id })
     .populate("favoriteProducts")
     .exec(function (err, products) {
@@ -285,7 +288,7 @@ const getAllFavorites = asyncHandler((req, res) => {
 //! ROUTE       : DELETE /api/users/profile/favorites/:id
 //! ACCESS      : PRIVATE
 
-const deleteFavoriteProductById = asyncHandler(async (req, res) => {
+export const deleteFavoriteProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
   const profile = await Profile.findOne({ user: req.user._id });
 
@@ -300,18 +303,3 @@ const deleteFavoriteProductById = asyncHandler(async (req, res) => {
     throw new Error("Product not found");
   }
 });
-
-export {
-  authUser,
-  registerUser,
-  getUserProfile,
-  updateUserProfile,
-  getUserAddresses,
-  addAddress,
-  getAddressById,
-  updateAddress,
-  deleteAddressById,
-  addItemToFavorites,
-  getAllFavorites,
-  deleteFavoriteProductById,
-};

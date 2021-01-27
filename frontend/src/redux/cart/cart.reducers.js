@@ -5,37 +5,30 @@ const INITIAL_STATE = {
   cartItems: [],
 };
 
-const cartReducer = (state = INITIAL_STATE, action) => {
+export const cartToggleReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case cartConstants.CART_SHOW_TOGGLE:
       return {
         ...state,
         showCart: !state.showCart,
       };
-    case cartConstants.CART_ADD_ITEM:
-      const item = action.payload;
-      const existItem = state.cartItems.find((x) => x.product === item.product);
-      if (existItem) {
-        return {
-          ...state,
-          cartItems: state.cartItems.map((x) =>
-            x.product === existItem.product ? item : x
-          ),
-        };
-      } else {
-        return {
-          ...state,
-          cartItems: [...state.cartItems, item],
-        };
-      }
-    case cartConstants.CART_REMOVE_ITEM:
-      return {
-        ...state,
-        cartItems: state.cartItems.filter((x) => x.product !== action.payload),
-      };
     default:
       return state;
   }
 };
 
-export default cartReducer;
+export const getCartReducer = (state = { cartProducts: [] }, action) => {
+  switch (action.type) {
+    case cartConstants.CART_GET_ALL_PRODUCTS_REQUEST:
+      return { ...state, loading: true };
+    case cartConstants.CART_GET_ALL_PRODUCTS_SUCCESS:
+      return {
+        loading: false,
+        cartProducts: action.payload,
+      };
+    case cartConstants.CART_REMOVE_PRODUCT_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
