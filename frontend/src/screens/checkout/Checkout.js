@@ -4,12 +4,18 @@ import { Link } from "react-router-dom";
 import { addToCart } from "../../redux/cart/cart.actions.js";
 import "./Checkout.scss";
 import { roundToTwo } from "../../utils.js";
+import axios from "axios";
+import { getCartProducts } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
 const Checkout = ({ history }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
   const { loading, cartProducts } = cartItems;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const cartItemsNumber = cartProducts.reduce(
     (accum, cartItem) => accum + cartItem.quantity,
     0
@@ -18,9 +24,26 @@ const Checkout = ({ history }) => {
     (accum, cartItem) => accum + cartItem.quantity * cartItem.product.price,
     0
   );
-  // const removeFromCartHandler = (id) => {
-  //   dispatch(removeItem(id));
-  // };
+
+  const removeCartProduct = (id) => {
+    const deleteProduct = async () => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.delete(`/api/cart/${id}`, config);
+
+        dispatch(getCartProducts());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    deleteProduct();
+  };
+
   const checkoutHandler = () => {
     history.push("/shipping");
   };
@@ -87,11 +110,12 @@ const Checkout = ({ history }) => {
                       value={item.quantity}
                       name="quantity"
                       id="quantity"
-                      onChange={(e) =>
+                      onChange={(e) => {
                         dispatch(
-                          addToCart(item.product, Number(e.target.value))
-                        )
-                      }
+                          addToCart(item.product._id, Number(e.target.value))
+                        );
+                        dispatch(getCartProducts());
+                      }}
                     >
                       {[...Array(item.product.countInStock).keys()].map(
                         (el) => (
@@ -109,12 +133,12 @@ const Checkout = ({ history }) => {
                 </div>
               )}
             </h3>
-            {/* <span
-              onClick={() => removeFromCartHandler(item.product)}
+            <span
+              onClick={() => removeCartProduct(item._id)}
               className="checkout-screen__remove"
             >
               Remove
-            </span> */}
+            </span>
           </div>
         </div>
       ))}

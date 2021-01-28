@@ -62,3 +62,25 @@ export const getAllCartProducts = asyncHandler((req, res) => {
       }
     });
 });
+
+//! DESCRIPTION : Delete an item from cart by ID
+//! ROUTE       : DELETE /api/cart/:id
+//! ACCESS      : Private
+
+export const deleteCartProduct = asyncHandler(async (req, res) => {
+  const cartProduct = await Cart.findOne({
+    user: req.user._id,
+  });
+
+  if (cartProduct) {
+    const updatedCart = await Cart.updateOne(
+      { user: req.user._id },
+      { $pull: { cartProducts: { _id: req.params.id } } }
+    );
+
+    res.json(updatedCart);
+  } else {
+    res.status(404);
+    throw new Error("Cart not found");
+  }
+});

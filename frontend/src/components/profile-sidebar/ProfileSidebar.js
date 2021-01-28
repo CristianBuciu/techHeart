@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./ProfileSidebar.scss";
+import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 
 //!=======================================================================
 
-function ProfileSidebar() {
+function ProfileSidebar({ history }) {
+  const dispatch = useDispatch();
+  const favoriteProductsList = useSelector(
+    (state) => state.userFavoriteProducts
+  );
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const { userFavoriteProducts, loading } = favoriteProductsList;
+  const favoriteProductsLength = userFavoriteProducts.length;
+
   const cartItems = useSelector((state) => state.cart);
   const { cartProducts } = cartItems;
   const cartItemsNumber = cartProducts.reduce(
     (accum, cartItem) => accum + cartItem.quantity,
     0
   );
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/login");
+    }
+    dispatch(listFavoriteProducts());
+  }, [history, userInfo, dispatch]);
   return (
     <div className="profile-sidebar">
       <h1 className="profile-screen__title">Your Account</h1>
@@ -39,7 +56,12 @@ function ProfileSidebar() {
         to="/profile/favorites"
       >
         {" "}
-        <p>Your Favorites</p>{" "}
+        <p>
+          Your Favorites{" "}
+          <i className="profile-sidebar__count">
+            ({favoriteProductsLength} items)
+          </i>{" "}
+        </p>
       </NavLink>
 
       <NavLink
@@ -76,7 +98,8 @@ function ProfileSidebar() {
       >
         {" "}
         <p>
-          Checkout <i>({cartItemsNumber} items)</i>
+          Checkout{" "}
+          <i className="profile-sidebar__count">({cartItemsNumber} items)</i>
         </p>{" "}
       </NavLink>
 

@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LoaderProduct from "../../components/loader-product/LoaderProduct.js";
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
-import ToCartVisual from "../../components/add-to-cart-visual/ToCartVisual.js";
+import ActionShow from "../../components/action-show/ActionShow.js";
 //!==================================================================
 
 const ProductScreen = ({ match, history }) => {
@@ -102,7 +102,7 @@ const ProductScreen = ({ match, history }) => {
   //?==================================================================
   return (
     <>
-      {toCart ? <ToCartVisual /> : null}
+      {toCart ? <ActionShow /> : null}
       <div className=" top-links mb-sm">
         {" "}
         <Link className="product-screen__link" to="/">

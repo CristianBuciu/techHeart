@@ -22,4 +22,8 @@
   &__active-link {
     color: $color-primary !important;
   }
+  &__count {
+    font-family: $font-special;
+    color: $color-cta-2;
+  }
 }
