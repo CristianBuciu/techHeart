@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LoaderProduct from "../../components/loader-product/LoaderProduct.js";
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
-
+import ToCartVisual from "../../components/add-to-cart-visual/ToCartVisual.js";
 //!==================================================================
 
 const ProductScreen = ({ match, history }) => {
@@ -18,6 +18,7 @@ const ProductScreen = ({ match, history }) => {
   const [product, setProduct] = useState({ reviews: [], likedBy: [] });
   const [loading, setLoading] = useState(true);
   const [qty, setQty] = useState(1);
+  const [toCart, setToCart] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -45,12 +46,17 @@ const ProductScreen = ({ match, history }) => {
     } else {
       setLike(false);
     }
+    return () => clearTimeout();
   }, [match, isFavorite]);
   //?==================================================================
   //!Handlers =========================================================
   const addToCartHandler = () => {
     dispatch(addToCart(match.params.id, Number(qty)));
     dispatch(getCartProducts());
+    setToCart(true);
+    setTimeout(() => {
+      setToCart(false);
+    }, 3100);
   };
 
   const handleAddUserToLikedArrayAndProductToFavorites = async (id) => {
@@ -96,7 +102,9 @@ const ProductScreen = ({ match, history }) => {
   //?==================================================================
   return (
     <>
+      {toCart ? <ToCartVisual /> : null}
       <div className=" top-links mb-sm">
+        {" "}
         <Link className="product-screen__link" to="/">
           &#10092;&#10092; Home
         </Link>
@@ -171,7 +179,7 @@ const ProductScreen = ({ match, history }) => {
               </button>
             ) : (
               <button
-                onClick={addToCartHandler}
+                onClick={async () => addToCartHandler()}
                 className="product-screen__button"
               >
                 <TiShoppingCart className="product-screen__button--icon" /> Add
@@ -226,7 +234,7 @@ const ProductScreen = ({ match, history }) => {
             <span className="product-screen__add-favorite--favorite-by">
               {" "}
               ( Favorite by {likedByNumber}{" "}
-              {likedByNumber > 1 ? "persons" : "person"} )
+              {likedByNumber > 1 ? "users" : "user"} )
             </span>
           </div>
           <div className="product-screen__details">

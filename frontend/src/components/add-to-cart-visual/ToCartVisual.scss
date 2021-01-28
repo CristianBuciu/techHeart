@@ -1,0 +1,23 @@
+@import "../../sass/base";
+
+.to-cart-visual {
+  position: fixed;
+  top: 8.1rem;
+  right: 1rem;
+  color: $color-cta;
+  animation: showAction 1s infinite alternate-reverse;
+  &__arrow {
+    font-size: 2rem;
+  }
+}
+
+@keyframes showAction {
+  from {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+  to {
+    opacity: 0.5;
+    transform: translateY(2rem);
+  }
+}
