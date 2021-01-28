@@ -8,35 +8,90 @@ import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import LoaderProduct from "../../components/loader-product/LoaderProduct.js";
-import { addToCart } from "../../redux/cart/cart.actions.js";
+import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
+import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+
 //!==================================================================
 
 const ProductScreen = ({ match, history }) => {
   const [like, setLike] = useState(false);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({ reviews: [], likedBy: [] });
   const [loading, setLoading] = useState(true);
   const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
 
-  //! Getting the state with redux hooks ============================
-  const cartShow = useSelector((state) => state.cart.showCart);
-  //?================================================================
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
+  //! Getting the state with redux hooks ============================
+
+  //?================================================================
+  const favoriteProductsList = useSelector(
+    (state) => state.userFavoriteProducts
+  );
+  const { userFavoriteProducts } = favoriteProductsList;
+  const isFavorite = userFavoriteProducts.find(
+    (favoriteProduct) => favoriteProduct._id == product._id
+  );
   //! Get the product by id from the API=============================
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${match.params.id}`);
-      setProduct(data);
-      setLoading(false);
-    };
-    fetchProduct();
-  }, [match]);
+  useEffect(async () => {
+    const { data } = await axios.get(`/api/products/${match.params.id}`);
+    setProduct(data);
+    setLoading(false);
+
+    if (isFavorite) {
+      setLike(true);
+    } else {
+      setLike(false);
+    }
+  }, [match, isFavorite]);
   //?==================================================================
   //!Handlers =========================================================
   const addToCartHandler = () => {
     dispatch(addToCart(match.params.id, Number(qty)));
+    dispatch(getCartProducts());
   };
+
+  const handleAddUserToLikedArrayAndProductToFavorites = async (id) => {
+    try {
+      if (!userInfo) {
+        history.push("/login");
+      } else {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.put(`/api/products/`, { _id: id }, config);
+        await axios.post(`/api/users/profile/favorites`, { _id: id }, config);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const removeFromFavoriteHandler = (id) => {
+    const deleteProduct = async () => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.delete(`/api/users/profile/favorites/${id}`, config);
+
+        dispatch(listFavoriteProducts());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    deleteProduct();
+  };
+
+  const likedByNumber = product.likedBy.length;
 
   //?==================================================================
   return (
@@ -139,17 +194,40 @@ const ProductScreen = ({ match, history }) => {
             />
           </div>
           <div className="product-screen__add-favorite">
-            <span className="product-screen__add-favorite--text">
-              ADD TO WISH LIST
+            {like ? (
+              <div className="product-screen__add-favorite--flex">
+                <FaHeart
+                  onClick={async () => {
+                    await removeFromFavoriteHandler(product._id);
+                    await dispatch(listFavoriteProducts());
+                  }}
+                  className="product-screen__heart product-screen__heart--selected"
+                />
+                <span className="product-screen__add-favorite--text ml-sm">
+                  FAVORITE PRODUCT
+                </span>{" "}
+              </div>
+            ) : (
+              <div className="product-screen__add-favorite--flex">
+                <FaHeart
+                  onClick={async () => {
+                    await handleAddUserToLikedArrayAndProductToFavorites(
+                      product._id
+                    );
+                    await dispatch(listFavoriteProducts());
+                  }}
+                  className="product-screen__heart"
+                />
+                <span className="product-screen__add-favorite--text ml-sm">
+                  ADD TO FAVORITES
+                </span>
+              </div>
+            )}
+            <span className="product-screen__add-favorite--favorite-by">
+              {" "}
+              ( Favorite by {likedByNumber}{" "}
+              {likedByNumber > 1 ? "persons" : "person"} )
             </span>
-            <FaHeart
-              onClick={() => setLike(!like)}
-              className={
-                like
-                  ? "product-screen__heart product-screen__heart--selected"
-                  : "product-screen__heart"
-              }
-            />
           </div>
           <div className="product-screen__details">
             <h3 className="heading-3 product-screen__product-description-title">

@@ -20,7 +20,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = axios.put("/api/cart", { id, qty }, config);
+    const { data } = axios.put("/api/cart", { _id: id, quantity: qty }, config);
     dispatch({ type: cartConstants.CART_ADD_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

@@ -58,6 +58,7 @@ const userFavoriteProductsFromStorage = localStorage.getItem(
   ? JSON.parse(localStorage.getItem("userFavoriteProducts"))
   : [];
 const initialState = {
+  productDetails: { product: { reviews: [], likedBy: [] } },
   showUserMenu: false,
   cart: { cartProducts: cartItemsFromStorage },
   userLogin: { userInfo: userInfoFromStorage },

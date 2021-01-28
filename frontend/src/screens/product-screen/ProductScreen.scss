@@ -199,14 +199,22 @@
     grid-column: 1/2;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    &--flex {
+      display: flex;
+      align-items: center;
+    }
     &--text {
-      color: $color-grey-dark-2;
-      font-weight: 600;
+      color: $color-primary;
+      font-weight: 400;
       letter-spacing: 0.1rem;
-      font-family: $font-special;
-      font-size: 1.2rem;
+      font-family: $font-primary;
+      font-size: 1.3rem;
       margin-right: 1rem;
+    }
+    &--favorite-by {
+      font-size: 1.4rem;
+      color: $color-grey-dark-2;
     }
     @media only screen and (min-device-width: 375px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
       grid-column: 1/2;
@@ -215,7 +223,7 @@
   }
   &__heart {
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 2.4rem;
 
     color: rgba($color: rgb(187, 187, 187), $alpha: 0.8);
     &--selected {

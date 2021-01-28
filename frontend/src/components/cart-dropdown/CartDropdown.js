@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "./CartDropdown.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { TweenMax, Power3 } from "gsap";
 import { toggleCartShow } from "../../redux/cart/cart.actions.js";
@@ -11,6 +11,7 @@ const CartDropdown = () => {
   //!Function to calculate floatpoints accurate====
 
   //?==============================================
+  const history = useHistory();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
   const { loading, cartProducts } = cartItems;
@@ -24,6 +25,10 @@ const CartDropdown = () => {
     0
   );
   const checkoutClickHandler = () => {
+    dispatch(toggleCartShow());
+  };
+  const goToProductPage = (id) => {
+    history.push(`/product/${id}`);
     dispatch(toggleCartShow());
   };
   const cartRef = useRef(null);
@@ -46,6 +51,7 @@ const CartDropdown = () => {
         <div key={item.product._id} className="cart__item">
           <div className="cart__item--image-container">
             <img
+              onClick={() => goToProductPage(item.product._id)}
               src={item.product.image}
               alt={item.product.name}
               className="cart__item--image"
