@@ -1,1 +1,31 @@
 @import "../../sass/base";
+
+.payment-screen {
+  &__label {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+  }
+  &__payment-icon {
+    font-size: 3rem;
+  }
+  &__ship-btn {
+    @include custom-btn;
+    padding: 1rem 4rem;
+  }
+  &__arrows {
+    animation: arrows 1s ease infinite alternate-reverse;
+    color: white;
+    font-size: 1.25em;
+    font-weight: 600;
+  }
+}
+
+@keyframes arrows {
+  from {
+    transform: translateX(0.5rem);
+  }
+  to {
+    transform: translateX(3.5rem);
+  }
+}

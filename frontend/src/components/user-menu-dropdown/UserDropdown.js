@@ -14,7 +14,7 @@ const UserDropdown = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
-    history.push("/");
+    // history.push("/");
   };
   const menuToggler = () => {
     dispatch(toggleUserMenuShow());

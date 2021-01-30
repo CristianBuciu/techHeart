@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { addToCart } from "../../redux/cart/cart.actions.js";
 import "./Checkout.scss";
 import { roundToTwo } from "../../utils.js";
@@ -8,8 +8,9 @@ import axios from "axios";
 import { getCartProducts } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
-const Checkout = ({ history }) => {
+const Checkout = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const cartItems = useSelector((state) => state.cart);
   const { loading, cartProducts } = cartItems;
 

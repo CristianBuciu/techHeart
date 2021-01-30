@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./ProfileSidebar.scss";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 
 //!=======================================================================
 
-function ProfileSidebar({ history }) {
+function ProfileSidebar() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const favoriteProductsList = useSelector(
     (state) => state.userFavoriteProducts
   );
@@ -57,10 +58,7 @@ function ProfileSidebar({ history }) {
       >
         {" "}
         <p>
-          Your Favorites{" "}
-          <i className="profile-sidebar__count">
-            ({favoriteProductsLength} items)
-          </i>{" "}
+          Your Favorites <i>({favoriteProductsLength} items)</i>{" "}
         </p>
       </NavLink>
 
@@ -98,8 +96,7 @@ function ProfileSidebar({ history }) {
       >
         {" "}
         <p>
-          Checkout{" "}
-          <i className="profile-sidebar__count">({cartItemsNumber} items)</i>
+          Checkout <i>({cartItemsNumber} items)</i>
         </p>{" "}
       </NavLink>
 

@@ -9,6 +9,7 @@ import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 //* Actions imports============
 import { listProducts } from "../../redux/product/product.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+import { getCartProducts } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
 const HomeScreen = () => {
@@ -21,6 +22,7 @@ const HomeScreen = () => {
   useEffect(() => {
     dispatch(listProducts());
     dispatch(listFavoriteProducts());
+    dispatch(getCartProducts());
   }, [dispatch]);
   //!=======================================================
   return (

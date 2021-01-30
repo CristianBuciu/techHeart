@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getUserDetails,
@@ -12,9 +12,9 @@ import AddAddress from "../../components/add-address/AddAddress.js";
 import axios from "axios";
 //!=============================================
 
-const ProfileAddresses = ({ history }) => {
+const ProfileAddresses = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [addAddressToggle, setAddAddressToggle] = useState(false);
 
   const userDetails = useSelector((state) => state.userDetails);

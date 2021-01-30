@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import { register } from "../../redux/user/user.actions.js";
 import "./Signup.scss";
+import { Link, useHistory } from "react-router-dom";
+
 //!==========================================================
-const Signup = ({ location, history }) => {
+const Signup = ({ location }) => {
   const redirect = location.search ? location.search.split("+")[1] : "/";
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -15,12 +16,12 @@ const Signup = ({ location, history }) => {
   const [message, setMessage] = useState(null);
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
-
+  const history = useHistory();
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
     }
-  }, [history, userInfo, redirect]);
+  }, [userInfo, redirect]);
   const passwordLength = password.length < 6 ? false : true;
   const passwordLowercase = /[a-z]/.test(password) < 1 ? false : true;
   const passwordUppercase = /[A-Z]/.test(password) < 1 ? false : true;
@@ -30,6 +31,7 @@ const Signup = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    history.push("/shop");
     //!Password check =====================
 
     if (

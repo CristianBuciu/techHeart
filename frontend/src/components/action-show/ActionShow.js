@@ -12,7 +12,7 @@ const ToCartVisual = () => {
   return isVisible ? (
     <div className="to-cart-visual">
       <ImArrowUp className="to-cart-visual__arrow" />
-      <h3>Added to cart succesfully</h3>
+      <h3>Added to cart</h3>
     </div>
   ) : (
     <></>

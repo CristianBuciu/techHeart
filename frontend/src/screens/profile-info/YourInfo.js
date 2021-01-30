@@ -6,12 +6,13 @@ import {
 } from "../../redux/user/user.actions.js";
 import "./YourInfo.scss";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
+import { useHistory } from "react-router-dom";
 
 //!==================================================
 
-const YourInfo = ({ history }) => {
+const YourInfo = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

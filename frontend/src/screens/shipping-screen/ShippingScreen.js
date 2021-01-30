@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import "./ShippingScreen.scss";
 import { getUserAddresses } from "../../redux/user/user.actions.js";
 import AddAddress from "../../components/add-address/AddAddress";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
 import { addOrderAddress } from "../../redux/order/order.actions.js";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 //!=======================================================
-const ShippingScreen = ({ history }) => {
+const ShippingScreen = () => {
+  const history = useHistory();
+
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -54,7 +57,7 @@ const ShippingScreen = ({ history }) => {
   return (
     <div className="shipping-screen">
       <CheckoutSteps active1="selected" animate1="animate" />
-      <main>
+      <div>
         <h1 className="heading-1  mt-sm mb-sm">Chose a delivery address</h1>
         <div className="shipping-screen__address-container">
           {addresses
@@ -84,7 +87,8 @@ const ShippingScreen = ({ history }) => {
                     onClick={() => handleSubmit(address)}
                     className="shipping-screen__ship-btn"
                   >
-                    Deliver to this address
+                    Deliver to this address{" "}
+                    <AiOutlineDoubleRight className="payment-screen__arrows" />{" "}
                   </button>
                   <div className="shipping-screen__delete-edit-container mt-xs mb-xs">
                     <Link
@@ -109,7 +113,7 @@ const ShippingScreen = ({ history }) => {
         <div className="line-break" />
         <h2 className="heading-2">Add new address</h2>
         <AddAddress />
-      </main>
+      </div>
     </div>
   );
 };

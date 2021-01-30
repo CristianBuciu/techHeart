@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import { login } from "../../redux/user/user.actions.js";
 import "./Login.scss";
+
 //!==========================================================
-const Login = ({ location, history }) => {
+const Login = ({ location }) => {
+  const history=useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();

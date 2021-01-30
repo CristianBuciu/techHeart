@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 //!=================================================================
-const AddressEdit = ({ match, history }) => {
+const AddressEdit = ({ match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const history = useHistory();
 
   const [country, setCountry] = useState("");
   const [line1, setLine1] = useState("");

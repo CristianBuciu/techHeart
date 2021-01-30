@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { FaHeart } from "react-icons/fa";
 import "./ProductScreen.scss";
@@ -13,7 +13,8 @@ import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import ActionShow from "../../components/action-show/ActionShow.js";
 //!==================================================================
 
-const ProductScreen = ({ match, history }) => {
+const ProductScreen = ({ match }) => {
+  const history = useHistory();
   const [like, setLike] = useState(false);
   const [product, setProduct] = useState({ reviews: [], likedBy: [] });
   const [loading, setLoading] = useState(true);

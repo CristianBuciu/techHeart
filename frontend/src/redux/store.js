@@ -16,23 +16,27 @@ import {
   showUserMenuReducer,
   getUserFavoriteProductsReducer,
 } from "./user/user.reducers.js";
-import { addOrderAddressReducer } from "./order/order.reducers.js";
+import {
+  addOrderAddressReducer,
+  savePaymentMethodReducer,
+} from "./order/order.reducers.js";
 
 //! REDUX STORE=========================================
 const reducer = combineReducers({
-  productList: productListReducer,
-  productDetails: productDetailsReducer,
-  cartToggle: cartToggleReducer,
+  addAddress: addAddressReducer,
   cart: getCartReducer,
+  cartToggle: cartToggleReducer,
+  orderAddress: addOrderAddressReducer,
+  orderPaymentMethod: savePaymentMethodReducer,
+  productDetails: productDetailsReducer,
+  productList: productListReducer,
+  showUserMenu: showUserMenuReducer,
+  userAddresses: userAddressesReducer,
+  userDetails: userDetailsReducer,
+  userFavoriteProducts: getUserFavoriteProductsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
-  userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
-  userAddresses: userAddressesReducer,
-  addAddress: addAddressReducer,
-  showUserMenu: showUserMenuReducer,
-  orderAddress: addOrderAddressReducer,
-  userFavoriteProducts: getUserFavoriteProductsReducer,
 });
 //!=====================================================
 

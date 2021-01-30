@@ -3,7 +3,7 @@
 .to-cart-visual {
   position: fixed;
   top: 8.1rem;
-  right: 1rem;
+  right: 8.5rem;
   color: $color-cta;
   animation: showAction 1s infinite alternate-reverse;
   &__arrow {
@@ -13,11 +13,11 @@
 
 @keyframes showAction {
   from {
-    opacity: 1;
+    opacity: 0.9;
     transform: translateY(0rem);
   }
   to {
     opacity: 0.5;
-    transform: translateY(2rem);
+    transform: translateY(1rem);
   }
 }
