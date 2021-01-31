@@ -227,7 +227,7 @@ const CompleteOrder = () => {
           </span>
           <h2 className="heading-2 complete-order__summary--total">TOTAL:</h2>
           <h2 className="heading-2 complete-order__summary--total-value">
-            {roundToTwo(subtotal) + shippingMethod.price}€
+            {roundToTwo(roundToTwo(subtotal) + shippingMethod.price)}€
           </h2>
         </div>
       </div>

@@ -12,8 +12,6 @@ import ProfileScreen from "./screens/profile/ProfileScreen.js";
 import ShippingScreen from "./screens/shipping-screen/ShippingScreen.js";
 import PaymentScreen from "./screens/payment/PaymentScreen";
 import CompleteOrder from "./screens/complete-order/CompleteOrder";
-import { Link } from "react-router-dom";
-import { GiTechnoHeart } from "react-icons/gi";
 
 //!==================================================================
 function App() {

@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getUserDetails,
-  addAddress,
-  getUserAddresses,
-} from "../../redux/user/user.actions.js";
+import { getUserAddresses } from "../../redux/user/user.actions.js";
 import "./ProfileAddresses.scss";
-
+import AddressEdit from "../address-edit/AddressEdit.js";
 import AddAddress from "../../components/add-address/AddAddress.js";
 import axios from "axios";
 //!=============================================
@@ -15,6 +11,7 @@ import axios from "axios";
 const ProfileAddresses = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const [addAddressToggle, setAddAddressToggle] = useState(false);
 
   const userDetails = useSelector((state) => state.userDetails);
@@ -88,12 +85,7 @@ const ProfileAddresses = () => {
                     </p>
                   </address>
                   <div className="profile-addresses__address__bottom-links">
-                    <Link
-                      to={`/profile/addresses/${address._id}`}
-                      className="profile-addresses__address__bottom-links--action"
-                    >
-                      Edit
-                    </Link>
+                    <AddressEdit address={address} />
                     <span
                       onClick={() => {
                         deleteAddressHandler(address._id);

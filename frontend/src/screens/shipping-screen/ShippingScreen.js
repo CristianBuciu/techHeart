@@ -3,18 +3,19 @@ import { useSelector, useDispatch } from "react-redux";
 import "./ShippingScreen.scss";
 import { getUserAddresses } from "../../redux/user/user.actions.js";
 import AddAddress from "../../components/add-address/AddAddress";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
 import { addOrderAddress } from "../../redux/order/order.actions.js";
 import { AiOutlineDoubleRight } from "react-icons/ai";
-
+import AddressEdit from "../address-edit/AddressEdit.js";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
 
 //!=======================================================
 const ShippingScreen = () => {
   const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const [addAddressShow, setAddAddressShow] = useState(false);
@@ -97,12 +98,7 @@ const ShippingScreen = () => {
                     <AiOutlineDoubleRight className="payment-screen__arrows" />{" "}
                   </button>
                   <div className="shipping-screen__delete-edit-container mt-xs mb-xs">
-                    <Link
-                      to={`/profile/addresses/${address._id}`}
-                      className="shipping-screen--action"
-                    >
-                      Edit
-                    </Link>
+                    <AddressEdit address={address} />
                     <span
                       onClick={() => {
                         deleteAddressHandler(address._id);
