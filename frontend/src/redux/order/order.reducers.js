@@ -14,7 +14,8 @@ export const savePaymentMethodReducer = (state = {}, action) => {
     case orderConstants.ORDER_STORE_PAYMENT_METHOD: {
       return {
         ...state,
-        paymentMethod: action.payload,
+        paymentMethod: action.payload.paymentMethod,
+        shippingMethod: action.payload.shippingMethod,
       };
     }
     default:

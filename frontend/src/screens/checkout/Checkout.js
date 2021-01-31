@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addToCart } from "../../redux/cart/cart.actions.js";
+
 import "./Checkout.scss";
 import { roundToTwo } from "../../utils.js";
 import axios from "axios";
-import { getCartProducts } from "../../redux/cart/cart.actions.js";
+import { getCartProducts, addToCart } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
 const Checkout = () => {
@@ -21,6 +21,7 @@ const Checkout = () => {
     (accum, cartItem) => accum + cartItem.quantity,
     0
   );
+  //todo if the item is in cart but it runs out of stock it still calculates it to the total... do a check to eliminate the cart item out of stock first
   const subtotal = cartProducts.reduce(
     (accum, cartItem) => accum + cartItem.quantity * cartItem.product.price,
     0

@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     font-size: 2rem;
+    width: fit-content;
   }
   &__payment-icon {
     font-size: 3rem;
@@ -16,7 +17,7 @@
   &__arrows {
     animation: arrows 1s ease infinite alternate-reverse;
     color: white;
-    font-size: 1.25em;
+
     font-weight: 600;
   }
 }
@@ -28,4 +29,37 @@
   to {
     transform: translateX(3.5rem);
   }
+}
+
+input[type="radio"]:after {
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: $color-grey-light-2;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+  box-shadow: $shadow-normal;
+  transition: all 0.3s;
+}
+
+input[type="radio"]:checked:after {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: $color-cta;
+  box-shadow: $shadow-normal;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+  transition: all 0.3s;
 }

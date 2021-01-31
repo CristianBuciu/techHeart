@@ -16,10 +16,15 @@ export const addOrderAddress = (data) => (dispatch) => {
   localStorage.setItem("orderAddress", JSON.stringify(data));
 };
 
-export const saveOrderPaymentMethod = (data) => (dispatch) => {
+export const saveOrderPaymentMethod = (paymentMethod, shippingMethod) => (
+  dispatch
+) => {
   dispatch({
     type: orderConstants.ORDER_STORE_PAYMENT_METHOD,
-    payload: data,
+    payload: { paymentMethod, shippingMethod },
   });
-  localStorage.setItem("orderPaymentMethod", JSON.stringify(data));
+  localStorage.setItem(
+    "orderPaymentMethod",
+    JSON.stringify({ paymentMethod, shippingMethod })
+  );
 };

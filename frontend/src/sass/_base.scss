@@ -8,15 +8,15 @@ $color-cta-2: rgb(100, 18, 207);
 $color-pallete-1: rgb(229, 250, 243);
 $color-pallete-2: rgb(28, 207, 58);
 $color-pallete-3: #21e2a2;
-$color-pallete-4: rgb(24, 209, 178);
+$color-pallete-4: #18d1b2;
 
-$color-alert: rgb(253, 62, 62);
+$color-alert: #fd3e3e;
 
-$color-grey-light-1: rgb(247, 247, 247);
-$color-grey-light-2: rgb(212, 212, 212);
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #d4d4d4;
 
 $color-grey-dark-1: rgb(32, 32, 32);
-$color-grey-dark-2: #3d3d3d;
+$color-grey-dark-2: #4e4e4e;
 
 //! FONT VARIABLES =====================================================
 
@@ -94,7 +94,7 @@ $translate-hover: translateY(-0.5rem);
 
 %heading {
   font-family: $font-special;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.1rem;
 }
 
@@ -123,7 +123,7 @@ $translate-hover: translateY(-0.5rem);
 .heading-3 {
   @extend %heading;
   font-size: 1.8rem;
-  margin-bottom: 2rem;
+
   color: $color-grey-dark-2;
   text-transform: uppercase;
   font-weight: 600;
@@ -147,9 +147,11 @@ $translate-hover: translateY(-0.5rem);
   color: $color-pallete-2;
   font-weight: 400;
   font-size: 1.4rem;
+  align-self: center;
 }
 
 .out-of-stock-favorites {
+  align-self: center;
   color: $color-alert;
   font-weight: 400;
   font-size: 1.4rem;
@@ -193,6 +195,14 @@ $translate-hover: translateY(-0.5rem);
 .mr-md {
   margin-right: 2rem;
 }
+
+.shipping-section {
+  min-height: 100vh;
+  max-width: 95vw;
+  width: 144rem;
+  margin: 2rem auto;
+}
+
 //! CUSTOM COMPONENTS =====================================================
 
 @mixin custom-btn {

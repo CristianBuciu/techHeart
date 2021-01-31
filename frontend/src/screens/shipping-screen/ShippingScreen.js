@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./ShippingScreen.scss";
 import { getUserAddresses } from "../../redux/user/user.actions.js";
@@ -8,11 +8,17 @@ import axios from "axios";
 import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
 import { addOrderAddress } from "../../redux/order/order.actions.js";
 import { AiOutlineDoubleRight } from "react-icons/ai";
+
+import { IoMdArrowDropdown } from "react-icons/io";
+import { IoMdArrowDropup } from "react-icons/io";
+
 //!=======================================================
 const ShippingScreen = () => {
   const history = useHistory();
-
   const dispatch = useDispatch();
+
+  const [addAddressShow, setAddAddressShow] = useState(false);
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -55,8 +61,8 @@ const ShippingScreen = () => {
   };
 
   return (
-    <div className="shipping-screen">
-      <CheckoutSteps active1="selected" animate1="animate" />
+    <div className="shipping-screen shipping-section">
+      <CheckoutSteps />
       <div>
         <h1 className="heading-1  mt-sm mb-sm">Chose a delivery address</h1>
         <div className="shipping-screen__address-container">
@@ -110,9 +116,16 @@ const ShippingScreen = () => {
               ))
             : ""}
         </div>
+
         <div className="line-break" />
-        <h2 className="heading-2">Add new address</h2>
-        <AddAddress />
+        <h2
+          onClick={() => setAddAddressShow(!addAddressShow)}
+          className="heading-2 shipping-screen__add-address mb-sm"
+        >
+          Add new address&nbsp;
+          {addAddressShow ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+        </h2>
+        {addAddressShow ? <AddAddress /> : ""}
       </div>
     </div>
   );

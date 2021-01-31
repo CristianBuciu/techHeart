@@ -55,6 +55,12 @@ const userAddressesFromStorage = localStorage.getItem("userAddresses")
 const orderAddressFromStorage = localStorage.getItem("orderAddress")
   ? JSON.parse(localStorage.getItem("orderAddress"))
   : {};
+const orderPaymentMethodFromStorage = localStorage.getItem("orderPaymentMethod")
+  ? JSON.parse(localStorage.getItem("orderPaymentMethod"))
+  : {
+      paymentMethod: "",
+      shippingMethod: {},
+    };
 
 const userFavoriteProductsFromStorage = localStorage.getItem(
   "userFavoriteProducts"
@@ -71,6 +77,7 @@ const initialState = {
   userFavoriteProducts: {
     userFavoriteProducts: userFavoriteProductsFromStorage,
   },
+  orderPaymentMethod: orderPaymentMethodFromStorage,
 };
 
 const middleware = [thunk];

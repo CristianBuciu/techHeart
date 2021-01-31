@@ -11,6 +11,9 @@ import Signup from "./screens/signup/Signup.js";
 import ProfileScreen from "./screens/profile/ProfileScreen.js";
 import ShippingScreen from "./screens/shipping-screen/ShippingScreen.js";
 import PaymentScreen from "./screens/payment/PaymentScreen";
+import CompleteOrder from "./screens/complete-order/CompleteOrder";
+import { Link } from "react-router-dom";
+import { GiTechnoHeart } from "react-icons/gi";
 
 //!==================================================================
 function App() {
@@ -26,6 +29,9 @@ function App() {
   return (
     <>
       <Header />
+      <Route path="/shipping" component={ShippingScreen} />{" "}
+      <Route path="/payment" component={PaymentScreen} />{" "}
+      <Route path="/complete-order" component={CompleteOrder} />{" "}
       <main className="app-main">
         {" "}
         {showCart ? (
@@ -33,15 +39,13 @@ function App() {
             {" "}
           </div>
         ) : null}{" "}
-        <Route exact path="/shop" render={() => <HomeScreen />} />{" "}
+        <Route path="/shop" render={() => <HomeScreen />} />{" "}
         <Route path="/product/:id" component={ProductScreen} />{" "}
         <Route path="/login" component={Login} />{" "}
         <Route path="/register" component={Signup} />{" "}
         <Route path="/profile" component={ProfileScreen} />{" "}
-        <Route path="/shipping" component={ShippingScreen} />{" "}
-        <Route path="/payment" component={PaymentScreen} />{" "}
       </main>{" "}
-      <Footer />
+      <Footer className="footer" />
     </>
   );
 }

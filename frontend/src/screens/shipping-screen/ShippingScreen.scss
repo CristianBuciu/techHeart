@@ -43,4 +43,14 @@
       color: $color-grey-dark-1;
     }
   }
+  &__add-address {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: fit-content;
+    &:hover {
+      color: $color-primary;
+    }
+  }
 }
