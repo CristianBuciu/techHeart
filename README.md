@@ -1,5 +1,5 @@
 <h1>Tech Heart</h1>
-<h4><i>Refurbished tech with full warranty at second hand prices</i></h4>
+<h4><i>Refurbished tech with warranty at second hand prices</i></h4>
 
 <h2>Technologies used to make the site</h2>
 <ul>
