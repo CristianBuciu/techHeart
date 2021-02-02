@@ -1,0 +1,8 @@
+@import "../../sass/base";
+
+.profile-screen {
+  display: flex;
+  &__right {
+    width: 80%;
+  }
+}

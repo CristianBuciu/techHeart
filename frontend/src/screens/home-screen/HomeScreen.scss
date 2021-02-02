@@ -1,0 +1,50 @@
+@import "../../sass/base";
+
+.home-screen {
+  &__top {
+    height: 6rem;
+    width: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      rgba($color-cta, 0.3),
+      rgba($color-primary, 0.3)
+    );
+    background-size: contain;
+    background-repeat: repeat;
+    background-position: center;
+    border-radius: 1rem;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      height: 3.2rem;
+      width: 100%;
+      background-color: white;
+    }
+  }
+  &__title {
+    z-index: 3;
+    margin-top: 0;
+    letter-spacing: 0.5rem;
+    margin-left: 0.5rem;
+    line-height: 1;
+  }
+  &__products {
+    margin-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15rem;
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    align-items: center;
+    justify-items: center;
+    row-gap: 2rem;
+    column-gap: 2rem;
+  }
+}
