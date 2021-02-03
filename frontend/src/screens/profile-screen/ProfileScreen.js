@@ -2,14 +2,14 @@ import React from "react";
 import "./ProfileScreen.scss";
 import { Route } from "react-router-dom";
 import ProfileSidebar from "../../components/profile-sidebar/ProfileSidebar.js";
-import YourInfo from "../profile-info/YourInfo.js";
-import ProfileAddresses from "../profile-addresses/ProfileAddresses.js";
-import Checkout from "../checkout/Checkout.js";
+import YourInfo from "../profile-info-screen/YourInfo.js";
+import ProfileAddresses from "../profile-addresses-screen/ProfileAddresses.js";
+import Checkout from "../checkout-screen/Checkout.js";
 
 //todo ADD GSAP SCROLL TO MAKE LEFT MENU STICKY
 import gsap from "gsap";
-import AddressEdit from "../address-edit/AddressEdit";
-import FavoriteScreen from "../profile-favorite/FavoriteScreen";
+import AddressEdit from "../address-edit-modal/AddressEdit";
+import FavoriteScreen from "../profile-favorite-screen/FavoriteScreen";
 
 //!=================================================================
 const ProfileScreen = () => {

@@ -6,12 +6,12 @@ import { Route } from "react-router-dom";
 import ProductScreen from "./screens/product-screen/ProductScreen";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleCartShow } from "./redux/cart/cart.actions.js";
-import Login from "./screens/login/Login.js";
-import Signup from "./screens/signup/Signup.js";
-import ProfileScreen from "./screens/profile/ProfileScreen.js";
+import Login from "./screens/login-screen/Login.js";
+import Signup from "./screens/signup-screen/Signup.js";
+import ProfileScreen from "./screens/profile-screen/ProfileScreen.js";
 import ShippingScreen from "./screens/shipping-screen/ShippingScreen.js";
-import PaymentScreen from "./screens/payment/PaymentScreen";
-import CompleteOrder from "./screens/complete-order/CompleteOrder";
+import PaymentScreen from "./screens/payment-screen/PaymentScreen";
+import CompleteOrder from "./screens/complete-order-screen/CompleteOrder";
 
 //!==================================================================
 function App() {

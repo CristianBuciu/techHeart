@@ -8,7 +8,7 @@ import axios from "axios";
 import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
 import { addOrderAddress } from "../../redux/order/order.actions.js";
 import { AiOutlineDoubleRight } from "react-icons/ai";
-import AddressEdit from "../address-edit/AddressEdit.js";
+import AddressEdit from "../address-edit-modal/AddressEdit.js";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
 
