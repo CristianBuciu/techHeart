@@ -1,6 +1,6 @@
 import { orderConstants } from "./order.constants.js";
 
-export const addOrderAddressReducer = (state = {}, action) => {
+export const orderAddAddressReducer = (state = {}, action) => {
   switch (action.type) {
     case orderConstants.ORDER_STORE_ADDRESS: {
       return { ...state, orderAddress: action.payload };
@@ -9,7 +9,7 @@ export const addOrderAddressReducer = (state = {}, action) => {
       return state;
   }
 };
-export const savePaymentMethodReducer = (state = {}, action) => {
+export const orderSavePaymentMethodReducer = (state = {}, action) => {
   switch (action.type) {
     case orderConstants.ORDER_STORE_PAYMENT_METHOD: {
       return {
@@ -18,6 +18,28 @@ export const savePaymentMethodReducer = (state = {}, action) => {
         shippingMethod: action.payload.shippingMethod,
       };
     }
+    default:
+      return state;
+  }
+};
+
+export const orderCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case orderConstants.ORDER_CREATE_REQUEST:
+      return {
+        loading: true,
+      };
+    case orderConstants.ORDER_CREATE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        order: action.payload,
+      };
+    case orderConstants.ORDER_CREATE_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

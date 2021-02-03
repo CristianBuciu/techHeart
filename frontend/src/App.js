@@ -28,7 +28,7 @@ function App() {
     <>
       <Header />
       <main className="app-main">
-        <div style={{ marginTop: "-8rem" }}>
+        <div>
           <Route path="/shipping" component={ShippingScreen} />{" "}
           <Route path="/payment" component={PaymentScreen} />{" "}
           <Route path="/complete-order" component={CompleteOrder} />{" "}

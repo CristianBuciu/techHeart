@@ -15,11 +15,11 @@ import {
   addAddressReducer,
   showUserMenuReducer,
   getUserFavoriteProductsReducer,
-  showEditAddressReducer,
 } from "./user/user.reducers.js";
 import {
-  addOrderAddressReducer,
-  savePaymentMethodReducer,
+  orderAddAddressReducer,
+  orderSavePaymentMethodReducer,
+  orderCreateReducer,
 } from "./order/order.reducers.js";
 
 //! REDUX STORE=========================================
@@ -27,8 +27,8 @@ const reducer = combineReducers({
   addAddress: addAddressReducer,
   cart: getCartReducer,
   cartToggle: cartToggleReducer,
-  orderAddress: addOrderAddressReducer,
-  orderPaymentMethod: savePaymentMethodReducer,
+  orderAddress: orderAddAddressReducer,
+  orderPaymentMethod: orderSavePaymentMethodReducer,
   productDetails: productDetailsReducer,
   productList: productListReducer,
   showUserMenu: showUserMenuReducer,
@@ -38,6 +38,7 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  orderCreate: orderCreateReducer,
 });
 //!=====================================================
 

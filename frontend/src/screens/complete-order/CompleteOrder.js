@@ -5,12 +5,10 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { GrPaypal, GrCreditCard, GrStripe } from "react-icons/gr";
 import { useHistory } from "react-router-dom";
-import {
-  addToCart,
-  getCartProducts,
-  removeCartProduct,
-} from "../../redux/cart/cart.actions.js";
+import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { roundToTwo } from "../../utils.js";
+
+import { createOrder } from "../../redux/order/order.actions";
 
 //todo implement gsapp to stop the buy now on screen
 //!=======================================================
@@ -18,6 +16,9 @@ import { roundToTwo } from "../../utils.js";
 const CompleteOrder = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -36,7 +37,10 @@ const CompleteOrder = () => {
     } else if (!orderPaymentMethod.paymentMethod) {
       history.push("/payment");
     }
-  }, [orderAddress, history, orderPaymentMethod]);
+    if (success) {
+      history.push(`/order/${order._id}`);
+    }
+  }, [orderAddress, history, orderPaymentMethod, success]);
   const removeCartProduct = (id) => {
     const deleteProduct = async () => {
       try {
@@ -60,7 +64,21 @@ const CompleteOrder = () => {
     (accum, cartItem) => accum + cartItem.quantity * cartItem.product.price,
     0
   );
-
+  const totalPrice = roundToTwo(subtotal + shippingMethod.price);
+  //* Place order action ===================================
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cartProducts,
+        shippingAddress: orderAddress,
+        paymentMethod: paymentMethod,
+        itemsPrice: subtotal,
+        shippingPrice: shippingMethod.price,
+        shippingMethod: shippingMethod.name,
+        totalPrice: totalPrice,
+      })
+    );
+  };
   return (
     <div className="complete-order shipping-section">
       <CheckoutSteps />
@@ -224,7 +242,12 @@ const CompleteOrder = () => {
           )}
         </div>
         <div className="complete-order__summary">
-          <button className="complete-order__buy-btn">PLACE ORDER</button>
+          <button
+            onClick={placeOrderHandler}
+            className="complete-order__buy-btn"
+          >
+            PLACE ORDER
+          </button>
 
           <h3 className="heading-3 complete-order__summary--title">
             Order Price
@@ -242,7 +265,7 @@ const CompleteOrder = () => {
           </span>
           <h2 className="heading-2 complete-order__summary--total">TOTAL:</h2>
           <h2 className="heading-2 complete-order__summary--total-value">
-            {roundToTwo(subtotal + shippingMethod.price)}€
+            {totalPrice}€
           </h2>
         </div>
       </div>

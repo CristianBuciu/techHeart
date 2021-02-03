@@ -8,6 +8,7 @@ import {
 } from "../controllers/product.controller.js";
 
 router.route("/").get(getProducts).put(protect, likedByUser);
+//! Make sure this one is at the bottom /:id
 
 router.route("/:id").get(getProductById);
 

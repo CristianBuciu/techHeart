@@ -19,6 +19,7 @@ const CheckoutSteps = ({ active3 }) => {
     <>
       <div
         style={{
+          marginTop: "-8rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
