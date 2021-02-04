@@ -155,7 +155,7 @@ a:active {
 }
 
 //!PADDINGS AND MARGINS =====================================================
-
+//* Margin Top
 .mt-xs {
   margin-top: 1rem;
 }
@@ -167,6 +167,15 @@ a:active {
 }
 .mt-lg {
   margin-top: 8rem;
+}
+//* Margin Bottom
+
+.mb-sm {
+  margin-bottom: 2rem;
+}
+
+.mb-xs {
+  margin-bottom: 1rem;
 }
 .mb-sm {
   margin-bottom: 2rem;
@@ -180,12 +189,17 @@ a:active {
   margin-bottom: 8rem;
 }
 
+//* Margin Left
+
 .ml-sm {
   margin-left: 1rem;
 }
 .ml-md {
   margin-left: 2rem;
 }
+
+//* Margin Right
+
 .mr-sm {
   margin-right: 1rem;
 }

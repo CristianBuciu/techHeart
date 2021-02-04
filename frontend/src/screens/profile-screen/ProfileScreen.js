@@ -10,6 +10,7 @@ import Checkout from "../checkout-screen/Checkout.js";
 import gsap from "gsap";
 import AddressEdit from "../address-edit-modal/AddressEdit";
 import FavoriteScreen from "../profile-favorite-screen/FavoriteScreen";
+import OrderScreen from "../order-screen/OrderScreen";
 
 //!=================================================================
 const ProfileScreen = () => {
@@ -22,6 +23,7 @@ const ProfileScreen = () => {
         <Route exact path="/profile/checkout/:id?" component={Checkout} />{" "}
         <Route exact path="/profile/addresses/:id" component={AddressEdit} />{" "}
         <Route exact path="/profile/favorites" component={FavoriteScreen} />{" "}
+        <Route exact path="/profile/orders/:id" component={OrderScreen} />
       </div>
     </div>
   );

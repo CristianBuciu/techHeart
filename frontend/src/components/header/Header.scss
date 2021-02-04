@@ -123,21 +123,24 @@
     transition: all 0.2s ease-in-out;
   }
   &__welcome-message {
-    color: $color-primary;
     cursor: pointer;
     display: flex;
     align-items: center;
     font-size: 1.4rem;
+    transition: color 0.1s;
+    &:hover {
+      color: $color-primary;
+    }
   }
 }
 
 .dropdown-arrow-class {
   transform: translateY(3rem);
   color: $color-primary;
-  transition: all 0.2s;
+  transition: transform 0.2s;
 }
 .dropdown-revert {
-  transition: all 0.2s;
+  transition: transform 0.2s;
 }
 
 @keyframes heartbeat-lower {

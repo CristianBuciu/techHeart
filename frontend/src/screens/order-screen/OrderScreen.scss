@@ -1,0 +1,65 @@
+@import "../../sass/base";
+
+.order-screen {
+  border: 1px solid $color-grey-light-2;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    row-gap: 1rem;
+    column-gap: 1rem;
+  }
+
+  &__section-title {
+    font-size: 1.6rem;
+    color: $color-primary-dark;
+    font-weight: 800;
+  }
+  &__middle-text {
+    font-size: 1.3rem;
+    padding: 0.2rem 0.5rem;
+  }
+  &__products-info {
+  }
+
+  &__item {
+    display: flex;
+    height: 8rem;
+  }
+  &__image {
+    width: 11rem;
+    height: 8rem;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+  }
+  &__item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &--title {
+      cursor: pointer;
+      transition: all 0.1s;
+      color: $color-primary-dark;
+      &:hover {
+        color: $color-primary;
+      }
+    }
+    &--price {
+      color: $color-grey-dark-2;
+    }
+  }
+  &__summary {
+    &--total {
+      color: $color-cta-2;
+    }
+  }
+  &__status-fail-message {
+    color: $color-alert;
+    background-color: rgba($color: $color-alert, $alpha: 0.15);
+    padding: 0.2rem 0.5rem;
+    font-size: 1.6rem;
+  }
+}

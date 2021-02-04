@@ -82,6 +82,10 @@ const initialState = {
     userFavoriteProducts: userFavoriteProductsFromStorage,
   },
   orderPaymentMethod: orderPaymentMethodFromStorage,
+  orderDetails: {
+    loading: true,
+    order: { shippingAddress: {}, orderItems: [] },
+  },
 };
 
 const middleware = [thunk];
