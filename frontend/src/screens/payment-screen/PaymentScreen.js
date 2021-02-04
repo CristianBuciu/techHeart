@@ -4,11 +4,11 @@ import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
 
 import { useDispatch, useSelector } from "react-redux";
 import { saveOrderPaymentMethod } from "../../redux/order/order.actions.js";
-import { GrPaypal, GrCreditCard, GrStripe } from "react-icons/gr";
+import { GrPaypal, GrStripe } from "react-icons/gr";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { Link, useHistory } from "react-router-dom";
-import { FaDhl } from "react-icons/fa";
-import { MdLocalShipping } from "react-icons/md";
+
+import { BsCreditCard } from "react-icons/bs";
 import { ReactComponent as DHL } from "../../assets/dhl-express.svg";
 import { ReactComponent as Correos } from "../../assets/correos.svg";
 //!=======================================================
@@ -62,26 +62,34 @@ const PaymentScreen = () => {
             <GrPaypal className="payment-screen__payment-icon mr-sm" />
             PayPal
           </label>
-          <label className="payment-screen__label mb-md" htmlFor="CreditCard">
+          <label
+            className="payment-screen__label payment-screen__label--disabled mb-md"
+            htmlFor="CreditCard"
+          >
             <input
               id="CreditCard"
-              className="payment-screen__input mr-md"
+              className="payment-screen__input  mr-md"
               name="paymentmethod"
               type="radio"
               value="Credit Card"
               onChange={paymentMethodHandler}
+              disabled
             />
-            <GrCreditCard className="payment-screen__payment-icon mr-sm" />{" "}
+            <BsCreditCard className="payment-screen__payment-icon payment-screen__payment-icon--disabled mr-sm" />{" "}
             Credit Card
           </label>
-          <label className="payment-screen__label mb-md" htmlFor="Stripe">
+          <label
+            className="payment-screen__label  payment-screen__label--disabled mb-md"
+            htmlFor="Stripe"
+          >
             <input
               id="Stripe"
-              className="payment-screen__input mr-md"
+              className="payment-screen__input payment-screen__input--disabled mr-md"
               name="paymentmethod"
               type="radio"
               value="Stripe"
               onChange={paymentMethodHandler}
+              disabled
             />
             <GrStripe className="payment-screen__payment-icon mr-sm" /> Stripe
           </label>

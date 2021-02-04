@@ -38,7 +38,7 @@ const CompleteOrder = () => {
       history.push("/payment");
     }
     if (success) {
-      history.push(`/order/${order._id}`);
+      history.push(`/profile/orders/${order._id}`);
     }
   }, [orderAddress, history, orderPaymentMethod, success]);
   const removeCartProduct = (id) => {
@@ -72,10 +72,10 @@ const CompleteOrder = () => {
         orderItems: cartProducts,
         shippingAddress: orderAddress,
         paymentMethod: paymentMethod,
-        itemsPrice: subtotal,
-        shippingPrice: shippingMethod.price,
+        itemsPrice: roundToTwo(subtotal),
+        shippingPrice: roundToTwo(shippingMethod.price),
         shippingMethod: shippingMethod.name,
-        totalPrice: totalPrice,
+        totalPrice: roundToTwo(totalPrice),
       })
     );
   };

@@ -31,6 +31,11 @@ app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 
+//! PAYPAL Config Route ======================================
+app.get("/api/config/paypal", (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+);
+
 //! 404 error handling =======================================
 app.use(notFound);
 //?===========================================================

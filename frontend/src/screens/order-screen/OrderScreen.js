@@ -1,35 +1,68 @@
 import React, { useState, useEffect } from "react";
 import "./OrderScreen.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { GrPaypal, GrCreditCard, GrStripe } from "react-icons/gr";
+import { GrPaypal, GrStripe } from "react-icons/gr";
+import { BsCreditCard } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric.js";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
-import { getOrderDetails } from "../../redux/order/order.actions";
-
+import { getOrderDetails, payOrder } from "../../redux/order/order.actions";
+import axios from "axios";
+import { PayPalButton } from "react-paypal-button-v2";
+import { orderConstants } from "../../redux/order/order.constants.js";
 //todo implement gsapp to stop the buy now on screen
 //!=======================================================
 
 const OrderScreen = ({ match }) => {
   const orderId = match.params.id;
+
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [sdkReady, setSdkReady] = useState(false);
+
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+
+  const orderPay = useSelector((state) => state.orderPay);
+  const { loading: loadingPay, success: successPay } = orderPay;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (!order || order._id !== orderId) {
+    const addPayPalScript = async () => {
+      const { data: clientId } = await axios.get("/api/config/paypal");
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.async = true;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
+
+    if (successPay || !order || order._id !== orderId) {
+      dispatch({ type: orderConstants.ORDER_PAY_RESET });
       dispatch(getOrderDetails(orderId));
+    } else if (!order.isPaid) {
+      if (!window.paypal) {
+        addPayPalScript();
+      } else {
+        setSdkReady(true);
+      }
     }
-  }, [order, orderId]);
+  }, [order, orderId, dispatch, successPay]);
 
   let orderCreatedDate = new Date(order.createdAt);
   let orderPaidAtDate = new Date(order.paidAt);
   let orderDeliveredAtDate = new Date(order.deliveredAt);
+
+  const successPaymentHandler = (paymentResult) => {
+    console.log(paymentResult);
+    dispatch(payOrder(orderId, paymentResult));
+  };
 
   return loading ? (
     <LoaderGeneric />
@@ -77,18 +110,18 @@ const OrderScreen = ({ match }) => {
             {order.paymentMethod === "PayPal" ? (
               <GrPaypal className=" mr-sm" />
             ) : order.paymentMethod === "Credit Card" ? (
-              <GrCreditCard className=" mr-sm" />
+              <BsCreditCard className=" mr-sm" />
             ) : (
               <GrStripe className=" mr-sm" />
             )}
             {order.paymentMethod}
           </p>
           {order.isPaid ? (
-            <p style={{ color: "#1ccf3a" }}>
-              &check; {`Paid at ${orderPaidAtDate.toLocaleString()}`}
+            <p className="order-screen__status-success-message mb-sm">
+              &#10003; {`Paid at ${orderPaidAtDate.toLocaleString()}`}
             </p>
           ) : (
-            <p className="order-screen__status-fail-message ">
+            <p className="order-screen__status-fail-message mb-sm">
               &#10005; Not paid
             </p>
           )}
@@ -105,30 +138,13 @@ const OrderScreen = ({ match }) => {
           </p>
           {order.isDelivered ? (
             <span>
-              &check; {`Delivered at ${orderDeliveredAtDate.toLocaleString()}`}
+              &#10003; {`Delivered at ${orderDeliveredAtDate.toLocaleString()}`}
             </span>
           ) : (
             <p className="order-screen__status-fail-message">
               &#10005; Not delivered
             </p>
           )}
-        </div>
-        <div className="order-screen__summary">
-          <h3 className="heading-3 order-screen__section-title mb-sm ">
-            Order Price
-          </h3>
-          <span style={{ gridColumn: "1/3", fontSize: "1.2rem" }}>
-            (All prices include VAT)
-          </span>
-          <h4 className="heading-4 order-screen__summary--text">Products:</h4>
-          <span className="order-screen__middle-text">{order.itemsPrice}€</span>
-          <h4 className="heading-4 order-screen__summary--text">Shipping:</h4>
-          <span className="order-screen__middle-text">
-            {order.shippingPrice}€
-          </span>
-          <h3 className="heading-3 order-screen__summary--total price-number">
-            TOTAL: {order.totalPrice}€
-          </h3>
         </div>
       </div>
       <div className="line-break"></div>
@@ -159,6 +175,51 @@ const OrderScreen = ({ match }) => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="order-screen__payment">
+          <div className="order-screen__summary">
+            <h3
+              style={{ gridColumn: "1/3" }}
+              className="heading-3 order-screen__section-title mb-xs text-center"
+            >
+              Order Price
+            </h3>
+            <span style={{ gridColumn: "1/3", fontSize: "1.2rem" }}>
+              (All prices include VAT)
+            </span>
+            <h4 className="heading-4 order-screen__summary--text">Products:</h4>
+            <span className="order-screen__middle-text text-end">
+              {order.itemsPrice}€
+            </span>
+            <h4 className="heading-4 order-screen__summary--text">Shipping:</h4>
+            <span className="order-screen__middle-text  text-end">
+              {order.shippingPrice}€
+            </span>
+            <h3 className="heading-3 order-screen__summary--total price-number">
+              TOTAL:
+            </h3>
+            <span className="heading-3 order-screen__summary--total price-number  text-end">
+              {order.totalPrice}€
+            </span>
+          </div>
+          {!order.isPaid && (
+            <div>
+              {loadingPay && <LoaderGeneric />}
+              {!sdkReady ? (
+                <LoaderGeneric />
+              ) : (
+                <>
+                  <h3 className="heading-3 order-screen__section-title mb-xs mt-xs text-center">
+                    Pay now
+                  </h3>
+                  <PayPalButton
+                    amount={order.totalPrice}
+                    onSuccess={successPaymentHandler}
+                  />
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

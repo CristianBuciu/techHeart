@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FaHeartBroken } from "react-icons/fa";
 import axios from "axios";
 import "./FavoriteScreen.scss";
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { TiShoppingCart } from "react-icons/ti";
 import ActionShow from "../../components/action-show/ActionShow.js";
+import LoaderGeneric from "../../components/loader-generic/LoaderGeneric.js";
+import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 //!==============================================================
 const FavoriteScreen = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [toCart, setToCart] = useState(false);
-
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -61,7 +60,9 @@ const FavoriteScreen = () => {
   const productLink = (id) => {
     history.push(`/product/${id}`);
   };
-  return (
+  return loading ? (
+    <LoaderGeneric />
+  ) : (
     <div className="favorite-screen">
       {toCart ? <ActionShow /> : null}
       <h1 className="heading-1  ">FAVORITE PRODUCTS</h1>

@@ -21,6 +21,7 @@ import {
   orderSavePaymentMethodReducer,
   orderCreateReducer,
   orderDetailsReducer,
+  orderPayReducer,
 } from "./order/order.reducers.js";
 
 //! REDUX STORE=========================================
@@ -41,6 +42,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
 });
 //!=====================================================
 

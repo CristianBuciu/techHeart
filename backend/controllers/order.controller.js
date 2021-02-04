@@ -35,6 +35,23 @@ export const addOrderItems = asyncHandler(async (req, res) => {
   }
 });
 
+//! DESCRIPTION : GET Order By ID
+//! ROUTE       : GET /api/orders/:id
+//! ACCESS      : PRIVATE
+export const getOrderById = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id).populate(
+    "user",
+    "name email"
+  );
+
+  if (order) {
+    res.json(order);
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
+});
+
 //! DESCRIPTION : Update Order to paid
 //! ROUTE       : PUT /api/orders/:id/pay
 //! ACCESS      : PRIVATE
@@ -47,28 +64,11 @@ export const updateOrderToPaid = asyncHandler(async (req, res) => {
     order.paymentResult = {
       id: req.body.id,
       status: req.body.status,
-      update_time: req.body._time,
+      update_time: req.body.update_time,
       email_address: req.body.payer.email_address,
     };
     const updatedOrder = await order.save();
     res.json(updatedOrder);
-  } else {
-    res.status(404);
-    throw new Error("Order not found");
-  }
-});
-
-//! DESCRIPTION : GET Order By ID
-//! ROUTE       : GET /api/orders/:id
-//! ACCESS      : PRIVATE
-export const getOrderById = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id).populate(
-    "user",
-    "name email"
-  );
-
-  if (order) {
-    res.json(order);
   } else {
     res.status(404);
     throw new Error("Order not found");
