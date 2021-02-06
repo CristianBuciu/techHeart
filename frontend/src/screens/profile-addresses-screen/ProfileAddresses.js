@@ -62,7 +62,7 @@ const ProfileAddresses = () => {
       <div className="profile-addresses__grid">
         {addresses
           ? addresses.map((address, idx) => (
-              <div key={address._id} className="profile-addresses__wrapper">
+              <div key={address._id} className="gradient-wrapper">
                 <div className="profile-addresses__address">
                   <h3 className="profile-addresses__address__title">
                     Address {idx + 1}

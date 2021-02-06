@@ -22,6 +22,7 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
   orderPayReducer,
+  orderGetMyOrdersReducer,
 } from "./order/order.reducers.js";
 
 //! REDUX STORE=========================================
@@ -43,8 +44,10 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  orderMyOrders: orderGetMyOrdersReducer,
 });
-//!=====================================================
+
+//! Local storage asignments ================================================
 
 const cartItemsFromStorage = localStorage.getItem("cartProducts")
   ? JSON.parse(localStorage.getItem("cartProducts"))
@@ -73,6 +76,11 @@ const userFavoriteProductsFromStorage = localStorage.getItem(
 )
   ? JSON.parse(localStorage.getItem("userFavoriteProducts"))
   : [];
+const orderMyOrderFromStorage = localStorage.getItem("orderMyOrder")
+  ? JSON.parse(localStorage.getItem("orderMyOrder"))
+  : [];
+
+//! INITIAL STATE VALUES ====================================================
 const initialState = {
   productDetails: { product: { reviews: [], likedBy: [] } },
   showUserMenu: false,
@@ -88,7 +96,10 @@ const initialState = {
     loading: true,
     order: { shippingAddress: {}, orderItems: [] },
   },
+  orderMyOrders: { loading: true, orders: orderMyOrderFromStorage },
 };
+
+//! Middleware for async redux ===================================================
 
 const middleware = [thunk];
 

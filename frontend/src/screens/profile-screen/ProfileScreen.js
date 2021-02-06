@@ -5,7 +5,7 @@ import ProfileSidebar from "../../components/profile-sidebar/ProfileSidebar.js";
 import YourInfo from "../profile-info-screen/YourInfo.js";
 import ProfileAddresses from "../profile-addresses-screen/ProfileAddresses.js";
 import Checkout from "../checkout-screen/Checkout.js";
-import AllOrdersScreen from "../all-orders-screen/AllOrdersScreen";
+import ProfileOrders from "../profile-orders/ProfileOrders";
 //todo ADD GSAP SCROLL TO MAKE LEFT MENU STICKY
 import gsap from "gsap";
 import AddressEdit from "../address-edit-modal/AddressEdit";
@@ -24,7 +24,7 @@ const ProfileScreen = () => {
         <Route exact path="/profile/addresses/:id" component={AddressEdit} />{" "}
         <Route exact path="/profile/favorites" component={FavoriteScreen} />{" "}
         <Route exact path="/profile/orders/:id" component={OrderScreen} />
-        <Route exact path="/profile/orders/" component={AllOrdersScreen} />
+        <Route exact path="/profile/orders" component={ProfileOrders} />
       </div>
     </div>
   );

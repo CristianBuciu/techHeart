@@ -1,6 +1,9 @@
 @import "../../sass/base";
 
 .user-dropdown {
+  animation: 0.2s slideDown ease;
+  transform-origin: top;
+
   position: fixed;
   top: 8.1rem;
   right: 2rem;
@@ -24,5 +27,14 @@
     &:hover {
       color: $color-primary;
     }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
   }
 }

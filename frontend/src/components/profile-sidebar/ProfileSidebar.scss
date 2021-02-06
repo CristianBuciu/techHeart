@@ -21,5 +21,17 @@
   }
   &__active-link {
     color: $color-cta-2 !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    &::before {
+      content: ">";
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 2rem;
+      line-height: 1;
+      width: fit-content;
+      margin-right: 1rem;
+    }
   }
 }

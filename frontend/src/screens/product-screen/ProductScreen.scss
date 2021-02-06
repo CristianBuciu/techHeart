@@ -8,7 +8,7 @@
   }
   &__link {
     font-size: 1.4rem;
-    color: $color-grey-dark-2;
+    color: $color-link !important;
     transition: all 0.2s;
     border-bottom: 1px solid transparent;
 
@@ -16,7 +16,7 @@
       margin-right: 1rem;
     }
     &:hover {
-      border-bottom: 1px solid $color-grey-dark-2;
+      border-bottom: 1px solid $color-link;
     }
   }
   &__body {

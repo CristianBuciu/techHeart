@@ -3,7 +3,8 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./ProfileSidebar.scss";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
-
+import { FaHeart } from "react-icons/fa";
+import { BiDevices } from "react-icons/bi";
 //!=======================================================================
 
 function ProfileSidebar() {
@@ -57,8 +58,22 @@ function ProfileSidebar() {
         to="/profile/favorites"
       >
         {" "}
-        <p>
-          Your Favorites <i>({favoriteProductsLength} items)</i>{" "}
+        <p
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          Your Favorites &nbsp;
+          <i
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            ({favoriteProductsLength}&nbsp;{" "}
+            <FaHeart style={{ color: " #fd3e3e" }} />)
+          </i>{" "}
         </p>
       </NavLink>
 
@@ -82,11 +97,12 @@ function ProfileSidebar() {
 
       <h1 className="profile-screen__title">Orders</h1>
       <NavLink
+        className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/orders"
       >
         {" "}
-        <p className="profile-sidebar__options">Orders & Bills</p>{" "}
+        <p>Orders & Bills</p>{" "}
       </NavLink>
 
       <NavLink
@@ -95,8 +111,22 @@ function ProfileSidebar() {
         to="/profile/checkout"
       >
         {" "}
-        <p>
-          Checkout <i>({cartItemsNumber} items)</i>
+        <p
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          Checkout &nbsp;
+          <i
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            ({cartItemsNumber}&nbsp;
+            <BiDevices />)
+          </i>
         </p>{" "}
       </NavLink>
 

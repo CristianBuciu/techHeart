@@ -225,6 +225,27 @@ a:active {
   font-family: $font-special !important;
 }
 
+.gradient-wrapper {
+  border-radius: 0.5rem;
+  height: fit-content;
+  padding: 1px;
+  background-image: linear-gradient(
+    to right bottom,
+    #ff0bf3,
+    #b774ff,
+    #5c9bff,
+    #00b3ff,
+    #00c1ff,
+    #00c8f3,
+    #00cde2,
+    #00d1cd,
+    #00d6c6,
+    #00dabc,
+    #00deb0,
+    #21e2a2
+  );
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -232,4 +253,12 @@ a:active {
   to {
     opacity: 1;
   }
+}
+
+.text-alert {
+  color: $color-alert;
+}
+
+.text-success {
+  color: $color-pallete-2;
 }
