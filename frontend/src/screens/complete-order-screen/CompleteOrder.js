@@ -31,16 +31,33 @@ const CompleteOrder = () => {
   const orderPaymentMethod = useSelector((state) => state.orderPaymentMethod);
   const paymentMethod = orderPaymentMethod.paymentMethod;
   const { shippingMethod } = orderPaymentMethod;
+  //! REMOVE ALL CART ITEMS WHEN YOU PLACE THE ORDER==
+
+  const clearCartHandler = async () => {
+    try {
+      if (!userInfo) {
+        history.push("/login");
+      } else {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        await axios.delete(`/api/cart`, config);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  //!==================================================
   useEffect(() => {
     if (!orderAddress.fullName) {
       history.push("/shipping");
     } else if (!orderPaymentMethod.paymentMethod) {
       history.push("/payment");
     }
-    if (success) {
-      history.push(`/profile/orders/${order._id}`);
-    }
-  }, [orderAddress, history, orderPaymentMethod, success]);
+  }, [orderAddress, history, orderPaymentMethod]);
   const removeCartProduct = (id) => {
     const deleteProduct = async () => {
       try {
@@ -65,7 +82,8 @@ const CompleteOrder = () => {
     0
   );
   const totalPrice = roundToTwo(subtotal + shippingMethod.price);
-  //* Place order action ===================================
+
+  //* Place order action ======================================
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
@@ -78,7 +96,13 @@ const CompleteOrder = () => {
         totalPrice: roundToTwo(totalPrice),
       })
     );
+    clearCartHandler();
+    dispatch(getCartProducts());
+    if (success) {
+      history.push(`/profile/orders/${order._id}`);
+    }
   };
+  //*============================================================
   return (
     <div className="complete-order shipping-section">
       <CheckoutSteps />

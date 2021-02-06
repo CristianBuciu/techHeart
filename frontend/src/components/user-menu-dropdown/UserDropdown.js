@@ -28,9 +28,13 @@ const UserDropdown = () => {
           </Link>
         </li>
 
-        <li onClick={menuToggler} className="user-dropdown__list-item">
+        <Link
+          to="/profile/orders"
+          onClick={menuToggler}
+          className="user-dropdown__list-item"
+        >
           My orders
-        </li>
+        </Link>
         <div />
         <li
           onClick={() => {

@@ -29,8 +29,7 @@
   }
   &__item-show-toggler {
     background: $color-grey-light-1;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+
     width: 100%;
 
     font-size: 1.4rem;
@@ -68,9 +67,10 @@
     transform-origin: top;
     background: $color-grey-light-1;
 
-    border-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     padding: 1rem 2rem;
-    margin-top: 0.5rem;
+
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
     column-gap: 1rem;

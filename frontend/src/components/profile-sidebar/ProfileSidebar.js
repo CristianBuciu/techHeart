@@ -40,7 +40,7 @@ function ProfileSidebar() {
         to="/profile/info"
       >
         {" "}
-        <p>Your Info</p>{" "}
+        <p>Info</p>{" "}
       </NavLink>
 
       <NavLink
@@ -49,7 +49,7 @@ function ProfileSidebar() {
         to="/profile/addresses"
       >
         {" "}
-        <p>Your Addresses</p>{" "}
+        <p>Addresses</p>{" "}
       </NavLink>
 
       <NavLink
@@ -64,7 +64,7 @@ function ProfileSidebar() {
             alignItems: "center",
           }}
         >
-          Your Favorites &nbsp;
+          Favorites &nbsp;
           <i
             style={{
               display: "flex",

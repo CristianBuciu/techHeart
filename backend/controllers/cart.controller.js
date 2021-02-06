@@ -84,3 +84,25 @@ export const deleteCartProduct = asyncHandler(async (req, res) => {
     throw new Error("Cart not found");
   }
 });
+
+//! DESCRIPTION : Delete an item from cart by ID
+//! ROUTE       : DELETE /api/cart/:id
+//! ACCESS      : Private
+
+export const deleteAllCartProducts = asyncHandler(async (req, res) => {
+  const cartProduct = await Cart.findOne({
+    user: req.user._id,
+  });
+
+  if (cartProduct) {
+    const updatedCart = await Cart.updateMany(
+      { user: req.user._id },
+      { $set: { cartProducts: [] } }
+    );
+
+    res.json(updatedCart);
+  } else {
+    res.status(404);
+    throw new Error("Cart not found");
+  }
+});

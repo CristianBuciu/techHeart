@@ -10,6 +10,8 @@ import { getOrderDetails, payOrder } from "../../redux/order/order.actions";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import { orderConstants } from "../../redux/order/order.constants.js";
+import { getCartProducts } from "../../redux/cart/cart.actions.js";
+
 //todo implement gsapp to stop the buy now on screen
 //!=======================================================
 
@@ -31,6 +33,7 @@ const OrderScreen = ({ match }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
+    dispatch(getCartProducts());
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
       const script = document.createElement("script");

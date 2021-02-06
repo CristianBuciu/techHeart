@@ -21,7 +21,7 @@ const Signup = ({ location }) => {
     if (userInfo) {
       history.push(redirect);
     }
-  }, [userInfo, redirect]);
+  }, [userInfo, redirect, history]);
   const passwordLength = password.length < 6 ? false : true;
   const passwordLowercase = /[a-z]/.test(password) < 1 ? false : true;
   const passwordUppercase = /[A-Z]/.test(password) < 1 ? false : true;

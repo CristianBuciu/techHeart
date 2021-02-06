@@ -9,9 +9,10 @@ export const addOrderAddress = (data) => (dispatch) => {
       line1: data.line1,
       line2: data.line2,
       city: data.city,
-      stateProvionceRegion: data.stateProvinceRegion,
+      stateProvinceRegion: data.stateProvinceRegion,
       postalCode: data.postalCode,
       phoneNumber: data.phoneNumber,
+      country: data.country,
     },
   });
   localStorage.setItem("orderAddress", JSON.stringify(data));
