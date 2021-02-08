@@ -118,7 +118,7 @@ const FavoriteScreen = () => {
                 </button>
               ) : (
                 <button
-                  onClick={async () => addToCartHandler()}
+                  onClick={async () => addToCartHandler(item._id)}
                   className="favorite-screen__button"
                 >
                   <TiShoppingCart className="favorite-screen__button--icon" />{" "}

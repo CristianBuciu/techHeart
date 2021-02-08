@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   productListReducer,
   productDetailsReducer,
+  productCreateReviewReducer,
 } from "./product/product.reducers.js";
 import { cartToggleReducer, getCartReducer } from "./cart/cart.reducers.js";
 import {
@@ -45,6 +46,7 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   orderMyOrders: orderGetMyOrdersReducer,
+  productReviewCreate: productCreateReviewReducer,
 });
 
 //! Local storage asignments ================================================

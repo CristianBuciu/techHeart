@@ -23,6 +23,9 @@ const ShippingScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const orderAddressSelector = useSelector((state) => state.orderAddress);
+  const { orderAddress } = orderAddressSelector;
+
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
@@ -30,6 +33,9 @@ const ShippingScreen = () => {
   const { addresses } = userAddresses;
 
   useEffect(() => {
+    if (orderAddress.fullName) {
+      history.push("/payment");
+    }
     if (!userInfo) {
       history.push("/login");
     } else {

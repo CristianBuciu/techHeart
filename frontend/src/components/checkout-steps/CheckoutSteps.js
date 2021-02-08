@@ -2,7 +2,7 @@ import React from "react";
 import "./CheckoutStepts.scss";
 import { Link, useHistory } from "react-router-dom";
 
-import { AiOutlineDoubleRight } from "react-icons/ai";
+import { AiOutlineDoubleRight, AiOutlineCheck } from "react-icons/ai";
 import { GiTechnoHeart } from "react-icons/gi";
 import { useSelector, useDispatch } from "react-redux";
 //!=====================================================================
@@ -39,7 +39,7 @@ const CheckoutSteps = ({ active3 }) => {
           <span
             className={`checkout-steps__number checkout-steps__number--${selectedShipment}`}
           >
-            1
+            {orderAddress.fullName ? <AiOutlineCheck /> : "1"}
           </span>{" "}
           <p
             onClick={() => history.push("/shipping")}
@@ -59,7 +59,7 @@ const CheckoutSteps = ({ active3 }) => {
           <span
             className={`checkout-steps__number  checkout-steps__number--${selectedPayment} `}
           >
-            2
+            {orderPaymentMethod.paymentMethod !== "" ? <AiOutlineCheck /> : "2"}
           </span>{" "}
           <p
             onClick={() => history.push("/payment")}

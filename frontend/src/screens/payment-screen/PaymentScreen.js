@@ -23,6 +23,12 @@ const PaymentScreen = () => {
   const orderPaymentMethod = useSelector((state) => state.orderPaymentMethod);
 
   useEffect(() => {
+    if (
+      orderPaymentMethod.paymentMethod &&
+      orderPaymentMethod.shippingMethod.name
+    ) {
+      history.push("/complete-order");
+    }
     if (!orderAddress.fullName) {
       history.push("/shipping");
     }

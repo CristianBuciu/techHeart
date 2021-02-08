@@ -11,6 +11,7 @@ import LoaderProduct from "../../components/loader-product/LoaderProduct.js";
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import ActionShow from "../../components/action-show/ActionShow.js";
+import AddReview from "../../components/add-review/AddReview.js";
 //!==================================================================
 
 const ProductScreen = ({ match }) => {
@@ -249,6 +250,7 @@ const ProductScreen = ({ match }) => {
           </div>
         </div>
       )}
+      <AddReview />
     </>
   );
 };

@@ -8,7 +8,11 @@ import { useHistory } from "react-router-dom";
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { roundToTwo } from "../../utils.js";
 
-import { createOrder } from "../../redux/order/order.actions";
+import {
+  addOrderAddress,
+  createOrder,
+  saveOrderPaymentMethod,
+} from "../../redux/order/order.actions";
 
 //todo implement gsapp to stop the buy now on screen
 //!=======================================================
@@ -17,9 +21,6 @@ const CompleteOrder = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const orderCreate = useSelector((state) => state.orderCreate);
-  const { order, success, error } = orderCreate;
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -27,6 +28,9 @@ const CompleteOrder = () => {
   const { cartProducts } = cart;
   const orderAddressState = useSelector((state) => state.orderAddress);
   const { orderAddress } = orderAddressState;
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
 
   const orderPaymentMethod = useSelector((state) => state.orderPaymentMethod);
   const paymentMethod = orderPaymentMethod.paymentMethod;
@@ -52,12 +56,15 @@ const CompleteOrder = () => {
   };
   //!==================================================
   useEffect(() => {
+    if (success) {
+      history.push(`/profile/orders/${order._id}`);
+    }
     if (!orderAddress.fullName) {
       history.push("/shipping");
     } else if (!orderPaymentMethod.paymentMethod) {
       history.push("/payment");
     }
-  }, [orderAddress, history, orderPaymentMethod]);
+  }, [orderAddress, history, orderPaymentMethod, order]);
   const removeCartProduct = (id) => {
     const deleteProduct = async () => {
       try {
@@ -84,7 +91,7 @@ const CompleteOrder = () => {
   const totalPrice = roundToTwo(subtotal + shippingMethod.price);
 
   //* Place order action ======================================
-  const placeOrderHandler = () => {
+  const placeOrderHandler = async () => {
     dispatch(
       createOrder({
         orderItems: cartProducts,
@@ -96,16 +103,14 @@ const CompleteOrder = () => {
         totalPrice: roundToTwo(totalPrice),
       })
     );
+
     clearCartHandler();
     dispatch(getCartProducts());
-    if (success) {
-      history.push(`/profile/orders/${order._id}`);
-    }
   };
   //*============================================================
   return (
     <div className="complete-order shipping-section">
-      <CheckoutSteps />
+      <CheckoutSteps active3="selected" />
       <div>
         <h1 className="heading-1  mt-sm mb-sm">Order summary</h1>
       </div>
@@ -125,7 +130,9 @@ const CompleteOrder = () => {
             <p>{orderAddress.phoneNumber}</p>
           </address>
           <span
-            onClick={() => history.push("/shipping")}
+            onClick={() => {
+              dispatch(addOrderAddress({}));
+            }}
             className="complete-order__change-link"
           >
             Change address
@@ -149,7 +156,9 @@ const CompleteOrder = () => {
             {paymentMethod}
           </p>
           <span
-            onClick={() => history.push("/payment")}
+            onClick={() => {
+              dispatch(saveOrderPaymentMethod("", {}));
+            }}
             className="complete-order__change-link"
           >
             Change payment
@@ -170,7 +179,7 @@ const CompleteOrder = () => {
           </p>
 
           <span
-            onClick={() => history.push("/payment")}
+            onClick={() => dispatch(saveOrderPaymentMethod("", {}))}
             className="complete-order__change-link"
           >
             Change shipment

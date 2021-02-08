@@ -1,0 +1,18 @@
+@import "../../sass/base";
+
+.add-review {
+  &__button {
+    padding: 1rem 4rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    color: $color-cta-2;
+    background-color: $color-pallete-1;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      box-shadow: $shadow-normal;
+    }
+  }
+}
