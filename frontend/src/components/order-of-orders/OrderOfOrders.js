@@ -22,6 +22,7 @@ const OrderOfOrders = ({ order }) => {
             <strong>{order._id}</strong>
           </span>
         </p>
+
         <div className="my-orders__order--header__flex">
           <p className="my-orders__order--header__text">
             Order made on{" "}

@@ -12,8 +12,8 @@
   transition: all 0.2s;
   position: relative;
   &:hover {
-    transform: translateY(0.5rem);
     box-shadow: none;
+    border: 1px solid $color-grey-light-1;
   }
   &__card {
     height: 100%;

@@ -20,6 +20,7 @@
       }
       &__flex {
         display: flex;
+
         align-items: center;
         justify-content: space-between;
         width: 50%;
@@ -78,6 +79,7 @@
   &__item {
     width: 22rem;
     box-shadow: $shadow-normal;
+    border: 1px solid $color-grey-light-2;
     border-radius: 0.5rem;
     background: white;
     padding: 0.5rem;

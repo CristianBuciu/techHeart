@@ -102,7 +102,7 @@ const Product = ({ product }) => {
         <div className="product__bottom">
           <span className="product__price-text">Price: </span>
           <span className="product__price-text">
-            <strong>${product.price}</strong>
+            <strong> € {product.price}</strong>
           </span>
         </div>
       </Link>

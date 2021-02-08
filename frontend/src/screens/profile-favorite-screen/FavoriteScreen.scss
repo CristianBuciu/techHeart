@@ -102,9 +102,27 @@
     display: flex;
     align-items: center;
   }
-  &__add-to-cart {
-    z-index: 2;
+  &__button {
     @include custom-btn;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 75%;
+    align-self: center;
+    justify-self: center;
+    grid-row: 3/4;
+    grid-column: 2/3;
+    font-size: 1.4rem;
+    &--icon {
+      margin-right: 0.5rem;
+    }
+  }
+  &__button-disabled {
+    @include custom-btn-disabled;
+    z-index: 2;
+    display: flex;
+    align-items: center;
     width: 50%;
     height: 75%;
     align-self: center;

@@ -7,7 +7,7 @@ import {
 import "./YourInfo.scss";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import { useHistory } from "react-router-dom";
-
+import LoaderGeneric from "../../components/loader-generic/LoaderGeneric";
 //!==================================================
 
 const YourInfo = () => {
@@ -20,7 +20,7 @@ const YourInfo = () => {
   const [message, setMessage] = useState(null);
 
   const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
+  const { user, loading } = userDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -96,7 +96,9 @@ const YourInfo = () => {
       setSuccessColor("alert");
     }
   };
-  return (
+  return loading ? (
+    <LoaderGeneric />
+  ) : (
     <div className="your-info">
       <div className="your-info__header">
         <div className="your-info__header-img">

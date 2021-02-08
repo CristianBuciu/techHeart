@@ -129,7 +129,7 @@ const ProductScreen = ({ match }) => {
           <div className="product-screen__price">
             <h4 className=" product-screen__price--title">PRICE</h4>
             <span className=" product-screen__price--value">
-              $ {product.price}
+              € {product.price}
             </span>
             {product.countInStock > 0 ? (
               <p className="product-screen__stock">

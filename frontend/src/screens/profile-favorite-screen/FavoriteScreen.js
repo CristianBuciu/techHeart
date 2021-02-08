@@ -110,12 +110,21 @@ const FavoriteScreen = () => {
               >
                 Remove Favorite &nbsp; <FaHeartBroken />
               </span>
-              <span
-                onClick={async () => addToCartHandler(item._id)}
-                className="favorite-screen__add-to-cart"
-              >
-                <TiShoppingCart /> &nbsp; Add To Cart
-              </span>
+              {item.countInStock === 0 ? (
+                <button className=" favorite-screen__button-disabled">
+                  {" "}
+                  <TiShoppingCart className="favorite-screen__button--icon" />{" "}
+                  out of stock{" "}
+                </button>
+              ) : (
+                <button
+                  onClick={async () => addToCartHandler()}
+                  className="favorite-screen__button"
+                >
+                  <TiShoppingCart className="favorite-screen__button--icon" />{" "}
+                  Add to cart
+                </button>
+              )}
             </div>
           </div>
         </div>
