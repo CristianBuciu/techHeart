@@ -35,7 +35,7 @@ const AddReview = ({ productId }) => {
 
     4: "Good",
 
-    5: "Excellent+",
+    5: "Excellent",
   };
   const submitReviewHandler = () => {
     const review = {

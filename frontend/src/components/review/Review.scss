@@ -6,6 +6,9 @@
   margin: 1rem auto;
   padding: 1rem;
   border-radius: 0.5rem;
+  @media only screen and (min-device-width: 375px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    width: 100%;
+  }
   &__header {
     display: flex;
     align-items: center;

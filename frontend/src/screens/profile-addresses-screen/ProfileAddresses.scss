@@ -42,19 +42,21 @@
       justify-content: space-evenly;
 
       &--action {
-        color: $color-grey-dark-1 !important;
+        color: $color-cta-2 !important;
         display: flex;
         align-items: center;
         width: 45%;
         justify-content: center;
         font-size: 1.4rem;
-        border: 1px solid $color-pallete-3;
+        background-color: $color-pallete-1;
         border-radius: 0.5rem;
         padding: 0.5rem 1rem;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.2s ease-in-out;
         &:hover {
-          background-color: $color-pallete-1;
+          box-shadow: $shadow-normal;
+          background-color: $color-pallete-4;
+          color: $color-pallete-1 !important;
         }
       }
       &--action:active,
