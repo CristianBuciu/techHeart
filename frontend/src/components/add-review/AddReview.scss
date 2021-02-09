@@ -1,6 +1,10 @@
 @import "../../sass/base";
 
 .add-review {
+  &__whole-body {
+    transform-origin: top;
+    animation: slideDown 0.1s ease-in-out;
+  }
   &__button {
     padding: 1rem 4rem;
     width: 25%;
@@ -15,6 +19,17 @@
     transition: all 0.2s ease-in-out;
     &:hover {
       box-shadow: $shadow-normal;
+    }
+  }
+  &__submit-flex {
+    display: flex;
+    align-items: center;
+  }
+  &__cancel-review {
+    font-size: 1.8rem;
+    cursor: pointer;
+    &:hover {
+      color: $color-alert;
     }
   }
   &__star-select {

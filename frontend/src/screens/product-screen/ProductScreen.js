@@ -16,6 +16,7 @@ import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import ActionShow from "../../components/action-show/ActionShow.js";
 import AddReview from "../../components/add-review/AddReview.js";
+import Review from "../../components/review/Review";
 //!==================================================================
 
 const ProductScreen = ({ match }) => {
@@ -257,6 +258,11 @@ const ProductScreen = ({ match }) => {
         </div>
       )}
       <AddReview productId={product._id} />
+      <div className="line-break"></div>
+
+      {product.reviews.map((review) => (
+        <Review key={review._id} review={review} />
+      ))}
     </>
   );
 };

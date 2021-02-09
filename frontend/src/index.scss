@@ -147,6 +147,21 @@ a:active {
   }
 }
 
+.heading-5 {
+  @extend %heading;
+  font-size: 1.4rem;
+  font-weight: 600;
+  &--light {
+    color: $color-pallete-1;
+  }
+  &--dark {
+    color: $color-primary-dark;
+  }
+  &--center {
+    text-align: center;
+  }
+}
+
 .in-stock {
   color: $color-pallete-2;
   font-weight: 400;

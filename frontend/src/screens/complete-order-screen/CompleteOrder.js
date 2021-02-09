@@ -110,7 +110,7 @@ const CompleteOrder = () => {
   //*============================================================
   return (
     <div className="complete-order shipping-section">
-      <CheckoutSteps active3="selected" />
+      <CheckoutSteps active3="selected-3" />
       <div>
         <h1 className="heading-1  mt-sm mb-sm">Order summary</h1>
       </div>

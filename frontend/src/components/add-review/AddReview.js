@@ -6,6 +6,7 @@ import { BiMessageAdd } from "react-icons/bi";
 import Rating from "@material-ui/lab/Rating";
 import { useSelector, useDispatch } from "react-redux";
 import Box from "@material-ui/core/Box";
+import { BsFillBackspaceFill } from "react-icons/bs";
 import ErrorMessage from "../error-message/ErrorMessage.js";
 //!==========================================================
 const AddReview = ({ productId }) => {
@@ -26,15 +27,14 @@ const AddReview = ({ productId }) => {
     setAddReviewShow(!addReviewShow);
   };
   const labels = {
-    0.5: "Useless",
-    1: "Useless+",
-    1.5: "Poor",
-    2: "Poor+",
-    2.5: "Ok",
-    3: "Ok+",
-    3.5: "Good",
-    4: "Good+",
-    4.5: "Excellent",
+    1: "Useless",
+
+    2: "Poor",
+
+    3: "Ok",
+
+    4: "Good",
+
     5: "Excellent+",
   };
   const submitReviewHandler = () => {
@@ -45,16 +45,27 @@ const AddReview = ({ productId }) => {
     };
     dispatch(createProductReview(productId, review));
     setAddReviewShow(false);
+    refreshPage();
   };
+  function refreshPage() {
+    window.location.reload();
+  }
   return (
     <div className="add-review mt-sm">
       {error ? <ErrorMessage color="alert">{error}</ErrorMessage> : ""}
-      {success ? <ErrorMessage color="success">{error}</ErrorMessage> : ""}
+      {success ? <ErrorMessage color="success">{success}</ErrorMessage> : ""}
       {addReviewShow ? (
-        <button onClick={submitReviewHandler} className="add-review__button">
-          <BiMessageAdd style={{ fontSize: "1.8rem" }} />
-          &nbsp; Submit Review
-        </button>
+        <div className="add-review__submit-flex">
+          <button onClick={submitReviewHandler} className="add-review__button">
+            <BiMessageAdd style={{ fontSize: "1.8rem" }} />
+            &nbsp; Submit Review
+          </button>
+          <BsFillBackspaceFill
+            onClick={() => setAddReviewShow(false)}
+            className="add-review__cancel-review ml-sm"
+            title="Cancel writting review"
+          />
+        </div>
       ) : (
         <button onClick={addReviewHandler} className="add-review__button">
           <AiOutlinePlus style={{ fontSize: "1.8rem" }} />
@@ -62,7 +73,7 @@ const AddReview = ({ productId }) => {
         </button>
       )}
       {addReviewShow ? (
-        <div>
+        <div className="add-review__whole-body">
           <form>
             <div className="add-review__star-select mt-sm mb-sm">
               <h4 className="heading-4 ">Select Rating &nbsp;</h4>
@@ -70,7 +81,7 @@ const AddReview = ({ productId }) => {
                 size="large"
                 name="hover-feedback"
                 value={starValue}
-                precision={0.5}
+                precision={1}
                 onChange={(event, newstarValue) => {
                   setStarValue(newstarValue);
                 }}

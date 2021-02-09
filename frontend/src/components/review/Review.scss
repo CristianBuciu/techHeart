@@ -1,0 +1,27 @@
+@import "../../sass/base";
+
+.review {
+  background-color: $color-grey-light-1;
+  width: 75%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+  &__avatar {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+  }
+  &__created-date {
+    font-size: 1.2rem;
+    color: $color-cta-2;
+  }
+  &__comment {
+    font-size: 1.4rem;
+    color: $color-grey-dark-2;
+  }
+}
