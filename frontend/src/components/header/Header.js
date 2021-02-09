@@ -13,6 +13,10 @@ import UserDropdown from "../user-menu-dropdown/UserDropdown.js";
 import { toggleUserMenuShow } from "../../redux/user/user.actions.js";
 import { useLocation } from "react-router-dom";
 
+import Tooltip from "@material-ui/core/Tooltip";
+import Fade from "@material-ui/core/Fade";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { theme } from "../../utils";
 //!==============================================================
 
 const Header = () => {
@@ -59,14 +63,19 @@ const Header = () => {
               </NavLink>
             </div>
             <div className="nav__icons-container">
-              <NavLink
-                activeClassName="nav__icon nav__icon--heart--active"
-                className="nav__icon nav__icon--heart"
-                to="/profile/favorites"
-              >
-                {" "}
-                <FaHeart />
-              </NavLink>
+              {" "}
+              <MuiThemeProvider theme={theme}>
+                <Tooltip TransitionComponent={Fade} title="Favorites" arrow>
+                  <NavLink
+                    className="nav__icon  nav__icon--heart"
+                    activeClassName="nav__icon--heart--active"
+                    to="/profile/favorites"
+                  >
+                    {" "}
+                    <FaHeart />
+                  </NavLink>
+                </Tooltip>
+              </MuiThemeProvider>
               <div
                 onClick={() => dispatch(toggleCartShow())}
                 className="nav__icon nav__icon--cart"

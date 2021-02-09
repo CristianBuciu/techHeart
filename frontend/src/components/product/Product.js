@@ -8,6 +8,12 @@ import { FaHeart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import { ErrorMessage } from "../error-message/ErrorMessage.js";
+
+import Fade from "@material-ui/core/Fade";
+import Tooltip from "@material-ui/core/Tooltip";
+import { theme } from "../../utils";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+
 import axios from "axios";
 //!==================================================================
 const Product = ({ product }) => {
@@ -107,21 +113,25 @@ const Product = ({ product }) => {
         </div>
       </Link>
       {like ? (
-        <FaHeart
-          onClick={async () => {
-            await removeFromFavoriteHandler(product._id);
-            await dispatch(listFavoriteProducts());
-          }}
-          className="product__heart product__heart--selected"
-        />
+        <span title="Remove from Favorites">
+          <FaHeart
+            onClick={async () => {
+              await removeFromFavoriteHandler(product._id);
+              await dispatch(listFavoriteProducts());
+            }}
+            className="product__heart product__heart--selected"
+          />
+        </span>
       ) : (
-        <FaHeart
-          onClick={async () => {
-            await handleAddUserToLikedArrayAndProductToFavorites(product._id);
-            await dispatch(listFavoriteProducts());
-          }}
-          className="product__heart"
-        />
+        <span title="Add to Favorites">
+          <FaHeart
+            onClick={async () => {
+              await handleAddUserToLikedArrayAndProductToFavorites(product._id);
+              await dispatch(listFavoriteProducts());
+            }}
+            className="product__heart"
+          />
+        </span>
       )}
     </div>
   );

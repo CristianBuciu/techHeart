@@ -56,7 +56,7 @@ export const likedByUser = asyncHandler(async (req, res) => {
 export const createProductReview = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
-  const { rating, comment } = req.body;
+  const { rating, comment, title } = req.body;
 
   if (product) {
     const alreadyReviewd = product.reviews.find(
@@ -74,6 +74,7 @@ export const createProductReview = asyncHandler(async (req, res) => {
     if (hasBoughtTheProduct) {
       const review = {
         name: req.user.name,
+        title: title,
         rating: Number(rating),
         comment: comment,
         user: req.user._id,

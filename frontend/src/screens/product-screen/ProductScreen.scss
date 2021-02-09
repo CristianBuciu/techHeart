@@ -140,7 +140,8 @@
   &__button {
     grid-column: 2/4;
     grid-row: 4/5;
-    height: 50%;
+    padding: 1rem 4rem;
+
     width: 100%;
     align-self: center;
     justify-self: center;
@@ -170,7 +171,8 @@
     letter-spacing: 1px;
     grid-column: 2/4;
     grid-row: 4/5;
-    height: 50%;
+    padding: 1rem 4rem;
+
     width: 100%;
     align-self: center;
     justify-self: center;
@@ -189,6 +191,8 @@
     grid-column: 2/3;
     align-self: center;
     justify-self: center;
+    display: flex;
+    align-items: center;
     @media only screen and (min-device-width: 375px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
       grid-column: 1/2;
       grid-row: 3/4;

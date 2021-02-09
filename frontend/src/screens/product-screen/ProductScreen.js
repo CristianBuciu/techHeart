@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import StarRatings from "react-star-ratings";
+
+import Rating from "@material-ui/lab/Rating";
+
+import Box from "@material-ui/core/Box";
+
 import { FaHeart } from "react-icons/fa";
 import "./ProductScreen.scss";
 import { TiShoppingCart } from "react-icons/ti";
@@ -195,13 +199,15 @@ const ProductScreen = ({ match }) => {
               User Rating:&nbsp;&nbsp;&nbsp;
               <strong>{product.rating}</strong> ({product.numReviews} reviews)
             </span>
-            <StarRatings
-              className="product-screen__rating-stars"
-              rating={product.rating}
-              starDimension="2rem"
-              starSpacing=".25rem"
-              starRatedColor="rgb(255, 180, 3)"
-            />
+            <Box component="fieldset" borderColor="transparent">
+              <Rating
+                name="Product Rating"
+                title="Product Rating"
+                value={product.rating}
+                size="large"
+                readOnly
+              />
+            </Box>
           </div>
           <div className="product-screen__add-favorite">
             {like ? (
@@ -250,7 +256,7 @@ const ProductScreen = ({ match }) => {
           </div>
         </div>
       )}
-      <AddReview />
+      <AddReview productId={product._id} />
     </>
   );
 };
