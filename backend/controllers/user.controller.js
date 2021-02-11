@@ -303,3 +303,37 @@ export const deleteFavoriteProductById = asyncHandler(async (req, res) => {
     throw new Error("Product not found");
   }
 });
+
+//! DESCRIPTION : Get all user reviews
+//! ROUTE       : GET /api/users/profile/reviews
+//! ACCESS      : PRIVATE
+
+export const getAllUserProductReviews = asyncHandler(async (req, res) => {
+  const allReviews = await Product.aggregate([
+    { $match: { "reviews.user": req.user._id } },
+
+    {
+      $project: {
+        reviews: {
+          $filter: {
+            input: "$reviews",
+            as: "reviews",
+            cond: { $eq: ["$$reviews.user", req.user._id] },
+          },
+        },
+
+        image: "$image",
+        productName: "$name",
+        productId: "$_id",
+      },
+    },
+    { $sort: { "reviews.createdAt": -1 } },
+  ]);
+
+  if (allReviews) {
+    res.json(allReviews);
+  } else {
+    res.status(404);
+    throw new Error("User has no reviews");
+  }
+});

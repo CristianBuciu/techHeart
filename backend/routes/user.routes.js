@@ -13,6 +13,7 @@ import {
   addItemToFavorites,
   getAllFavorites,
   deleteFavoriteProductById,
+  getAllUserProductReviews,
 } from "../controllers/user.controller.js";
 import { protect } from "../middleware/authMiddleware.js";
 
@@ -42,5 +43,7 @@ router
 router
   .route("/profile/favorites/:id")
   .delete(protect, deleteFavoriteProductById);
+
+router.route("/profile/reviews").get(protect, getAllUserProductReviews);
 
 export default router;

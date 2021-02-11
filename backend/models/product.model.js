@@ -6,6 +6,7 @@ const reviewSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+
     name: {
       type: String,
       required: true,
@@ -17,12 +18,9 @@ const reviewSchema = mongoose.Schema(
     title: {
       type: String,
     },
+
     comment: {
       type: String,
-    },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
     },
   },
   { timestamps: true }

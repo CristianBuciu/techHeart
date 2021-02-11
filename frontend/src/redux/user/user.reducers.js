@@ -151,3 +151,28 @@ export const getUserFavoriteProductsReducer = (
       return state;
   }
 };
+
+//!=========================================================================
+
+export const getUserProductReviewsReducer = (
+  state = { userReviews: [] },
+  action
+) => {
+  switch (action.type) {
+    case userConstants.USER_GET_ALL_REVIEWS_REQUEST:
+      return { loading: true, ...state };
+    case userConstants.USER_GET_ALL_REVIEWS_SUCCESS:
+      return {
+        loading: false,
+        userReviews: action.payload,
+      };
+    case userConstants.USER_GET_ALL_REVIEWS_FAIL:
+      return {
+        loading: false,
+
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};

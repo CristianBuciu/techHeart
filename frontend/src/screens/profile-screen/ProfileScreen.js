@@ -11,7 +11,7 @@ import gsap from "gsap";
 import AddressEdit from "../address-edit-modal/AddressEdit";
 import FavoriteScreen from "../profile-favorite-screen/FavoriteScreen";
 import OrderScreen from "../order-screen/OrderScreen";
-
+import ProfileReviews from "../profile-reviews-screen/ProfileReviews.js";
 //!=================================================================
 const ProfileScreen = () => {
   return (
@@ -25,6 +25,7 @@ const ProfileScreen = () => {
         <Route exact path="/profile/favorites" component={FavoriteScreen} />{" "}
         <Route exact path="/profile/orders/:id" component={OrderScreen} />
         <Route exact path="/profile/orders" component={ProfileOrders} />
+        <Route exact path="/profile/reviews" component={ProfileReviews} />
       </div>
     </div>
   );

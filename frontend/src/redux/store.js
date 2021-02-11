@@ -16,6 +16,7 @@ import {
   addAddressReducer,
   showUserMenuReducer,
   getUserFavoriteProductsReducer,
+  getUserProductReviewsReducer,
 } from "./user/user.reducers.js";
 import {
   orderAddAddressReducer,
@@ -32,9 +33,14 @@ const reducer = combineReducers({
   cart: getCartReducer,
   cartToggle: cartToggleReducer,
   orderAddress: orderAddAddressReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderMyOrders: orderGetMyOrdersReducer,
+  orderPay: orderPayReducer,
   orderPaymentMethod: orderSavePaymentMethodReducer,
   productDetails: productDetailsReducer,
   productList: productListReducer,
+  productReviewCreate: productCreateReviewReducer,
   showUserMenu: showUserMenuReducer,
   userAddresses: userAddressesReducer,
   userDetails: userDetailsReducer,
@@ -42,11 +48,7 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userUpdateProfile: userUpdateProfileReducer,
-  orderCreate: orderCreateReducer,
-  orderDetails: orderDetailsReducer,
-  orderPay: orderPayReducer,
-  orderMyOrders: orderGetMyOrdersReducer,
-  productReviewCreate: productCreateReviewReducer,
+  userReviews: getUserProductReviewsReducer,
 });
 
 //! Local storage asignments ================================================
@@ -81,6 +83,9 @@ const userFavoriteProductsFromStorage = localStorage.getItem(
 const orderMyOrderFromStorage = localStorage.getItem("orderMyOrder")
   ? JSON.parse(localStorage.getItem("orderMyOrder"))
   : [];
+const userProductReviewsFromStorage = localStorage.getItem("userReviews")
+  ? JSON.parse(localStorage.getItem("userReviews"))
+  : [];
 
 //! INITIAL STATE VALUES ====================================================
 const initialState = {
@@ -99,6 +104,7 @@ const initialState = {
     order: { shippingAddress: {}, orderItems: [] },
   },
   orderMyOrders: { loading: true, orders: orderMyOrderFromStorage },
+  userReviews: { userReviews: userProductReviewsFromStorage },
 };
 
 //! Middleware for async redux ===================================================

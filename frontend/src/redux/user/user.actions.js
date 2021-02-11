@@ -7,8 +7,6 @@ export const toggleUserMenuShow = () => ({
 });
 //?=====================================================================
 
-
-
 //! LOGIN Action ======================================================
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -261,6 +259,38 @@ export const listFavoriteProducts = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: userConstants.USER_GET_FAVORITES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+//?=====================================================================
+
+//! List all Product Reviews Action =====================================
+export const listProductReviews = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: userConstants.USER_GET_ALL_REVIEWS_REQUEST });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get("/api/users/profile/reviews", config);
+    dispatch({
+      type: userConstants.USER_GET_ALL_REVIEWS_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem("userReviews", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: userConstants.USER_GET_ALL_REVIEWS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

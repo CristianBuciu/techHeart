@@ -1,0 +1,26 @@
+@import "../../sass/base";
+
+.profile-reviews {
+  &__image-title {
+    width: 30%;
+    padding: 1rem;
+  }
+  &__product-name {
+    font-weight: 400;
+    color: $color-primary-dark;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+  &__flex {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  &__image {
+    width: 100%;
+    object-fit: cover;
+
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
+}

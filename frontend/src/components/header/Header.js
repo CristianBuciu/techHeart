@@ -17,6 +17,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "@material-ui/core/Fade";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "../../utils";
+import SearchBox from "../searchbox/SearchBox.js";
 //!==============================================================
 
 const Header = () => {
@@ -63,7 +64,7 @@ const Header = () => {
               </NavLink>
             </div>
             <div className="nav__icons-container">
-              {" "}
+              <SearchBox nav__icon />{" "}
               <MuiThemeProvider theme={theme}>
                 <Tooltip TransitionComponent={Fade} title="Favorites" arrow>
                   <NavLink
@@ -114,6 +115,10 @@ const Header = () => {
               )}
             </div>
           </nav>
+          <div
+            style={{ margin: "0 auto", width: "80%", height: "1px" }}
+            className="line-break"
+          ></div>
         </header>
       )}
     </>
