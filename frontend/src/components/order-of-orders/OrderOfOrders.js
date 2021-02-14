@@ -31,10 +31,7 @@ const OrderOfOrders = ({ order }) => {
               <strong>{new Date(order.createdAt).toLocaleString()}</strong>
             </span>
           </p>
-          <p
-            style={{ color: " #ff0bf3" }}
-            className="my-orders__order--header__text"
-          >
+          <p className="my-orders__order--header__text">
             Total:&nbsp;
             <span className="mt-xs">
               {" "}

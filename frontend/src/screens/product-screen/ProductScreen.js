@@ -1,33 +1,41 @@
+//! Core
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-
-import Rating from "@material-ui/lab/Rating";
-
-import Box from "@material-ui/core/Box";
-
-import { FaHeart } from "react-icons/fa";
 import "./ProductScreen.scss";
-import { TiShoppingCart } from "react-icons/ti";
-import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+
+//! Components
 import LoaderProduct from "../../components/loader-product/LoaderProduct.js";
-import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
-import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import ActionShow from "../../components/action-show/ActionShow.js";
 import AddReview from "../../components/add-review/AddReview.js";
 import Review from "../../components/review/Review";
+
+import Rating from "@material-ui/lab/Rating";
+import Box from "@material-ui/core/Box";
+
+//! Icons
+import { FaHeart } from "react-icons/fa";
+import { TiShoppingCart } from "react-icons/ti";
+import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
+
+//! Redux Actions
+import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
+import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+
 //!==================================================================
 
 const ProductScreen = ({ match }) => {
+  //! Hooks declaration
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  //! State
   const [like, setLike] = useState(false);
   const [product, setProduct] = useState({ reviews: [], likedBy: [] });
   const [loading, setLoading] = useState(true);
   const [qty, setQty] = useState(1);
   const [toCart, setToCart] = useState(false);
-
-  const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -115,9 +123,9 @@ const ProductScreen = ({ match }) => {
         <Link className="product-screen__link" to="/">
           &#10092;&#10092; Home
         </Link>
-        <Link className="product-screen__link" to="/shop">
+        <span onClick={() => history.goBack()} className="product-screen__link">
           &#10092;&#10092; Shop
-        </Link>
+        </span>
       </div>
       {loading ? (
         <LoaderProduct />

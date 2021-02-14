@@ -1,11 +1,13 @@
 @import "../../sass/base";
 
 .search-box {
+  width: 100%;
   &__input {
     padding: 0.5rem;
     border-radius: 0.5rem;
     border: 1px solid $color-primary;
     font-family: $font-primary;
     line-height: 1;
+    width: 100%;
   }
 }

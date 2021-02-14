@@ -9,11 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import { ErrorMessage } from "../error-message/ErrorMessage.js";
 
-import Fade from "@material-ui/core/Fade";
-import Tooltip from "@material-ui/core/Tooltip";
-import { theme } from "../../utils";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-
 import axios from "axios";
 //!==================================================================
 const Product = ({ product }) => {
@@ -40,23 +35,26 @@ const Product = ({ product }) => {
     }
   }, [isFavorite]);
 
-  const handleAddUserToLikedArrayAndProductToFavorites = async (id) => {
-    try {
-      if (!userInfo) {
-        history.push("/login");
-      } else {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo.token}`,
-          },
-        };
-        await axios.put(`/api/products/`, { _id: id }, config);
-        await axios.post(`/api/users/profile/favorites`, { _id: id }, config);
+  const handleAddUserToLikedArrayAndProductToFavorites = (id) => {
+    const addProduct = async () => {
+      try {
+        if (!userInfo) {
+          history.push("/login");
+        } else {
+          const config = {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${userInfo.token}`,
+            },
+          };
+          await axios.put(`/api/products/`, { _id: id }, config);
+          await axios.post(`/api/users/profile/favorites`, { _id: id }, config);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
+    };
+    addProduct();
   };
 
   const removeFromFavoriteHandler = (id) => {
@@ -113,24 +111,24 @@ const Product = ({ product }) => {
         </div>
       </Link>
       {like ? (
-        <span title="Remove from Favorites">
-          <FaHeart
-            onClick={async () => {
-              await removeFromFavoriteHandler(product._id);
-              await dispatch(listFavoriteProducts());
-            }}
-            className="product__heart product__heart--selected"
-          />
+        <span
+          onClick={async () => {
+            await removeFromFavoriteHandler(product._id);
+            await dispatch(listFavoriteProducts());
+          }}
+          title="Remove from Favorites"
+        >
+          <FaHeart className="product__heart product__heart--selected" />
         </span>
       ) : (
-        <span title="Add to Favorites">
-          <FaHeart
-            onClick={async () => {
-              await handleAddUserToLikedArrayAndProductToFavorites(product._id);
-              await dispatch(listFavoriteProducts());
-            }}
-            className="product__heart"
-          />
+        <span
+          onClick={async () => {
+            await handleAddUserToLikedArrayAndProductToFavorites(product._id);
+            await dispatch(listFavoriteProducts());
+          }}
+          title="Add to Favorites"
+        >
+          <FaHeart className="product__heart" />
         </span>
       )}
     </div>

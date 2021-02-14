@@ -4,7 +4,7 @@ import "./SearchBox.scss";
 const SearchBox = () => {
   const [keyword, setKeyword] = useState("");
   return (
-    <div className="search-box mr-sm">
+    <div className="search-box">
       <input
         className="search-box__input"
         type="text"

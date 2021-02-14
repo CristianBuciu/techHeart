@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import HomeScreen from "./screens/home-screen/HomeScreen";
+import Shop from "./screens/shop/Shop";
 import { Route } from "react-router-dom";
 import ProductScreen from "./screens/product-screen/ProductScreen";
 import { useSelector, useDispatch } from "react-redux";
@@ -38,7 +38,7 @@ function App() {
             {" "}
           </div>
         ) : null}{" "}
-        <Route path="/shop" render={() => <HomeScreen />} />{" "}
+        <Route path="/shop/:category" component={Shop} />
         <Route path="/product/:id" component={ProductScreen} />{" "}
         <Route path="/login" component={Login} />{" "}
         <Route path="/register" component={Signup} />{" "}

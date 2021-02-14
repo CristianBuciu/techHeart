@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./ProfileSidebar.scss";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import { FaHeart } from "react-icons/fa";
-import { BiDevices } from "react-icons/bi";
+import { BiShoppingBag } from "react-icons/bi";
 //!=======================================================================
 
 function ProfileSidebar() {
@@ -125,7 +125,7 @@ function ProfileSidebar() {
             }}
           >
             ({cartItemsNumber}&nbsp;
-            <BiDevices />)
+            <BiShoppingBag />)
           </i>
         </p>{" "}
       </NavLink>

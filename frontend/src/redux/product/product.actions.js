@@ -3,10 +3,12 @@ import axios from "axios";
 //!=================================================================
 
 //! List all Products Action =======================================
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (cat) => async (dispatch) => {
   try {
     dispatch({ type: productConstants.PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get("/api/products");
+    const { data } = await axios.get("/api/products", {
+      params: { category: cat },
+    });
     dispatch({
       type: productConstants.PRODUCT_LIST_SUCCESS,
       payload: data,

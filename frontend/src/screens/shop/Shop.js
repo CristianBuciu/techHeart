@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import "./HomeScreen.scss";
+import "./Shop.scss";
 import Product from "../../components/product/Product";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useLocation } from "react-router-dom";
 import Loader from "../../components/loader/Loader.js";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 
@@ -12,18 +12,26 @@ import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import { getCartProducts } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
-const HomeScreen = () => {
+const Shop = () => {
+  const location = useLocation();
   //! Using Redux to get the data ========================
   const dispatch = useDispatch();
-
+  console.log(typeof location.pathname);
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
+    if (location.pathname === "/shop/all-products") {
+      dispatch(listProducts({}));
+    } else if (location.pathname === "/shop/electronics") {
+      dispatch(listProducts({ category: "Electronics" }));
+    } else if (location.pathname === "/shop/home-appliances") {
+      dispatch(listProducts({ category: "Home" }));
+    }
+
     dispatch(listFavoriteProducts());
     dispatch(getCartProducts());
-  }, [dispatch]);
+  }, [dispatch, location]);
   //!=======================================================
   return (
     <div className="home-screen">
@@ -48,4 +56,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default Shop;

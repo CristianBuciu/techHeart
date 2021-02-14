@@ -55,16 +55,9 @@ const Header = () => {
               </Link>
             </div>
             <div className="nav__links-container">
-              <NavLink
-                activeClassName="nav__link--active"
-                className="nav__link"
-                to="/shop"
-              >
-                SHOP
-              </NavLink>
+              <SearchBox nav__icon />{" "}
             </div>
             <div className="nav__icons-container">
-              <SearchBox nav__icon />{" "}
               <MuiThemeProvider theme={theme}>
                 <Tooltip TransitionComponent={Fade} title="Favorites" arrow>
                   <NavLink
@@ -116,9 +109,35 @@ const Header = () => {
             </div>
           </nav>
           <div
-            style={{ margin: "0 auto", width: "80%", height: "1px" }}
             className="line-break"
+            style={{ margin: "0 auto", height: "1px", maxWidth: "144rem" }}
           ></div>
+          <nav className="nav__subnav">
+            <h4 className="heading-4 nav__subnav--text mr-md">
+              <NavLink
+                activeClassName="nav__subnav--text nav__subnav--text--active"
+                to="/shop/all-products"
+              >
+                All Products
+              </NavLink>
+            </h4>
+            <h4 className="heading-4 nav__subnav--text mr-md">
+              <NavLink
+                activeClassName="nav__subnav--text nav__subnav--text--active"
+                to="/shop/electronics"
+              >
+                Electronics
+              </NavLink>
+            </h4>
+            <h4 className="heading-4 nav__subnav--text mr-md">
+              <NavLink
+                activeClassName="nav__subnav--text nav__subnav--text--active"
+                to="/shop/home-appliances"
+              >
+                Home Appliances
+              </NavLink>
+            </h4>
+          </nav>
         </header>
       )}
     </>
