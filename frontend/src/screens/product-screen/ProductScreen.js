@@ -6,7 +6,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
 //! Components
-import LoaderProduct from "../../components/loader-product/LoaderProduct.js";
+import LoaderGeneric from "../../components/loader-generic/LoaderGeneric.js";
 import ActionShow from "../../components/action-show/ActionShow.js";
 import AddReview from "../../components/add-review/AddReview.js";
 import Review from "../../components/review/Review";
@@ -125,149 +125,151 @@ const ProductScreen = ({ match }) => {
         </span>
       </div>
       {loading ? (
-        <LoaderProduct />
+        <LoaderGeneric />
       ) : (
-        <div className="product-screen__body">
-          <h1 className="product-screen__name">{product.name}</h1>
-          <div className="product-screen__image-wrapper">
-            <img
-              className="product-screen__image"
-              src={product.image}
-              alt="product"
-            />
-          </div>
-
-          <div className="product-screen__price">
-            <h4 className=" product-screen__price--title">PRICE</h4>
-            <span className=" product-screen__price--value">
-              € {product.price}
-            </span>
-            {product.countInStock > 0 ? (
-              <p className="product-screen__stock">
-                <AiOutlineCheckCircle />
-                &nbsp;&nbsp;Product is in stock
-              </p>
-            ) : (
-              <p className="product-screen__stock product-screen__stock--out">
-                <AiOutlineCloseCircle />
-                &nbsp;&nbsp; Product out of stock
-              </p>
-            )}
-
-            {product.countInStock > 0 && (
-              <div className="product-screen__quantity-selector">
-                <form action="">
-                  <label
-                    className="product-screen__quantity-selector--text"
-                    htmlFor="quantity"
-                  >
-                    Select quantity
-                  </label>
-                  <select
-                    className="product-screen__quantity-selector--selection"
-                    value={qty}
-                    name="quantity"
-                    id="quantity"
-                    onChange={(e) => setQty(e.target.value)}
-                  >
-                    {[...Array(product.countInStock).keys()].map((el) => (
-                      <option
-                        className="product-screen__quantity-selector--option"
-                        key={el + 1}
-                        value={el + 1}
-                      >
-                        {el + 1}
-                      </option>
-                    ))}
-                  </select>
-                </form>
-              </div>
-            )}
-            {product.countInStock === 0 ? (
-              <button className="product-screen__button-disabled">
-                {" "}
-                <TiShoppingCart className="product-screen__button--icon" /> out
-                of stock{" "}
-              </button>
-            ) : (
-              <button
-                onClick={async () => addToCartHandler()}
-                className="product-screen__button"
-              >
-                <TiShoppingCart className="product-screen__button--icon" /> Add
-                to cart
-              </button>
-            )}
-          </div>
-
-          <div className="product-screen__rating">
-            <span className="product__rating-text">
-              User Rating:&nbsp;&nbsp;&nbsp;
-              <strong>{product.rating}</strong> ({product.numReviews} reviews)
-            </span>
-            <Box component="fieldset" borderColor="transparent">
-              <Rating
-                name="Product Rating"
-                title="Product Rating"
-                value={product.rating}
-                size="large"
-                readOnly
+        <>
+          <div className="product-screen__body">
+            <h1 className="product-screen__name">{product.name}</h1>
+            <div className="product-screen__image-wrapper">
+              <img
+                className="product-screen__image"
+                src={product.image}
+                alt="product"
               />
-            </Box>
-          </div>
-          <div className="product-screen__add-favorite">
-            {like ? (
-              <div className="product-screen__add-favorite--flex">
-                <FaHeart
-                  onClick={async () => {
-                    await removeFromFavoriteHandler(product._id);
-                    await dispatch(listFavoriteProducts());
-                  }}
-                  className="product-screen__heart product-screen__heart--selected"
-                />
-                <span className="product-screen__add-favorite--text ml-sm">
-                  FAVORITE PRODUCT
-                </span>{" "}
-              </div>
-            ) : (
-              <div className="product-screen__add-favorite--flex">
-                <FaHeart
-                  onClick={async () => {
-                    await handleAddUserToLikedArrayAndProductToFavorites(
-                      product._id
-                    );
-                    await dispatch(listFavoriteProducts());
-                  }}
-                  className="product-screen__heart"
-                />
-                <span className="product-screen__add-favorite--text ml-sm">
-                  ADD TO FAVORITES
-                </span>
-              </div>
-            )}
-            <span className="product-screen__add-favorite--favorite-by">
-              {" "}
-              ( Favorite by {likedByNumber}{" "}
-              {likedByNumber > 1 ? "users" : "user"} )
-            </span>
-          </div>
-          <div className="product-screen__details">
-            <h3 className="heading-3 product-screen__product-description-title">
-              {" "}
-              <strong>PRODUCT DESCRIPTION</strong>{" "}
-            </h3>
-            <p className="product-screen__details--text">
-              {product.description}
-            </p>
-          </div>
-        </div>
-      )}
-      <AddReview productId={product._id} />
-      <div className="line-break"></div>
+            </div>
 
-      {product.reviews.map((review) => (
-        <Review key={review._id} review={review} />
-      ))}
+            <div className="product-screen__price">
+              <h4 className=" product-screen__price--title">PRICE</h4>
+              <span className=" product-screen__price--value">
+                € {product.price}
+              </span>
+              {product.countInStock > 0 ? (
+                <p className="product-screen__stock">
+                  <AiOutlineCheckCircle />
+                  &nbsp;&nbsp;Product is in stock
+                </p>
+              ) : (
+                <p className="product-screen__stock product-screen__stock--out">
+                  <AiOutlineCloseCircle />
+                  &nbsp;&nbsp; Product out of stock
+                </p>
+              )}
+
+              {product.countInStock > 0 && (
+                <div className="product-screen__quantity-selector">
+                  <form action="">
+                    <label
+                      className="product-screen__quantity-selector--text"
+                      htmlFor="quantity"
+                    >
+                      Select quantity
+                    </label>
+                    <select
+                      className="product-screen__quantity-selector--selection"
+                      value={qty}
+                      name="quantity"
+                      id="quantity"
+                      onChange={(e) => setQty(e.target.value)}
+                    >
+                      {[...Array(product.countInStock).keys()].map((el) => (
+                        <option
+                          className="product-screen__quantity-selector--option"
+                          key={el + 1}
+                          value={el + 1}
+                        >
+                          {el + 1}
+                        </option>
+                      ))}
+                    </select>
+                  </form>
+                </div>
+              )}
+              {product.countInStock === 0 ? (
+                <button className="product-screen__button-disabled">
+                  {" "}
+                  <TiShoppingCart className="product-screen__button--icon" />{" "}
+                  out of stock{" "}
+                </button>
+              ) : (
+                <button
+                  onClick={async () => addToCartHandler()}
+                  className="product-screen__button"
+                >
+                  <TiShoppingCart className="product-screen__button--icon" />{" "}
+                  Add to cart
+                </button>
+              )}
+            </div>
+
+            <div className="product-screen__rating">
+              <span className="product__rating-text">
+                User Rating:&nbsp;&nbsp;&nbsp;
+                <strong>{product.rating}</strong> ({product.numReviews} reviews)
+              </span>
+              <Box component="fieldset" borderColor="transparent">
+                <Rating
+                  name="Product Rating"
+                  title="Product Rating"
+                  value={product.rating}
+                  size="large"
+                  readOnly
+                />
+              </Box>
+            </div>
+            <div className="product-screen__add-favorite">
+              {like ? (
+                <div className="product-screen__add-favorite--flex">
+                  <FaHeart
+                    onClick={async () => {
+                      await removeFromFavoriteHandler(product._id);
+                      await dispatch(listFavoriteProducts());
+                    }}
+                    className="product-screen__heart product-screen__heart--selected"
+                  />
+                  <span className="product-screen__add-favorite--text ml-sm">
+                    FAVORITE PRODUCT
+                  </span>{" "}
+                </div>
+              ) : (
+                <div className="product-screen__add-favorite--flex">
+                  <FaHeart
+                    onClick={async () => {
+                      await handleAddUserToLikedArrayAndProductToFavorites(
+                        product._id
+                      );
+                      await dispatch(listFavoriteProducts());
+                    }}
+                    className="product-screen__heart"
+                  />
+                  <span className="product-screen__add-favorite--text ml-sm">
+                    ADD TO FAVORITES
+                  </span>
+                </div>
+              )}
+              <span className="product-screen__add-favorite--favorite-by">
+                {" "}
+                ( Favorite by {likedByNumber}{" "}
+                {likedByNumber > 1 ? "users" : "user"} )
+              </span>
+            </div>
+            <div className="product-screen__details">
+              <h3 className="heading-3 product-screen__product-description-title">
+                {" "}
+                <strong>PRODUCT DESCRIPTION</strong>{" "}
+              </h3>
+              <p className="product-screen__details--text">
+                {product.description}
+              </p>
+            </div>
+          </div>
+          <AddReview productId={product._id} />
+          <div className="line-break"></div>
+
+          {product.reviews.map((review) => (
+            <Review key={review._id} review={review} />
+          ))}
+        </>
+      )}
     </>
   );
 };

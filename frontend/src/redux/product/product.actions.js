@@ -3,11 +3,11 @@ import axios from "axios";
 //!=================================================================
 
 //! List all Products Action =======================================
-export const listProducts = (cat) => async (dispatch) => {
+export const listProducts = (search, pageNumber = 1) => async (dispatch) => {
   try {
     dispatch({ type: productConstants.PRODUCT_LIST_REQUEST });
     const { data } = await axios.get("/api/products", {
-      params: { search: cat },
+      params: { search: search, pageNumber: pageNumber },
     });
     dispatch({
       type: productConstants.PRODUCT_LIST_SUCCESS,

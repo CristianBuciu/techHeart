@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 5rem;
+  height: 100%;
 
   padding: 0 2rem;
 
@@ -45,6 +45,41 @@
     align-items: center;
     justify-content: center;
     flex: 1;
+  }
+  &__searchbox-container {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  &__subnav {
+    padding: 0 2rem;
+    width: 100%;
+    margin: 0 auto;
+    height: 3rem;
+
+    color: $color-primary-dark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--text {
+      font-family: $font-primary;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: $color-primary-dark;
+      border-bottom: 1px solid transparent;
+
+      &--active {
+        border-bottom: 1px solid $color-cta;
+        color: $color-cta-2;
+      }
+      cursor: pointer;
+      &:hover {
+        color: $color-cta;
+      }
+    }
   }
   &__link {
     font-size: 1.6rem;
@@ -121,33 +156,6 @@
     transition: color 0.1s;
     &:hover {
       color: $color-primary;
-    }
-  }
-
-  &__subnav {
-    padding: 0 2rem;
-    max-width: 144rem;
-    margin: 0 auto;
-    height: 3rem;
-
-    color: $color-primary-dark;
-    display: flex;
-    align-items: center;
-    &--text {
-      font-family: $font-primary;
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: $color-primary-dark;
-      border-bottom: 1px solid transparent;
-
-      &--active {
-        border-bottom: 1px solid $color-cta;
-        color: $color-cta-2;
-      }
-      cursor: pointer;
-      &:hover {
-        color: $color-cta;
-      }
     }
   }
 }

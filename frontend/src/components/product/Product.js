@@ -49,6 +49,7 @@ const Product = ({ product }) => {
           };
           await axios.put(`/api/products/`, { _id: id }, config);
           await axios.post(`/api/users/profile/favorites`, { _id: id }, config);
+          setLike(true);
         }
       } catch (error) {
         console.error(error);
@@ -69,6 +70,7 @@ const Product = ({ product }) => {
         await axios.delete(`/api/users/profile/favorites/${id}`, config);
 
         dispatch(listFavoriteProducts());
+        setLike(false);
       } catch (error) {
         console.log(error);
       }

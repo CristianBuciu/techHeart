@@ -59,9 +59,41 @@ const Header = () => {
                 <h2 className="nav__title">Cyber Heart</h2>
               </Link>
             </div>
-            <div className="nav__links-container">
+
+            <div className=" nav__searchbox-container">
               <SearchBox nav__icon />{" "}
+              <div
+                className="line-break"
+                style={{ margin: "0 auto", height: "1px", width: "100%" }}
+              ></div>
+              <div className="nav__subnav">
+                <h4 className="heading-4 nav__subnav--text mr-md">
+                  <NavLink
+                    activeClassName="nav__subnav--text nav__subnav--text--active"
+                    to="/shop/all-products"
+                  >
+                    All Products
+                  </NavLink>
+                </h4>
+                <h4 className="heading-4 nav__subnav--text mr-md">
+                  <NavLink
+                    activeClassName="nav__subnav--text nav__subnav--text--active"
+                    to="/shop/electronics"
+                  >
+                    Electronics
+                  </NavLink>
+                </h4>
+                <h4 className="heading-4 nav__subnav--text mr-md">
+                  <NavLink
+                    activeClassName="nav__subnav--text nav__subnav--text--active"
+                    to="/shop/home-appliances"
+                  >
+                    Home Appliances
+                  </NavLink>
+                </h4>
+              </div>
             </div>
+
             <div className="nav__icons-container">
               <NavLink
                 title="Favorites"
@@ -111,36 +143,6 @@ const Header = () => {
                 </Link>
               )}
             </div>
-          </nav>
-          <div
-            className="line-break"
-            style={{ margin: "0 auto", height: "1px", maxWidth: "144rem" }}
-          ></div>
-          <nav className="nav__subnav">
-            <h4 className="heading-4 nav__subnav--text mr-md">
-              <NavLink
-                activeClassName="nav__subnav--text nav__subnav--text--active"
-                to="/shop/all-products"
-              >
-                All Products
-              </NavLink>
-            </h4>
-            <h4 className="heading-4 nav__subnav--text mr-md">
-              <NavLink
-                activeClassName="nav__subnav--text nav__subnav--text--active"
-                to="/shop/electronics"
-              >
-                Electronics
-              </NavLink>
-            </h4>
-            <h4 className="heading-4 nav__subnav--text mr-md">
-              <NavLink
-                activeClassName="nav__subnav--text nav__subnav--text--active"
-                to="/shop/home-appliances"
-              >
-                Home Appliances
-              </NavLink>
-            </h4>
           </nav>
         </header>
       )}

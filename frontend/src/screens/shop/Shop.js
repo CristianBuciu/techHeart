@@ -10,6 +10,9 @@ import Loader from "../../components/loader/Loader.js";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import ProductFilter from "../../components/product-filter/ProductFilter.js";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Pagination from "@material-ui/lab/Pagination";
+
 //! Redux actions
 import { listProducts } from "../../redux/product/product.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
@@ -18,50 +21,86 @@ import { getCartProducts } from "../../redux/cart/cart.actions.js";
 //!=======================================================
 const Shop = () => {
   //! Hooks declaration
-
   const location = useLocation();
   const dispatch = useDispatch();
+
+  //! State
+  const [pageParams, setPageParams] = useState(1);
 
   //! Redux data selection hook
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, pages, page } = productList;
 
   //! Use effect
   useEffect(() => {
-    if (location.pathname === "/shop/all-products") {
-      dispatch(listProducts({}));
-    } else if (location.pathname === "/shop/electronics") {
-      dispatch(listProducts({ category: "Electronics" }));
-    } else if (location.pathname === "/shop/home-appliances") {
-      dispatch(listProducts({ category: "Home" }));
+    if (location.pathname === `/shop/all-products`) {
+      dispatch(listProducts({}, 1));
+    } else if (location.pathname === `/shop/electronics`) {
+      dispatch(listProducts({ category: "Electronics" }, 1));
+    } else if (location.pathname === `/shop/home-appliances`) {
+      dispatch(listProducts({ category: "Home" }, 1));
     }
-
+    window.scrollTo(0, 0);
+    setPageParams(1);
     dispatch(listFavoriteProducts());
     dispatch(getCartProducts());
   }, [dispatch, location]);
+
+  //! MaterialUI Pagination Style
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
+  const classes = useStyles();
+
+  //! Handlers
+  const pageChangeHandler = (event, value) => {
+    setPageParams(value);
+    if (location.pathname === `/shop/all-products`) {
+      dispatch(listProducts({}, value));
+    } else if (location.pathname === `/shop/electronics`) {
+      dispatch(listProducts({ category: "Electronics" }, value));
+    } else if (location.pathname === `/shop/home-appliances`) {
+      dispatch(listProducts({ category: "Home" }, value));
+    }
+    window.scrollTo(0, 0);
+    dispatch(listFavoriteProducts());
+  };
   //!=======================================================
   return (
     <div className="shop">
-      <div className="shop__top">
-        <h1 className="heading-1  shop__title">SHOP</h1>
+      <div className="shop__filter">
+        {/* //todo ==========================================
+        <ProductFilter />
+        //todo ========================================== */}
       </div>
 
-      <div className="shop__filter">
-        <ProductFilter />
-      </div>
-      <div className="shop__products">
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <ErrorMessage color="alert">{error}</ErrorMessage>
-        ) : (
-          <>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <ErrorMessage color="alert">{error}</ErrorMessage>
+      ) : (
+        <>
+          <div className="shop__products">
             {products.map((product) => (
               <Product key={product._id} product={product} />
             ))}
-          </>
-        )}
+          </div>
+        </>
+      )}
+
+      <div className={`${classes.root} mt-md pagination-container`}>
+        <Pagination
+          count={Number(pages)}
+          page={Number(pageParams)}
+          onChange={pageChangeHandler}
+          variant="outlined"
+          shape="rounded"
+        />
       </div>
     </div>
   );

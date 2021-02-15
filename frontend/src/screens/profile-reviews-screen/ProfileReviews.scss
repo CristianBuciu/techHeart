@@ -4,6 +4,7 @@
   &__image-title {
     width: 30%;
     padding: 1rem;
+    height: 100%;
   }
   &__product-name {
     font-weight: 400;
@@ -18,7 +19,8 @@
   }
   &__image {
     width: 100%;
-    object-fit: cover;
+    height: 25rem;
+    object-fit: contain;
 
     cursor: pointer;
     border-radius: 0.5rem;

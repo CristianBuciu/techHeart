@@ -28,8 +28,12 @@
   &__image {
     height: 18rem;
     width: 22rem;
-    object-fit: cover;
+    object-fit: contain;
     margin-right: 2rem;
+    transition: 0.2s all ease-in-out;
+    &:hover {
+      transform: scale(0.9);
+    }
   }
   &__item-details {
     z-index: 1;

@@ -21,14 +21,19 @@ const SearchBox = () => {
   //!Handlers
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (keyword.trim().toLowerCase()) {
-      dispatch(
-        listProducts({ name: { $regex: `.*${keyword}.*`, $options: "i" } })
-      );
-      setKeyword("");
-    } else {
-      dispatch(listProducts({}));
-    }
+    const sendToShop = async () => {
+      await history.push("/shop/all-products");
+
+      if (keyword.trim().toLowerCase()) {
+        await dispatch(
+          listProducts({ name: { $regex: `.*${keyword}.*`, $options: "i" } }, 1)
+        );
+        setKeyword("");
+      } else {
+        dispatch(listProducts({}));
+      }
+    };
+    sendToShop();
   };
   return (
     <div className="search-box">

@@ -21,9 +21,6 @@ function App() {
     dispatch(toggleCartShow());
   };
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   return (
     <>
       <Header />
