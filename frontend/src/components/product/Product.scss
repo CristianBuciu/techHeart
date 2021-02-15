@@ -6,7 +6,7 @@
   background-color: white;
   padding: 0.5rem;
   height: 34rem;
-  width: 26rem;
+  width: 25rem;
   border-radius: 1rem;
   box-shadow: $shadow-normal;
   transition: all 0.2s;
@@ -61,7 +61,7 @@
     bottom: 0;
   }
   &:hover &__image {
-    transform: scale(1.1);
+    transform: scale(0.9);
   }
   &:hover &__title {
     color: $color-primary;
@@ -102,6 +102,7 @@
 .out-of-stock {
   border: 1px solid $color-alert;
   position: relative;
+
   &::after {
     content: "OUT OF STOCK";
     border-radius: 0.5rem;

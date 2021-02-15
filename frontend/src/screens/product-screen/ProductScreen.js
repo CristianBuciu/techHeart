@@ -40,9 +40,7 @@ const ProductScreen = ({ match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  //! Getting the state with redux hooks ============================
-
-  //?================================================================
+  //! Redux data selection hook
   const favoriteProductsList = useSelector(
     (state) => state.userFavoriteProducts
   );
@@ -50,7 +48,7 @@ const ProductScreen = ({ match }) => {
   const isFavorite = userFavoriteProducts.find(
     (favoriteProduct) => favoriteProduct._id == product._id
   );
-  //! Get the product by id from the API=============================
+  //! Get the product by id from the API
   useEffect(async () => {
     const { data } = await axios.get(`/api/products/${match.params.id}`);
     setProduct(data);
@@ -63,8 +61,8 @@ const ProductScreen = ({ match }) => {
     }
     return () => clearTimeout();
   }, [match, isFavorite]);
-  //?==================================================================
-  //!Handlers =========================================================
+
+  //!Handlers
   const addToCartHandler = () => {
     dispatch(addToCart(match.params.id, Number(qty)));
     dispatch(getCartProducts());
@@ -114,7 +112,6 @@ const ProductScreen = ({ match }) => {
 
   const likedByNumber = product.likedBy.length;
 
-  //?==================================================================
   return (
     <>
       {toCart ? <ActionShow /> : null}

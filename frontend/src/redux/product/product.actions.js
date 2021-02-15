@@ -7,7 +7,7 @@ export const listProducts = (cat) => async (dispatch) => {
   try {
     dispatch({ type: productConstants.PRODUCT_LIST_REQUEST });
     const { data } = await axios.get("/api/products", {
-      params: { category: cat },
+      params: { search: cat },
     });
     dispatch({
       type: productConstants.PRODUCT_LIST_SUCCESS,

@@ -19,14 +19,14 @@
   &__image {
     width: 20rem;
     height: 12rem;
-    object-fit: cover;
+    object-fit: contain;
     object-position: 50% 50%;
     cursor: pointer;
     transition: all 0.4s ease-in-out;
     transform-origin: center;
     transform: scale(1);
     &:hover {
-      transform: scale(1.1);
+      transform: scale(0.9);
     }
   }
   &__item-details {

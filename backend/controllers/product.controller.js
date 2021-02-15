@@ -6,7 +6,7 @@ import asyncHandler from "express-async-handler";
 //! ROUTE       : GET /API/PRODUCTS
 //! ACCESS      : PUBLIC
 export const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find(JSON.parse(req.query.category));
+  const products = await Product.find(JSON.parse(req.query.search));
 
   res.json(products);
 });
