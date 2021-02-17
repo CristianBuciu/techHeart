@@ -62,10 +62,6 @@ const Header = () => {
 
             <div className=" nav__searchbox-container">
               <SearchBox nav__icon />{" "}
-              <div
-                className="line-break"
-                style={{ margin: "0 auto", height: "1px", width: "100%" }}
-              ></div>
               <div className="nav__subnav">
                 <h4 className="heading-4 nav__subnav--text mr-md">
                   <NavLink
