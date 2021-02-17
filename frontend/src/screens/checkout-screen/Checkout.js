@@ -62,7 +62,7 @@ const Checkout = () => {
             € {roundToTwo(subtotal)}
           </h3>
         </div>
-        {cartItems.length === 0 ? (
+        {cartItemsNumber === 0 ? (
           <button className=" btn-disabled">Cart is empty</button>
         ) : (
           <button

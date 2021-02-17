@@ -26,7 +26,17 @@ const SearchBox = () => {
 
       if (keyword.trim().toLowerCase()) {
         await dispatch(
-          listProducts({ name: { $regex: `.*${keyword}.*`, $options: "i" } }, 1)
+          listProducts(
+            {
+              $or: [
+                { name: { $regex: `.*${keyword}.*`, $options: "i" } },
+                { brand: { $regex: `.*${keyword}.*`, $options: "i" } },
+                { category: { $regex: `.*${keyword}.*`, $options: "i" } },
+                { subcategory: { $regex: `.*${keyword}.*`, $options: "i" } },
+              ],
+            },
+            1
+          )
         );
         setKeyword("");
       } else {

@@ -275,13 +275,18 @@ const CompleteOrder = () => {
           )}
         </div>
         <div className="complete-order__summary">
-          <button
-            onClick={placeOrderHandler}
-            className="complete-order__buy-btn"
-          >
-            PLACE ORDER
-          </button>
-
+          {cartProducts.length === 0 ? (
+            <button className=" complete-order__btn  btn-disabled">
+              Cart is empty
+            </button>
+          ) : (
+            <button
+              onClick={placeOrderHandler}
+              className="complete-order__buy-btn complete-order__btn"
+            >
+              PLACE ORDER
+            </button>
+          )}
           <h3 className="heading-3 complete-order__summary--title">
             Order Price
           </h3>
