@@ -1,0 +1,36 @@
+@import "../../sass/base";
+
+.order {
+  margin-bottom: 1rem;
+  border: 1px solid $color-grey-light-2;
+
+  border-radius: 0.5rem;
+  &--header {
+    background: $color-grey-light-1;
+    border-radius: 1rem;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    padding: 1rem 2rem;
+    &__text {
+      font-size: 1.4rem;
+      display: flex;
+      flex-direction: column;
+    }
+    &__flex {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+      width: 50%;
+      flex-wrap: wrap;
+    }
+  }
+}

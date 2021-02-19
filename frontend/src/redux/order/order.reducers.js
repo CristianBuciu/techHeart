@@ -101,6 +101,7 @@ export const orderGetMyOrdersReducer = (state = { orders: [] }, action) => {
     case orderConstants.ORDER_USER_LIST_REQUEST:
       return {
         loading: true,
+        ...state,
       };
     case orderConstants.ORDER_USER_LIST_SUCCESS:
       return {

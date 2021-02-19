@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useHistory, Link } from "react-router-dom";
+import "./OrderOfOrders.scss";
 //!======================================================
 
 const OrderOfOrders = ({ order }) => {
   const history = useHistory();
 
-  const [showItems, setShowItems] = useState(false);
-
-  const showItemsHandler = () => {
-    setShowItems(!showItems);
-  };
-
   return (
-    <div key={order._id} className="my-orders__order">
-      <div className="my-orders__order--header">
-        <p className="my-orders__order--header__text">
+    <div key={order._id} className="order">
+      <div className="order--header">
+        <p className="order--header__text">
           Order N.º
           <span className="mt-xs">
             {" "}
@@ -23,22 +18,22 @@ const OrderOfOrders = ({ order }) => {
           </span>
         </p>
 
-        <div className="my-orders__order--header__flex">
-          <p className="my-orders__order--header__text">
+        <div className="order--header__flex">
+          <p className="order--header__text">
             Order made on{" "}
             <span className="mt-xs">
               {" "}
               <strong>{new Date(order.createdAt).toLocaleString()}</strong>
             </span>
           </p>
-          <p className="my-orders__order--header__text">
+          <p className="order--header__text">
             Total:&nbsp;
             <span className="mt-xs">
               {" "}
               <strong>€{order.totalPrice}</strong>
             </span>
           </p>
-          <p className="my-orders__order--header__text">
+          <p className="order--header__text">
             Delivered to:&nbsp;
             <span className="mt-xs">
               <strong>{order.shippingAddress.fullName}</strong>
@@ -65,52 +60,50 @@ const OrderOfOrders = ({ order }) => {
         >
           Show Order Details
         </Link>
-        <p
-          className="my-orders__item-show-toggler--toggler"
-          onClick={showItemsHandler}
-        >
-          Show Items bought
-          <IoMdArrowDropdown
-            style={{ fontSize: "2rem" }}
-            className={
-              showItems
-                ? "my-orders__item-show-toggler--dropdown-arrow"
-                : "my-orders__item-show-toggler--dropdown-arrow-revert"
-            }
-          />
-        </p>
       </div>
-      {showItems ? (
-        <div className="my-orders__items-grid">
-          {order.orderItems.map((item) => (
-            <div key={item.product._id} className="my-orders__item mb-sm">
+
+      {order.orderItems.map((item) => (
+        <div key={item.product._id} className="my-orders__items-grid">
+          <div
+            onClick={() => history.push(`/product/${item.product._id}`)}
+            className="my-orders__item "
+          >
+            <div className="my-orders__image--container">
               <img
-                onClick={() => history.push(`/product/${item.product._id}`)}
                 src={item.product.image}
                 alt={item.product.name}
                 className="my-orders__image mr-sm"
               />
-              <div className="my-orders__item-details">
-                <h4
-                  onClick={() => history.push(`/product/${item.product._id}`)}
-                  className="my-orders__item-details--title text-center"
-                >
-                  {item.product.name}
-                </h4>
-                <hr className="mt-xs mb-xs" />
+            </div>
+
+            <div className="my-orders__item-details">
+              <h4 className="my-orders__item-details--title text-center mb-xs">
+                {item.product.name}
+              </h4>
+
+              <div style={{ textAlign: "end" }}>
                 <h4 className="my-orders__item-details">
                   Quantity: {item.quantity}
                 </h4>
                 <h4 className="my-orders__item-details--price price-number">
-                  PRICE: € {item.product.price}
+                  € {item.product.price}
                 </h4>
               </div>
             </div>
-          ))}
+          </div>
+          <div className="my-orders__btn-container">
+            <button className="my-orders__btn-container--btn">
+              Technical Support
+            </button>
+            <button className="my-orders__btn-container--btn">
+              Return Item
+            </button>
+            <button className="my-orders__btn-container--btn">
+              Leave Review
+            </button>
+          </div>
         </div>
-      ) : (
-        ""
-      )}
+      ))}
     </div>
   );
 };

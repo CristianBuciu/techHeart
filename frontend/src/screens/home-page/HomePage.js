@@ -10,12 +10,17 @@ import { roundToTwo } from "../../utils";
 
 //! Components
 import Slider from "react-slick";
+import CarouselProductShow from "../../components/carousel-products/CarouselProductShow";
 
 //! Icons
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 //! Redux Actions
 import { listProducts } from "../../redux/product/product.actions";
 import { listFavoriteProducts } from "../../redux/user/user.actions";
+import { getMyOrders } from "../../redux/order/order.actions";
+import OrderOfOrders from "../../components/order-of-orders/OrderOfOrders";
 //!=====================================================================
 const HomePage = () => {
   //! Hooks declaration
@@ -36,11 +41,21 @@ const HomePage = () => {
   );
   const { userFavoriteProducts } = favoriteProductsList;
 
+  const myLastOrder = useSelector((state) => state.orderMyOrders);
+  let { orders } = myLastOrder;
+  console.log(`The orders are: ${orders}`);
   //! useEffect
 
   useEffect(() => {
-    dispatch(listFavoriteProducts());
-    dispatch(listProducts({ onOffer: true }, 1));
+    try {
+      if (userInfo) {
+        dispatch(getMyOrders());
+      }
+      dispatch(listFavoriteProducts());
+      dispatch(listProducts({ onOffer: true }, 1));
+    } catch (error) {
+      console.log(error);
+    }
   }, [dispatch]);
 
   //! Handlers
@@ -76,53 +91,22 @@ const HomePage = () => {
           >
             <div className="homepage__slider-page">
               <Page>
-                <div className="homepage__carousel--title">
-                  <h1 className="heading-1 text-center">LATEST OFFERS</h1>
-                </div>
-
-                <div className="homepage__carousel--offer-products">
-                  {products
-                    .map((product) => (
-                      <div
-                        onClick={() => history.push(`/product/${product._id}`)}
-                        key={product._id}
-                        className="homepage__carousel--product"
-                      >
-                        <h4 className="mb-xs text-center homepage__carousel--product-name">
-                          {product.name.slice(0, 85)}&nbsp;...
-                        </h4>
-                        <img
-                          className="homepage__carousel--image"
-                          src={product.image}
-                          alt=""
-                        />
-                        <h4 className=" homepage__carousel--discount">
-                          {product.offerPriceDiscount}% discount
-                        </h4>
-                        <h4 className="heading-4 text-center  ">
-                          <s style={{ fontSize: "1.3rem", width: "100%" }}>
-                            {" "}
-                            € {product.price}
-                          </s>
-                          <br />
-                          <span className="homepage__carousel--product-price">
-                            €{" "}
-                            {roundToTwo(
-                              product.price -
-                                product.price *
-                                  (product.offerPriceDiscount / 100)
-                            )}{" "}
-                          </span>
-                        </h4>
-                      </div>
-                    ))
-                    .slice(0, 5)}
-                </div>
-                <div className="homepage__carousel--bottom">
-                  <button className="homepage__carousel--btn">
-                    See all offers
-                  </button>
-                </div>
+                <CarouselProductShow
+                  buttonLink="See all offers"
+                  title="Latest Deals"
+                  roundToTwo={roundToTwo}
+                  products={products}
+                />
+              </Page>
+            </div>
+            <div className="homepage__slider-page">
+              <Page>
+                <CarouselProductShow
+                  buttonLink="Check it out"
+                  title="Latest From Apple"
+                  roundToTwo={roundToTwo}
+                  products={products}
+                />
               </Page>
             </div>
             <div className="homepage__slider-page">top products</div>
@@ -130,7 +114,26 @@ const HomePage = () => {
           </Slider>
         </Wrapper>
       </div>
-      <div className="homepage__user-quicklook">user quicklook</div>
+      {userInfo ? (
+        <div className="homepage__user-quicklook">
+          <h4 className="heading-4 homepage__welcome-message">
+            Welcome {userInfo.name}
+          </h4>
+          <div>
+            <h4 className="heading-4 mb-sm">Last Order: </h4>
+            {orders
+              .map((order) => (
+                <div key={order._id}>
+                  <OrderOfOrders order={order} />
+                </div>
+              ))
+              .slice(0, 1)}
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div className="homepage__select-category">select category</div>
       <div className="homepage__favorites-quicklook">select category</div>
     </div>

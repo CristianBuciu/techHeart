@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link,useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import { login } from "../../redux/user/user.actions.js";
@@ -7,14 +7,14 @@ import "./Login.scss";
 
 //!==========================================================
 const Login = ({ location }) => {
-  const history=useHistory();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { error, userInfo } = userLogin;
 
-  const redirect = location.search ? location.search.split("+")[1] : "/shop";
+  const redirect = location.search ? location.search.split("+")[1] : "/";
 
   //! Check if we are logged in so you get a redirect if you try to access the login route while logged in
 

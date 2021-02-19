@@ -88,7 +88,7 @@ const Product = ({ product }) => {
       <Link className="product__card" to={`/product/${product._id}`}>
         {product.onOffer ? (
           <div className="product__discount-message">
-            Product discounted {product.offerPriceDiscount}%
+            {product.offerPriceDiscount}% discount
           </div>
         ) : (
           ""

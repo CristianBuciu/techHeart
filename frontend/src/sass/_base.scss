@@ -95,6 +95,7 @@ $translate-hover: translateY(-0.5rem);
     color: white;
   }
 }
+
 @mixin custom-btn-disabled {
   cursor: not-allowed;
   border: none;
@@ -108,4 +109,24 @@ $translate-hover: translateY(-0.5rem);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin custom-btn-secundary {
+  border: 1px solid $color-pallete-3;
+  color: $color-cta-2 !important;
+  display: flex;
+  align-items: center;
+  width: 45%;
+  justify-content: center;
+  font-size: 1.4rem;
+  background-color: $color-pallete-1;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: $shadow-normal;
+    background-color: $color-pallete-4;
+    color: $color-pallete-1 !important;
+  }
 }
