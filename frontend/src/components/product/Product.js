@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import "./Product.scss";
 import { Link, useHistory } from "react-router-dom";
+import { roundToTwo } from "../../utils";
 import StarRatings from "react-star-ratings";
 
 import { FaHeart } from "react-icons/fa";
@@ -85,14 +86,43 @@ const Product = ({ product }) => {
       }
     >
       <Link className="product__card" to={`/product/${product._id}`}>
+        {product.onOffer ? (
+          <div className="product__discount-message">
+            Product discounted {product.offerPriceDiscount}%
+          </div>
+        ) : (
+          ""
+        )}
         <div className="product__image-container">
           <img className="product__image" src={product.image} alt="" />
         </div>
         <h3 className="heading-4 heading-4--center product__title">
           {product.name}
         </h3>
-        <div className="product__center">
-          <span className="product__rating-text">Rating:</span>
+        <div className="product__bottom">
+          <span className="product__price-text">
+            {product.onOffer ? (
+              <strong>
+                <s style={{ fontSize: "1.3rem" }}> € {product.price}</s>&nbsp; €{" "}
+                {roundToTwo(
+                  product.price -
+                    product.price * (product.offerPriceDiscount / 100)
+                )}{" "}
+              </strong>
+            ) : (
+              <strong>
+                {" "}
+                €{" "}
+                {roundToTwo(
+                  product.price -
+                    product.price * (product.offerPriceDiscount / 100)
+                )}{" "}
+              </strong>
+            )}
+          </span>
+        </div>
+        <div className="product__center mt-xs">
+          <span className="product__rating-text"></span>
           <div className="product__rating-stars">
             <span className="product__rating-text">
               <strong>{product.rating}</strong> ({product.numReviews})
@@ -104,12 +134,6 @@ const Product = ({ product }) => {
               starRatedColor="rgb(255, 180, 3)"
             />
           </div>
-        </div>
-        <div className="product__bottom">
-          <span className="product__price-text">Price: </span>
-          <span className="product__price-text">
-            <strong> € {product.price}</strong>
-          </span>
         </div>
       </Link>
       {like ? (

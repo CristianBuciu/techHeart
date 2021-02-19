@@ -2,9 +2,9 @@
 
 .product {
   z-index: 3;
-  border: 1px solid transparent;
+
   background-color: white;
-  padding: 0.5rem;
+  padding: 2rem 1rem;
   height: 34rem;
   width: 25rem;
   border-radius: 1rem;
@@ -13,7 +13,23 @@
   position: relative;
   &:hover {
     box-shadow: none;
-    border: 1px solid $color-grey-light-1;
+  }
+  &__discount-message {
+    text-align: center;
+    width: 100%;
+    background-color: $color-pallete-5;
+    padding: 0.2rem;
+    font-weight: 600;
+    color: $color-cta-2;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    font-size: 1.2rem;
+
+    position: absolute;
+    top: 0rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
   }
   &__card {
     height: 100%;
@@ -100,7 +116,6 @@
 }
 
 .out-of-stock {
-  border: 1px solid $color-alert;
   position: relative;
 
   &::after {
@@ -109,7 +124,7 @@
     width: 75%;
     height: fit-content;
     position: absolute;
-    top: 15rem;
+    top: 14rem;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;

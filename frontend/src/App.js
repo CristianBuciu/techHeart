@@ -12,6 +12,7 @@ import ProfileScreen from "./screens/profile-screen/ProfileScreen.js";
 import ShippingScreen from "./screens/shipping-screen/ShippingScreen.js";
 import PaymentScreen from "./screens/payment-screen/PaymentScreen";
 import CompleteOrder from "./screens/complete-order-screen/CompleteOrder";
+import HomePage from "./screens/home-page/HomePage";
 
 //!==================================================================
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/login" component={Login} />{" "}
         <Route path="/register" component={Signup} />{" "}
         <Route path="/profile" component={ProfileScreen} />{" "}
+        <Route exact path="/" component={HomePage} />{" "}
       </main>{" "}
       <Footer className="footer" />
     </>

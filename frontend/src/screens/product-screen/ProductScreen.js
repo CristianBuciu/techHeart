@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./ProductScreen.scss";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-
+import { roundToTwo } from "../../utils";
 //! Components
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric.js";
 import ActionShow from "../../components/action-show/ActionShow.js";
@@ -49,11 +49,13 @@ const ProductScreen = ({ match }) => {
     (favoriteProduct) => favoriteProduct._id == product._id
   );
   //! Get the product by id from the API
-  useEffect(async () => {
-    const { data } = await axios.get(`/api/products/${match.params.id}`);
-    setProduct(data);
-    setLoading(false);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
+      setProduct(data);
+      setLoading(false);
+    };
+    fetchData();
     if (isFavorite) {
       setLike(true);
     } else {
@@ -121,7 +123,7 @@ const ProductScreen = ({ match }) => {
           &#10092;&#10092; Home
         </Link>
         <span onClick={() => history.goBack()} className="product-screen__link">
-          &#10092;&#10092; Shop
+          &#10092;&#10092; Back
         </span>
       </div>
       {loading ? (
@@ -141,7 +143,30 @@ const ProductScreen = ({ match }) => {
             <div className="product-screen__price">
               <h4 className=" product-screen__price--title">PRICE</h4>
               <span className=" product-screen__price--value">
-                € {product.price}
+                {product.onOffer ? (
+                  <strong style={{ textAlign: "center" }}>
+                    {" "}
+                    €{" "}
+                    {roundToTwo(
+                      product.price -
+                        product.price * (product.offerPriceDiscount / 100)
+                    )}{" "}
+                    <br />
+                    <s style={{ fontSize: "1.3rem", width: "100%" }}>
+                      {" "}
+                      € {product.price}
+                    </s>
+                  </strong>
+                ) : (
+                  <strong>
+                    {" "}
+                    €{" "}
+                    {roundToTwo(
+                      product.price -
+                        product.price * (product.offerPriceDiscount / 100)
+                    )}{" "}
+                  </strong>
+                )}
               </span>
               {product.countInStock > 0 ? (
                 <p className="product-screen__stock">
