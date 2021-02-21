@@ -84,3 +84,24 @@ export const createProductReview = (productId, review) => async (
   }
 };
 //?=====================================================================
+
+//! List all Categories Action =======================================
+export const listCategories = () => async (dispatch) => {
+  try {
+    dispatch({ type: productConstants.PRODUCT_GET_CATEGORIES_REQUEST });
+    const { data } = await axios.get("/api/products/category");
+    dispatch({
+      type: productConstants.PRODUCT_GET_CATEGORIES_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem("productCategories", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: productConstants.PRODUCT_GET_CATEGORIES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

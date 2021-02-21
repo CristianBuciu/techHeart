@@ -27,7 +27,13 @@ const CartDropdown = () => {
     0
   );
   const subtotal = cartProducts.reduce(
-    (accum, cartItem) => accum + cartItem.quantity * cartItem.product.price,
+    (accum, cartItem) =>
+      accum +
+      cartItem.quantity *
+        roundToTwo(
+          cartItem.product.price -
+            cartItem.product.price * (cartItem.product.offerPriceDiscount / 100)
+        ),
     0
   );
 
@@ -92,7 +98,10 @@ const CartDropdown = () => {
             />
           </div>
           <div className="cart__details">
-            <h3 className="cart__details--title">
+            <h3
+              onClick={() => goToProductPage(item.product._id)}
+              className="cart__details--title"
+            >
               {item.product.name}{" "}
               <AiOutlineDelete
                 onClick={() => removeCartProduct(item._id)}
@@ -102,7 +111,10 @@ const CartDropdown = () => {
             <h3 className="cart__details--price">
               Price: &nbsp;
               <span className="cart__details--price-value">
-                {item.product.price}
+                {roundToTwo(
+                  item.product.price -
+                    item.product.price * (item.product.offerPriceDiscount / 100)
+                )}
               </span>
             </h3>
             <h3 className="cart__details--quantity">
@@ -113,7 +125,15 @@ const CartDropdown = () => {
             </h3>
             <h3 className="cart__details--total">TOTAL:</h3>
             <h3 className="cart__details--total-value price-number">
-              € {roundToTwo(item.quantity * item.product.price)}
+              €{" "}
+              {roundToTwo(
+                item.quantity *
+                  roundToTwo(
+                    item.product.price -
+                      item.product.price *
+                        (item.product.offerPriceDiscount / 100)
+                  )
+              )}
             </h3>
           </div>
         </div>

@@ -14,7 +14,7 @@ const CarouselProductShow = ({ products, roundToTwo, title, buttonLink }) => {
 
   const history = useHistory();
   return (
-    <>
+    <div className="carousel">
       <div className="carousel--title">
         <h1 className="heading-1 text-center">{title}</h1>
       </div>
@@ -27,10 +27,6 @@ const CarouselProductShow = ({ products, roundToTwo, title, buttonLink }) => {
               key={product._id}
               className="carousel--product"
             >
-              <h4 className="mb-xs text-center carousel--product-name">
-                {product.name.slice(0, 85)}&nbsp;...
-              </h4>
-              <img className="carousel--image" src={product.image} alt="" />
               {product.onOffer ? (
                 <h4 className=" carousel--discount">
                   {product.offerPriceDiscount}% discount
@@ -38,6 +34,11 @@ const CarouselProductShow = ({ products, roundToTwo, title, buttonLink }) => {
               ) : (
                 ""
               )}
+
+              <img className="carousel--image" src={product.image} alt="" />
+              <h4 className="mt-xs mb-sm text-center carousel--product-name">
+                {product.name.slice(0, 85)}&nbsp;...
+              </h4>
               {product.onOffer ? (
                 <h4 className="heading-4 text-center  ">
                   <s style={{ fontSize: "1.3rem", width: "100%" }}>
@@ -68,7 +69,7 @@ const CarouselProductShow = ({ products, roundToTwo, title, buttonLink }) => {
       <div className="carousel--bottom">
         <button className="carousel--btn">{buttonLink}</button>
       </div>
-    </>
+    </div>
   );
 };
 

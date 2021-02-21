@@ -5,6 +5,7 @@ import {
   productListReducer,
   productDetailsReducer,
   productCreateReviewReducer,
+  productGetCategoriesReducer,
 } from "./product/product.reducers.js";
 import { cartToggleReducer, getCartReducer } from "./cart/cart.reducers.js";
 import {
@@ -49,6 +50,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userUpdateProfile: userUpdateProfileReducer,
   userReviews: getUserProductReviewsReducer,
+  productCategories: productGetCategoriesReducer,
 });
 
 //! Local storage asignments ================================================
@@ -86,6 +88,9 @@ const orderMyOrderFromStorage = localStorage.getItem("orderMyOrder")
 const userProductReviewsFromStorage = localStorage.getItem("userReviews")
   ? JSON.parse(localStorage.getItem("userReviews"))
   : [];
+const productCategoriesFromStorage = localStorage.getItem("productCategories")
+  ? JSON.parse(localStorage.getItem("productCategories"))
+  : [];
 
 //! INITIAL STATE VALUES ====================================================
 const initialState = {
@@ -105,6 +110,7 @@ const initialState = {
   },
   orderMyOrders: { loading: true, orders: orderMyOrderFromStorage },
   userReviews: { userReviews: userProductReviewsFromStorage },
+  productCategories: { categories: productCategoriesFromStorage },
 };
 
 //! Middleware for async redux ===================================================

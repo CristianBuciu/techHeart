@@ -51,3 +51,22 @@ export const productCreateReviewReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const productGetCategoriesReducer = (
+  state = { categories: [] },
+  action
+) => {
+  switch (action.type) {
+    case productConstants.PRODUCT_GET_CATEGORIES_REQUEST:
+      return { ...state, loading: true };
+    case productConstants.PRODUCT_GET_CATEGORIES_SUCCESS:
+      return {
+        loading: false,
+        categories: action.payload,
+      };
+    case productConstants.PRODUCT_GET_CATEGORIES_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

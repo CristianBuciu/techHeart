@@ -5,7 +5,6 @@
     cursor: pointer;
   }
   &--title {
-    border-radius: 0.5rem;
     background-image: linear-gradient(
       to bottom,
       #ffcefd,
@@ -17,6 +16,8 @@
     padding: 2rem;
   }
   &--offer-products {
+    height: 100%;
+
     padding: 2rem;
     background-color: white;
     width: 100%;
@@ -32,12 +33,11 @@
     }
   }
   &--product-price {
-    color: $color-alert;
-    font-weight: 600;
+    color: black;
+    font-weight: 800;
     align-self: flex-end;
   }
   &--product-name {
-    height: 4rem;
     font-size: 1.2rem;
   }
   &--discount {

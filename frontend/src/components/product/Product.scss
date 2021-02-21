@@ -2,23 +2,24 @@
 
 .product {
   z-index: 3;
-
+  border: 1px solid $color-grey-light-1;
   background-color: white;
   padding: 2rem 1rem;
   height: 34rem;
   width: 25rem;
   border-radius: 1rem;
-  box-shadow: $shadow-normal;
+  box-shadow: none;
   transition: all 0.2s;
   position: relative;
   &:hover {
-    box-shadow: none;
+    box-shadow: $shadow-normal;
   }
   &__discount-message {
     text-align: center;
     width: 100%;
     background-color: $color-pallete-5;
     padding: 0.2rem;
+
     font-weight: 600;
     color: $color-cta-2;
     border-top-left-radius: 1rem;
@@ -85,10 +86,12 @@
 
   &__title {
     text-decoration: none;
-    color: $color-primary-dark;
+    color: $color-grey-dark-2;
     padding-top: 1.5rem;
     padding-bottom: 0.5rem;
-
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: $font-primary;
     height: 40%;
     transition: all 0.2s;
   }
@@ -100,7 +103,7 @@
   &__rating-text {
     font-size: 1.4rem;
     margin-right: 1rem;
-    color: $color-grey-dark-2;
+    color: $color-primary-dark;
     font-weight: 400;
   }
   &__bottom {
@@ -110,7 +113,7 @@
   }
   &__price-text {
     font-size: 1.4rem;
-    color: $color-grey-dark-2;
+    color: $color-primary-dark;
     font-weight: 400;
   }
 }

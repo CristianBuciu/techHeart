@@ -103,3 +103,27 @@ export const createProductReview = asyncHandler(async (req, res) => {
     throw new Error("Product not found");
   }
 });
+
+//! DESCRIPTION : FETCH ALL CATEGFORIES
+//! ROUTE       : GET /API/PRODUCTS/category
+//! ACCESS      : PUBLIC
+export const getCategories = asyncHandler(async (req, res) => {
+  const categories = await Product.aggregate([
+    {
+      $group: {
+        _id: "$subcategory",
+        image: { $last: "$image" },
+        category: { $first: "$category" },
+      },
+    },
+    { $sort: { _id: 1 } },
+    { $project: { category: 1, subcategory: 1, image: 1 } },
+  ]);
+
+  if (categories) {
+    res.json(categories);
+  } else {
+    res.status(404);
+    throw new Error("There are no products");
+  }
+});

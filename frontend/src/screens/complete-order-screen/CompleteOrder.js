@@ -85,7 +85,13 @@ const CompleteOrder = () => {
   };
 
   const subtotal = cartProducts.reduce(
-    (accum, cartItem) => accum + cartItem.quantity * cartItem.product.price,
+    (accum, cartItem) =>
+      accum +
+      cartItem.quantity *
+        roundToTwo(
+          cartItem.product.price -
+            cartItem.product.price * (cartItem.product.offerPriceDiscount / 100)
+        ),
     0
   );
   const totalPrice = roundToTwo(subtotal + shippingMethod.price);
@@ -222,7 +228,13 @@ const CompleteOrder = () => {
                     PRICE:
                   </h4>
                   <h4 className="heading-4 complete-order__item-details--price-value">
-                    € {item.product.price} &#10006;&nbsp;
+                    €{" "}
+                    {roundToTwo(
+                      item.product.price -
+                        item.product.price *
+                          (item.product.offerPriceDiscount / 100)
+                    )}{" "}
+                    &#10006;&nbsp;
                     {item.product.countInStock > 0 && (
                       <div className="complete-order__quantity-selector complete-order__quantity-selector">
                         <form action="">

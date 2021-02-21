@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { useHistory, Link } from "react-router-dom";
 import "./OrderOfOrders.scss";
+import { roundToTwo } from "../../utils";
 //!======================================================
 
 const OrderOfOrders = ({ order }) => {
@@ -86,7 +86,12 @@ const OrderOfOrders = ({ order }) => {
                   Quantity: {item.quantity}
                 </h4>
                 <h4 className="my-orders__item-details--price price-number">
-                  € {item.product.price}
+                  €{" "}
+                  {roundToTwo(
+                    item.product.price -
+                      item.product.price *
+                        (item.product.offerPriceDiscount / 100)
+                  )}
                 </h4>
               </div>
             </div>

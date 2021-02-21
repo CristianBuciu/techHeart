@@ -24,7 +24,13 @@ const Checkout = () => {
   );
   //todo if the item is in cart but it runs out of stock it still calculates it to the total... do a check to eliminate the cart item out of stock first
   const subtotal = cartProducts.reduce(
-    (accum, cartItem) => accum + cartItem.quantity * cartItem.product.price,
+    (accum, cartItem) =>
+      accum +
+      cartItem.quantity *
+        roundToTwo(
+          cartItem.product.price -
+            cartItem.product.price * (cartItem.product.offerPriceDiscount / 100)
+        ),
     0
   );
 
@@ -98,7 +104,12 @@ const Checkout = () => {
               PRICE:
             </h3>
             <h3 className="heading-3 checkout-screen__item-details--price-value">
-              € {item.product.price} &#10006;&nbsp;
+              €{" "}
+              {roundToTwo(
+                item.product.price -
+                  item.product.price * (item.product.offerPriceDiscount / 100)
+              )}{" "}
+              &#10006;&nbsp;
               {item.product.countInStock > 0 && (
                 <div className="product-screen__quantity-selector checkout-screen__quantity-selector">
                   <form action="">
