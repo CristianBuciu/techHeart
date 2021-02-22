@@ -94,6 +94,9 @@ const ProductCategory = () => {
         <ErrorMessage color="alert">{error}</ErrorMessage>
       ) : (
         <>
+          <h2 className="mb-md heading-2 text-center">
+            {match.params.category.replace("-", " ").toUpperCase()}
+          </h2>
           <div className="shop__products">
             {products.map((product) => (
               <Product key={product._id} product={product} />

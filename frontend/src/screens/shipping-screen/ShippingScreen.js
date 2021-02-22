@@ -1,21 +1,27 @@
+//! Core
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./ShippingScreen.scss";
-import { getUserAddresses } from "../../redux/user/user.actions.js";
-import AddAddress from "../../components/add-address/AddAddress";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
+
+//! Components
+import AddAddress from "../../components/add-address/AddAddress";
+import AddressEdit from "../../modals/address-edit-modal/AddressEdit";
 import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
+
+//! Redux Actions
+import { getUserAddresses } from "../../redux/user/user.actions.js";
 import { addOrderAddress } from "../../redux/order/order.actions.js";
-import { AiOutlineDoubleRight } from "react-icons/ai";
-import AddressEdit from "../address-edit-modal/AddressEdit.js";
+
+//! Icons
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 
 //!=======================================================
 const ShippingScreen = () => {
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
 
   const [addAddressShow, setAddAddressShow] = useState(false);

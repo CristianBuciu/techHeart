@@ -31,12 +31,9 @@
   &__item {
     display: flex;
     height: 8rem;
-    background: $color-grey-light-1;
+
     transition: 0.2s ease-in-out;
     margin-right: 4rem;
-    &:hover {
-      box-shadow: $shadow-normal;
-    }
   }
   &__image {
     width: 11rem;
@@ -46,11 +43,18 @@
     cursor: pointer;
   }
   &__item-details {
+    padding: 0.5rem 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+    background: $color-grey-light-1;
+    &:hover {
+      box-shadow: $shadow-normal;
+    }
     &--title {
+      font-family: $font-primary;
+      font-weight: 400;
+      font-size: 1.4rem;
       cursor: pointer;
       transition: all 0.1s;
       color: $color-primary-dark;
@@ -59,7 +63,7 @@
       }
     }
     &--price {
-      color: $color-grey-dark-2;
+      color: $color-primary-dark;
     }
   }
   &__payment {

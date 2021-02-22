@@ -7,7 +7,8 @@
   border-radius: 0.5rem;
   &--header {
     background: $color-grey-light-1;
-    border-radius: 1rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
     border: none;
 
     display: flex;
@@ -26,7 +27,6 @@
     }
     &__flex {
       display: flex;
-
       align-items: center;
       justify-content: space-between;
       width: 50%;

@@ -26,6 +26,9 @@ const SearchBox = () => {
     dispatch({ type: productConstants.PRODUCT_LIST_RESET });
     setKeyword("");
   };
+  const handleChange = (e) => {
+    setKeyword(e.target.value);
+  };
   return (
     <div className="search-box">
       <form onSubmit={handleSearchSubmit}>
@@ -35,7 +38,7 @@ const SearchBox = () => {
           title="Search for products"
           placeholder="Search all products ..."
           value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
+          onChange={handleChange}
         />
         <button title="Search" className="search-box__search-btn">
           <BiSearchAlt />

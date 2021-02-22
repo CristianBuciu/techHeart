@@ -116,7 +116,7 @@ const FavoriteScreen = () => {
               </span>
               <h4 className="heading-4 favorite-screen__item-details--price">
                 PRICE:{" "}
-                <span className="heading-3 favorite-screen__item-details--price-value price-number">
+                <span className=" favorite-screen__item-details--price-value price-number">
                   €{" "}
                   {roundToTwo(
                     item.price - item.price * (item.offerPriceDiscount / 100)

@@ -1,14 +1,17 @@
+//! Core
 import React from "react";
 import "./ProfileScreen.scss";
 import { Route } from "react-router-dom";
+//todo ADD GSAP SCROLL TO MAKE LEFT MENU STICKY
+import gsap from "gsap";
+
+//! Components
 import ProfileSidebar from "../../components/profile-sidebar/ProfileSidebar.js";
 import YourInfo from "../profile-info-screen/YourInfo.js";
 import ProfileAddresses from "../profile-addresses-screen/ProfileAddresses.js";
 import Checkout from "../checkout-screen/Checkout.js";
 import ProfileOrders from "../profile-orders/ProfileOrders";
-//todo ADD GSAP SCROLL TO MAKE LEFT MENU STICKY
-import gsap from "gsap";
-import AddressEdit from "../address-edit-modal/AddressEdit";
+import AddressEdit from "../../modals/address-edit-modal/AddressEdit";
 import FavoriteScreen from "../profile-favorite-screen/FavoriteScreen";
 import OrderScreen from "../order-screen/OrderScreen";
 import ProfileReviews from "../profile-reviews-screen/ProfileReviews.js";

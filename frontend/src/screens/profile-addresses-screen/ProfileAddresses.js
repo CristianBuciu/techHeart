@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserAddresses } from "../../redux/user/user.actions.js";
 import "./ProfileAddresses.scss";
-import AddressEdit from "../address-edit-modal/AddressEdit.js";
+import AddressEdit from "../../modals/address-edit-modal/AddressEdit";
 import AddAddress from "../../components/add-address/AddAddress.js";
 import axios from "axios";
 //!=============================================

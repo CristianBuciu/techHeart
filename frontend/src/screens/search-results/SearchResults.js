@@ -104,7 +104,6 @@ const SearchResults = () => {
       )
     );
     window.scrollTo(0, 0);
-    dispatch(listFavoriteProducts());
   };
   //!=======================================================
   return (
@@ -121,6 +120,12 @@ const SearchResults = () => {
         <ErrorMessage color="alert">{error}</ErrorMessage>
       ) : (
         <>
+          <h4 className="heading-4 mb-md">
+            Search results for:{" "}
+            <span style={{ fontWeight: "400", color: "#ff0bf3" }}>
+              {match.params.keyword}
+            </span>
+          </h4>
           <div className="shop__products">
             {products.map((product) => (
               <Product key={product._id} product={product} />

@@ -1,16 +1,24 @@
+//! Core
 import React, { useState, useEffect } from "react";
 import "./OrderScreen.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { GrPaypal, GrStripe } from "react-icons/gr";
-import { BsCreditCard } from "react-icons/bs";
 import { useHistory, Link } from "react-router-dom";
+import axios from "axios";
+import { roundToTwo } from "../../utils";
+
+//! Components
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric.js";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
-import { getOrderDetails, payOrder } from "../../redux/order/order.actions";
-import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
-import { orderConstants } from "../../redux/order/order.constants.js";
+
+//! Icons
+import { GrPaypal, GrStripe } from "react-icons/gr";
+import { BsCreditCard } from "react-icons/bs";
+
+//! Redux Actions
 import { getCartProducts } from "../../redux/cart/cart.actions.js";
+import { getOrderDetails, payOrder } from "../../redux/order/order.actions";
+import { orderConstants } from "../../redux/order/order.constants.js";
 
 //todo implement gsapp to stop the buy now on screen
 //!=======================================================
@@ -187,7 +195,12 @@ const OrderScreen = ({ match }) => {
                     </h4>
 
                     <h4 className="heading-4 order-screen__item-details--price price-number">
-                      PRICE: € {item.product.price}
+                      PRICE: €{" "}
+                      {roundToTwo(
+                        item.product.price -
+                          item.product.price *
+                            (item.product.offerPriceDiscount / 100)
+                      )}
                     </h4>
                   </div>
                 </div>
