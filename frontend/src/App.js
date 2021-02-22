@@ -1,11 +1,13 @@
+//! Core
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Route } from "react-router-dom";
+
+//! Components
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Shop from "./screens/shop/Shop";
-import { Route } from "react-router-dom";
 import ProductScreen from "./screens/product-screen/ProductScreen";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleCartShow } from "./redux/cart/cart.actions.js";
 import Login from "./screens/login-screen/Login.js";
 import Signup from "./screens/signup-screen/Signup.js";
 import ProfileScreen from "./screens/profile-screen/ProfileScreen.js";
@@ -13,6 +15,11 @@ import ShippingScreen from "./screens/shipping-screen/ShippingScreen.js";
 import PaymentScreen from "./screens/payment-screen/PaymentScreen";
 import CompleteOrder from "./screens/complete-order-screen/CompleteOrder";
 import HomePage from "./screens/home-page/HomePage";
+import ProductCategory from "./screens/category-screen/ProductCategory";
+import SearchResults from "./screens/search-results/SearchResults";
+
+//! Actions
+import { toggleCartShow } from "./redux/cart/cart.actions.js";
 
 //!==================================================================
 function App() {
@@ -42,6 +49,12 @@ function App() {
         <Route path="/register" component={Signup} />{" "}
         <Route path="/profile" component={ProfileScreen} />{" "}
         <Route exact path="/" component={HomePage} />{" "}
+        <Route
+          exact
+          path="/products/category/:category"
+          component={ProductCategory}
+        />
+        <Route path="/search-result/:keyword" component={SearchResults} />
       </main>{" "}
       <Footer className="footer" />
     </>

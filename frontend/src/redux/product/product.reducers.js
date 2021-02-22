@@ -16,6 +16,8 @@ export const productListReducer = (
       };
     case productConstants.PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
+    case productConstants.PRODUCT_LIST_RESET:
+      return { loading: false, products: [], pages: 0, page: 1 };
     default:
       return state;
   }

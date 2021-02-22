@@ -2,14 +2,14 @@
 import React, { useState } from "react";
 import "./SearchBox.scss";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 //! Icons
 import { BiSearchAlt } from "react-icons/bi";
 
 //! Redux Actions
-import { listProducts } from "../../redux/product/product.actions.js";
-import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+import { productConstants } from "../../redux/product/product.constants";
+
 //!============================================================
 const SearchBox = () => {
   //! Hooks declaration
@@ -21,29 +21,10 @@ const SearchBox = () => {
   //!Handlers
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const sendToShop = async () => {
-      await history.push("/shop/all-products");
-
-      if (keyword.trim().toLowerCase()) {
-        await dispatch(
-          listProducts(
-            {
-              $or: [
-                { name: { $regex: `.*${keyword}.*`, $options: "i" } },
-                { brand: { $regex: `.*${keyword}.*`, $options: "i" } },
-                { category: { $regex: `.*${keyword}.*`, $options: "i" } },
-                { subcategory: { $regex: `.*${keyword}.*`, $options: "i" } },
-              ],
-            },
-            1
-          )
-        );
-        setKeyword("");
-      } else {
-        dispatch(listProducts({}));
-      }
-    };
-    sendToShop();
+    const trimmedKeyword = keyword.trim().toLowerCase();
+    history.push(`/search-result/${trimmedKeyword}`);
+    dispatch({ type: productConstants.PRODUCT_LIST_RESET });
+    setKeyword("");
   };
   return (
     <div className="search-box">

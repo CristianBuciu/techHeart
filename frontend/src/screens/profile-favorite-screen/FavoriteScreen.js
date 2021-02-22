@@ -1,24 +1,52 @@
+//! Core
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { listFavoriteProducts } from "../../redux/user/user.actions.js";
-import { useHistory } from "react-router-dom";
-import { FaHeartBroken } from "react-icons/fa";
-import axios from "axios";
 import "./FavoriteScreen.scss";
-import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
-import { TiShoppingCart } from "react-icons/ti";
-import ActionShow from "../../components/action-show/ActionShow.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { roundToTwo } from "../../utils.js";
+
+//! Components
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric.js";
+import ActionShow from "../../components/action-show/ActionShow.js";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
+
+//! Redux Actions
+import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
+
+//! Icons
+import { FaHeartBroken } from "react-icons/fa";
+import { TiShoppingCart } from "react-icons/ti";
 //!==============================================================
 const FavoriteScreen = () => {
+  //! Hooks declaration
   const history = useHistory();
   const dispatch = useDispatch();
+
+  //! State
   const [toCart, setToCart] = useState(false);
 
+  //! Redux data selection hook
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const favoriteProductsList = useSelector(
+    (state) => state.userFavoriteProducts
+  );
+  const { userFavoriteProducts, loading } = favoriteProductsList;
+  const favoriteProductsLength = userFavoriteProducts.length;
+
+  //! Use effect ============================
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/login");
+    }
+    dispatch(listFavoriteProducts());
+  }, [history, userInfo, dispatch]);
+  //!==========================================
+
+  //!Handlers
   const removeFromFavoriteHandler = (id) => {
     const deleteProduct = async () => {
       try {
@@ -37,18 +65,6 @@ const FavoriteScreen = () => {
     };
     deleteProduct();
   };
-  const favoriteProductsList = useSelector(
-    (state) => state.userFavoriteProducts
-  );
-  const { userFavoriteProducts, loading } = favoriteProductsList;
-  const favoriteProductsLength = userFavoriteProducts.length;
-  useEffect(() => {
-    if (!userInfo) {
-      history.push("/login");
-    }
-    dispatch(listFavoriteProducts());
-  }, [history, userInfo, dispatch]);
-
   const addToCartHandler = (id) => {
     dispatch(addToCart(id, 1));
     dispatch(getCartProducts());
@@ -101,7 +117,10 @@ const FavoriteScreen = () => {
               <h4 className="heading-4 favorite-screen__item-details--price">
                 PRICE:{" "}
                 <span className="heading-3 favorite-screen__item-details--price-value price-number">
-                  € {item.price}
+                  €{" "}
+                  {roundToTwo(
+                    item.price - item.price * (item.offerPriceDiscount / 100)
+                  )}
                 </span>
               </h4>
               <span

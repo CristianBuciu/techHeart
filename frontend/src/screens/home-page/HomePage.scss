@@ -44,8 +44,8 @@
   }
   &__select-category {
     border-radius: 1rem;
-    background-image: radial-gradient(
-      circle,
+    background-image: linear-gradient(
+      to right bottom,
       #ff0bf3,
       #b774ff,
       #5c9bff,

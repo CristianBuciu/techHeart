@@ -1,14 +1,13 @@
 //! Core
 import React, { useEffect, useState } from "react";
-import "./Shop.scss";
+
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useRouteMatch } from "react-router-dom";
 
 //! Components
 import Product from "../../components/product/Product";
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
-import ProductFilter from "../../components/product-filter/ProductFilter.js";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
@@ -19,10 +18,11 @@ import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import { getCartProducts } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
-const Shop = () => {
+const SearchResults = () => {
   //! Hooks declaration
   const location = useLocation();
   const dispatch = useDispatch();
+  const match = useRouteMatch();
 
   //! State
   const [pageParams, setPageParams] = useState(1);
@@ -34,17 +34,38 @@ const Shop = () => {
 
   //! Use effect
   useEffect(() => {
-    if (location.pathname === `/shop/all-products`) {
-      dispatch(listProducts({}, 1));
-    } else if (location.pathname === `/shop/electronics`) {
-      dispatch(listProducts({ category: "Electronics" }, 1));
-    } else if (location.pathname === `/shop/home-appliances`) {
-      dispatch(listProducts({ category: "Home" }, 1));
+    try {
+      dispatch(
+        listProducts(
+          {
+            $or: [
+              {
+                name: { $regex: `.*${match.params.keyword}.*`, $options: "i" },
+              },
+              {
+                brand: { $regex: `.*${match.params.keyword}.*`, $options: "i" },
+              },
+              {
+                category: {
+                  $regex: `.*${match.params.keyword}.*`,
+                  $options: "i",
+                },
+              },
+              {
+                subcategory: {
+                  $regex: `.*${match.params.keyword}.*`,
+                  $options: "i",
+                },
+              },
+            ],
+          },
+          1
+        )
+      );
+    } catch (error) {
+      console.log(error);
     }
-    window.scrollTo(0, 0);
-    setPageParams(1);
-    dispatch(listFavoriteProducts());
-  }, [dispatch, location]);
+  }, [dispatch, match]);
 
   //! MaterialUI Pagination Style
   const useStyles = makeStyles((theme) => ({
@@ -59,13 +80,29 @@ const Shop = () => {
   //! Handlers
   const pageChangeHandler = (event, value) => {
     setPageParams(value);
-    if (location.pathname === `/shop/all-products`) {
-      dispatch(listProducts({}, value));
-    } else if (location.pathname === `/shop/electronics`) {
-      dispatch(listProducts({ category: "Electronics" }, value));
-    } else if (location.pathname === `/shop/home-appliances`) {
-      dispatch(listProducts({ category: "Home" }, value));
-    }
+    dispatch(
+      listProducts(
+        {
+          $or: [
+            { name: { $regex: `.*${match.params.keyword}.*`, $options: "i" } },
+            { brand: { $regex: `.*${match.params.keyword}.*`, $options: "i" } },
+            {
+              category: {
+                $regex: `.*${match.params.keyword}.*`,
+                $options: "i",
+              },
+            },
+            {
+              subcategory: {
+                $regex: `.*${match.params.keyword}.*`,
+                $options: "i",
+              },
+            },
+          ],
+        },
+        value
+      )
+    );
     window.scrollTo(0, 0);
     dispatch(listFavoriteProducts());
   };
@@ -104,4 +141,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default SearchResults;

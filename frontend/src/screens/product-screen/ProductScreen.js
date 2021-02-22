@@ -5,6 +5,7 @@ import "./ProductScreen.scss";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { roundToTwo } from "../../utils";
+
 //! Components
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric.js";
 import ActionShow from "../../components/action-show/ActionShow.js";
@@ -46,7 +47,7 @@ const ProductScreen = ({ match }) => {
   );
   const { userFavoriteProducts } = favoriteProductsList;
   const isFavorite = userFavoriteProducts.find(
-    (favoriteProduct) => favoriteProduct._id == product._id
+    (favoriteProduct) => favoriteProduct._id === product._id
   );
   //! Get the product by id from the API
   useEffect(() => {

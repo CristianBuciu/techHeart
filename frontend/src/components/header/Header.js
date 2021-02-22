@@ -17,6 +17,7 @@ import { FaHeart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 //! Redux Actions
+import { productConstants } from "../../redux/product/product.constants";
 import { toggleCartShow } from "../../redux/cart/cart.actions.js";
 import { toggleUserMenuShow } from "../../redux/user/user.actions.js";
 
@@ -65,6 +66,9 @@ const Header = () => {
               <div className="nav__subnav">
                 <h4 className="heading-4 nav__subnav--text mr-md">
                   <NavLink
+                    onClick={() =>
+                      dispatch({ type: productConstants.PRODUCT_LIST_RESET })
+                    }
                     activeClassName="nav__subnav--text nav__subnav--text--active"
                     to="/shop/all-products"
                   >
@@ -73,6 +77,9 @@ const Header = () => {
                 </h4>
                 <h4 className="heading-4 nav__subnav--text mr-md">
                   <NavLink
+                    onClick={() =>
+                      dispatch({ type: productConstants.PRODUCT_LIST_RESET })
+                    }
                     activeClassName="nav__subnav--text nav__subnav--text--active"
                     to="/shop/electronics"
                   >
@@ -81,6 +88,9 @@ const Header = () => {
                 </h4>
                 <h4 className="heading-4 nav__subnav--text mr-md">
                   <NavLink
+                    onClick={() =>
+                      dispatch({ type: productConstants.PRODUCT_LIST_RESET })
+                    }
                     activeClassName="nav__subnav--text nav__subnav--text--active"
                     to="/shop/home-appliances"
                   >

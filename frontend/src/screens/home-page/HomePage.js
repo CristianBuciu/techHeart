@@ -18,6 +18,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 //! Redux Actions
+import { productConstants } from "../../redux/product/product.constants";
 import {
   listProducts,
   listCategories,
@@ -39,11 +40,6 @@ const HomePage = () => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, pages, page } = productList;
 
-  const favoriteProductsList = useSelector(
-    (state) => state.userFavoriteProducts
-  );
-  const { userFavoriteProducts } = favoriteProductsList;
-
   const productCategoriesList = useSelector((state) => state.productCategories);
   const { loading: categoriesLoading, categories } = productCategoriesList;
 
@@ -58,12 +54,12 @@ const HomePage = () => {
         dispatch(getMyOrders());
       }
       dispatch(listCategories());
-      dispatch(listFavoriteProducts());
+
       dispatch(listProducts({ onOffer: true }, 1));
     } catch (error) {
       console.log(error);
     }
-  }, [dispatch]);
+  }, [dispatch, productConstants]);
 
   //! Handlers
 
@@ -173,11 +169,18 @@ const HomePage = () => {
             {categories.map((subcategory) => (
               <div className="mb-md" key={subcategory._id}>
                 <div className="homepage__select-category--container">
-                  <div
-                    key={subcategory.subcategoryName}
-                    className="homepage__select-category--subcategory"
-                  >
-                    <div className="homepage__select-category--image-container  mb-xs">
+                  <div className="homepage__select-category--subcategory">
+                    <div
+                      onClick={() => {
+                        dispatch({ type: productConstants.PRODUCT_LIST_RESET });
+                        history.push(
+                          `/products/category/${subcategory._id
+                            .replace(/\s+/g, "-")
+                            .toLowerCase()}`
+                        );
+                      }}
+                      className="homepage__select-category--image-container  mb-xs"
+                    >
                       <img
                         className="homepage__select-category--image"
                         src={subcategory.image}
