@@ -8,21 +8,20 @@ import ProductReviewModal from "../../modals/product-review-modal/ProductReviewM
 
 //! Redux Actions
 import { productConstants } from "../../redux/product/product.constants";
-import { listProducts } from "../../redux/product/product.actions";
 
 //! =======================================================================================
 const OrderItem = ({ item }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  //! State
   const [productState, setProductState] = useState({ products: [] });
-  console.log(productState);
+
   //! Redux data selection hook
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const listProductsInfo = useSelector((state) => state.productList);
-  const { products } = listProductsInfo;
+  //! Use Effect -> Axios call to get individual product info to later compare it with the user ID
   useEffect(() => {
     try {
       const fetchProduct = async () => {
@@ -80,7 +79,7 @@ const OrderItem = ({ item }) => {
               Product reviewd
             </button>
           ) : (
-            <ProductReviewModal product={item.product} />
+            <ProductReviewModal key={el._id} product={item.product} />
           )
         )}
         <button className="my-orders__btn-container--btn">
