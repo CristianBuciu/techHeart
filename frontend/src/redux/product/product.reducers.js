@@ -34,6 +34,8 @@ export const productDetailsReducer = (
       return { loading: false, product: action.payload };
     case productConstants.PRODUCT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
+    case productConstants.PRODUCT_DETAILS_RESET:
+      return { loading: false, product: { reviews: [], likedBy: [] } };
     default:
       return state;
   }

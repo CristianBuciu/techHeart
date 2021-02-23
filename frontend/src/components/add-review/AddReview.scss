@@ -1,13 +1,14 @@
 @import "../../sass/base";
 
 .add-review {
+  width: 100%;
   &__whole-body {
     transform-origin: top;
     animation: slideDown 0.1s ease-in-out;
   }
   &__button {
     padding: 1rem 4rem;
-    width: 25%;
+    width: 50%;
     border: none;
     display: flex;
     align-items: center;
@@ -43,7 +44,7 @@
     align-items: center;
   }
   &__title {
-    width: 50%;
+    width: 100%;
     border: 1px solid $color-primary;
     padding: 0.5rem 1rem;
     font-size: 1.4rem;
@@ -59,7 +60,7 @@
     border-radius: 0.5rem;
     border: 1px solid $color-primary;
     font-family: $font-primary;
-    width: 50%;
+    width: 100%;
     @media only screen and (min-device-width: 375px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
       width: 100%;
     }

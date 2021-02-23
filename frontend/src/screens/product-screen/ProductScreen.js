@@ -23,6 +23,7 @@ import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 //! Redux Actions
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+import { listProductDetails } from "../../redux/product/product.actions";
 
 //!==================================================================
 
@@ -33,8 +34,7 @@ const ProductScreen = ({ match }) => {
 
   //! State
   const [like, setLike] = useState(false);
-  const [product, setProduct] = useState({ reviews: [], likedBy: [] });
-  const [loading, setLoading] = useState(true);
+
   const [qty, setQty] = useState(1);
   const [toCart, setToCart] = useState(false);
 
@@ -42,6 +42,8 @@ const ProductScreen = ({ match }) => {
   const { userInfo } = userLogin;
 
   //! Redux data selection hook
+  const productDetailsInfo = useSelector((state) => state.productDetails);
+  const { loading, product } = productDetailsInfo;
   const favoriteProductsList = useSelector(
     (state) => state.userFavoriteProducts
   );
@@ -49,21 +51,18 @@ const ProductScreen = ({ match }) => {
   const isFavorite = userFavoriteProducts.find(
     (favoriteProduct) => favoriteProduct._id === product._id
   );
+
   //! Get the product by id from the API
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(`/api/products/${match.params.id}`);
-      setProduct(data);
-      setLoading(false);
-    };
-    fetchData();
+    dispatch(listFavoriteProducts());
+    dispatch(listProductDetails(match.params.id));
     if (isFavorite) {
       setLike(true);
     } else {
       setLike(false);
     }
     return () => clearTimeout();
-  }, [match, isFavorite]);
+  }, [dispatch, match, isFavorite]);
 
   //!Handlers
   const addToCartHandler = () => {
@@ -288,7 +287,9 @@ const ProductScreen = ({ match }) => {
               </p>
             </div>
           </div>
-          <AddReview productId={product._id} />
+          <div style={{ width: "50%" }}>
+            <AddReview showModal={false} productId={product._id} />
+          </div>
           <div className="line-break"></div>
 
           {product.reviews.map((review) => (

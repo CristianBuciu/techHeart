@@ -1,23 +1,29 @@
+//! Core
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import "./Product.scss";
 import { Link, useHistory } from "react-router-dom";
 import { roundToTwo } from "../../utils";
-import StarRatings from "react-star-ratings";
-
-import { FaHeart } from "react-icons/fa";
-
 import { useSelector, useDispatch } from "react-redux";
-import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+import axios from "axios";
+
+//! Components
+import StarRatings from "react-star-ratings";
 import { ErrorMessage } from "../error-message/ErrorMessage.js";
 
-import axios from "axios";
+//! Icons
+import { FaHeart } from "react-icons/fa";
+
+//! Redux Actions
+import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+import { productConstants } from "../../redux/product/product.constants";
+
 //!==================================================================
 const Product = ({ product }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  const history = useHistory();
 
   const [like, setLike] = useState(false);
 
@@ -79,13 +85,18 @@ const Product = ({ product }) => {
     deleteProduct();
   };
 
+  const handleProductDetailsLink = () => {
+    history.push(`/product/${product._id}`);
+    dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
+  };
+
   return (
     <div
       className={
         product.countInStock === 0 ? "product out-of-stock" : "product"
       }
     >
-      <Link className="product__card" to={`/product/${product._id}`}>
+      <div onClick={handleProductDetailsLink} className="product__card">
         {product.onOffer ? (
           <div className="product__discount-message">
             {product.offerPriceDiscount}% discount
@@ -135,7 +146,7 @@ const Product = ({ product }) => {
             />
           </div>
         </div>
-      </Link>
+      </div>
       {like ? (
         <span
           onClick={async () => {

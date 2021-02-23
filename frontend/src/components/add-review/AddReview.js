@@ -1,25 +1,42 @@
+//! Core
 import React, { useState } from "react";
 import "./AddReview.scss";
-import { createProductReview } from "../../redux/product/product.actions";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+
+//! Components
+import ErrorMessage from "../error-message/ErrorMessage.js";
+import Rating from "@material-ui/lab/Rating";
+
+import Box from "@material-ui/core/Box";
+
+//! Redux Actions
+import {
+  createProductReview,
+  listProductDetails,
+} from "../../redux/product/product.actions";
+import { productConstants } from "../../redux/product/product.constants";
+
+//! Icons
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiMessageAdd } from "react-icons/bi";
-import Rating from "@material-ui/lab/Rating";
-import { useSelector, useDispatch } from "react-redux";
-import Box from "@material-ui/core/Box";
 import { BsFillBackspaceFill } from "react-icons/bs";
-import ErrorMessage from "../error-message/ErrorMessage.js";
+
 //!==========================================================
-const AddReview = ({ productId }) => {
+const AddReview = ({ productId, showModal }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+  const match = useRouteMatch();
 
   const productReviewCreateSelector = useSelector(
     (state) => state.productReviewCreate
   );
   const { success, error } = productReviewCreateSelector;
 
-  const [addReviewShow, setAddReviewShow] = useState(false);
-  const [hover, setHover] = React.useState(-1);
-  const [starValue, setStarValue] = React.useState(0);
+  const [addReviewShow, setAddReviewShow] = useState(showModal);
+  const [hover, setHover] = useState(-1);
+  const [starValue, setStarValue] = useState(0);
   const [textFieldValue, setTextFieldValue] = useState("");
   const [title, setTitle] = useState("");
 
@@ -44,12 +61,16 @@ const AddReview = ({ productId }) => {
       comment: textFieldValue,
     };
     dispatch(createProductReview(productId, review));
+    if (location.pathname === `/product/${productId}`) {
+      dispatch(listProductDetails(productId));
+    } else {
+      dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
+      history.push(`/product/${productId}`);
+    }
+
     setAddReviewShow(false);
-    refreshPage();
   };
-  function refreshPage() {
-    window.location.reload();
-  }
+
   return (
     <div className="add-review mt-sm">
       {error ? <ErrorMessage color="alert">{error}</ErrorMessage> : ""}

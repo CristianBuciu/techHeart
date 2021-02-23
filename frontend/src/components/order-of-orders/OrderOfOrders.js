@@ -1,7 +1,12 @@
+//! Core
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import "./OrderOfOrders.scss";
 import { roundToTwo } from "../../utils";
+
+//! Components
+import ProductReviewModal from "../../modals/product-review-modal/ProductReviewModal";
+
 //!======================================================
 
 const OrderOfOrders = ({ order }) => {
@@ -103,9 +108,7 @@ const OrderOfOrders = ({ order }) => {
             <button className="my-orders__btn-container--btn">
               Return Item
             </button>
-            <button className="my-orders__btn-container--btn">
-              Leave Review
-            </button>
+            <ProductReviewModal product={item.product} />
           </div>
         </div>
       ))}

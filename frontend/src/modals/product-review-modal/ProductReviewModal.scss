@@ -1,0 +1,10 @@
+@import "../../sass/base";
+
+.product-review-modal {
+  &__product-name {
+    font-size: 1.4rem;
+  }
+  &__image {
+    width: 10rem;
+  }
+}
