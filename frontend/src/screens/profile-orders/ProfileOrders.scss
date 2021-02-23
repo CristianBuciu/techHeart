@@ -76,4 +76,16 @@
       @include custom-btn-secundary;
     }
   }
+  &__reviewd {
+    border: 1px solid $color-grey-light-1;
+    background-color: white;
+    color: $color-grey-dark-2;
+    width: 45%;
+    font-size: 1.4rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

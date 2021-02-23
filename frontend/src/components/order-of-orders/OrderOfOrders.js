@@ -1,17 +1,13 @@
 //! Core
-import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./OrderOfOrders.scss";
-import { roundToTwo } from "../../utils";
 
 //! Components
-import ProductReviewModal from "../../modals/product-review-modal/ProductReviewModal";
-
+import OrderItem from "../order-item/OrderItem";
 //!======================================================
 
 const OrderOfOrders = ({ order }) => {
-  const history = useHistory();
-
   return (
     <div key={order._id} className="order">
       <div className="order--header">
@@ -68,49 +64,7 @@ const OrderOfOrders = ({ order }) => {
       </div>
 
       {order.orderItems.map((item) => (
-        <div key={item.product._id} className="my-orders__items-grid">
-          <div
-            onClick={() => history.push(`/product/${item.product._id}`)}
-            className="my-orders__item "
-          >
-            <div className="my-orders__image--container">
-              <img
-                src={item.product.image}
-                alt={item.product.name}
-                className="my-orders__image mr-sm"
-              />
-            </div>
-
-            <div className="my-orders__item-details">
-              <h4 className="my-orders__item-details--title text-center mb-xs">
-                {item.product.name}
-              </h4>
-
-              <div style={{ textAlign: "end" }}>
-                <h4 className="my-orders__item-details">
-                  Quantity: {item.quantity}
-                </h4>
-                <h4 className="my-orders__item-details--price price-number">
-                  €{" "}
-                  {roundToTwo(
-                    item.product.price -
-                      item.product.price *
-                        (item.product.offerPriceDiscount / 100)
-                  )}
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="my-orders__btn-container">
-            <button className="my-orders__btn-container--btn">
-              Technical Support
-            </button>
-            <button className="my-orders__btn-container--btn">
-              Return Item
-            </button>
-            <ProductReviewModal product={item.product} />
-          </div>
-        </div>
+        <OrderItem key={item._id} item={item} />
       ))}
     </div>
   );
