@@ -44,7 +44,7 @@ function App() {
           </div>
         ) : null}{" "}
         <Route path="/shop/:category" component={Shop} />
-        <Route path="/product/:id" component={ProductScreen} />{" "}
+        <Route exact path="/product/:id" component={ProductScreen} />{" "}
         <Route path="/login" component={Login} />{" "}
         <Route path="/register" component={Signup} />{" "}
         <Route path="/profile" component={ProfileScreen} />{" "}

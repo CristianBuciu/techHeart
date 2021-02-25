@@ -1,6 +1,6 @@
 //! Core
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useRouteMatch, withRouter } from "react-router-dom";
 import "./ProductScreen.scss";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -27,10 +27,11 @@ import { listProductDetails } from "../../redux/product/product.actions";
 
 //!==================================================================
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = () => {
   //! Hooks declaration
   const history = useHistory();
   const dispatch = useDispatch();
+  const match = useRouteMatch();
 
   //! State
   const [like, setLike] = useState(false);
@@ -44,13 +45,8 @@ const ProductScreen = ({ match }) => {
   //! Redux data selection hook
   const productDetailsInfo = useSelector((state) => state.productDetails);
   const { loading, product } = productDetailsInfo;
-  const favoriteProductsList = useSelector(
-    (state) => state.userFavoriteProducts
-  );
-  const { userFavoriteProducts } = favoriteProductsList;
-  const isFavorite = userFavoriteProducts.find(
-    (favoriteProduct) => favoriteProduct._id === product._id
-  );
+
+  const isFavorite = product.likedBy.find((id) => id == userInfo._id);
 
   //! Get the product by id from the API
   useEffect(() => {
@@ -62,7 +58,7 @@ const ProductScreen = ({ match }) => {
       setLike(false);
     }
     return () => clearTimeout();
-  }, [dispatch, match, isFavorite]);
+  }, [isFavorite, dispatch, match.params.id]);
 
   //!Handlers
   const addToCartHandler = () => {
@@ -87,6 +83,8 @@ const ProductScreen = ({ match }) => {
         };
         await axios.put(`/api/products/`, { _id: id }, config);
         await axios.post(`/api/users/profile/favorites`, { _id: id }, config);
+        setLike(true);
+        dispatch(listFavoriteProducts());
       }
     } catch (error) {
       console.error(error);
@@ -103,7 +101,7 @@ const ProductScreen = ({ match }) => {
           },
         };
         await axios.delete(`/api/users/profile/favorites/${id}`, config);
-
+        setLike(false);
         dispatch(listFavoriteProducts());
       } catch (error) {
         console.log(error);
@@ -229,13 +227,14 @@ const ProductScreen = ({ match }) => {
             <div className="product-screen__rating">
               <span className="product__rating-text">
                 User Rating:&nbsp;&nbsp;&nbsp;
-                <strong>{product.rating}</strong> ({product.numReviews} reviews)
+                <strong>{roundToTwo(product.rating)}</strong> (
+                {product.numReviews} reviews)
               </span>
               <Box component="fieldset" borderColor="transparent">
                 <Rating
                   name="Product Rating"
                   title="Product Rating"
-                  value={product.rating}
+                  value={product.rating || 0}
                   size="large"
                   readOnly
                 />
@@ -245,9 +244,8 @@ const ProductScreen = ({ match }) => {
               {like ? (
                 <div className="product-screen__add-favorite--flex">
                   <FaHeart
-                    onClick={async () => {
-                      await removeFromFavoriteHandler(product._id);
-                      await dispatch(listFavoriteProducts());
+                    onClick={() => {
+                      removeFromFavoriteHandler(product._id);
                     }}
                     className="product-screen__heart product-screen__heart--selected"
                   />
@@ -258,11 +256,10 @@ const ProductScreen = ({ match }) => {
               ) : (
                 <div className="product-screen__add-favorite--flex">
                   <FaHeart
-                    onClick={async () => {
-                      await handleAddUserToLikedArrayAndProductToFavorites(
+                    onClick={() => {
+                      handleAddUserToLikedArrayAndProductToFavorites(
                         product._id
                       );
-                      await dispatch(listFavoriteProducts());
                     }}
                     className="product-screen__heart"
                   />

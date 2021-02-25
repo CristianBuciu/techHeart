@@ -30,7 +30,8 @@
     width: 22rem;
     object-fit: contain;
     margin-right: 2rem;
-    transition: 0.2s all ease-in-out;
+    transition: $transition;
+    cursor: pointer;
     &:hover {
       transform: scale(0.9);
     }
@@ -69,6 +70,12 @@
       grid-row: 2/3;
       align-self: center;
       font-size: 1.6rem;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        color: $color-primary;
+      }
     }
     &--price {
       grid-column: 2/3;

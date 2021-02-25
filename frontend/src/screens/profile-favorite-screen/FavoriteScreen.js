@@ -14,6 +14,7 @@ import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 //! Redux Actions
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
+import { productConstants } from "../../redux/product/product.constants";
 
 //! Icons
 import { FaHeartBroken } from "react-icons/fa";
@@ -75,6 +76,7 @@ const FavoriteScreen = () => {
   };
   const productLink = (id) => {
     history.push(`/product/${id}`);
+    dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
   };
   return loading ? (
     <LoaderGeneric />

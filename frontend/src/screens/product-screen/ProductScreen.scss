@@ -10,7 +10,7 @@
     cursor: pointer;
     font-size: 1.4rem;
     color: $color-link !important;
-    transition: all 0.2s;
+    transition: $transition;
     border-bottom: 1px solid transparent;
 
     &:not(:last-child) {

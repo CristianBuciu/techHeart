@@ -19,6 +19,7 @@ import { BsCreditCard } from "react-icons/bs";
 import { getCartProducts } from "../../redux/cart/cart.actions.js";
 import { getOrderDetails, payOrder } from "../../redux/order/order.actions";
 import { orderConstants } from "../../redux/order/order.constants.js";
+import { productConstants } from "../../redux/product/product.constants";
 
 //todo implement gsapp to stop the buy now on screen
 //!=======================================================
@@ -179,16 +180,24 @@ const OrderScreen = ({ match }) => {
                   className="order-screen__item mb-sm"
                 >
                   <img
-                    onClick={() => history.push(`/product/${item.product._id}`)}
+                    onClick={() => {
+                      dispatch({
+                        type: productConstants.PRODUCT_DETAILS_RESET,
+                      });
+                      history.push(`/product/${item.product._id}`);
+                    }}
                     src={item.product.image}
                     alt={item.product.name}
                     className="order-screen__image mr-sm"
                   />
                   <div className="order-screen__item-details">
                     <h4
-                      onClick={() =>
-                        history.push(`/product/${item.product._id}`)
-                      }
+                      onClick={() => {
+                        dispatch({
+                          type: productConstants.PRODUCT_DETAILS_RESET,
+                        });
+                        history.push(`/product/${item.product._id}`);
+                      }}
                       className="heading-4 order-screen__item-details--title"
                     >
                       {item.product.name} x {item.quantity}

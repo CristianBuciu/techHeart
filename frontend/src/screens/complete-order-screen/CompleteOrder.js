@@ -1,18 +1,25 @@
+//! Core
 import React, { useState, useEffect } from "react";
 import "./CompleteOrder.scss";
-import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { GrPaypal, GrCreditCard, GrStripe } from "react-icons/gr";
 import { useHistory } from "react-router-dom";
-import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { roundToTwo } from "../../utils.js";
 
+//! Components
+import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
+
+//! Icons
+import { GrPaypal, GrCreditCard, GrStripe } from "react-icons/gr";
+
+//! Redux Actions
 import {
   addOrderAddress,
   createOrder,
   saveOrderPaymentMethod,
 } from "../../redux/order/order.actions";
+import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
+import { productConstants } from "../../redux/product/product.constants";
 
 //todo implement gsapp to stop the buy now on screen
 //!=======================================================
@@ -207,14 +214,22 @@ const CompleteOrder = () => {
             cartProducts.map((item) => (
               <div key={item.product._id} className="complete-order__item">
                 <img
-                  onClick={() => history.push(`/product/${item.product._id}`)}
+                  onClick={() => {
+                    dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
+                    history.push(`/product/${item.product._id}`);
+                  }}
                   src={item.product.image}
                   alt={item.product.name}
                   className="complete-order__image"
                 />
                 <div className="complete-order__item-details">
                   <h4
-                    onClick={() => history.push(`/product/${item.product._id}`)}
+                    onClick={() => {
+                      dispatch({
+                        type: productConstants.PRODUCT_DETAILS_RESET,
+                      });
+                      history.push(`/product/${item.product._id}`);
+                    }}
                     className="heading-4 complete-order__item-details--title"
                   >
                     {item.product.name} x {item.quantity}

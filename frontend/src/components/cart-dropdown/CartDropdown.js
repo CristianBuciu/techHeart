@@ -1,20 +1,29 @@
+//! Core
 import React, { useRef, useEffect } from "react";
 import "./CartDropdown.scss";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { TweenMax, Power3 } from "gsap";
-import { toggleCartShow } from "../../redux/cart/cart.actions.js";
 import { roundToTwo } from "../../utils.js";
-import { getCartProducts } from "../../redux/cart/cart.actions.js";
 import axios from "axios";
+import { TweenMax, Power3 } from "gsap";
+
+//! Components
+
+//! Icons
 import { AiOutlineDelete } from "react-icons/ai";
+
+//! Redux Actions
+import { toggleCartShow } from "../../redux/cart/cart.actions.js";
+import { getCartProducts } from "../../redux/cart/cart.actions.js";
+import { productConstants } from "../../redux/product/product.constants";
+
 //!========================================================================
 //!========================================================================
 //!========================================================================
 const CartDropdown = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
+  const match = useRouteMatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -42,10 +51,6 @@ const CartDropdown = () => {
     dispatch(toggleCartShow());
   };
   //! GO TO THE PRODUCT PAGE LINK ==========================================
-  const goToProductPage = (id) => {
-    history.push(`/product/${id}`);
-    dispatch(toggleCartShow());
-  };
 
   //! FADE IN ANIMATION  ====================================================
   //TODO ADD GSAP OR SPRING FOR THE UNMOUNT ANIMATION =======================
@@ -57,7 +62,7 @@ const CartDropdown = () => {
       ease: Power3.easeOut,
     });
     dispatch(getCartProducts());
-  }, [dispatch]);
+  }, [dispatch, history]);
 
   //! REMOVE PRODUCT FROM CART ==============================================
 
@@ -79,7 +84,12 @@ const CartDropdown = () => {
     };
     deleteProduct();
   };
-
+  console.log(
+    history.location.pathname.split("/")[2],
+    cartProducts.find(
+      (el) => el.product._id === history.location.pathname.split("/")[2]
+    )
+  );
   return (
     <div ref={cartRef} className="cart">
       <div className="cart__top">
@@ -91,23 +101,55 @@ const CartDropdown = () => {
         <div key={item.product._id} className="cart__item">
           <div className="cart__item--image-container">
             <img
-              onClick={() => goToProductPage(item.product._id)}
+              onClick={() => {
+                if (
+                  history.location.pathname.split("/")[2] === item.product._id
+                ) {
+                  dispatch(toggleCartShow());
+                } else {
+                  dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
+                  history.push(`/product/${item.product._id}`);
+                  dispatch(toggleCartShow());
+                }
+              }}
               src={item.product.image}
               alt={item.product.name}
               className="cart__item--image"
             />
           </div>
           <div className="cart__details">
-            <h3
-              onClick={() => goToProductPage(item.product._id)}
-              className="cart__details--title"
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gridColumn: "1/3",
+              }}
             >
-              {item.product.name}{" "}
-              <AiOutlineDelete
-                onClick={() => removeCartProduct(item._id)}
-                className="cart__details--delete"
-              />
-            </h3>
+              <h3
+                onClick={() => {
+                  if (
+                    history.location.pathname.split("/")[2] === item.product._id
+                  ) {
+                    dispatch(toggleCartShow());
+                  } else {
+                    dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
+                    history.push(`/product/${item.product._id}`);
+                    dispatch(toggleCartShow());
+                  }
+                }}
+                className="cart__details--title"
+              >
+                {item.product.name}{" "}
+              </h3>
+              <span>
+                <AiOutlineDelete
+                  title="Delete Cart Item"
+                  onClick={() => removeCartProduct(item._id)}
+                  className="cart__details--delete"
+                />
+              </span>
+            </div>
             <h3 className="cart__details--price">
               Price: &nbsp;
               <span className="cart__details--price-value">

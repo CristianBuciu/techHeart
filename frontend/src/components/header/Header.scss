@@ -10,7 +10,7 @@
   background-color: white;
 
   box-shadow: $shadow-normal;
-  transition: all 0.2s;
+  transition: $transition;
 }
 .nav {
   display: flex;
@@ -99,10 +99,10 @@
     cursor: pointer;
     font-size: 3rem;
     color: $color-grey-dark-2;
-    transition: all 0.2s;
+    transition: $transition;
     &--heart {
       color: $color-grey-dark-2 !important;
-      transition: all 0.2s;
+      transition: $transition;
       font-size: 2.4rem;
       &--active {
         color: $color-alert !important;
@@ -144,7 +144,7 @@
     bottom: 50%;
     transform: translateY(70%);
     right: -20%;
-    transition: all 0.2s ease-in-out;
+    transition: $transition;
   }
   &__welcome-message {
     cursor: pointer;

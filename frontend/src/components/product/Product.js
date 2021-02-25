@@ -31,6 +31,7 @@ const Product = ({ product }) => {
     (state) => state.userFavoriteProducts
   );
   const { userFavoriteProducts } = favoriteProductsList;
+
   const isFavorite = userFavoriteProducts.find(
     (favoriteProduct) => favoriteProduct._id == product._id
   );
@@ -57,6 +58,7 @@ const Product = ({ product }) => {
           await axios.put(`/api/products/`, { _id: id }, config);
           await axios.post(`/api/users/profile/favorites`, { _id: id }, config);
           setLike(true);
+          dispatch(listFavoriteProducts());
         }
       } catch (error) {
         console.error(error);
@@ -75,9 +77,8 @@ const Product = ({ product }) => {
           },
         };
         await axios.delete(`/api/users/profile/favorites/${id}`, config);
-
-        dispatch(listFavoriteProducts());
         setLike(false);
+        dispatch(listFavoriteProducts());
       } catch (error) {
         console.log(error);
       }
@@ -99,7 +100,7 @@ const Product = ({ product }) => {
       <div onClick={handleProductDetailsLink} className="product__card">
         {product.onOffer ? (
           <div className="product__discount-message">
-            {product.offerPriceDiscount}% discount
+            -{product.offerPriceDiscount}%
           </div>
         ) : (
           ""
@@ -136,7 +137,8 @@ const Product = ({ product }) => {
           <span className="product__rating-text"></span>
           <div className="product__rating-stars">
             <span className="product__rating-text">
-              <strong>{product.rating}</strong> ({product.numReviews})
+              <strong>{roundToTwo(product.rating)}</strong> (
+              {product.numReviews})
             </span>
             <StarRatings
               rating={product.rating}
@@ -149,9 +151,8 @@ const Product = ({ product }) => {
       </div>
       {like ? (
         <span
-          onClick={async () => {
-            await removeFromFavoriteHandler(product._id);
-            await dispatch(listFavoriteProducts());
+          onClick={() => {
+            removeFromFavoriteHandler(product._id);
           }}
           title="Remove from Favorites"
         >
@@ -160,8 +161,7 @@ const Product = ({ product }) => {
       ) : (
         <span
           onClick={async () => {
-            await handleAddUserToLikedArrayAndProductToFavorites(product._id);
-            await dispatch(listFavoriteProducts());
+            handleAddUserToLikedArrayAndProductToFavorites(product._id);
           }}
           title="Add to Favorites"
         >

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 
 //! Components
 import Product from "../../components/product/Product";
@@ -14,13 +14,11 @@ import Pagination from "@material-ui/lab/Pagination";
 
 //! Redux actions
 import { listProducts } from "../../redux/product/product.actions.js";
-import { listFavoriteProducts } from "../../redux/user/user.actions.js";
-import { getCartProducts } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
 const SearchResults = () => {
   //! Hooks declaration
-  const location = useLocation();
+
   const dispatch = useDispatch();
   const match = useRouteMatch();
 
@@ -30,7 +28,7 @@ const SearchResults = () => {
   //! Redux data selection hook
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, pages, page } = productList;
+  const { loading, error, products, pages } = productList;
 
   //! Use effect
   useEffect(() => {

@@ -1,5 +1,5 @@
 //! Core
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./HomePage.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -14,8 +14,6 @@ import CarouselProductShow from "../../components/carousel-products/CarouselProd
 import OrderOfOrders from "../../components/order-of-orders/OrderOfOrders";
 
 //! Icons
-import { AiOutlineArrowRight } from "react-icons/ai";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 
 //! Redux Actions
 import { productConstants } from "../../redux/product/product.constants";
@@ -23,7 +21,7 @@ import {
   listProducts,
   listCategories,
 } from "../../redux/product/product.actions";
-import { listFavoriteProducts } from "../../redux/user/user.actions";
+
 import { getMyOrders } from "../../redux/order/order.actions";
 //!=====================================================================
 const HomePage = () => {
@@ -97,17 +95,6 @@ const HomePage = () => {
           >
             <div className="homepage__slider-page">
               <Page>
-                <CarouselProductShow
-                  buttonLink="See all deals"
-                  title="Latest Deals"
-                  roundToTwo={roundToTwo}
-                  products={products}
-                />
-              </Page>
-            </div>
-
-            <div className="homepage__slider-page">
-              <Page>
                 <div className="homepage__lottery">
                   <h1 className="heading-1">Win a new Samsung Galaxy S21</h1>
                   <img
@@ -135,6 +122,17 @@ const HomePage = () => {
                     <button className="homepage__lottery-btn">Subscribe</button>
                   </div>
                 </div>
+              </Page>
+            </div>
+            <div className="homepage__slider-page">
+              <Page>
+                <CarouselProductShow
+                  buttonLink="See all deals"
+                  title="Latest Deals"
+                  subtitle="Up to 25% off in electronic products and a wooping 45% off in home appliances"
+                  roundToTwo={roundToTwo}
+                  products={products}
+                />
               </Page>
             </div>
           </Slider>

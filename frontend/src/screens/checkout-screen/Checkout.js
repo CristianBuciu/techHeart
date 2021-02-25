@@ -1,12 +1,17 @@
+//! Core
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import StarRatings from "react-star-ratings";
-
 import "./Checkout.scss";
 import { roundToTwo } from "../../utils.js";
 import axios from "axios";
+
+//! Components
+import StarRatings from "react-star-ratings";
+
+//! Redux Actions
 import { getCartProducts, addToCart } from "../../redux/cart/cart.actions.js";
+import { productConstants } from "../../redux/product/product.constants";
 
 //!=======================================================
 const Checkout = () => {
@@ -56,6 +61,7 @@ const Checkout = () => {
   const checkoutHandler = () => {
     history.push("/shipping");
   };
+
   return (
     <div className="checkout-screen">
       <h1 className="heading-1  ">CHECK OUT</h1>
@@ -87,12 +93,22 @@ const Checkout = () => {
       {cartProducts.map((item) => (
         <div key={item.product._id} className="checkout-screen__item">
           <img
+            onClick={() => {
+              history.push(`/product/${item.product._id}`);
+              dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
+            }}
             src={item.product.image}
             alt={item.product.name}
             className="checkout-screen__image"
           />
           <div className="checkout-screen__item-details">
-            <h3 className="heading-3 checkout-screen__item-details--title">
+            <h3
+              onClick={() => {
+                history.push(`/product/${item.product._id}`);
+                dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
+              }}
+              className="heading-3 checkout-screen__item-details--title"
+            >
               {item.product.name} x {item.quantity}
             </h3>
             {item.product.countInStock ? (
@@ -157,7 +173,7 @@ const Checkout = () => {
               />
               <span className="product__rating-text ml-sm">
                 User Rating:&nbsp;&nbsp;&nbsp;
-                <strong>{item.product.rating}</strong> (
+                <strong>{roundToTwo(item.product.rating)}</strong> (
                 {item.product.numReviews} reviews)
               </span>
             </div>

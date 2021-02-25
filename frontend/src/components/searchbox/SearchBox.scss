@@ -32,7 +32,7 @@
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     font-size: 1.8rem;
-    transition: 0.2s all ease-in-out;
+    transition: $transition;
 
     &:hover {
       background-color: $color-pallete-4;

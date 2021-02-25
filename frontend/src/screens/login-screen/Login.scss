@@ -31,7 +31,7 @@
     font-size: 1.2rem;
     font-weight: bold;
     margin-left: 1rem;
-    transition: 0.2s all;
+    transition: $transition;
     &:hover {
       color: $color-cta !important;
     }

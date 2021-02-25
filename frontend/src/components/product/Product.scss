@@ -9,27 +9,26 @@
   width: 25rem;
   border-radius: 1rem;
   box-shadow: none;
-  transition: all 0.2s;
+  transition: $transition;
   position: relative;
   &:hover {
     box-shadow: $shadow-normal;
   }
   &__discount-message {
-    text-align: center;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 4rem;
     background-color: $color-pallete-5;
     padding: 0.2rem;
-
     font-weight: 600;
-    color: $color-cta-2;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    font-size: 1.2rem;
-
+    color: $color-alert;
+    border-radius: 1rem;
+    font-size: 1.6rem;
     position: absolute;
     top: 0rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     z-index: 5;
   }
   &__card {
@@ -72,7 +71,7 @@
     border-radius: 1rem;
     object-fit: contain;
     object-position: center;
-    transition: all 0.2s;
+    transition: $transition;
   }
   &:hover &__button {
     bottom: 0;
@@ -93,7 +92,7 @@
     font-weight: 600;
     font-family: $font-primary;
     height: 40%;
-    transition: all 0.2s;
+    transition: $transition;
   }
   &__center {
     display: flex;

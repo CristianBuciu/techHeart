@@ -1,16 +1,20 @@
+//! Core
 import React, { useEffect } from "react";
 import "./ProfileReviews.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { listProductReviews } from "../../redux/user/user.actions";
 import { useHistory } from "react-router-dom";
+
+//! Components
 import Review from "../../components/review/Review.js";
+
+//! Redux Actions
+import { listProductReviews } from "../../redux/user/user.actions";
+import { productConstants } from "../../redux/product/product.constants";
+
 //!======================================================
 const ProfileReviews = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -33,7 +37,10 @@ const ProfileReviews = () => {
           <div className="profile-reviews__flex">
             <div className="profile-reviews__image-title">
               <img
-                onClick={() => history.push(`/product/${el.productId}`)}
+                onClick={() => {
+                  dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
+                  history.push(`/product/${el.productId}`);
+                }}
                 className="profile-reviews__image"
                 src={el.image}
               />

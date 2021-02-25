@@ -31,7 +31,7 @@ const Signup = ({ location }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    history.push("/shop");
+    history.push("/");
     //!Password check =====================
 
     if (

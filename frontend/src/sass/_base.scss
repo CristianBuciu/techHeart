@@ -66,13 +66,8 @@ $shadow-normal-strong: 0 1rem 2rem
       $alpha: 0.2,
     );
 
-$shadow-young: -0.5rem 0.5rem 0 #10162f;
-$shadow-young-clicked: -0.25rem 0.25rem 0 #10162f;
-
-$translate-hover: translateY(-0.5rem);
-
+$transition: all 0.25s cubic-bezier(0.52, 0.99, 0.42, 0.42);
 //! CUSTOM COMPONENTS =====================================================
-
 @mixin custom-btn {
   cursor: pointer;
   border: none;
@@ -80,7 +75,7 @@ $translate-hover: translateY(-0.5rem);
   font-family: $font-special;
   letter-spacing: 0.2rem;
   border-radius: 0.5rem;
-  transition: all 0.2s;
+  transition: $transition;
   text-transform: uppercase;
   font-weight: 600;
   color: $color-grey-dark-1;
@@ -123,7 +118,7 @@ $translate-hover: translateY(-0.5rem);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: $transition;
   &:hover {
     box-shadow: $shadow-normal;
     background-color: $color-pallete-4;

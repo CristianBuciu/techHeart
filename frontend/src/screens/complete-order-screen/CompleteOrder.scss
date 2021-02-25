@@ -24,7 +24,7 @@
     justify-self: flex-end;
     align-self: center;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: $transition;
     &:hover {
       text-decoration: underline;
     }
@@ -58,7 +58,7 @@
     height: 10rem;
     object-fit: contain;
     margin-right: 2rem;
-    transition: 0.2s all ease-in-out;
+    transition: $transition;
     &:hover {
       transform: scale(0.9);
     }

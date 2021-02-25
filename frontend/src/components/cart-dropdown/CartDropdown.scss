@@ -64,7 +64,7 @@
       object-fit: contain;
       object-position: center;
       cursor: pointer;
-      transition: all 0.2s ease-in-out;
+      transition: $transition;
       &:hover {
         transform: scale(0.9);
       }
@@ -121,7 +121,7 @@
       cursor: pointer;
       color: $color-alert;
       font-size: 1.6rem;
-      transition: all 0.2s ease-in-out;
+      transition: $transition;
       position: relative;
 
       &:hover {
