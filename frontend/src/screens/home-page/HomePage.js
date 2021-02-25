@@ -144,9 +144,16 @@ const HomePage = () => {
             Welcome, {userInfo.name}
           </h4>
           <div className="mb-md">
-            <h4 style={{ padding: "1rem" }} className="heading-4 mb-sm">
-              Your Last Order:{" "}
-            </h4>
+            {orders.length === 0 ? (
+              <h4 style={{ padding: "1rem" }} className="heading-4 mb-sm">
+                You have no orders yet. Your last order will appear here. Happy
+                shopping
+              </h4>
+            ) : (
+              <h4 style={{ padding: "1rem" }} className="heading-4 mb-sm">
+                Your Last Order:{" "}
+              </h4>
+            )}
             {orders
               .map((order) => (
                 <div key={order._id}>

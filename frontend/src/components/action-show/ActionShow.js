@@ -5,9 +5,10 @@ import { ImArrowUp } from "react-icons/im";
 const ToCartVisual = () => {
   const [isVisible, setVisible] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setVisible(false);
     }, 3000);
+    return () => clearTimeout(timer);
   }, []);
   return isVisible ? (
     <div className="to-cart-visual">

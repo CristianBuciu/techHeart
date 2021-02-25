@@ -44,7 +44,10 @@ const YourInfo = () => {
         setEmail(user.email);
       }
     }
+    return () => clearTimeout(timer);
   }, [history, userInfo, user, dispatch]);
+
+  let timer;
 
   const passwordLength = password.length < 6 ? false : true;
   const passwordLowercase = /[a-z]/.test(password) < 1 ? false : true;
@@ -88,7 +91,7 @@ const YourInfo = () => {
       setMessage("Your password has been successfully changed");
       setSuccessColor("success");
     } else {
-      setTimeout(() => {
+      timer = setTimeout(() => {
         setError(true);
       }, 100);
       setError(false);

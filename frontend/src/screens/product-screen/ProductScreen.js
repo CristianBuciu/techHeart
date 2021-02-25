@@ -57,15 +57,15 @@ const ProductScreen = () => {
     } else {
       setLike(false);
     }
-    return () => clearTimeout();
+    return () => clearTimeout(timer);
   }, [isFavorite, dispatch, match.params.id]);
-
+  let timer;
   //!Handlers
   const addToCartHandler = () => {
     dispatch(addToCart(match.params.id, Number(qty)));
     dispatch(getCartProducts());
     setToCart(true);
-    setTimeout(() => {
+    timer = setTimeout(() => {
       setToCart(false);
     }, 3100);
   };
@@ -85,6 +85,7 @@ const ProductScreen = () => {
         await axios.post(`/api/users/profile/favorites`, { _id: id }, config);
         setLike(true);
         dispatch(listFavoriteProducts());
+        dispatch(listProductDetails(match.params.id));
       }
     } catch (error) {
       console.error(error);
@@ -103,6 +104,7 @@ const ProductScreen = () => {
         await axios.delete(`/api/users/profile/favorites/${id}`, config);
         setLike(false);
         dispatch(listFavoriteProducts());
+        dispatch(listProductDetails(match.params.id));
       } catch (error) {
         console.log(error);
       }

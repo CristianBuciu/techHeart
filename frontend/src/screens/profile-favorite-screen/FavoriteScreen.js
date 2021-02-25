@@ -44,9 +44,10 @@ const FavoriteScreen = () => {
       history.push("/login");
     }
     dispatch(listFavoriteProducts());
+    return () => clearTimeout(timer);
   }, [history, userInfo, dispatch]);
   //!==========================================
-
+  let timer;
   //!Handlers
   const removeFromFavoriteHandler = (id) => {
     const deleteProduct = async () => {
@@ -70,7 +71,7 @@ const FavoriteScreen = () => {
     dispatch(addToCart(id, 1));
     dispatch(getCartProducts());
     setToCart(true);
-    setTimeout(() => {
+    timer = setTimeout(() => {
       setToCart(false);
     }, 3100);
   };
