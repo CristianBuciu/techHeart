@@ -66,7 +66,7 @@ $shadow-normal-strong: 0 1rem 2rem
       $alpha: 0.2,
     );
 
-$transition: all 0.3s cubic-bezier(0.93, -1, 0.74, -1.31);
+$transition: all 0.25s ease-in-out;
 //! CUSTOM COMPONENTS =====================================================
 @mixin custom-btn {
   cursor: pointer;

@@ -84,12 +84,7 @@ const CartDropdown = () => {
     };
     deleteProduct();
   };
-  console.log(
-    history.location.pathname.split("/")[2],
-    cartProducts.find(
-      (el) => el.product._id === history.location.pathname.split("/")[2]
-    )
-  );
+
   return (
     <div ref={cartRef} className="cart">
       <div className="cart__top">

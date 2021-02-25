@@ -43,6 +43,11 @@
     border-radius: 0.5rem;
   }
   &__image {
+    transition: $transition;
+    transform: scale(1);
+    &:hover {
+      transform: scale(0.9);
+    }
     &--container {
       width: 18rem;
       display: flex;

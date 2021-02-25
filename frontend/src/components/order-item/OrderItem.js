@@ -23,6 +23,7 @@ const OrderItem = ({ item }) => {
 
   //! Use Effect -> Axios call to get individual product info to later compare it with the user ID
   useEffect(() => {
+    let isCancelled = false;
     try {
       const fetchProduct = async () => {
         const { data } = await axios.get("/api/products", {
@@ -30,10 +31,15 @@ const OrderItem = ({ item }) => {
         });
         setProductState(data);
       };
-      fetchProduct();
+      if (!isCancelled) {
+        fetchProduct();
+      }
     } catch (error) {
       console.log(error);
     }
+    return () => {
+      isCancelled = true;
+    };
   }, [item, dispatch, axios]);
 
   return (

@@ -39,7 +39,7 @@
     width: 11rem;
     height: 8rem;
     object-fit: contain;
-    object-position: center;
+    transition: $transition;
     cursor: pointer;
   }
   &__item-details {

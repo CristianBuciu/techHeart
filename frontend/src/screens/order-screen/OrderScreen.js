@@ -43,6 +43,7 @@ const OrderScreen = ({ match }) => {
 
   useEffect(() => {
     dispatch(getCartProducts());
+    dispatch({ type: orderConstants.ORDER_CREATE_RESET });
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
       const script = document.createElement("script");
@@ -72,7 +73,6 @@ const OrderScreen = ({ match }) => {
   let orderDeliveredAtDate = new Date(order.deliveredAt);
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
   };
 
