@@ -17,6 +17,7 @@ import CompleteOrder from "./screens/complete-order-screen/CompleteOrder";
 import HomePage from "./screens/home-page/HomePage";
 import ProductCategory from "./screens/category-screen/ProductCategory";
 import SearchResults from "./screens/search-results/SearchResults";
+import DealsScreen from "./screens/deals-screen/DealsScreen";
 
 //! Actions
 import { toggleCartShow } from "./redux/cart/cart.actions.js";
@@ -49,6 +50,7 @@ function App() {
         <Route path="/register" component={Signup} />{" "}
         <Route path="/profile" component={ProfileScreen} />{" "}
         <Route exact path="/" component={HomePage} />{" "}
+        <Route exact path="/latest-deals" component={DealsScreen} />{" "}
         <Route
           exact
           path="/products/category/:category"

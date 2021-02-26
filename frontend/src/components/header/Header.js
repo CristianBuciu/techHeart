@@ -145,7 +145,7 @@ const Header = () => {
               ) : (
                 <Link className="nav__icon" to="/login">
                   {" "}
-                  <TiUserOutline />
+                  <TiUserOutline title="Log In / Register" />
                 </Link>
               )}
             </div>

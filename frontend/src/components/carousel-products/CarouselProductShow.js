@@ -85,7 +85,15 @@ const CarouselProductShow = ({
           .slice(0, 4)}
       </div>
       <div className="carousel--bottom">
-        <button className="carousel--btn">{buttonLink}</button>
+        <button
+          onClick={() => {
+            dispatch({ type: productConstants.PRODUCT_LIST_RESET });
+            history.push("/latest-deals");
+          }}
+          className="carousel--btn"
+        >
+          {buttonLink}
+        </button>
       </div>
     </div>
   );

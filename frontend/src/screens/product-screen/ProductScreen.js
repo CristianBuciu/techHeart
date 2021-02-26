@@ -46,7 +46,7 @@ const ProductScreen = () => {
   const productDetailsInfo = useSelector((state) => state.productDetails);
   const { loading, product } = productDetailsInfo;
 
-  const isFavorite = product.likedBy.find((id) => id == userInfo._id);
+  const isFavorite = product?.likedBy?.find((id) => id == userInfo?._id);
 
   //! Get the product by id from the API
   useEffect(() => {
@@ -62,12 +62,20 @@ const ProductScreen = () => {
   let timer;
   //!Handlers
   const addToCartHandler = () => {
-    dispatch(addToCart(match.params.id, Number(qty)));
-    dispatch(getCartProducts());
-    setToCart(true);
-    timer = setTimeout(() => {
-      setToCart(false);
-    }, 3100);
+    try {
+      if (!userInfo) {
+        history.push("/login");
+      } else {
+        dispatch(addToCart(match.params.id, Number(qty)));
+        dispatch(getCartProducts());
+        setToCart(true);
+        timer = setTimeout(() => {
+          setToCart(false);
+        }, 3100);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleAddUserToLikedArrayAndProductToFavorites = async (id) => {
