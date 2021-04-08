@@ -10,7 +10,7 @@ import orderRoutes from "./routes/order.routes.js";
 import cors from "cors";
 import morgan from "morgan";
 const app = express();
-app.use(cors());
+// app.use(cors());
 //! This will allow us to have JSON data in the body==========
 app.use(express.json());
 
