@@ -36,10 +36,10 @@ const HomePage = () => {
   const { userInfo } = userLogin;
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, pages, page } = productList;
+  const { products } = productList;
 
   const productCategoriesList = useSelector((state) => state.productCategories);
-  const { loading: categoriesLoading, categories } = productCategoriesList;
+  const { categories } = productCategoriesList;
 
   const myLastOrder = useSelector((state) => state.orderMyOrders);
   let { orders } = myLastOrder;
@@ -57,7 +57,7 @@ const HomePage = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [dispatch, productConstants]);
+  }, [dispatch, userInfo]);
 
   //! Handlers
 
@@ -189,7 +189,7 @@ const HomePage = () => {
                       <img
                         className="homepage__select-category--image"
                         src={subcategory.image}
-                        alt="subcategory image"
+                        alt="subcategory"
                       />
                     </div>
                     <h3>{subcategory._id}</h3>

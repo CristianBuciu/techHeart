@@ -27,7 +27,6 @@ const AddReview = ({ productId, showModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const match = useRouteMatch();
 
   const productReviewCreateSelector = useSelector(
     (state) => state.productReviewCreate
@@ -84,7 +83,7 @@ const AddReview = ({ productId, showModal }) => {
           <BsFillBackspaceFill
             onClick={() => setAddReviewShow(false)}
             className="add-review__cancel-review ml-sm"
-            title="Cancel writting review"
+            title="Cancel writing review"
           />
         </div>
       ) : (

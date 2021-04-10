@@ -21,10 +21,14 @@ import { AiOutlineDoubleRight } from "react-icons/ai";
 
 //!=======================================================
 const ShippingScreen = () => {
+  //! Hooks
   const history = useHistory();
   const dispatch = useDispatch();
 
+  //! State
   const [addAddressShow, setAddAddressShow] = useState(false);
+
+  //! Selectors
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -38,6 +42,7 @@ const ShippingScreen = () => {
   const userAddresses = useSelector((state) => state.userAddresses);
   const { addresses } = userAddresses;
 
+  //! Use Effect
   useEffect(() => {
     if (orderAddress.fullName) {
       history.push("/payment");
@@ -47,8 +52,9 @@ const ShippingScreen = () => {
     } else {
       dispatch(getUserAddresses());
     }
-  }, [history, userInfo, user, dispatch]);
+  }, [history, userInfo, user, dispatch, orderAddress]);
 
+  //! Handlers
   const deleteAddressHandler = (id) => {
     const deleteAddress = async () => {
       try {
@@ -73,6 +79,7 @@ const ShippingScreen = () => {
     history.push("/payment");
   };
 
+  //! Return
   return (
     <div className="shipping-screen shipping-section">
       <CheckoutSteps />

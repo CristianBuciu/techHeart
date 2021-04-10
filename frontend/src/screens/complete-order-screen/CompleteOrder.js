@@ -1,5 +1,5 @@
 //! Core
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./CompleteOrder.scss";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,7 @@ import {
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { productConstants } from "../../redux/product/product.constants";
 
-//todo implement gsapp to stop the buy now on screen
+//todo implement gsap to stop the buy now on screen
 //!=======================================================
 
 const CompleteOrder = () => {
@@ -37,7 +37,7 @@ const CompleteOrder = () => {
   const { orderAddress } = orderAddressState;
 
   const orderCreate = useSelector((state) => state.orderCreate);
-  const { order, success, error } = orderCreate;
+  const { order, success } = orderCreate;
 
   const orderPaymentMethod = useSelector((state) => state.orderPaymentMethod);
   const paymentMethod = orderPaymentMethod.paymentMethod;
@@ -71,7 +71,7 @@ const CompleteOrder = () => {
     } else if (!orderPaymentMethod.paymentMethod) {
       history.push("/payment");
     }
-  }, [orderAddress, history, orderPaymentMethod, order]);
+  }, [orderAddress, history, orderPaymentMethod, order, success]);
   const removeCartProduct = (id) => {
     const deleteProduct = async () => {
       try {

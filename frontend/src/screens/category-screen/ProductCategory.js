@@ -1,13 +1,12 @@
 //! Core
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 
 //! Components
 import Product from "../../components/product/Product";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric";
-import ProductFilter from "../../components/product-filter/ProductFilter.js";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
@@ -15,12 +14,10 @@ import Pagination from "@material-ui/lab/Pagination";
 //! Redux actions
 import { listProducts } from "../../redux/product/product.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
-import { getCartProducts } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
 const ProductCategory = () => {
   //! Hooks declaration
-  const location = useLocation();
   const dispatch = useDispatch();
   const match = useRouteMatch();
 
@@ -30,7 +27,7 @@ const ProductCategory = () => {
   //! Redux data selection hook
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, pages, page } = productList;
+  const { loading, error, products, pages } = productList;
 
   //! Use effect
   useEffect(() => {
@@ -49,7 +46,7 @@ const ProductCategory = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [dispatch]);
+  }, [dispatch, match]);
 
   //! MaterialUI Pagination Style
   const useStyles = makeStyles((theme) => ({

@@ -8,15 +8,12 @@ import { useLocation } from "react-router-dom";
 import Product from "../../components/product/Product";
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
-import ProductFilter from "../../components/product-filter/ProductFilter.js";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 
 //! Redux actions
 import { listProducts } from "../../redux/product/product.actions.js";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
-import { getCartProducts } from "../../redux/cart/cart.actions.js";
 
 //!=======================================================
 const Shop = () => {
@@ -30,7 +27,7 @@ const Shop = () => {
   //! Redux data selection hook
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, pages, page } = productList;
+  const { loading, error, products, pages } = productList;
 
   //! Use effect
   useEffect(() => {

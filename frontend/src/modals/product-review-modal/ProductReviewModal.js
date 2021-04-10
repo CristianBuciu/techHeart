@@ -1,7 +1,7 @@
 //! Core
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./ProductReviewModal.scss";
 //! Components
 import AddReview from "../../components/add-review/AddReview";
@@ -11,7 +11,6 @@ import { RiCloseFill } from "react-icons/ri";
 
 //!=================================================================
 const AddressEdit = ({ product }) => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;

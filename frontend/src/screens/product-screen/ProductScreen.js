@@ -58,7 +58,7 @@ const ProductScreen = () => {
       setLike(false);
     }
     return () => clearTimeout(timer);
-  }, [isFavorite, dispatch, match.params.id]);
+  }, [isFavorite, dispatch, match.params.id, timer]);
   let timer;
   //!Handlers
   const addToCartHandler = () => {

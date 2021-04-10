@@ -1,7 +1,7 @@
 //! Core
 import React, { useRef, useEffect } from "react";
 import "./CartDropdown.scss";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { roundToTwo } from "../../utils.js";
 import axios from "axios";
@@ -23,12 +23,11 @@ import { productConstants } from "../../redux/product/product.constants";
 const CartDropdown = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const match = useRouteMatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const cartItems = useSelector((state) => state.cart);
-  const { loading, cartProducts } = cartItems;
+  const { cartProducts } = cartItems;
 
   //! CALCULATE TOTAL NUMBER OF PRODUCTS IN CART ===========================
   const cartItemsNumber = cartProducts.reduce(

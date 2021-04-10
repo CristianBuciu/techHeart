@@ -1,14 +1,13 @@
 //! Core
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Product.scss";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { roundToTwo } from "../../utils";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 //! Components
 import StarRatings from "react-star-ratings";
-import { ErrorMessage } from "../error-message/ErrorMessage.js";
 
 //! Icons
 import { FaHeart } from "react-icons/fa";

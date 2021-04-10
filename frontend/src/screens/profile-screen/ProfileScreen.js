@@ -3,7 +3,7 @@ import React from "react";
 import "./ProfileScreen.scss";
 import { Route } from "react-router-dom";
 //todo ADD GSAP SCROLL TO MAKE LEFT MENU STICKY
-import gsap from "gsap";
+// import gsap from "gsap";
 
 //! Components
 import ProfileSidebar from "../../components/profile-sidebar/ProfileSidebar.js";

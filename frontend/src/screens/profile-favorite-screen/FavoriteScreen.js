@@ -9,7 +9,6 @@ import { roundToTwo } from "../../utils.js";
 //! Components
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric.js";
 import ActionShow from "../../components/action-show/ActionShow.js";
-import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 
 //! Redux Actions
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
@@ -45,7 +44,7 @@ const FavoriteScreen = () => {
     }
     dispatch(listFavoriteProducts());
     return () => clearTimeout(timer);
-  }, [history, userInfo, dispatch]);
+  }, [history, userInfo, dispatch, timer]);
   //!==========================================
   let timer;
   //!Handlers

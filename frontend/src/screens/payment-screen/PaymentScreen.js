@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveOrderPaymentMethod } from "../../redux/order/order.actions.js";
 import { GrPaypal, GrStripe } from "react-icons/gr";
 import { AiOutlineDoubleRight } from "react-icons/ai";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { BsCreditCard } from "react-icons/bs";
 import { ReactComponent as DHL } from "../../assets/dhl-express.svg";
@@ -32,7 +32,7 @@ const PaymentScreen = () => {
     if (!orderAddress.fullName) {
       history.push("/shipping");
     }
-  }, [orderAddress, history]);
+  }, [orderAddress, history, orderPaymentMethod]);
 
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
   const [shippingMethod, setShippingMethod] = useState({

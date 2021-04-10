@@ -16,7 +16,7 @@ function ProfileSidebar() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const { userFavoriteProducts, loading } = favoriteProductsList;
+  const { userFavoriteProducts } = favoriteProductsList;
   const favoriteProductsLength = userFavoriteProducts.length;
 
   const cartItems = useSelector((state) => state.cart);

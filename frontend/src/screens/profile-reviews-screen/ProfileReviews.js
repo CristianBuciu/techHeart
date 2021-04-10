@@ -19,7 +19,7 @@ const ProfileReviews = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const reviews = useSelector((state) => state.userReviews);
-  const { loading, userReviews } = reviews;
+  const { userReviews } = reviews;
 
   useEffect(() => {
     if (!userInfo) {
@@ -27,7 +27,7 @@ const ProfileReviews = () => {
     } else {
       dispatch(listProductReviews());
     }
-  }, [dispatch, listProductReviews]);
+  }, [dispatch, history, userInfo]);
   return (
     <>
       <h1 className="heading-1 mb-sm">YOUR REVIEWS</h1>
@@ -43,6 +43,7 @@ const ProfileReviews = () => {
                 }}
                 className="profile-reviews__image"
                 src={el.image}
+                alt="product"
               />
             </div>
             <h4>{el.title}</h4>

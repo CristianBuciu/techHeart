@@ -40,7 +40,7 @@ const OrderItem = ({ item }) => {
     return () => {
       isCancelled = true;
     };
-  }, [item, dispatch, axios]);
+  }, [item, dispatch]);
 
   return (
     <div className="my-orders__items-grid">

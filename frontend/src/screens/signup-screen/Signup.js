@@ -1,22 +1,34 @@
+//! Core
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ErrorMessage from "../../components/error-message/ErrorMessage.js";
-import { register } from "../../redux/user/user.actions.js";
-import "./Signup.scss";
 import { Link, useHistory } from "react-router-dom";
+import "./Signup.scss";
+
+//! Redux
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../redux/user/user.actions.js";
+
+//! Components
+import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 
 //!==========================================================
 const Signup = ({ location }) => {
-  const redirect = location.search ? location.search.split("+")[1] : "/";
+  //! Hooks
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  //! State
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState(null);
+  const redirect = location.search ? location.search.split("+")[1] : "/";
+
+  //! Selectors
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
-  const history = useHistory();
+  const { error, userInfo } = userRegister;
+
+  //! Use Effect
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
@@ -99,7 +111,7 @@ const Signup = ({ location }) => {
             placeholder="Confirm password"
             className="login-screen__form--input"
             value={confirmPassword}
-            onChange={(e) => setconfirmPassword(e.target.value)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             name="confirmPassword"
             type="password"
           />

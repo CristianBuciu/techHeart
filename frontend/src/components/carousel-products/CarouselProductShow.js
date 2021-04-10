@@ -1,8 +1,8 @@
 //! Core
-import React, { useEffect } from "react";
+import React from "react";
 import "./CarouselProductShow.scss";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 //! Redux Actions
 import { productConstants } from "../../redux/product/product.constants";

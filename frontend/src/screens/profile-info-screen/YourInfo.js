@@ -1,38 +1,45 @@
+//! Core
 import React, { useState, useEffect } from "react";
+import "./YourInfo.scss";
+import { useHistory } from "react-router-dom";
+
+//! Redux
 import { useSelector, useDispatch } from "react-redux";
 import {
   getUserDetails,
   updateUserProfile,
 } from "../../redux/user/user.actions.js";
-import "./YourInfo.scss";
+
+//! Components
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
-import { useHistory } from "react-router-dom";
 import LoaderGeneric from "../../components/loader-generic/LoaderGeneric";
 //!==================================================
 
 const YourInfo = () => {
+  //! Hooks
   const dispatch = useDispatch();
   const history = useHistory();
+  //! State
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState(null);
+  const [edit, setEdit] = useState(false);
+  const [successColor, setSuccessColor] = useState("alert");
+  const [error, setError] = useState(false);
 
+  //! Selectors
   const userDetails = useSelector((state) => state.userDetails);
   const { user, loading } = userDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const [edit, setEdit] = useState(false);
-
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-  const [successColor, setSuccessColor] = useState("alert");
-  const [error, setError] = useState(false);
-
+  //! Use Effect
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
@@ -45,7 +52,7 @@ const YourInfo = () => {
       }
     }
     return () => clearTimeout(timer);
-  }, [history, userInfo, user, dispatch]);
+  }, [history, userInfo, user, dispatch, timer]);
 
   let timer;
 

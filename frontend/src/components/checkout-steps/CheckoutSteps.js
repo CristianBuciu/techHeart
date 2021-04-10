@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 
 import { AiOutlineDoubleRight, AiOutlineCheck } from "react-icons/ai";
 import { GiTechnoHeart } from "react-icons/gi";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 //!=====================================================================
 const CheckoutSteps = ({ active3 }) => {
   const history = useHistory();

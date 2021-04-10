@@ -1,7 +1,6 @@
 import React from "react";
 import "./Footer.scss";
 import { GrFacebook, GrTwitter, GrInstagram } from "react-icons/gr";
-import { Link } from "react-router-dom";
 //!=============================================================
 const Footer = () => {
   return (

@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+//! Core
+import React, { useEffect } from "react";
 import "./ProfileOrders.scss";
+//! Redux
 import { getMyOrders } from "../../redux/order/order.actions.js";
 import { useDispatch, useSelector } from "react-redux";
+//! Components
 import LoadingGeneric from "../../components/loader-generic/LoaderGeneric.js";
 import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import OrderOfOrders from "../../components/order-of-orders/OrderOfOrders";
 //!======================================================
 const AllOrdersScreen = () => {
+  //! Hooks
   const dispatch = useDispatch();
 
+  //! Selectors
   const orderMyOrders = useSelector((state) => state.orderMyOrders);
   const { loading, error, orders } = orderMyOrders;
+
+  //! Use Effect
   useEffect(() => {
     dispatch(getMyOrders());
   }, [dispatch]);

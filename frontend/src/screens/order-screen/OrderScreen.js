@@ -21,7 +21,7 @@ import { getOrderDetails, payOrder } from "../../redux/order/order.actions";
 import { orderConstants } from "../../redux/order/order.constants.js";
 import { productConstants } from "../../redux/product/product.constants";
 
-//todo implement gsapp to stop the buy now on screen
+//todo implement gsap to stop the buy now on screen
 //!=======================================================
 
 const OrderScreen = ({ match }) => {
@@ -37,9 +37,6 @@ const OrderScreen = ({ match }) => {
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
 
   useEffect(() => {
     dispatch(getCartProducts());

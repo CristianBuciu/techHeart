@@ -20,9 +20,6 @@ const ProfileAddresses = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const { success } = userUpdateProfile;
-
   const userAddresses = useSelector((state) => state.userAddresses);
 
   const { addresses } = userAddresses;

@@ -32,7 +32,7 @@ const Header = () => {
   //! Redux data selection hook
   const cartToggle = useSelector((state) => state.cartToggle.showCart);
   const cartItems = useSelector((state) => state.cart);
-  const { loading, cartProducts } = cartItems;
+  const { cartProducts } = cartItems;
 
   const cartItemsNumber = cartProducts.reduce(
     (accum, cartItem) => accum + cartItem.quantity,

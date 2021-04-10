@@ -1,5 +1,5 @@
 //! Core
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./Checkout.scss";
@@ -18,7 +18,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const cartItems = useSelector((state) => state.cart);
-  const { loading, cartProducts } = cartItems;
+  const { cartProducts } = cartItems;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
