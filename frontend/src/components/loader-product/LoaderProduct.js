@@ -1,5 +1,4 @@
 import React from "react";
-import "./LoaderProduct.scss";
 const LoaderProduct = () => {
   return (
     <div className="loader-product">

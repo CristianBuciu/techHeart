@@ -1,0 +1,38 @@
+.user-dropdown {
+  animation: 0.2s slideDown ease;
+  transform-origin: top;
+
+  position: fixed;
+  top: 8.1rem;
+  right: 2rem;
+  padding: 2rem 4rem;
+  background-color: white;
+
+  box-shadow: $shadow-normal;
+  border: 1px solid $color-primary;
+  border-radius: 0.5rem;
+  &__list-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: all 0.1s;
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}

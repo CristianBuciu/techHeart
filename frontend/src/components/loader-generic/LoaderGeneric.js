@@ -1,5 +1,4 @@
 import React from "react";
-import "./LoaderGeneric.scss";
 const LoaderGeneric = () => {
   return (
     <div className="lds-default">

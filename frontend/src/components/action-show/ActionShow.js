@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./ActionShow.scss";
 import { ImArrowUp } from "react-icons/im";
 //!=================================================
 const ToCartVisual = () => {

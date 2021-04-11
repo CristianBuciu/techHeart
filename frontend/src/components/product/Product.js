@@ -1,6 +1,5 @@
 //! Core
 import React, { useState, useEffect } from "react";
-import "./Product.scss";
 import { useHistory } from "react-router-dom";
 import { roundToTwo } from "../../utils";
 import { useSelector, useDispatch } from "react-redux";

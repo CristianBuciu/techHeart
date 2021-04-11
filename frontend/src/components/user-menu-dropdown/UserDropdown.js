@@ -1,5 +1,4 @@
 import React from "react";
-import "./UserDropdown.scss";
 import { FiLogOut } from "react-icons/fi";
 
 import { Link } from "react-router-dom";

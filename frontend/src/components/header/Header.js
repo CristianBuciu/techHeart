@@ -1,6 +1,5 @@
 //! Core
 import React from "react";
-import "./Header.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";

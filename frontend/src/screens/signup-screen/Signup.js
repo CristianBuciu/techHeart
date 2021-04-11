@@ -1,7 +1,6 @@
 //! Core
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import "./Signup.scss";
 
 //! Redux
 import { useDispatch, useSelector } from "react-redux";

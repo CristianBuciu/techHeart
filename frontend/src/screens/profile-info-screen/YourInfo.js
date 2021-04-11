@@ -1,6 +1,5 @@
 //! Core
 import React, { useState, useEffect } from "react";
-import "./YourInfo.scss";
 import { useHistory } from "react-router-dom";
 
 //! Redux

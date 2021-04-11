@@ -1,6 +1,5 @@
 //! Core
 import React, { useState } from "react";
-import "./SearchBox.scss";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 

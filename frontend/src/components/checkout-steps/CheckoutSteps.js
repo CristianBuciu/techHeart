@@ -1,5 +1,4 @@
 import React from "react";
-import "./CheckoutStepts.scss";
 import { Link, useHistory } from "react-router-dom";
 
 import { AiOutlineDoubleRight, AiOutlineCheck } from "react-icons/ai";

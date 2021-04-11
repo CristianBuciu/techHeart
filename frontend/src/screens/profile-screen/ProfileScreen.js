@@ -1,6 +1,5 @@
 //! Core
 import React from "react";
-import "./ProfileScreen.scss";
 import { Route } from "react-router-dom";
 //todo ADD GSAP SCROLL TO MAKE LEFT MENU STICKY
 // import gsap from "gsap";

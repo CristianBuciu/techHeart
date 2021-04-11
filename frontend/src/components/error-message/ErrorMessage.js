@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./ErrorMessage.scss";
 
 const ErrorMessage = ({ children, color }) => {
   const [visible, setVisible] = useState(true);

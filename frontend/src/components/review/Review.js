@@ -1,5 +1,4 @@
 import React from "react";
-import "./Review.scss";
 
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";

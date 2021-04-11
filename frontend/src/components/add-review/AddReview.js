@@ -1,6 +1,5 @@
 //! Core
 import React, { useState } from "react";
-import "./AddReview.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 

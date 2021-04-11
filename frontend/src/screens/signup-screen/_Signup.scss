@@ -1,0 +1,25 @@
+.signup {
+  &__password-text {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: $color-grey-dark-2;
+    margin-top: 2rem;
+  }
+  &__password-box {
+    align-self: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    &--checked {
+      color: $color-alert;
+    }
+    &--fail {
+      color: $color-pallete-2;
+    }
+  }
+  &__password-error {
+    margin-top: 0.5rem;
+    color: $color-alert;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}

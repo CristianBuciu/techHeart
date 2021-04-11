@@ -1,6 +1,5 @@
 //! Core
 import React, { useEffect } from "react";
-import "./ProfileOrders.scss";
 //! Redux
 import { getMyOrders } from "../../redux/order/order.actions.js";
 import { useDispatch, useSelector } from "react-redux";

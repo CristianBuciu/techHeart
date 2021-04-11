@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./PaymentScreen.scss";
 import CheckoutSteps from "../../components/checkout-steps/CheckoutSteps";
 
 import { useDispatch, useSelector } from "react-redux";

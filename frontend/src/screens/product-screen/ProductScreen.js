@@ -1,7 +1,6 @@
 //! Core
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
-import "./ProductScreen.scss";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { roundToTwo } from "../../utils";

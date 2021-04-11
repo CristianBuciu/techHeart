@@ -1,7 +1,6 @@
 //! Core
 import React from "react";
 import { Link } from "react-router-dom";
-import "./OrderOfOrders.scss";
 
 //! Components
 import OrderItem from "../order-item/OrderItem";

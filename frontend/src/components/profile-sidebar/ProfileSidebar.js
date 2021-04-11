@@ -1,15 +1,22 @@
+//! Core
 import React, { useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+
+//! Redux
 import { useSelector, useDispatch } from "react-redux";
-import "./ProfileSidebar.scss";
 import { listFavoriteProducts } from "../../redux/user/user.actions.js";
+
+//! Icons
 import { FaHeart } from "react-icons/fa";
 import { BiShoppingBag } from "react-icons/bi";
 //!=======================================================================
 
 function ProfileSidebar() {
+  //! Hooks
   const dispatch = useDispatch();
   const history = useHistory();
+
+  //! Selectors
   const favoriteProductsList = useSelector(
     (state) => state.userFavoriteProducts
   );
@@ -21,16 +28,22 @@ function ProfileSidebar() {
 
   const cartItems = useSelector((state) => state.cart);
   const { cartProducts } = cartItems;
+
+  //! Selector utils
   const cartItemsNumber = cartProducts.reduce(
     (accum, cartItem) => accum + cartItem.quantity,
     0
   );
+
+  //! Use Effect
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
     }
     dispatch(listFavoriteProducts());
   }, [history, userInfo, dispatch]);
+
+  //! Return ===============================================>
   return (
     <div className="profile-sidebar">
       <h1 className="profile-screen__title">Your Account</h1>

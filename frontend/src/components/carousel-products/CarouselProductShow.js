@@ -1,6 +1,5 @@
 //! Core
 import React from "react";
-import "./CarouselProductShow.scss";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 

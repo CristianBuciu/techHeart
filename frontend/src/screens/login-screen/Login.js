@@ -1,9 +1,13 @@
+//! Core
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+
+//!  Redux
 import { useDispatch, useSelector } from "react-redux";
-import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 import { login } from "../../redux/user/user.actions.js";
-import "./Login.scss";
+
+//! Components
+import ErrorMessage from "../../components/error-message/ErrorMessage.js";
 
 //!==========================================================
 const Login = ({ location }) => {

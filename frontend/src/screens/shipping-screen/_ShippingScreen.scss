@@ -1,0 +1,54 @@
+.shipping-screen {
+  &__address-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    column-gap: 3rem;
+    justify-content: center;
+  }
+  &__address {
+    width: 100%;
+    padding: 1rem;
+  }
+  &__ship-btn {
+    @include custom-btn;
+    padding: 1rem;
+    width: 100%;
+    letter-spacing: 1px;
+  }
+  &__delete-edit-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &--action {
+    font-size: 1.4rem;
+    border: 1px solid $color-pallete-3;
+    padding: 0.5rem 1rem;
+    width: 48%;
+    text-align: center;
+    color: $color-grey-dark-1;
+    border-radius: 0.5rem;
+    transition: $transition;
+    &:hover {
+      background-color: $color-pallete-1;
+    }
+    &--delete {
+      color: $color-grey-dark-1;
+      cursor: pointer;
+    }
+    &:visited {
+      color: $color-grey-dark-1;
+    }
+  }
+  &__add-address {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: $transition;
+    width: fit-content;
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}

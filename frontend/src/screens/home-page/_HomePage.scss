@@ -1,0 +1,105 @@
+.homepage {
+  &__slider-page {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__user-quicklook {
+    width: 100%;
+  }
+  &__welcome-message {
+    font-weight: 800;
+    text-align: center;
+    font-size: 2.2rem;
+  }
+  &__lottery {
+    height: 66.65rem;
+    padding: 2rem;
+    background-color: #f6f8f5;
+    position: relative;
+  }
+  &__lottery-form {
+    box-shadow: $shadow-normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 25rem;
+    height: 30rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &__lottery-input {
+    border: 1px solid $color-primary;
+    padding: 0.5rem;
+  }
+  &__lottery-btn {
+    @include custom-btn-secundary;
+  }
+  &__select-category {
+    border-radius: 1rem;
+    background-image: linear-gradient(
+      to right bottom,
+      #ff0bf3,
+      #b774ff,
+      #5c9bff,
+      #00b3ff,
+      #00c1ff,
+      #00c8f3,
+      #00cde2,
+      #00d1cd,
+      #00d6c6,
+      #00dabc,
+      #00deb0,
+      #21e2a2
+    );
+    padding: 1px;
+    &--grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      column-gap: 1rem;
+      row-gap: 2rem;
+      align-items: center;
+      justify-items: center;
+    }
+    &--inner {
+      padding: 1rem;
+      background-color: white;
+      border-radius: 1rem;
+    }
+    &--subcategory {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+    }
+    &--image-container {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      box-shadow: $shadow-normal;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease-in-out;
+      cursor: pointer;
+      border: 1px solid transparent;
+      &:hover {
+        border: 1px solid $color-primary;
+        box-shadow: none;
+      }
+    }
+    &--image {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.error-message {
+  position: fixed;
+  top: 8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  margin: 0 auto;
+  margin-top: 2rem;
+  width: 50%;
+  height: fit-content;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  animation: fadeIn 0.5s ease;
+}
+
+.alert {
+  background-color: rgba($color: $color-alert, $alpha: 0.3);
+  color: rgb(255, 98, 98);
+}
+
+.success {
+  background-color: rgba($color: $color-pallete-2, $alpha: 0.3);
+  color: $color-pallete-2;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

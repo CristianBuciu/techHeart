@@ -1,0 +1,66 @@
+.add-review {
+  width: 100%;
+  &__whole-body {
+    transform-origin: top;
+    animation: slideDown 0.1s ease-in-out;
+  }
+  &__button {
+    padding: 1rem 4rem;
+    width: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    color: $color-cta-2;
+    background-color: $color-pallete-1;
+    cursor: pointer;
+    transition: $transition;
+    &:hover {
+      box-shadow: $shadow-normal;
+      background-color: $color-pallete-4;
+      color: $color-pallete-1;
+    }
+    @media only screen and (min-device-width: 375px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+      width: 75%;
+      margin: 0 auto;
+    }
+  }
+  &__submit-flex {
+    display: flex;
+    align-items: center;
+  }
+  &__cancel-review {
+    font-size: 1.8rem;
+    cursor: pointer;
+    &:hover {
+      color: $color-alert;
+    }
+  }
+  &__star-select {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    width: 100%;
+    border: 1px solid $color-primary;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    border-radius: 0.5rem;
+    @media only screen and (min-device-width: 375px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+      width: 100%;
+    }
+  }
+  &__text-field {
+    display: block;
+    font-size: 1.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid $color-primary;
+    font-family: $font-primary;
+    width: 100%;
+    @media only screen and (min-device-width: 375px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+      width: 100%;
+    }
+  }
+}

@@ -1,6 +1,5 @@
 //! Core
 import React, { useEffect, useState } from "react";
-import "./Shop.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
