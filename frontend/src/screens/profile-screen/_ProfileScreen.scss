@@ -1,6 +1,20 @@
 .profile-screen {
   display: flex;
+  &__left {
+    width: 20%;
+    @include respond(phone) {
+      display: none;
+    }
+  }
   &__right {
     width: 80%;
+    @include respond(phone) {
+      width: 100%;
+    }
+  }
+  &__title {
+    @include respond(phone) {
+      font-size: 2.5rem;
+    }
   }
 }

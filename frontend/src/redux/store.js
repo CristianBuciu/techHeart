@@ -53,7 +53,7 @@ const reducer = combineReducers({
   productCategories: productGetCategoriesReducer,
 });
 
-//! Local storage asignments ================================================
+//! Local storage assignments ================================================
 
 const cartItemsFromStorage = localStorage.getItem("cartProducts")
   ? JSON.parse(localStorage.getItem("cartProducts"))

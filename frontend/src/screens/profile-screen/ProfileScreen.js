@@ -18,7 +18,9 @@ import ProfileReviews from "../profile-reviews-screen/ProfileReviews.js";
 const ProfileScreen = () => {
   return (
     <div className="profile-screen">
-      <ProfileSidebar />
+      <div className="profile-screen__left">
+        <ProfileSidebar />
+      </div>
       <div className="profile-screen__right">
         <Route exact path="/profile/info" component={YourInfo} />
         <Route exact path="/profile/addresses" component={ProfileAddresses} />

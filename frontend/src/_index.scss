@@ -28,6 +28,9 @@ body {
   max-width: 95vw;
   width: 144rem;
   margin: 10rem auto;
+  @include respond(phone) {
+    margin: 14rem auto;
+  }
 }
 
 a,

@@ -40,7 +40,7 @@
       justify-content: space-evenly;
 
       &--action {
-        @include custom-btn-secundary;
+        @include custom-btn-secondary;
       }
       &--action:active,
       &--action:visited {

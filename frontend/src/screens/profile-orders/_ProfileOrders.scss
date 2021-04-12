@@ -76,7 +76,7 @@
     align-items: center;
     justify-content: space-evenly;
     &--btn {
-      @include custom-btn-secundary;
+      @include custom-btn-secondary;
     }
   }
   &__reviewd {

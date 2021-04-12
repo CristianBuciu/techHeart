@@ -20,6 +20,11 @@
     background-color: $color-pallete-4;
     color: white;
   }
+  @include respond(phone) {
+    font-size: 1.8rem;
+    width: 100%;
+    padding: 1rem;
+  }
 }
 
 @mixin custom-btn-disabled {
@@ -37,7 +42,7 @@
   justify-content: center;
 }
 
-@mixin custom-btn-secundary {
+@mixin custom-btn-secondary {
   border: 1px solid $color-pallete-3;
   color: $color-cta-2 !important;
   display: flex;
@@ -54,5 +59,36 @@
     box-shadow: $shadow-normal;
     background-color: $color-pallete-4;
     color: $color-pallete-1 !important;
+  }
+  @include respond(phone) {
+    font-size: 1.8rem;
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (min-device-width: 320px) and (max-device-width: 480px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == desk {
+    @media (min-width: 1025px) {
+      @content;
+    }
   }
 }

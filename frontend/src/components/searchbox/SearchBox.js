@@ -10,7 +10,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { productConstants } from "../../redux/product/product.constants";
 
 //!============================================================
-const SearchBox = () => {
+const SearchBox = ({ phone }) => {
   //! Hooks declaration
   const history = useHistory();
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const SearchBox = () => {
     setKeyword(e.target.value);
   };
   return (
-    <div className="search-box">
+    <div className={phone ? "search-box-mobile" : "search-box"}>
       <form onSubmit={handleSearchSubmit}>
         <input
           className="search-box__input"

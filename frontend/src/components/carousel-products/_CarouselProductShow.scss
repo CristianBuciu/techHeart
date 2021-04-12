@@ -1,7 +1,21 @@
 .carousel {
   &--product {
     cursor: pointer;
+    position: relative;
+    @include respond(phone) {
+      height: fit-content;
+    }
   }
+  // &--product-discount {
+  //   height: 33rem;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   position: relative;
+  //   @include respond(phone) {
+  //     height: 22rem;
+  //   }
+  // }
   &--title {
     background-image: linear-gradient(
       to bottom,
@@ -18,18 +32,20 @@
   }
   &--offer-products {
     height: 100%;
-
     padding: 2rem;
     background-color: white;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     column-gap: 1rem;
+    row-gap: 4rem;
+    @include respond(phone) {
+    }
   }
   &--image {
-    width: 80%;
+    width: 100%;
     transition: $transition;
-
+    justify-self: center;
     &:hover {
       transform: scale(0.9);
     }
@@ -45,8 +61,8 @@
   }
   &--discount {
     position: absolute;
-    top: 4rem;
-    left: 2.5rem;
+    top: -2rem;
+    left: -0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;

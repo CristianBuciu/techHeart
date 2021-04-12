@@ -36,6 +36,8 @@ const FavoriteScreen = () => {
   const { userFavoriteProducts, loading } = favoriteProductsList;
   const favoriteProductsLength = userFavoriteProducts.length;
 
+  let timer;
+
   //! Use effect ============================
   useEffect(() => {
     if (!userInfo) {
@@ -45,7 +47,6 @@ const FavoriteScreen = () => {
     return () => clearTimeout(timer);
   }, [history, userInfo, dispatch, timer]);
   //!==========================================
-  let timer;
   //!Handlers
   const removeFromFavoriteHandler = (id) => {
     const deleteProduct = async () => {

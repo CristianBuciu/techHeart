@@ -35,15 +35,7 @@ const CarouselProductShow = ({
               key={product._id}
               className="carousel--product"
             >
-              <div
-                style={{
-                  height: "33rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  position: "relative",
-                }}
-              >
+              <div className="carousel--product-discount">
                 {product.onOffer ? (
                   <h4 className=" carousel--discount">
                     -{product.offerPriceDiscount}%

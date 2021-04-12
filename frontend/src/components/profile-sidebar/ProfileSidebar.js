@@ -11,7 +11,7 @@ import { FaHeart } from "react-icons/fa";
 import { BiShoppingBag } from "react-icons/bi";
 //!=======================================================================
 
-function ProfileSidebar() {
+function ProfileSidebar({ handler }) {
   //! Hooks
   const dispatch = useDispatch();
   const history = useHistory();
@@ -48,6 +48,7 @@ function ProfileSidebar() {
     <div className="profile-sidebar">
       <h1 className="profile-screen__title">Your Account</h1>
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/info"
@@ -57,6 +58,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/addresses"
@@ -66,6 +68,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/favorites"
@@ -91,6 +94,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         activeClassName="profile-sidebar__active-link"
         className="profile-sidebar__options"
         to="/profile/reviews"
@@ -100,6 +104,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/messages"
@@ -110,6 +115,7 @@ function ProfileSidebar() {
 
       <h1 className="profile-screen__title">Orders</h1>
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/orders"
@@ -119,6 +125,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/checkout"
@@ -144,6 +151,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/returns"
@@ -153,6 +161,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         activeClassName="profile-sidebar__active-link"
         className="profile-sidebar__options"
         to="/profile/warranty"
@@ -163,6 +172,7 @@ function ProfileSidebar() {
 
       <h1 className="profile-screen__title">Payment</h1>
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         activeClassName="profile-sidebar__active-link"
         className="profile-sidebar__options"
         to="/profile/cards"
@@ -172,6 +182,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/payment-methods"
@@ -181,6 +192,7 @@ function ProfileSidebar() {
       </NavLink>
 
       <NavLink
+        onClick={() => (handler ? handler() : null)}
         className="profile-sidebar__options"
         activeClassName="profile-sidebar__active-link"
         to="/profile/discounts"

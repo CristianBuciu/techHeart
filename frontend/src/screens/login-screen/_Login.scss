@@ -3,6 +3,10 @@
     width: 25%;
     margin: 0 auto;
     margin-top: 10rem;
+    @include respond(phone) {
+      width: 80%;
+      margin-top: 2rem;
+    }
   }
   &__form {
     display: flex;
@@ -32,6 +36,10 @@
     transition: $transition;
     &:hover {
       color: $color-cta !important;
+    }
+    @include respond(phone) {
+      display: inline-block;
+      margin-top: 1rem;
     }
   }
 }

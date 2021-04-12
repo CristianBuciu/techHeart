@@ -47,6 +47,8 @@ const ProductScreen = () => {
 
   const isFavorite = product?.likedBy?.find((id) => id == userInfo?._id);
 
+  let timer;
+
   //! Get the product by id from the API
   useEffect(() => {
     dispatch(listFavoriteProducts());
@@ -58,7 +60,7 @@ const ProductScreen = () => {
     }
     return () => clearTimeout(timer);
   }, [isFavorite, dispatch, match.params.id, timer]);
-  let timer;
+
   //!Handlers
   const addToCartHandler = () => {
     try {

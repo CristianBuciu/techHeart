@@ -13,6 +13,9 @@
     &::placeholder {
       color: $color-grey-light-2;
     }
+    @include respond(phone) {
+      padding: 1rem;
+    }
   }
   &__search-btn {
     cursor: pointer;
@@ -36,5 +39,14 @@
       background-color: $color-pallete-4;
       color: $color-pallete-1;
     }
+  }
+}
+.search-box-mobile {
+  display: none;
+  @include respond(phone) {
+    display: block;
+    position: relative;
+    width: 90%;
+    margin: 1rem auto 0 auto;
   }
 }

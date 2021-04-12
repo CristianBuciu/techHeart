@@ -38,6 +38,8 @@ const YourInfo = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
+  let timer;
+
   //! Use Effect
   useEffect(() => {
     if (!userInfo) {
@@ -52,8 +54,6 @@ const YourInfo = () => {
     }
     return () => clearTimeout(timer);
   }, [history, userInfo, user, dispatch, timer]);
-
-  let timer;
 
   const passwordLength = password.length < 6 ? false : true;
   const passwordLowercase = /[a-z]/.test(password) < 1 ? false : true;

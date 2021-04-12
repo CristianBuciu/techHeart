@@ -95,24 +95,29 @@ const HomePage = () => {
             <div className="homepage__slider-page">
               <Page>
                 <div className="homepage__lottery">
-                  <h1 className="heading-1">Win a new Samsung Galaxy S21</h1>
+                  <h1 className="heading-1 homepage__lottery--title">
+                    Win a new Samsung Galaxy S21
+                  </h1>
                   <img
                     src="https://www.androidpolice.com/wp-content/uploads/2021/01/11/d8a5e279e6afacb10e0dbe51f49707445a0ffcb66a0d85bcae52c32075c79e85-1.jpg"
-                    alt=""
+                    alt="win a phone"
+                    className="homepage__lottery--image"
                   />
                   <div className="homepage__lottery-form">
                     <div>
-                      <h3 className="heading-3">Subscribe and WIN</h3>
-                      <p>Get thiss incredible Samsung Galaxy S21</p>
+                      <h3 className="heading-3 homepage__lottery-form--title">
+                        Subscribe and WIN
+                      </h3>
+                      <p>Get this incredible Samsung Galaxy S21</p>
                     </div>
                     <input
-                      className="homepage__lottery-input"
+                      className="homepage__lottery-form--input"
                       type="email"
                       placeholder="Enter your email"
                     />
                     <div>
                       <input className="mr-sm" type="checkbox" />{" "}
-                      <span>
+                      <span className="homepage__lottery-form--checkbox-text">
                         I confirm that I have read, understand and agree to the
                         above policy and procedure for enrollment in the Win a
                         Samsung Galaxy S21 Program.
@@ -128,7 +133,7 @@ const HomePage = () => {
                 <CarouselProductShow
                   buttonLink="See all deals"
                   title="Latest Deals"
-                  subtitle="Up to 25% off in electronic products and a wooping 45% off in home appliances"
+                  subtitle="Up to 25% off in electronic products and an incredible 45% off in home appliances"
                   roundToTwo={roundToTwo}
                   products={products}
                 />
