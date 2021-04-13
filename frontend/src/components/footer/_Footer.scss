@@ -32,10 +32,13 @@
   &__bottom {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    column-gap: 2rem;
     color: $color-pallete-1;
     align-items: center;
-    justify-content: space-evenly;
+    justify-items: flex-start;
     background-color: $color-grey-dark-2;
   }
 }
