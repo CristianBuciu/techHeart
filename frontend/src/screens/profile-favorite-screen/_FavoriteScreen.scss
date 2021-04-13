@@ -6,6 +6,10 @@
     height: 12rem;
     width: 20rem;
     overflow: hidden;
+    @include respond(phone) {
+      width: 100%;
+      height: 25rem;
+    }
   }
   &__item {
     display: flex;
@@ -13,6 +17,12 @@
     width: 100%;
     height: 12rem;
     margin-bottom: 2rem;
+    @include respond(phone) {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 45rem;
+    }
   }
   &__image {
     width: 20rem;
@@ -26,6 +36,10 @@
     &:hover {
       transform: scale(0.9);
     }
+    @include respond(phone) {
+      width: 100%;
+      height: 100%;
+    }
   }
   &__item-details {
     z-index: 1;
@@ -38,6 +52,13 @@
 
     position: relative;
     overflow: hidden;
+    @include respond(phone) {
+      width: 100%;
+      margin-left: 0%;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      row-gap: 0.5rem;
+      height: 50%;
+    }
     &::after {
       z-index: 0;
       content: "";
@@ -47,6 +68,9 @@
       border-top: 1px solid $color-cta;
       transform: translateX(-100%);
       transition: all 0.4s ease-in-out;
+      @include respond(phone) {
+        display: none;
+      }
     }
     &::before {
       z-index: 0;
@@ -58,6 +82,9 @@
       border-bottom: 1px solid $color-primary;
       transform: translateX(100%);
       transition: all 0.4s ease-in-out;
+      @include respond(phone) {
+        display: none;
+      }
     }
 
     &--title {
@@ -70,9 +97,13 @@
       line-height: 1;
       font-size: 1.4rem;
       align-self: center;
-      width: fit-content;
+      width: autot;
       &:hover {
         color: $color-primary;
+      }
+      @include respond(phone) {
+        grid-column: 1/-1;
+        grid-row: 1/2;
       }
     }
     &--price {
@@ -81,6 +112,10 @@
       align-self: center;
       justify-self: center;
       color: $color-primary-dark;
+      @include respond(phone) {
+        grid-column: 2/3;
+        grid-row: 2/3;
+      }
     }
     &--default-text {
       font-size: 1.2rem;
@@ -88,6 +123,10 @@
       justify-self: center;
       grid-column: 2/3;
       grid-row: 2/3;
+      @include respond(phone) {
+        grid-column: 2/3;
+        grid-row: 3/4;
+      }
     }
   }
   &__remove {
@@ -116,6 +155,11 @@
     font-size: 1.4rem;
     &--icon {
       margin-right: 0.5rem;
+    }
+    @include respond(phone) {
+      grid-column: 1/-1;
+      grid-row: 4/5;
+      height: auto;
     }
   }
   &__button-disabled {

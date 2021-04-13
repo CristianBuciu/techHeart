@@ -22,6 +22,14 @@
     display: flex;
     flex: 30% 70%;
     margin-bottom: 2rem;
+    @include respond(phone) {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 4rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid $color-grey-light-1;
+      height: 478px;
+    }
   }
   &__image {
     height: 18rem;
@@ -33,6 +41,15 @@
     &:hover {
       transform: scale(0.9);
     }
+    @include respond(phone) {
+      margin-right: 0;
+      width: 100%;
+      height: 25rem;
+    }
+  }
+  &__rating-container {
+    grid-column: 2/3;
+    grid-row: 2/3;
   }
   &__item-details {
     z-index: 1;
@@ -43,6 +60,10 @@
     row-gap: 0.5rem;
     overflow-x: hidden;
     position: relative;
+    @include respond(phone) {
+      grid-template-columns: 50% 50%;
+      grid-template-rows: repeat(4, 5rem);
+    }
     &::after {
       z-index: -1;
       content: "";
@@ -52,6 +73,9 @@
       border-top: 1px solid $color-cta;
       transform: translateX(-100%);
       transition: all 0.4s ease-in-out;
+      @include respond(phone) {
+        display: none;
+      }
     }
     &::before {
       z-index: -1;
@@ -63,6 +87,9 @@
       border-bottom: 1px solid $color-primary;
       transform: translateX(100%);
       transition: all 0.4s ease-in-out;
+      @include respond(phone) {
+        display: none;
+      }
     }
     &--title {
       grid-row: 2/3;
@@ -70,6 +97,10 @@
       font-size: 1.6rem;
       cursor: pointer;
       transition: $transition;
+      @include respond(phone) {
+        grid-row: 1/2;
+        grid-column: 1/-1;
+      }
 
       &:hover {
         color: $color-primary;
@@ -79,6 +110,9 @@
       grid-column: 2/3;
       align-self: center;
       font-weight: bold;
+      @include respond(phone) {
+        display: none;
+      }
     }
     &--price-value {
       align-self: center;
@@ -86,6 +120,10 @@
       align-items: center;
       justify-content: center;
       font-weight: bold;
+      @include respond(phone) {
+        grid-row: 3/4;
+        grid-column: 1/-1;
+      }
     }
   }
   &__subtotal {
@@ -126,6 +164,14 @@
     align-self: center;
     font-size: 1.4rem;
     font-weight: bold;
+    @include respond(phone) {
+      grid-column: 2/3;
+      grid-row: 4/5;
+      padding: 1rem;
+      align-self: center;
+      text-align: end;
+      width: 100%;
+    }
   }
 }
 

@@ -54,6 +54,10 @@
     display: grid;
     grid-template-columns: 30% 30% 30%;
     column-gap: 3.33%;
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
   }
 
   &__address-text {
@@ -75,13 +79,24 @@
     grid-column: 3/4;
     justify-self: center;
     align-self: flex-end;
+    @include respond(phone) {
+      grid-column: 1/2;
+      height: auto;
+    }
   }
   &__password-section {
     display: grid;
     grid-template-columns: 30% 30% 30%;
     column-gap: 3.33%;
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
     &__form {
       align-self: center;
+      @include respond(phone) {
+        grid-column: 1/2;
+      }
     }
 
     &__input {
@@ -103,6 +118,9 @@
     }
     &__password-box {
       grid-column: 2/3;
+      @include respond(phone) {
+        grid-column: 1/2;
+      }
     }
   }
   &__password-submit {
@@ -112,5 +130,10 @@
     grid-column: 3/4;
     align-self: flex-end;
     justify-self: center;
+    @include respond(phone) {
+      margin-top: 4rem;
+      grid-column: 1/2;
+      height: auto;
+    }
   }
 }

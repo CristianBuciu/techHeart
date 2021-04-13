@@ -170,8 +170,12 @@ const Header = () => {
               </div>
             </nav>
             <SearchBox phone={true} />
+            {sidebarShow ? (
+              <div className="sidebar-container">
+                <Sidebar handler={closeMenu} />
+              </div>
+            ) : null}
           </header>
-          {sidebarShow ? <Sidebar handler={closeMenu} /> : null}
         </>
       )}
     </>

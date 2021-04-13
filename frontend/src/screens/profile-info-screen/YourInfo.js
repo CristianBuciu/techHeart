@@ -149,7 +149,13 @@ const YourInfo = () => {
 
             <p className="your-info__address-text">{email}</p>
             {edit ? (
-              <p style={{ fontSize: "1.2rem", color: "grey" }}>
+              <p
+                style={{
+                  fontSize: "1.2rem",
+                  color: "grey",
+                  marginBottom: "1rem",
+                }}
+              >
                 Email cannot be changed
               </p>
             ) : (
@@ -273,12 +279,12 @@ const YourInfo = () => {
               be at least 6 characters long
             </p>
           </div>
-          <input
+          <button
             onClick={handlePasswordUpdate}
             className="your-info__password-submit"
-            type="submit"
-            value="Update password"
-          />
+          >
+            Update password
+          </button>
         </div>
         <div className="line-break" />
       </main>

@@ -1,15 +1,25 @@
-.sidebar {
-  transform: scaleY(0);
-  padding: 2rem;
-  animation: 0.2s scale-down forwards;
-  transform-origin: top;
-  position: absolute;
-  top: 12.2rem;
+.sidebar-container {
+  z-index: 20;
+  position: fixed;
+  bottom: 0%;
+  top: 12.5rem;
   left: 0;
+
+  width: 100vw;
+  animation: 0.2s scale-down forwards;
+  transform-origin: left;
+  transform: translateX(-110%);
+}
+.sidebar {
+  padding: 2rem;
+
   width: 100%;
   background-color: white;
-  z-index: 20;
+
   box-shadow: $shadow-normal;
+
+  height: 100%;
+  overflow-y: scroll;
 
   &__welcome-message {
     text-align: center;
@@ -61,9 +71,9 @@
 
 @keyframes scale-down {
   from {
-    transform: scaleY(0);
+    transform: translateX(-110%);
   }
   to {
-    transform: scaleY(1);
+    transform: translateX(0);
   }
 }

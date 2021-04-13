@@ -162,7 +162,7 @@ const Checkout = () => {
                 </div>
               )}
             </h3>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div className="checkout-screen__rating-container">
               <StarRatings
                 className="product-screen__rating-stars "
                 rating={item.product.rating}
