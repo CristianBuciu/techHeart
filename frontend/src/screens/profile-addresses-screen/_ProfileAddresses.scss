@@ -42,6 +42,10 @@
 
       &--action {
         @include custom-btn-secondary;
+        border: 1px solid transparent;
+        font-size: 1.4rem !important;
+        background-color: transparent;
+
         @include respond(phone) {
           width: 45%;
         }
@@ -49,6 +53,9 @@
       &--action:active,
       &--action:visited {
         color: $color-grey-dark-1 !important;
+      }
+      &--action-delete {
+        color: $color-alert !important;
       }
     }
   }

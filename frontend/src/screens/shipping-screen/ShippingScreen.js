@@ -112,7 +112,7 @@ const ShippingScreen = () => {
                     onClick={() => handleSubmit(address)}
                     className="shipping-screen__ship-btn"
                   >
-                    Deliver to this address{" "}
+                    Deliver here{" "}
                     <AiOutlineDoubleRight className="payment-screen__arrows" />{" "}
                   </button>
                   <div className="shipping-screen__delete-edit-container mt-xs mb-xs">

@@ -46,7 +46,11 @@ const AddressEdit = ({ product }) => {
               alt={product.name}
             />
 
-            <AddReview showModal={true} productId={product._id} />
+            <AddReview
+              showModal={true}
+              productId={product._id}
+              style={{ width: "100%" }}
+            />
           </div>
         </div>
       ) : null}

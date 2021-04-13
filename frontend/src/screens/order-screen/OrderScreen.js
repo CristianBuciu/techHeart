@@ -165,16 +165,14 @@ const OrderScreen = ({ match }) => {
             </div>
           </div>
           <div className="line-break"></div>
-          <h3 className="heading-3 order-screen__section-title mb-sm mt-sm">
-            Products
-          </h3>
+
           <div className="order-screen__products-info ">
-            <div>
-              {order.orderItems.map((item) => (
-                <div
-                  key={item.product._id}
-                  className="order-screen__item mb-sm"
-                >
+            <h3 className="heading-3 order-screen__section-title mb-sm mt-sm">
+              Products
+            </h3>
+            {order.orderItems.map((item) => (
+              <div key={item.product._id} className="order-screen__item mb-sm">
+                <div>
                   <img
                     onClick={() => {
                       dispatch({
@@ -186,31 +184,32 @@ const OrderScreen = ({ match }) => {
                     alt={item.product.name}
                     className="order-screen__image mr-sm"
                   />
-                  <div className="order-screen__item-details">
-                    <h4
-                      onClick={() => {
-                        dispatch({
-                          type: productConstants.PRODUCT_DETAILS_RESET,
-                        });
-                        history.push(`/product/${item.product._id}`);
-                      }}
-                      className="heading-4 order-screen__item-details--title"
-                    >
-                      {item.product.name} x {item.quantity}
-                    </h4>
-
-                    <h4 className="heading-4 order-screen__item-details--price price-number">
-                      PRICE: €{" "}
-                      {roundToTwo(
-                        item.product.price -
-                          item.product.price *
-                            (item.product.offerPriceDiscount / 100)
-                      )}
-                    </h4>
-                  </div>
                 </div>
-              ))}
-            </div>
+                <div className="order-screen__item-details">
+                  <h4
+                    onClick={() => {
+                      dispatch({
+                        type: productConstants.PRODUCT_DETAILS_RESET,
+                      });
+                      history.push(`/product/${item.product._id}`);
+                    }}
+                    className="heading-4 order-screen__item-details--title"
+                  >
+                    {item.product.name} x {item.quantity}
+                  </h4>
+
+                  <h4 className="heading-4 order-screen__item-details--price price-number">
+                    PRICE: €{" "}
+                    {roundToTwo(
+                      item.product.price -
+                        item.product.price *
+                          (item.product.offerPriceDiscount / 100)
+                    )}
+                  </h4>
+                </div>
+              </div>
+            ))}
+
             <div className="order-screen__payment">
               <div className="order-screen__summary">
                 <h3

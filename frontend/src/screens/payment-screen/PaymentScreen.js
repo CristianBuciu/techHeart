@@ -116,7 +116,10 @@ const PaymentScreen = () => {
               style={{ width: "7rem", height: "7rem" }}
               className="payment-screen__payment-icon mr-sm"
             />
-            DHL Standard Shipping <strong>&nbsp;&nbsp;( + 5.99 €)</strong>
+            DHL Standard Shipping{" "}
+            <strong className="payment-screen__price-value">
+              &nbsp;&nbsp;( + 5.99 €)
+            </strong>
           </label>
           <label className="payment-screen__label " htmlFor="DHL1Day">
             <input
@@ -131,7 +134,10 @@ const PaymentScreen = () => {
               style={{ width: "7rem", height: "7rem" }}
               className="payment-screen__payment-icon mr-sm"
             />
-            DHL 1 Day Delivery <strong>&nbsp;&nbsp;( + 8.99 €)</strong>
+            DHL 1 Day Delivery{" "}
+            <strong className="payment-screen__price-value">
+              &nbsp;&nbsp;( + 8.99 €)
+            </strong>
           </label>
           <label className="payment-screen__label mb-md" htmlFor="Correos">
             <input
@@ -146,7 +152,10 @@ const PaymentScreen = () => {
               style={{ width: "7rem", height: "7rem" }}
               className="payment-screen__payment-icon mr-sm"
             />
-            Correos 3-5 Day Delivery <strong>&nbsp;&nbsp;( + 3.99 €)</strong>
+            Correos 3-5 Day Delivery{" "}
+            <strong className="payment-screen__price-value">
+              &nbsp;&nbsp;( + 3.99 €)
+            </strong>
           </label>
           <button className="payment-screen__ship-btn">
             Continue <AiOutlineDoubleRight className="payment-screen__arrows" />{" "}

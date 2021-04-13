@@ -7,6 +7,15 @@
     &--disabled {
       color: $color-grey-light-2;
     }
+    &__price-value {
+      justify-self: flex-end;
+    }
+    @include respond(phone) {
+      width: 100%;
+      font-size: 1.4rem;
+      display: grid;
+      grid-template-columns: 10% 25% 40% 25%;
+    }
   }
   &__payment-icon {
     font-size: 3rem;

@@ -295,9 +295,9 @@ const ProductScreen = () => {
               </p>
             </div>
           </div>
-          <div style={{ width: "50%" }}>
-            <AddReview showModal={false} productId={product._id} />
-          </div>
+
+          <AddReview showModal={false} productId={product._id} />
+
           <div className="line-break"></div>
 
           {product.reviews.map((review) => (

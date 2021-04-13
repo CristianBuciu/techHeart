@@ -22,7 +22,7 @@ import { BiMessageAdd } from "react-icons/bi";
 import { BsFillBackspaceFill } from "react-icons/bs";
 
 //!==========================================================
-const AddReview = ({ productId, showModal }) => {
+const AddReview = ({ productId, showModal, style }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -70,7 +70,7 @@ const AddReview = ({ productId, showModal }) => {
   };
 
   return (
-    <div className="add-review mt-sm">
+    <div style={style} className="add-review mt-sm">
       {error ? <ErrorMessage color="alert">{error}</ErrorMessage> : ""}
       {success ? <ErrorMessage color="success">{success}</ErrorMessage> : ""}
       {addReviewShow ? (

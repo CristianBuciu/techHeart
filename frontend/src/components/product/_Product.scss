@@ -12,6 +12,9 @@
   &:hover {
     box-shadow: $shadow-normal;
   }
+  @include respond(phone) {
+    width: 90%;
+  }
   &__discount-message {
     display: flex;
     align-items: center;

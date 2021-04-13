@@ -15,7 +15,7 @@ const CheckoutSteps = ({ active3 }) => {
   const selectedPayment =
     orderPaymentMethod.paymentMethod !== "" ? "selected" : "";
   return (
-    <>
+    <div className="checkout-steps-container">
       <div
         style={{
           marginTop: "-8rem",
@@ -94,7 +94,7 @@ const CheckoutSteps = ({ active3 }) => {
           <div></div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

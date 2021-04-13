@@ -20,6 +20,9 @@ import {
 import { addToCart, getCartProducts } from "../../redux/cart/cart.actions.js";
 import { productConstants } from "../../redux/product/product.constants";
 
+//! Extra npm packages
+import { Link, animateScroll as scroll } from "react-scroll";
+
 //todo implement gsap to stop the buy now on screen
 //!=======================================================
 
@@ -122,7 +125,9 @@ const CompleteOrder = () => {
   //*============================================================
   return (
     <div className="complete-order shipping-section">
+      <div id="section1"></div>
       <CheckoutSteps active3="selected-3" />
+
       <div>
         <h1 className="heading-1  mt-sm mb-sm">Order summary</h1>
       </div>
@@ -212,15 +217,19 @@ const CompleteOrder = () => {
           ) : (
             cartProducts.map((item) => (
               <div key={item.product._id} className="complete-order__item">
-                <img
-                  onClick={() => {
-                    dispatch({ type: productConstants.PRODUCT_DETAILS_RESET });
-                    history.push(`/product/${item.product._id}`);
-                  }}
-                  src={item.product.image}
-                  alt={item.product.name}
-                  className="complete-order__image"
-                />
+                <div className="complete-order__image-container">
+                  <img
+                    onClick={() => {
+                      dispatch({
+                        type: productConstants.PRODUCT_DETAILS_RESET,
+                      });
+                      history.push(`/product/${item.product._id}`);
+                    }}
+                    src={item.product.image}
+                    alt={item.product.name}
+                    className="complete-order__image"
+                  />
+                </div>
                 <div className="complete-order__item-details">
                   <h4
                     onClick={() => {
@@ -333,6 +342,9 @@ const CompleteOrder = () => {
           </h2>
         </div>
       </div>
+      <Link to="section1" smooth={true} duration={500}>
+        <span className="back-to-top">&#8632; &nbsp;Back to top </span>
+      </Link>
     </div>
   );
 };

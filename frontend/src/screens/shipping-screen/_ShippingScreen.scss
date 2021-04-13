@@ -34,7 +34,9 @@
       background-color: $color-pallete-1;
     }
     &--delete {
-      color: $color-grey-dark-1;
+      border: 1px solid transparent;
+
+      color: $color-alert;
       cursor: pointer;
     }
     &:visited {
