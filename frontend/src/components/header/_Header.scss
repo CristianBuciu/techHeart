@@ -37,6 +37,10 @@
   &__logo {
     font-size: 4rem;
     color: $color-cta;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    transform: translateZ(0);
     animation: heartbeat-lower 1s infinite;
     @include respond(phone) {
       margin-left: 1rem;
